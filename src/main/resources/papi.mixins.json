@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.teampotato.papi.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "overwrites": {
+    "conformVisibility": true
+  },
+  "refmap": "papi.refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
