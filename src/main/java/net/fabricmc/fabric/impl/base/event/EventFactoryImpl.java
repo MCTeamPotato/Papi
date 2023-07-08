@@ -16,8 +16,6 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
-import net.fabricmc.fabric.api.event.Event;
-
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
@@ -29,6 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import net.minecraft.util.Identifier;
+
+import net.fabricmc.fabric.api.event.Event;
+
 public final class EventFactoryImpl {
 	private static final List<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS = new ArrayList<>();
 
@@ -39,18 +41,33 @@ public final class EventFactoryImpl {
 	}
 
 	public static <T> Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
-		return createArrayBacked(type, null /* buildEmptyInvoker(type, invokerFactory) */, invokerFactory);
-	}
-
-	public static <T> Event<T> createArrayBacked(Class<? super T> type, T emptyInvoker, Function<T[], T> invokerFactory) {
-		ArrayBackedEvent<T> event = new ArrayBackedEvent<>(type, emptyInvoker, invokerFactory);
+		ArrayBackedEvent<T> event = new ArrayBackedEvent<>(type, invokerFactory);
 		ARRAY_BACKED_EVENTS.add(event);
 		return event;
 	}
 
+	public static void ensureContainsDefault(Identifier[] defaultPhases) {
+		for (Identifier id : defaultPhases) {
+			if (id.equals(Event.DEFAULT_PHASE)) {
+				return;
+			}
+		}
+
+		throw new IllegalArgumentException("The event phases must contain Event.DEFAULT_PHASE.");
+	}
+
+	public static void ensureNoDuplicates(Identifier[] defaultPhases) {
+		for (int i = 0; i < defaultPhases.length; ++i) {
+			for (int j = i+1; j < defaultPhases.length; ++j) {
+				if (defaultPhases[i].equals(defaultPhases[j])) {
+					throw new IllegalArgumentException("Duplicate event phase: " + defaultPhases[i]);
+				}
+			}
+		}
+	}
+
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
-	@SuppressWarnings("SuspiciousInvocationHandlerImplementation")
 	private static <T> T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
 		Method funcIfMethod = null;
