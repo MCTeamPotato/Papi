@@ -65,7 +65,7 @@ public abstract class WorldMixin {
 		return blockEntityList.remove(blockEntity);
 	}
 
-	@Redirect(method = "tickBlockEntities", at = @At(value = "INVOKE", target = "Ljava/util/List;removeAll(Ljava/util/Collection;)Z", ordinal = 1))
+	@Redirect(method = "tickBlockEntities", at = @At(value = "INVOKE", target = "Ljava/util/List;removeAll(Ljava/util/Collection;)Z", ordinal = 1, remap = false))
 	protected boolean onPurgeRemovedBlockEntities(List<Object> blockEntityList, Collection<Object> removals) {
 		if (getThis() instanceof ServerWorld) {
 			for (Object removal : removals) {

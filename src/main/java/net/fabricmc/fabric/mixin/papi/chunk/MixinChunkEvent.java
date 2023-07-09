@@ -1,6 +1,8 @@
 package net.fabricmc.fabric.mixin.papi.chunk;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.chunk.Chunk;
@@ -11,10 +13,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static net.fabricmc.fabric.Papi.checkSide;
+
 public abstract class MixinChunkEvent {
-    private static boolean canPost(WorldAccess worldAccess, Chunk chunk) {
-        return worldAccess instanceof ServerWorld && chunk instanceof WorldChunk;
-    }
 
     @Mixin(value = ChunkEvent.Load.class, remap = false)
     public static abstract class MixinLoad extends ChunkEvent{
@@ -26,8 +27,11 @@ public abstract class MixinChunkEvent {
         private void onInit(CallbackInfo callbackInfo) {
             WorldAccess worldAccess = this.getWorld();
             Chunk chunk = this.getChunk();
-            if (canPost(worldAccess, chunk)) {
+            int side = checkSide(worldAccess, chunk);
+            if (side == 1) {
                 ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ServerWorld) worldAccess, (WorldChunk) chunk);
+            } else if (side == 2) {
+                ClientChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ClientWorld) worldAccess, (WorldChunk) chunk);
             }
         }
     }
@@ -42,8 +46,11 @@ public abstract class MixinChunkEvent {
         private void onInit(CallbackInfo callbackInfo) {
             WorldAccess worldAccess = this.getWorld();
             Chunk chunk = this.getChunk();
-            if (canPost(worldAccess, chunk)) {
+            int side = checkSide(worldAccess, chunk);
+            if (side == 1) {
                 ServerChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ServerWorld) worldAccess, (WorldChunk) chunk);
+            } else if (side == 2) {
+                ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ClientWorld) worldAccess, (WorldChunk) chunk);
             }
         }
     }

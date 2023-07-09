@@ -14,12 +14,10 @@
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
-    "papi.key_press.ForgeHooksClientMixin",
     "papi.chunk.MixinChunkEvent$MixinLoad",
     "papi.chunk.MixinChunkEvent$MixinUnload"
   ],
   "client": [
-    "event.lifecycle.client.ClientChunkManagerMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin"
