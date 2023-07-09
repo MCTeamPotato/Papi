@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.teampotato.papi.mixin",
+  "package": "net.fabricmc.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "overwrites": {

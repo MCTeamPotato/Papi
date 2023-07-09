@@ -1,4 +1,4 @@
-package com.teampotato.papi;
+package net.fabricmc.fabric;
 
 import net.minecraftforge.fml.common.Mod;
 

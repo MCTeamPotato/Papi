@@ -1,4 +1,4 @@
-package com.teampotato.papi.mixin.papi;
+package net.fabricmc.fabric.mixin.papi;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.minecraft.server.world.ServerWorld;

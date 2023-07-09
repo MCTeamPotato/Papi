@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.teampotato.papi.mixin.event.lifecycle;
+package net.fabricmc.fabric.mixin.event.lifecycle;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
