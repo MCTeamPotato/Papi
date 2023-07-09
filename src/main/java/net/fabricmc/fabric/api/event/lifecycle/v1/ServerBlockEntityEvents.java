@@ -28,7 +28,7 @@ public final class ServerBlockEntityEvents {
 	}
 
 	/**
-	 * Called when an BlockEntity is loaded into a ServerWorld.
+	 * Called when a BlockEntity is loaded into a ServerWorld.
 	 *
 	 * <p>When this is event is called, the block entity is already in the world.
 	 */
