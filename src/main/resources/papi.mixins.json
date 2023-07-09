@@ -14,8 +14,10 @@
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
+    "lookup.ServerWorldMixin",
     "papi.chunk.MixinChunkEvent$MixinLoad",
-    "papi.chunk.MixinChunkEvent$MixinUnload"
+    "papi.chunk.MixinChunkEvent$MixinUnload",
+    "papi.api.BlockEntityTypeMixin"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
