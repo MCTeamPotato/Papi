@@ -6,8 +6,20 @@
   "overwrites": {
     "conformVisibility": true
   },
-  "refmap": "papi.refmap.json",
+  "refmap": "papi-refmap.json",
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+    "event.lifecycle.MinecraftServerMixin",
+    "event.lifecycle.ServerWorldMixin",
+    "event.lifecycle.WorldMixin",
+    "papi.EventBusMixin"
+  ],
+  "client": [
+    "event.lifecycle.client.ClientChunkManagerMixin",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin"
+  ]
 }

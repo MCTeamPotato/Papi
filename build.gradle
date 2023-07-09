@@ -11,8 +11,12 @@ group = project.maven_group
 
 loom {
     accessWidenerPath = file("src/main/resources/papi.accesswidener")
+
     silentMojangMappingsLicense()
+
     forge {
+        convertAccessWideners = true
+
         mixinConfigs = [
             "papi.mixins.json"
         ]
@@ -40,10 +44,6 @@ tasks.withType(JavaCompile) {
     if (JavaVersion.current().isJava9Compatible()) {
         options.release = targetVersion
     }
-}
-
-java {
-    withSourcesJar()
 }
 
 jar {
