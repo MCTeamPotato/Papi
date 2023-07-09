@@ -158,7 +158,7 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 		for (BlockEntityType<?> blockEntityType : blockEntityTypes) {
 			Objects.requireNonNull(blockEntityType, "Encountered null block entity type while registering a block entity API provider mapping.");
 
-			Block[] blocks = ((ExtendedBlockEntityType) blockEntityType).getBlocks().toArray(new Block[0]);
+			Block[] blocks = ((ExtendedBlockEntityType) blockEntityType).papi$getBlocks().toArray(new Block[0]);
 			registerForBlocks(nullCheckedProvider, blocks);
 		}
 	}
