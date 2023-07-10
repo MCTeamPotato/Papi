@@ -32,19 +32,19 @@ import java.util.List;
 
 @Mixin(LootPool.class)
 public abstract class MixinLootPool implements FabricLootPool {
-	@Shadow @Final private LootPoolEntry[] entries;
-	@Shadow @Final private LootCondition[] conditions;
+	@Shadow @Final private List<LootPoolEntry> entries;
+	@Shadow @Final private List<LootCondition> conditions;
 	@Shadow @Final private LootFunction[] functions;
 	@Accessor @Override public abstract LootTableRange getRolls();
 
 	@Override
 	public List<LootPoolEntry> getEntries() {
-		return Arrays.asList(entries);
+		return entries;
 	}
 
 	@Override
 	public List<LootCondition> getConditions() {
-		return Arrays.asList(conditions);
+		return conditions;
 	}
 
 	@Override

@@ -21,14 +21,12 @@ import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Unit;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
@@ -45,22 +43,6 @@ abstract class PlayerEntityMixin extends LivingEntity{
 			info.setReturnValue(Either.left(failureReason));
 			info.cancel();
 		}
-	}
-
-	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;isDay()Z"))
-	private boolean redirectDaySleepCheck(World world) {
-		boolean day = world.isDay();
-
-		if (this.getSleepingPosition().isPresent()) {
-			BlockPos pos =this.getSleepingPosition().get();
-			ActionResult result = EntitySleepEvents.ALLOW_SLEEP_TIME.invoker().allowSleepTime((PlayerEntity) (Object) this, pos, !day);
-
-			if (result != ActionResult.PASS) {
-				return !result.isAccepted(); // true from the event = night-like conditions, so we have to invert
-			}
-		}
-
-		return day;
 	}
 
 	@Inject(method = "isSleepingLongEnough", at = @At("RETURN"), cancellable = true)

@@ -31,12 +31,12 @@ import java.util.List;
 
 @Mixin(LootTable.class)
 public abstract class MixinLootSupplier implements FabricLootSupplier {
-	@Shadow @Final private LootPool[] pools;
+	@Shadow @Final private List<LootPool> pools;
 	@Shadow @Final private LootFunction[] functions;
 
 	@Override
 	public List<LootPool> getPools() {
-		return Arrays.asList(pools);
+		return pools;
 	}
 
 	@Override
