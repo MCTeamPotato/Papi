@@ -47,7 +47,6 @@ public class MixinLootManager {
 		tables.forEach((id, supplier) -> {
 			FabricLootSupplierBuilder builder = FabricLootSupplierBuilder.of(supplier);
 
-			//noinspection ConstantConditions
 			LootTableLoadingCallback.EVENT.invoker().onLootTableLoading(
 					manager, (LootManager) (Object) this, id, builder, (s) -> newSuppliers.put(id, s)
 			);

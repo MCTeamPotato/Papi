@@ -35,6 +35,8 @@
     "networking.accessor.LoginQueryRequestS2CPacketAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.block_entity.MixinBlockEntity",
+    "networking.block_entity.MixinClientPlayNetworkHandler",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -48,7 +50,7 @@
     "papi.lifecycle_chunk_event.MixinChunkEvent$MixinLoad"
   ],
   "client": [
-    "blockrenderlayer.MixinBlockRenderLayer",
+    "block_render_layer.MixinBlockRenderLayer",
     "client.keybinding.KeyBindingAccessor",
     "client.keybinding.KeyCodeAccessor",
     "client.keybinding.MixinGameOptions",

@@ -15,6 +15,7 @@ import java.util.Optional;
 @Mixin(value = ForgeEventFactory.class, remap = false)
 public class ForgeEventFactoryMixin {
     //boolean is inverted at the return because Forge adds a "!" at the return place.
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @Inject(method = "fireSleepingTimeCheck", at = @At("HEAD"), cancellable = true)
     private static void onFireSleepingTimeCheck(PlayerEntity player, Optional<BlockPos> sleepingLocation, CallbackInfoReturnable<Boolean> cir) {
         boolean day = player.world.isDay();
