@@ -74,7 +74,7 @@ public class ServerBugfixMixin {
 		return value;
 	}
 
-	@Redirect(method = "main", at = @At(value = "NEW", args = "class=net.minecraft.world.level.LevelProperties"), allow = 1)
+	@Redirect(method = "main", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelProperties;<init>(Lnet/minecraft/world/level/LevelInfo;Lnet/minecraft/world/gen/GeneratorOptions;Lcom/mojang/serialization/Lifecycle;)V"), allow = 1)
 	private static LevelProperties onCreateNewLevelProperties(LevelInfo levelInfo, GeneratorOptions generatorOptions, Lifecycle lifecycle) {
 		DataPackSettings dataPackSettings = levelInfo.getDataPackSettings();
 

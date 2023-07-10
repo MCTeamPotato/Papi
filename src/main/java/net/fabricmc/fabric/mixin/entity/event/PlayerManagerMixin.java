@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.blockrenderlayer;
+package net.fabricmc.fabric.mixin.entity.event;
 
-import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
-import net.minecraft.block.Block;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.fluid.Fluid;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Map;
+import net.minecraft.server.PlayerManager;
+import net.minecraft.server.network.ServerPlayerEntity;
 
-@Mixin(RenderLayers.class)
-public class MixinBlockRenderLayer {
-	@Shadow private static Map<Block, RenderLayer> BLOCKS;
-	@Shadow private static Map<Fluid, RenderLayer> FLUIDS;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 
-	@Inject(method = "<init>", at = @At("RETURN"))
-	private void onInitialize(CallbackInfo info) {
-		BlockRenderLayerMapImpl.initialize(BLOCKS::put, FLUIDS::put);
+@Mixin(PlayerManager.class)
+abstract class PlayerManagerMixin {
+	@Inject(method = "respawnPlayer", at = @At("TAIL"))
+	private void afterRespawn(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfoReturnable<ServerPlayerEntity> cir) {
+		ServerPlayerEvents.AFTER_RESPAWN.invoker().afterRespawn(oldPlayer, cir.getReturnValue(), alive);
 	}
 }

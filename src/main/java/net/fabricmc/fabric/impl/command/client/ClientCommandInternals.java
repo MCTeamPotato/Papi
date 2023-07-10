@@ -16,14 +16,6 @@
 
 package net.fabricmc.fabric.impl.command.client;
 
-import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.DISPATCHER;
-import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.argument;
-import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.google.common.collect.Iterables;
 import com.mojang.brigadier.AmbiguityConsumer;
 import com.mojang.brigadier.CommandDispatcher;
@@ -37,23 +29,27 @@ import com.mojang.brigadier.exceptions.BuiltInExceptionProvider;
 import com.mojang.brigadier.exceptions.CommandExceptionType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.CommandNode;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.mixin.command.HelpCommandAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandException;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.Texts;
 import net.minecraft.text.TranslatableText;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.fabricmc.fabric.mixin.command.HelpCommandAccessor;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-@Environment(EnvType.CLIENT)
+import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.*;
+
+@OnlyIn(Dist.CLIENT)
 public final class ClientCommandInternals {
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final char PREFIX = '/';

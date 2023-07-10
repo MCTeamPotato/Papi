@@ -2,6 +2,7 @@ package net.fabricmc.fabric.mixin.papi.lifecycle_chunk_event;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.papi.util.MixinUtil;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.WorldAccess;
@@ -12,8 +13,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static net.fabricmc.fabric.Papi.checkSide;
 
 public abstract class MixinChunkEvent {
 
@@ -27,7 +26,7 @@ public abstract class MixinChunkEvent {
         private void onInit(CallbackInfo callbackInfo) {
             WorldAccess worldAccess = this.getWorld();
             Chunk chunk = this.getChunk();
-            int side = checkSide(worldAccess, chunk);
+            int side = MixinUtil.checkSide(worldAccess, chunk);
             if (side == 1) {
                 ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ServerWorld) worldAccess, (WorldChunk) chunk);
             } else if (side == 2) {
@@ -46,7 +45,7 @@ public abstract class MixinChunkEvent {
         private void onInit(CallbackInfo callbackInfo) {
             WorldAccess worldAccess = this.getWorld();
             Chunk chunk = this.getChunk();
-            int side = checkSide(worldAccess, chunk);
+            int side = MixinUtil.checkSide(worldAccess, chunk);
             if (side == 1) {
                 ServerChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ServerWorld) worldAccess, (WorldChunk) chunk);
             } else if (side == 2) {
