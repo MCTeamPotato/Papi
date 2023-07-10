@@ -22,7 +22,7 @@ import net.minecraft.nbt.Tag;
 /**
  * NBT type ID constants. Useful for filtering by value type in a few cases.
  *
- * <p>For the current list of types, check with {@link Tag#TYPES}.
+ * <p>For the current list of types, check with {@link Tag}.
  *
  * @see CompoundTag#contains(String, int)
  * @see net.minecraft.nbt.TagReaders#of(int)

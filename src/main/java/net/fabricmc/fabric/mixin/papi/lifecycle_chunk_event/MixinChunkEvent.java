@@ -1,4 +1,4 @@
-package net.fabricmc.fabric.mixin.papi.chunk;
+package net.fabricmc.fabric.mixin.papi.lifecycle_chunk_event;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
@@ -18,7 +18,7 @@ import static net.fabricmc.fabric.Papi.checkSide;
 public abstract class MixinChunkEvent {
 
     @Mixin(value = ChunkEvent.Load.class, remap = false)
-    public static abstract class MixinLoad extends ChunkEvent{
+    public static abstract class MixinLoad extends ChunkEvent {
         public MixinLoad(Chunk chunk) {
             super(chunk);
         }

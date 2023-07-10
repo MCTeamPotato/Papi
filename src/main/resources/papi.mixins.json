@@ -11,17 +11,24 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "blockrenderlayer.MixinBlockRenderLayer",
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
+    "command.client.MinecraftClientMixin",
+    "command.HelpCommandAccessor",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
     "lookup.ServerWorldMixin",
-    "papi.chunk.MixinChunkEvent$MixinLoad",
-    "papi.chunk.MixinChunkEvent$MixinUnload",
-    "papi.api.BlockEntityTypeMixin"
+    "papi.api.BlockEntityTypeMixin",
+    "papi.command.MixinForgeEventFactory",
+    "papi.lifecycle_chunk_event.MixinChunkEvent.MixinLoad",
+    "papi.lifecycle_chunk_event.MixinChunkEvent.MixinUnload"
   ],
   "client": [
-    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
-    "event.lifecycle.client.ClientWorldMixin",
-    "event.lifecycle.client.MinecraftClientMixin"
   ]
 }
