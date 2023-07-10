@@ -27,7 +27,9 @@
     "papi.api.BlockEntityTypeMixin",
     "papi.command.MixinForgeEventFactory",
     "papi.lifecycle_chunk_event.MixinChunkEvent.MixinLoad",
-    "papi.lifecycle_chunk_event.MixinChunkEvent.MixinUnload"
+    "papi.lifecycle_chunk_event.MixinChunkEvent.MixinUnload",
+    "dimension.EntityMixin",
+    "dimension.ServerBugfixMixin"
   ],
   "client": [
   ]

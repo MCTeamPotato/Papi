@@ -65,8 +65,7 @@ public final class ClientCommandManager {
 	 */
 	public static final CommandDispatcher<FabricClientCommandSource> DISPATCHER = new CommandDispatcher<>();
 
-	private ClientCommandManager() {
-	}
+	private ClientCommandManager() {}
 
 	/**
 	 * Creates a literal argument builder.

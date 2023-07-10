@@ -22,6 +22,8 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Use to associate blocks or fluids with block render layer other than default.
@@ -35,6 +37,7 @@ import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
  *
  * <p>Client-side only.
  */
+@OnlyIn(Dist.CLIENT)
 public interface BlockRenderLayerMap {
 	BlockRenderLayerMap INSTANCE = BlockRenderLayerMapImpl.INSTANCE;
 
