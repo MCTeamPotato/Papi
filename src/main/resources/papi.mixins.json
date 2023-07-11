@@ -39,12 +39,6 @@
     "networking.block_entity.MixinClientPlayNetworkHandler",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
-    "gamerule.BooleanRuleAccessor",
-    "gamerule.GameRuleCommandAccessor",
-    "gamerule.GameRuleCommandVisitorMixin",
-    "gamerule.GameRulesAccessor",
-    "gamerule.IntRuleAccessor",
-    "gamerule.RuleKeyMixin",
     "networking.PlayerManagerMixin",
     "networking.ServerLoginNetworkHandlerMixin",
     "networking.ServerPlayNetworkHandlerMixin",
@@ -71,9 +65,6 @@
     "networking.accessor.ConnectScreenAccessor",
     "networking.accessor.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin",
-    "gamerule.client.EditGameRulesScreenAccessor",
-    "gamerule.client.RuleListWidgetMixin",
-    "gamerule.client.RuleListWidgetVisitorMixin"
+    "networking.client.ClientPlayNetworkHandlerMixin"
   ]
 }
