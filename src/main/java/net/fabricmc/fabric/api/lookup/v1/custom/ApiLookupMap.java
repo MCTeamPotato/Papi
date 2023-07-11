@@ -16,13 +16,11 @@
 
 package net.fabricmc.fabric.api.lookup.v1.custom;
 
-import java.util.Objects;
-
+import net.fabricmc.fabric.impl.lookup.custom.ApiLookupMapImpl;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
 
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.impl.lookup.custom.ApiLookupMapImpl;
+import java.util.Objects;
 
 //CHECKSTYLE.OFF: JavadocStyle - Checkstyle didn't like <A, C>, even though {@code ... } already escapes it.
 /**

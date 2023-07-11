@@ -16,9 +16,9 @@
 
 package net.fabricmc.fabric.impl.networking;
 
-import java.util.Collection;
-
 import net.minecraft.util.Identifier;
+
+import java.util.Collection;
 
 public interface ChannelInfoHolder {
 	/**
