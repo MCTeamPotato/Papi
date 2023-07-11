@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.api.loot.v1;
 
-import net.minecraft.loot.condition.LootCondition;
+import net.fabricmc.fabric.mixin.loot.table.LootPoolBuilderHooks;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTableRange;
+import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.LootFunction;
-
-import net.fabricmc.fabric.mixin.loot.table.LootPoolBuilderHooks;
 
 public class FabricLootPoolBuilder extends LootPool.Builder {
 	private final LootPoolBuilderHooks extended = (LootPoolBuilderHooks) this;

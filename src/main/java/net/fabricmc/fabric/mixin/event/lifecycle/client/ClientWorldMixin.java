@@ -16,10 +16,10 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle.client;
 
-import net.fabricmc.fabric.mixin.event.lifecycle.WorldMixin;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.mixin.event.lifecycle.WorldMixin;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;

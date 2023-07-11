@@ -16,11 +16,10 @@
 
 package net.fabricmc.fabric.api.client.keybinding.v1;
 
-import net.minecraft.client.options.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.mixin.client.keybinding.KeyCodeAccessor;
+import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.util.InputUtil;
 
 /**
  * Helper for registering key bindings.

@@ -16,11 +16,10 @@
 
 package net.fabricmc.fabric.api.loot.v1;
 
+import net.fabricmc.fabric.impl.loot.table.LootEntryTypeRegistryImpl;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonSerializer;
-
-import net.fabricmc.fabric.impl.loot.table.LootEntryTypeRegistryImpl;
 
 /**
  * Fabric's extensions to {@code net.minecraft.loot.entry.LootEntries} for registering

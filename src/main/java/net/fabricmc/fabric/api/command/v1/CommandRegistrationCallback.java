@@ -17,11 +17,9 @@
 package net.fabricmc.fabric.api.command.v1;
 
 import com.mojang.brigadier.CommandDispatcher;
-
-import net.minecraft.server.command.ServerCommandSource;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.server.command.ServerCommandSource;
 
 /**
  * Callback for when a server registers all commands.

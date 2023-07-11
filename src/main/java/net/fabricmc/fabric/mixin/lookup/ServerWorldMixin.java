@@ -16,20 +16,18 @@
 
 package net.fabricmc.fabric.mixin.lookup;
 
+import it.unimi.dsi.fastutil.objects.Object2ReferenceOpenHashMap;
+import net.fabricmc.fabric.impl.lookup.block.BlockApiCacheImpl;
+import net.fabricmc.fabric.impl.lookup.block.ServerWorldCache;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import it.unimi.dsi.fastutil.objects.Object2ReferenceOpenHashMap;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-
-import net.fabricmc.fabric.impl.lookup.block.BlockApiCacheImpl;
-import net.fabricmc.fabric.impl.lookup.block.ServerWorldCache;
 
 @Mixin(ServerWorld.class)
 abstract class ServerWorldMixin implements ServerWorldCache {

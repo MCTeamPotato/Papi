@@ -16,12 +16,12 @@
 
 package net.fabricmc.fabric.api.loot.v1;
 
-import java.util.List;
-
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextType;
 import net.minecraft.loot.function.LootFunction;
+
+import java.util.List;
 
 /**
  * An interface implemented by all {@code net.minecraft.loot.LootSupplier} instances when

@@ -16,16 +16,10 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.IdentityHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-
 import com.google.common.annotations.VisibleForTesting;
 import org.jetbrains.annotations.ApiStatus;
+
+import java.util.*;
 
 /**
  * Contains phase-sorting logic for {@link ArrayBackedEvent}.
