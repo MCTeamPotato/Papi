@@ -8,5 +8,5 @@ version = "${version}"
 displayName = "Papi"
 authors="Team Potato"
 description = '''
-Fabric API Reforged!
+Another Fabric API Reforged Project
 '''

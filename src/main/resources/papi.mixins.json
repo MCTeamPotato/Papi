@@ -34,7 +34,13 @@
     "papi.command.MixinForgeEventFactory",
     "papi.entity_event.ForgeEventFactoryMixin",
     "papi.lifecycle_chunk_event.MixinChunkEvent$MixinUnload",
-    "papi.lifecycle_chunk_event.MixinChunkEvent$MixinLoad"
+    "papi.lifecycle_chunk_event.MixinChunkEvent$MixinLoad",
+    "gamerule.BooleanRuleAccessor",
+    "gamerule.GameRuleCommandAccessor",
+    "gamerule.GameRuleCommandVisitorMixin",
+    "gamerule.GameRulesAccessor",
+    "gamerule.IntRuleAccessor",
+    "gamerule.RuleKeyMixin"
   ],
   "client": [
     "block_render_layer.MixinBlockRenderLayer",
@@ -52,6 +58,11 @@
     "screen.MinecraftClientMixin",
     "screen.ScreenAccessor",
     "screen.ScreenMixin",
-    "papi.screen.ForgeHooksClientMixin"
+    "papi.screen.ForgeHooksClientMixin",
+    "client.particle.MixinParticleManager",
+    "client.particle.ParticleManagerAccessor",
+    "gamerule.client.EditGameRulesScreenAccessor",
+    "gamerule.client.RuleListWidgetMixin",
+    "gamerule.client.RuleListWidgetVisitorMixin"
   ]
 }
