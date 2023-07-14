@@ -65,6 +65,10 @@
     "networking.accessor.ConnectScreenAccessor",
     "networking.accessor.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin"
+    "networking.client.ClientPlayNetworkHandlerMixin",
+    "screen.MinecraftClientMixin",
+    "screen.ScreenAccessor",
+    "screen.ScreenMixin",
+    "papi.screen.ForgeHooksClientMixin"
   ]
 }

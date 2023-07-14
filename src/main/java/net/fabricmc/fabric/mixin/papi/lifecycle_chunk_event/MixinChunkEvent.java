@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public abstract class MixinChunkEvent {
-
     @Mixin(value = ChunkEvent.Load.class, remap = false)
     public static abstract class MixinLoad extends ChunkEvent {
         public MixinLoad(Chunk chunk) {
