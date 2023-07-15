@@ -43,7 +43,7 @@ public abstract class GameRuleCommandVisitorMixin {
 					EnumRuleCommand.register(literalArgumentBuilder, (GameRules.Key) key, (EnumRuleType) type);
 					return;
 				}
-				literalArgumentBuilder.then((CommandManager.literal(key.getName()).executes((context) -> GameRuleCommand.executeQuery((ServerCommandSource)context.getSource(), key))).then(type.argument("value").executes((context) -> GameRuleCommand.executeSet(context, key))));
+				literalArgumentBuilder.then((CommandManager.literal(key.getName()).executes((context) -> GameRuleCommand.executeQuery(context.getSource(), key))).then(type.argument("value").executes((context) -> GameRuleCommand.executeSet(context, key))));
 			}
 		});
 		dispatcher.register(literalArgumentBuilder);

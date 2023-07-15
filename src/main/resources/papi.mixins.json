@@ -62,7 +62,6 @@
     "client.particle.MixinParticleManager",
     "client.particle.ParticleManagerAccessor",
     "gamerule.client.EditGameRulesScreenAccessor",
-    "gamerule.client.RuleListWidgetMixin",
-    "gamerule.client.RuleListWidgetVisitorMixin"
+    "gamerule.client.RuleListWidgetMixin"
   ]
 }
