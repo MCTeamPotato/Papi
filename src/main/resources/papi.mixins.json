@@ -35,6 +35,7 @@
     "papi.entity_event.ForgeEventFactoryMixin",
     "papi.lifecycle_chunk_event.MixinChunkEvent$MixinUnload",
     "papi.lifecycle_chunk_event.MixinChunkEvent$MixinLoad",
+    "papi.networing.block_entity.MixinIForgeTileEntity",
     "gamerule.BooleanRuleAccessor",
     "gamerule.GameRuleCommandAccessor",
     "gamerule.GameRuleCommandVisitorMixin",

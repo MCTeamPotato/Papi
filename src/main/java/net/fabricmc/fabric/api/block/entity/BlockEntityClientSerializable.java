@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.api.block.entity;
 
 import com.google.common.base.Preconditions;
+
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
