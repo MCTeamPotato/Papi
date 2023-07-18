@@ -16,24 +16,20 @@
 
 package net.fabricmc.fabric.api.client.networking.v1;
 
-import java.util.Objects;
-import java.util.Set;
-
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ServerPlayPacketListener;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
-import net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Offers access to play stage client-side networking functionalities.
@@ -46,7 +42,7 @@ import net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon;
  * @see ClientLoginNetworking
  * @see ServerPlayNetworking
  */
-@Environment(EnvType.CLIENT)
+
 public final class ClientPlayNetworking {
 	/**
 	 * Registers a handler to a channel.
@@ -232,7 +228,6 @@ public final class ClientPlayNetworking {
 	private ClientPlayNetworking() {
 	}
 
-	@Environment(EnvType.CLIENT)
 	@FunctionalInterface
 	public interface PlayChannelHandler {
 		/**

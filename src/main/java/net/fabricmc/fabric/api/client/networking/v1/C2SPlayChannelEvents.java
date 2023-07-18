@@ -16,22 +16,19 @@
 
 package net.fabricmc.fabric.api.client.networking.v1;
 
-import java.util.List;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import java.util.List;
 
 /**
  * Offers access to events related to the indication of a connected server's ability to receive packets in certain channels.
  */
-@Environment(EnvType.CLIENT)
+
 public final class C2SPlayChannelEvents {
 	/**
 	 * An event for the client play network handler receiving an update indicating the connected server's ability to receive packets in certain channels.
@@ -59,7 +56,6 @@ public final class C2SPlayChannelEvents {
 	/**
 	 * @see C2SPlayChannelEvents#REGISTER
 	 */
-	@Environment(EnvType.CLIENT)
 	@FunctionalInterface
 	public interface Register {
 		void onChannelRegister(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client, List<Identifier> channels);
@@ -68,7 +64,6 @@ public final class C2SPlayChannelEvents {
 	/**
 	 * @see C2SPlayChannelEvents#UNREGISTER
 	 */
-	@Environment(EnvType.CLIENT)
 	@FunctionalInterface
 	public interface Unregister {
 		void onChannelUnregister(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client, List<Identifier> channels);

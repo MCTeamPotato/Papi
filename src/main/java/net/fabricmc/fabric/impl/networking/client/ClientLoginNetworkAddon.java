@@ -16,32 +16,28 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientLoginNetworkHandler;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
-import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.networking.v1.FutureListeners;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.impl.networking.AbstractNetworkAddon;
 import net.fabricmc.fabric.impl.networking.GenericFutureListenerHolder;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientLoginNetworkHandler;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
+import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-@Environment(EnvType.CLIENT)
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
+
 public final class ClientLoginNetworkAddon extends AbstractNetworkAddon<ClientLoginNetworking.LoginQueryRequestHandler> {
 	private final ClientLoginNetworkHandler handler;
 	private final MinecraftClient client;

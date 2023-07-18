@@ -16,6 +16,10 @@
 
 package net.fabricmc.fabric.impl.networking.server;
 
+import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.impl.networking.GlobalReceiverRegistry;
+import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
@@ -23,11 +27,6 @@ import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.impl.networking.GlobalReceiverRegistry;
-import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
 
 public final class ServerNetworkingImpl {
 	public static final GlobalReceiverRegistry<ServerLoginNetworking.LoginQueryResponseHandler> LOGIN = new GlobalReceiverRegistry<>();

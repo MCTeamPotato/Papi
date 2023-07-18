@@ -16,30 +16,26 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
-
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.C2SPlayChannelEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.impl.networking.AbstractChanneledNetworkAddon;
 import net.fabricmc.fabric.impl.networking.ChannelInfoHolder;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.network.Packet;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
 
-@Environment(EnvType.CLIENT)
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+
 public final class ClientPlayNetworkAddon extends AbstractChanneledNetworkAddon<ClientPlayNetworking.PlayChannelHandler> {
 	private final ClientPlayNetworkHandler handler;
 	private final MinecraftClient client;
@@ -53,7 +49,7 @@ public final class ClientPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 		this.client = client;
 
 		// Must register pending channels via lateinit
-		this.registerPendingChannels((ChannelInfoHolder) this.connection);
+		this.registerPendingChannels(ChannelInfoHolder.ChannelInfoHolderGetter.cast(this.connection));
 
 		// Register global receivers and attach to session
 		this.receiver.startSession(this);

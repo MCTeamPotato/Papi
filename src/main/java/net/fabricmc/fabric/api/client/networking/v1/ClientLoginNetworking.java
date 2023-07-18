@@ -16,25 +16,21 @@
 
 package net.fabricmc.fabric.api.client.networking.v1;
 
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
-
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
+import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientLoginNetworkHandler;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.PacketListener;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
-import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 /**
  * Offers access to login stage client-side networking functionalities.
@@ -44,7 +40,7 @@ import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
  * @see ClientPlayNetworking
  * @see ServerLoginNetworking
  */
-@Environment(EnvType.CLIENT)
+
 public final class ClientLoginNetworking {
 	/**
 	 * Registers a handler to a query request channel.
@@ -141,7 +137,6 @@ public final class ClientLoginNetworking {
 	private ClientLoginNetworking() {
 	}
 
-	@Environment(EnvType.CLIENT)
 	@FunctionalInterface
 	public interface LoginQueryRequestHandler {
 		/**

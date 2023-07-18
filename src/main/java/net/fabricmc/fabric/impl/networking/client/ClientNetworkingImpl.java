@@ -16,8 +16,6 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -38,8 +36,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ServerPlayPacketListener;
 import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -47,8 +43,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@Environment(EnvType.CLIENT)
-@OnlyIn(Dist.CLIENT)
+
+
 public final class ClientNetworkingImpl {
 	public static final GlobalReceiverRegistry<ClientLoginNetworking.LoginQueryRequestHandler> LOGIN = new GlobalReceiverRegistry<>();
 	public static final GlobalReceiverRegistry<ClientPlayNetworking.PlayChannelHandler> PLAY = new GlobalReceiverRegistry<>();
@@ -123,7 +119,7 @@ public final class ClientNetworkingImpl {
 				ids.add(buf.readIdentifier());
 			}
 
-			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
+			ChannelInfoHolder.ChannelInfoHolderGetter.cast(handler.getConnection()).getPendingChannelsNames().addAll(ids);
 			NetworkingImpl.LOGGER.debug("Received accepted channels from the server");
 
 			PacketByteBuf response = PacketByteBufs.create();
