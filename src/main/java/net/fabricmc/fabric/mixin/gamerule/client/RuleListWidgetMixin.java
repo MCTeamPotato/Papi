@@ -39,7 +39,7 @@ import java.util.stream.Stream;
 @Mixin(EditGameRulesScreen.RuleListWidget.class)
 public abstract class RuleListWidgetMixin extends net.minecraft.client.gui.widget.EntryListWidget<EditGameRulesScreen.AbstractRuleWidget> {
 	@Unique
-	private final Map<CustomGameRuleCategory, List<EditGameRulesScreen.AbstractRuleWidget>> fabricCategories = new HashMap<>();
+	private final Map<CustomGameRuleCategory, List<EditGameRulesScreen.AbstractRuleWidget>> papi$fabricCategories = new HashMap<>();
 
 	public RuleListWidgetMixin(MinecraftClient client, int width, int height, int top, int bottom, int itemHeight) {
 		super(client, width, height, top, bottom, itemHeight);
@@ -47,7 +47,7 @@ public abstract class RuleListWidgetMixin extends net.minecraft.client.gui.widge
 
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void initializeFabricGameruleCategories(EditGameRulesScreen screen, GameRules gameRules, CallbackInfo ci) {
-		this.fabricCategories.forEach((category, widgetList) -> {
+		this.papi$fabricCategories.forEach((category, widgetList) -> {
 			this.addEntry(screen.new RuleCategoryWidget(category.getName()));
 
 			for (EditGameRulesScreen.AbstractRuleWidget widget : widgetList) {
@@ -62,7 +62,7 @@ public abstract class RuleListWidgetMixin extends net.minecraft.client.gui.widge
 			final GameRules.Key<?> ruleKey = keyAbstractRuleWidgetEntry.getKey();
 			AtomicInteger i = new AtomicInteger();
 			CustomGameRuleCategory.getCategory(ruleKey).ifPresent(key -> {
-				this.fabricCategories.computeIfAbsent(key, c -> new ArrayList<>()).add(keyAbstractRuleWidgetEntry.getValue());
+				this.papi$fabricCategories.computeIfAbsent(key, c -> new ArrayList<>()).add(keyAbstractRuleWidgetEntry.getValue());
 				i.set(1);
 			});
 			if (i.get() == 0) {

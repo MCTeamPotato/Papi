@@ -32,7 +32,7 @@ public interface FabricLootSupplier {
 		return (LootTable) this;
 	}
 
-	List<LootPool> getPools();
-	List<LootFunction> getFunctions();
+	List<LootPool> papi$getPools();
+	List<LootFunction> papi$getFunctions();
 	LootContextType getType();
 }

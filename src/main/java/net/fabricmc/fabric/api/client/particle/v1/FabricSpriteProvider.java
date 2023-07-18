@@ -16,13 +16,13 @@
 
 package net.fabricmc.fabric.api.client.particle.v1;
 
-import java.util.List;
-
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.particle.ParticleType;
+
+import java.util.List;
 
 /**
  * FabricSpriteProvider. It does the same thing as vanilla's SpriteProvider,

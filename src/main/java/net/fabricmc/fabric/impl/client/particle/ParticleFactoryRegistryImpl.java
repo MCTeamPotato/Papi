@@ -16,7 +16,6 @@
 
 package net.fabricmc.fabric.impl.client.particle;
 
-import cpw.mods.modlauncher.api.INameMappingService;
 import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.mixin.client.particle.ParticleManagerAccessor;
@@ -26,7 +25,8 @@ import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.util.IdentityHashMap;
@@ -65,14 +65,13 @@ public final class ParticleFactoryRegistryImpl implements ParticleFactoryRegistr
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	static class DirectParticleFactoryRegistry implements ParticleFactoryRegistry {
 		private static final Constructor<? extends SpriteProvider> SIMPLE_SPRITE_PROVIDER_CONSTRUCTOR;
+		private static final Logger LOGGER = LogManager.getLogger();
 		static {
 			try {
-				String srgName = "net.minecraft.class_702$class_4090";
-				String currentClassName = ObfuscationReflectionHelper.remapName(INameMappingService.Domain.CLASS, srgName);
-				@SuppressWarnings("unchecked")
-				Class<? extends SpriteProvider> clazz = (Class<? extends SpriteProvider>) Class.forName(currentClassName);
+				Class<? extends SpriteProvider> clazz = (Class<? extends SpriteProvider>) Class.forName("net.minecraft.client.particle.ParticleManager$AnimatedSpriteImpl");
 				SIMPLE_SPRITE_PROVIDER_CONSTRUCTOR = clazz.getDeclaredConstructor(ParticleManager.class);
 				SIMPLE_SPRITE_PROVIDER_CONSTRUCTOR.setAccessible(true);
 			} catch (Exception e) {

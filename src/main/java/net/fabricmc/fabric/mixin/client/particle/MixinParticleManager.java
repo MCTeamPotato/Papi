@@ -16,14 +16,12 @@
 
 package net.fabricmc.fabric.mixin.client.particle;
 
+import net.fabricmc.fabric.impl.client.particle.ParticleFactoryRegistryImpl;
+import net.minecraft.client.particle.ParticleManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.particle.ParticleManager;
-
-import net.fabricmc.fabric.impl.client.particle.ParticleFactoryRegistryImpl;
 
 @Mixin(ParticleManager.class)
 public abstract class MixinParticleManager {

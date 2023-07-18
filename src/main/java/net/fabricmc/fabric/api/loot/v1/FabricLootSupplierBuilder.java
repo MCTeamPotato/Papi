@@ -85,8 +85,8 @@ public class FabricLootSupplierBuilder extends LootTable.Builder {
 	 */
 	public FabricLootSupplierBuilder copyFrom(LootTable supplier, boolean copyType) {
 		FabricLootSupplier extendedSupplier = (FabricLootSupplier) supplier;
-		extended.getPools().addAll(extendedSupplier.getPools());
-		extended.getFunctions().addAll(extendedSupplier.getFunctions());
+		extended.getPools().addAll(extendedSupplier.papi$getPools());
+		extended.getFunctions().addAll(extendedSupplier.papi$getFunctions());
 
 		if (copyType) {
 			type(extendedSupplier.getType());

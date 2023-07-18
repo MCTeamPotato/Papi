@@ -16,22 +16,14 @@
 
 package net.fabricmc.fabric.api.gamerule.v1;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.function.BiConsumer;
-
-import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.GameRules;
-
-import net.fabricmc.fabric.api.gamerule.v1.rule.DoubleRule;
-import net.fabricmc.fabric.api.gamerule.v1.rule.EnumRule;
-import net.fabricmc.fabric.impl.gamerule.EnumRuleType;
 import net.fabricmc.fabric.impl.gamerule.rule.BoundedIntRule;
 import net.fabricmc.fabric.mixin.gamerule.BooleanRuleAccessor;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.GameRules;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.BiConsumer;
 
 /**
  * A utility class containing factory methods to create game rule types.

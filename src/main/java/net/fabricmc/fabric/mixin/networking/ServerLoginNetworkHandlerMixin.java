@@ -16,6 +16,17 @@
 
 package net.fabricmc.fabric.mixin.networking;
 
+import net.fabricmc.fabric.impl.networking.DisconnectPacketSource;
+import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
+import net.fabricmc.fabric.impl.networking.PacketCallbackListener;
+import net.fabricmc.fabric.impl.networking.server.ServerLoginNetworkAddon;
+import net.minecraft.network.Packet;
+import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
+import net.minecraft.network.packet.s2c.login.LoginDisconnectS2CPacket;
+import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerLoginNetworkHandler;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,19 +35,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.network.Packet;
-import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
-import net.minecraft.network.packet.s2c.login.LoginDisconnectS2CPacket;
-import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerLoginNetworkHandler;
-import net.minecraft.text.Text;
-
-import net.fabricmc.fabric.impl.networking.DisconnectPacketSource;
-import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
-import net.fabricmc.fabric.impl.networking.PacketCallbackListener;
-import net.fabricmc.fabric.impl.networking.server.ServerLoginNetworkAddon;
 
 @Mixin(ServerLoginNetworkHandler.class)
 abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtensions, DisconnectPacketSource, PacketCallbackListener {
@@ -48,17 +46,17 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	public abstract void acceptPlayer();
 
 	@Unique
-	private ServerLoginNetworkAddon addon;
+	private ServerLoginNetworkAddon papi$addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.addon = new ServerLoginNetworkAddon((ServerLoginNetworkHandler) (Object) this);
+		this.papi$addon = new ServerLoginNetworkAddon((ServerLoginNetworkHandler) (Object) this);
 	}
 
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginNetworkHandler;acceptPlayer()V"))
 	private void handlePlayerJoin(ServerLoginNetworkHandler handler) {
 		// Do not accept the player, thereby moving into play stage until all login futures being waited on are completed
-		if (this.addon.queryTick()) {
+		if (this.papi$addon.queryTick()) {
 			this.acceptPlayer();
 		}
 	}
@@ -66,7 +64,7 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	@Inject(method = "onQueryResponse", at = @At("HEAD"), cancellable = true)
 	private void handleCustomPayloadReceivedAsync(LoginQueryResponseC2SPacket packet, CallbackInfo ci) {
 		// Handle queries
-		if (this.addon.handle(packet)) {
+		if (this.papi$addon.handle(packet)) {
 			ci.cancel();
 		}
 	}
@@ -78,33 +76,33 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.addon.handleDisconnect();
+		this.papi$addon.handleDisconnect();
 	}
 
 	@Inject(method = "acceptPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/PlayerManager;onPlayerConnect(Lnet/minecraft/network/ClientConnection;Lnet/minecraft/server/network/ServerPlayerEntity;)V"))
 	private void handlePlayTransitionNormal(CallbackInfo ci) {
-		this.addon.handlePlayTransition();
+		this.papi$addon.handlePlayTransition();
 	}
 
 	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/PlayerManager;onPlayerConnect(Lnet/minecraft/network/ClientConnection;Lnet/minecraft/server/network/ServerPlayerEntity;)V"))
 	private void handlePlayTransitionDelayed(CallbackInfo ci) {
-		this.addon.handlePlayTransition();
+		this.papi$addon.handlePlayTransition();
 	}
 
 	@Override
-	public void sent(Packet<?> packet) {
+	public void papi$sent(Packet<?> packet) {
 		if (packet instanceof LoginQueryRequestS2CPacket) {
-			this.addon.registerOutgoingPacket((LoginQueryRequestS2CPacket) packet);
+			this.papi$addon.registerOutgoingPacket((LoginQueryRequestS2CPacket) packet);
 		}
 	}
 
 	@Override
-	public ServerLoginNetworkAddon getAddon() {
-		return this.addon;
+	public ServerLoginNetworkAddon papi$getAddon() {
+		return this.papi$addon;
 	}
 
 	@Override
-	public Packet<?> createDisconnectPacket(Text message) {
+	public Packet<?> papi$createDisconnectPacket(Text message) {
 		return new LoginDisconnectS2CPacket(message);
 	}
 }

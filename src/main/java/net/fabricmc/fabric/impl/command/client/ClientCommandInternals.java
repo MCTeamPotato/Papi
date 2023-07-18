@@ -92,15 +92,15 @@ public final class ClientCommandInternals {
 				return false;
 			}
 
-			commandSource.sendError(getErrorMessage(e));
+			commandSource.papi$sendError(getErrorMessage(e));
 			return true;
 		} catch (CommandException e) {
 			LOGGER.warn("Error while executing client-sided command '{}'", message, e);
-			commandSource.sendError(e.getTextMessage());
+			commandSource.papi$sendError(e.getTextMessage());
 			return true;
 		} catch (RuntimeException e) {
 			LOGGER.warn("Error while executing client-sided command '{}'", message, e);
-			commandSource.sendError(Text.of(e.getMessage()));
+			commandSource.papi$sendError(Text.of(e.getMessage()));
 			return true;
 		} finally {
 			client.getProfiler().pop();
@@ -172,7 +172,7 @@ public final class ClientCommandInternals {
 		Map<CommandNode<FabricClientCommandSource>, String> commands = DISPATCHER.getSmartUsage(startNode, context.getSource());
 
 		for (String command : commands.values()) {
-			context.getSource().sendFeedback(new LiteralText("/" + command));
+			context.getSource().papi$sendFeedback(new LiteralText("/" + command));
 		}
 
 		return commands.size();

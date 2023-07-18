@@ -47,38 +47,38 @@ public abstract class MinecraftServerMixin {
 	@Shadow private ServerResourceManager serverResourceManager;
 
 	@Unique
-	private MinecraftServer getThis() {
+	private MinecraftServer papi$getThis() {
 		return (MinecraftServer) (Object) this;
 	}
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;setupServer()Z"), method = "runServer")
 	private void beforeSetupServer(CallbackInfo info) {
-		ServerLifecycleEvents.SERVER_STARTING.invoker().onServerStarting(getThis());
+		ServerLifecycleEvents.SERVER_STARTING.invoker().onServerStarting(papi$getThis());
 	}
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;setFavicon(Lnet/minecraft/server/ServerMetadata;)V", ordinal = 0), method = "runServer")
 	private void afterSetupServer(CallbackInfo info) {
-		ServerLifecycleEvents.SERVER_STARTED.invoker().onServerStarted(getThis());
+		ServerLifecycleEvents.SERVER_STARTED.invoker().onServerStarted(papi$getThis());
 	}
 
 	@Inject(at = @At("HEAD"), method = "shutdown")
 	private void beforeShutdownServer(CallbackInfo info) {
-		ServerLifecycleEvents.SERVER_STOPPING.invoker().onServerStopping(getThis());
+		ServerLifecycleEvents.SERVER_STOPPING.invoker().onServerStopping(papi$getThis());
 	}
 
 	@Inject(at = @At("TAIL"), method = "shutdown")
 	private void afterShutdownServer(CallbackInfo info) {
-		ServerLifecycleEvents.SERVER_STOPPED.invoker().onServerStopped(getThis());
+		ServerLifecycleEvents.SERVER_STOPPED.invoker().onServerStopped(papi$getThis());
 	}
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;tickWorlds(Ljava/util/function/BooleanSupplier;)V"), method = "tick")
 	private void onStartTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-		ServerTickEvents.START_SERVER_TICK.invoker().onStartTick(getThis());
+		ServerTickEvents.START_SERVER_TICK.invoker().onStartTick(papi$getThis());
 	}
 
 	@Inject(at = @At("TAIL"), method = "tick")
 	private void onEndTick(BooleanSupplier shouldKeepTicking, CallbackInfo info) {
-		ServerTickEvents.END_SERVER_TICK.invoker().onEndTick(getThis());
+		ServerTickEvents.END_SERVER_TICK.invoker().onEndTick(papi$getThis());
 	}
 
 	/**
@@ -90,7 +90,7 @@ public abstract class MinecraftServerMixin {
 
 		if (((WorldEvent.Unload) event).getWorld() instanceof ServerWorld) {
 			ServerWorld serverWorld = (ServerWorld) ((WorldEvent.Unload) event).getWorld();
-			ServerWorldEvents.UNLOAD.invoker().onWorldUnload(getThis(), serverWorld);
+			ServerWorldEvents.UNLOAD.invoker().onWorldUnload(papi$getThis(), serverWorld);
 
 			for (BlockEntity blockEntity : serverWorld.blockEntities) {
 				ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload(blockEntity, serverWorld);
@@ -105,22 +105,22 @@ public abstract class MinecraftServerMixin {
 	@Redirect(method = "createWorlds", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"))
 	private <K, V> V onLoadWorld(Map<K, V> worlds, K registryKey, V serverWorld) {
 		final V result = worlds.put(registryKey, serverWorld);
-		ServerWorldEvents.LOAD.invoker().onWorldLoad(getThis(), (ServerWorld) serverWorld);
+		ServerWorldEvents.LOAD.invoker().onWorldLoad(papi$getThis(), (ServerWorld) serverWorld);
 
 		return result;
 	}
 
 	@Inject(method = "reloadResources", at = @At("HEAD"))
 	private void startResourceReload(Collection<String> collection, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-		ServerLifecycleEvents.START_DATA_PACK_RELOAD.invoker().startDataPackReload(getThis(), this.serverResourceManager);
+		ServerLifecycleEvents.START_DATA_PACK_RELOAD.invoker().startDataPackReload(papi$getThis(), this.serverResourceManager);
 	}
 
 	@Inject(method = "reloadResources", at = @At("TAIL"))
 	private void endResourceReload(Collection<String> collection, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
 		cir.getReturnValue().handleAsync((value, throwable) -> {
 			// Hook into fail
-			ServerLifecycleEvents.END_DATA_PACK_RELOAD.invoker().endDataPackReload(getThis(), this.serverResourceManager, throwable == null);
+			ServerLifecycleEvents.END_DATA_PACK_RELOAD.invoker().endDataPackReload(papi$getThis(), this.serverResourceManager, throwable == null);
 			return value;
-		}, getThis());
+		}, papi$getThis());
 	}
 }

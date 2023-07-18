@@ -32,7 +32,7 @@ import java.util.function.BooleanSupplier;
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin {
 	@Shadow
-	private boolean inEntityTick;
+	boolean inEntityTick;
 
 	// Call our load event after vanilla has loaded the entity
 	@Inject(method = "loadEntityUnchecked", at = @At("TAIL"))

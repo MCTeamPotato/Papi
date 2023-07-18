@@ -16,15 +16,9 @@
 
 package net.fabricmc.fabric.mixin.client.renderer.registry;
 
-import java.util.Map;
-
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRendererRegistrationCallback;
+import net.fabricmc.fabric.impl.client.renderer.registry.RegistrationHelperImpl;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -33,16 +27,20 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.resource.ReloadableResourceManager;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.LivingEntityFeatureRendererRegistrationCallback;
-import net.fabricmc.fabric.impl.client.renderer.registry.RegistrationHelperImpl;
+import java.util.Map;
 
 @Mixin(EntityRenderDispatcher.class)
 public abstract class MixinEntityRenderDispatcher {
 	@Shadow
 	@Final
-	private Map<EntityType<?>, EntityRenderer<?>> renderers;
+    public Map<EntityType<?>, EntityRenderer<?>> renderers;
 
 	@Shadow
 	@Final

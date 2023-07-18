@@ -59,7 +59,7 @@ public abstract class MixinForgeHooksClient {
         ScreenMouseEvents.beforeMouseClick(guiScreen).invoker().beforeMouseClick(guiScreen, mouseX, mouseY, button);
     }
 
-    @Inject(method = "onGuiMouseClickedPost", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onGuiMouseClickedPost", at = @At("HEAD"))
     private static void afterMouseClickedEvent(Screen guiScreen, double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> ci) {
         if (guiScreen == null) return;
         ScreenMouseEvents.afterMouseClick(guiScreen).invoker().afterMouseClick(guiScreen, mouseX, mouseY, button);
@@ -77,7 +77,7 @@ public abstract class MixinForgeHooksClient {
         ScreenMouseEvents.beforeMouseRelease(guiScreen).invoker().beforeMouseRelease(guiScreen, mouseX, mouseY, button);
     }
 
-    @Inject(method = "onGuiMouseReleasedPost", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onGuiMouseReleasedPost", at = @At("HEAD"))
     private static void afterMouseReleasedEvent(Screen guiScreen, double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> ci) {
         if (guiScreen == null) return;
         ScreenMouseEvents.afterMouseRelease(guiScreen).invoker().afterMouseRelease(guiScreen, mouseX, mouseY, button);

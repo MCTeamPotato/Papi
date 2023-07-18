@@ -38,7 +38,7 @@ import java.util.Map;
 public class MixinLootManager {
 	@Shadow private Map<Identifier, LootTable> tables;
 
-	@Inject(method = "apply", at = @At("RETURN"))
+	@Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At("RETURN"))
 	private void apply(Map<Identifier, JsonObject> objectMap, ResourceManager manager, Profiler profiler, CallbackInfo info) {
 		Map<Identifier, LootTable> newSuppliers = new HashMap<>();
 

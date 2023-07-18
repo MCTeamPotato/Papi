@@ -32,7 +32,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 public class FabricCreativeGuiComponents {
-	private static final Identifier BUTTON_TEX = new Identifier("assets/fabric", "textures/gui/creative_buttons.png");
+	private static final Identifier BUTTON_TEX = new Identifier("fabric", "textures/gui/creative_buttons.png");
 	public static final Set<ItemGroup> COMMON_GROUPS = new HashSet<>();
 
 	static {
@@ -80,8 +80,8 @@ public class FabricCreativeGuiComponents {
 		NEXT(new LiteralText(">"), CreativeGuiExtensions::fabric_nextPage),
 		PREVIOUS(new LiteralText("<"), CreativeGuiExtensions::fabric_previousPage);
 
-		Text text;
-		Consumer<CreativeGuiExtensions> clickConsumer;
+		final Text text;
+		final Consumer<CreativeGuiExtensions> clickConsumer;
 
 		Type(Text text, Consumer<CreativeGuiExtensions> clickConsumer) {
 			this.text = text;

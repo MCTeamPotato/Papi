@@ -16,10 +16,6 @@
 
 package net.fabricmc.fabric.api.client.rendereregistry.v1;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.WeakHashMap;
-
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -27,6 +23,10 @@ import net.minecraft.client.texture.TextureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.resource.ReloadableResourceManager;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
  * Helper class for registering EntityRenderers.

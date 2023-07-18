@@ -16,23 +16,21 @@
 
 package net.fabricmc.fabric.api.gamerule.v1.rule;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.mojang.brigadier.context.CommandContext;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.world.GameRules;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.mojang.brigadier.context.CommandContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.world.GameRules;
-
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public final class EnumRule<E extends Enum<E>> extends GameRules.Rule<EnumRule<E>> {
 	private static final Logger LOGGER = LogManager.getLogger(GameRuleRegistry.class);
@@ -149,7 +147,7 @@ public final class EnumRule<E extends Enum<E>> extends GameRules.Rule<EnumRule<E
 		checkNotNull(value);
 
 		if (!this.supports(value)) {
-			throw new IllegalArgumentException("Tried to set an unsupported value: " + value.toString());
+			throw new IllegalArgumentException("Tried to set an unsupported value: " + value);
 		}
 
 		this.value = value;

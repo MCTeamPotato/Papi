@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.event.player;
 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 
 public final class PlayerBlockBreakEvents {
 	private PlayerBlockBreakEvents() { }
@@ -33,8 +32,8 @@ public final class PlayerBlockBreakEvents {
 	 * Only called on the server, however updates are synced with the client.
 	 *
 	 * <p>If any listener cancels a block breaking action, that block breaking
-	 * action is cancelled and {@link CANCELED} event is fired. Otherwise, the
-	 * {@link AFTER} event is fired.</p>
+	 * action is cancelled and {@link Canceled} event is fired. Otherwise, the
+	 * {@link After} event is fired.</p>
 	 */
 	public static final Event<Before> BEFORE = EventFactory.createArrayBacked(Before.class,
 			(listeners) -> (world, player, pos, state, entity) -> {

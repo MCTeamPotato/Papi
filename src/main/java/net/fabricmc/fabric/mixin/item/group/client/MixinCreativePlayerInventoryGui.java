@@ -26,6 +26,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -45,9 +46,11 @@ public abstract class MixinCreativePlayerInventoryGui extends AbstractInventoryS
 	public abstract int getSelectedTab(); /* XXX getSelectedTab XXX */
 
 	// "static" matches selectedTab
-	private static int fabric_currentPage = 0;
+	@Unique
+    private static int fabric_currentPage = 0;
 
-	private int fabric_getPageOffset(int page) {
+	@Unique
+    private int fabric_getPageOffset(int page) {
 		switch (page) {
 		case 0:
 			return 0;
@@ -58,7 +61,8 @@ public abstract class MixinCreativePlayerInventoryGui extends AbstractInventoryS
 		}
 	}
 
-	private int fabric_getOffsetPage(int offset) {
+	@Unique
+    private int fabric_getOffsetPage(int offset) {
 		if (offset < 12) {
 			return 0;
 		} else {
@@ -104,7 +108,8 @@ public abstract class MixinCreativePlayerInventoryGui extends AbstractInventoryS
 		return false;
 	}
 
-	private void fabric_updateSelection() {
+	@Unique
+    private void fabric_updateSelection() {
 		int minPos = fabric_getPageOffset(fabric_currentPage);
 		int maxPos = fabric_getPageOffset(fabric_currentPage + 1) - 1;
 		int curPos = getSelectedTab();
@@ -153,7 +158,8 @@ public abstract class MixinCreativePlayerInventoryGui extends AbstractInventoryS
 		}
 	}
 
-	private boolean fabric_isGroupVisible(ItemGroup itemGroup) {
+	@Unique
+    private boolean fabric_isGroupVisible(ItemGroup itemGroup) {
 		if (FabricCreativeGuiComponents.COMMON_GROUPS.contains(itemGroup)) {
 			return true;
 		}

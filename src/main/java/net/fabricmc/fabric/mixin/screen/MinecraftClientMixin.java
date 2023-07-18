@@ -16,6 +16,9 @@
 
 package net.fabricmc.fabric.mixin.screen;
 
+import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,18 +28,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-
-import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
-
 @Mixin(MinecraftClient.class)
 abstract class MinecraftClientMixin {
 	@Shadow
 	public Screen currentScreen;
 
 	@Unique
-	private Screen tickingScreen;
+	private Screen papi$tickingScreen;
 
 	@Inject(method = "openScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;removed()V", shift = At.Shift.AFTER))
 	private void onScreenRemove(@Nullable Screen screen, CallbackInfo ci) {
@@ -51,13 +49,13 @@ abstract class MinecraftClientMixin {
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;wrapScreenError(Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;)V"))
 	private void onTick(Runnable task, String errorTitle, String screenName) {
 		Screen.wrapScreenError(() -> {
-			this.tickingScreen = this.currentScreen;
-			ScreenEvents.beforeTick(this.tickingScreen).invoker().beforeTick(this.tickingScreen);
+			this.papi$tickingScreen = this.currentScreen;
+			ScreenEvents.beforeTick(this.papi$tickingScreen).invoker().beforeTick(this.papi$tickingScreen);
 
 			this.currentScreen.tick();
 
-			ScreenEvents.afterTick(this.tickingScreen).invoker().afterTick(this.tickingScreen);
-			this.tickingScreen = null;
+			ScreenEvents.afterTick(this.papi$tickingScreen).invoker().afterTick(this.papi$tickingScreen);
+			this.papi$tickingScreen = null;
 		}, "Ticking screen", this.currentScreen.getClass().getCanonicalName());
 	}
 }

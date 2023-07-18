@@ -21,6 +21,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraft.fluid.Fluid;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,8 +32,10 @@ import java.util.Map;
 
 @Mixin(RenderLayers.class)
 public class MixinBlockRenderLayer {
-	@Shadow private static Map<Block, RenderLayer> BLOCKS;
-	@Shadow private static Map<Fluid, RenderLayer> FLUIDS;
+	@Final
+    @Shadow private static Map<Block, RenderLayer> BLOCKS;
+	@Final
+    @Shadow private static Map<Fluid, RenderLayer> FLUIDS;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void onInitialize(CallbackInfo info) {
