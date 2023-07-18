@@ -49,7 +49,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  * dimension testmod, and no world directory. If the dimension is available (i.e. in /execute in, or via
  * the testmod's commands), then the bug is fixed and this Mixin can be removed.
  */
-@Mixin(value = Main.class)
+@Mixin(Main.class)
 public class ServerBugfixMixin {
 	@Unique private static LevelStorage.Session fabric_session;
 	@Unique private static DynamicRegistryManager.Impl fabric_dynamicRegistry;

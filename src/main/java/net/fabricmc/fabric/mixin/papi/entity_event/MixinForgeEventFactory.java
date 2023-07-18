@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Optional;
 
 @Mixin(value = ForgeEventFactory.class, remap = false)
-public class ForgeEventFactoryMixin {
+public class MixinForgeEventFactory {
     //boolean is inverted at the return because Forge adds a "!" at the return place.
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @Inject(method = "fireSleepingTimeCheck", at = @At("HEAD"), cancellable = true)
