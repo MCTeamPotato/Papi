@@ -16,9 +16,6 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.minecraft.util.Identifier;
-
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
@@ -26,12 +23,19 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
 import java.util.function.Function;
 
+import com.google.common.collect.MapMaker;
+
+import net.minecraft.util.Identifier;
+
+import net.fabricmc.fabric.api.event.Event;
+
 public final class EventFactoryImpl {
-	private static final List<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS = new ArrayList<>();
+	private static final Set<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS
+			= Collections.newSetFromMap(new MapMaker().weakKeys().makeMap());
 
 	private EventFactoryImpl() { }
 
@@ -67,7 +71,6 @@ public final class EventFactoryImpl {
 
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
-	@SuppressWarnings("SuspiciousInvocationHandlerImplementation")
 	private static <T> T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
 		Method funcIfMethod = null;

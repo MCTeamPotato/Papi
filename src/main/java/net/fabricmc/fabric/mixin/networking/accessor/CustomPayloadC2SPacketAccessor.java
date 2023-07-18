@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.mixin.networking.accessor;
 
-/**
- * Represents a function that accepts a boolean-valued argument and produces a result.
- *
- * <p>This is the {@code boolean}-consuming primitive specialization for {@link java.util.function.Function}.
- */
-@FunctionalInterface
-public interface BooleanFunction<R> {
-	/**
-	 * Applies this function to the given argument.
-	 *
-	 * @param value the function argument
-	 * @return the function result
-	 */
-	R apply(boolean value);
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
+import net.minecraft.util.Identifier;
+
+@Mixin(CustomPayloadC2SPacket.class)
+public interface CustomPayloadC2SPacketAccessor {
+	@Accessor
+	Identifier getChannel();
+
+	@Accessor
+	PacketByteBuf getData();
 }

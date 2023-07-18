@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.mixin.networking.client.accessor;
 
-/**
- * Represents a function that accepts a boolean-valued argument and produces a result.
- *
- * <p>This is the {@code boolean}-consuming primitive specialization for {@link java.util.function.Function}.
- */
-@FunctionalInterface
-public interface BooleanFunction<R> {
-	/**
-	 * Applies this function to the given argument.
-	 *
-	 * @param value the function argument
-	 * @return the function result
-	 */
-	R apply(boolean value);
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.network.ClientConnection;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+@Environment(EnvType.CLIENT)
+@Mixin(MinecraftClient.class)
+public interface MinecraftClientAccessor {
+	@Nullable
+	@Accessor("integratedServerConnection")
+	ClientConnection getConnection();
 }

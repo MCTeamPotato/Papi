@@ -14,20 +14,25 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.impl.networking.server;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Represents a function that accepts a boolean-valued argument and produces a result.
- *
- * <p>This is the {@code boolean}-consuming primitive specialization for {@link java.util.function.Function}.
+ * Tracks the current query id used for login query responses.
  */
-@FunctionalInterface
-public interface BooleanFunction<R> {
-	/**
-	 * Applies this function to the given argument.
-	 *
-	 * @param value the function argument
-	 * @return the function result
-	 */
-	R apply(boolean value);
+interface QueryIdFactory {
+	static QueryIdFactory create() {
+		return new QueryIdFactory() {
+			private final AtomicInteger currentId = new AtomicInteger();
+
+			@Override
+			public int nextId() {
+				return this.currentId.getAndIncrement();
+			}
+		};
+	}
+
+	// called async prob.
+	int nextId();
 }

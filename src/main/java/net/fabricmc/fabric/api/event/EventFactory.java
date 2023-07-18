@@ -16,17 +16,16 @@
 
 package net.fabricmc.fabric.api.event;
 
-import net.fabricmc.fabric.impl.base.event.EventFactoryImpl;
+import java.util.function.Function;
+
 import net.minecraft.util.Identifier;
 
-import java.util.function.Function;
+import net.fabricmc.fabric.impl.base.event.EventFactoryImpl;
 
 /**
  * Helper for creating {@link Event} classes.
  */
-@SuppressWarnings("unused")
 public final class EventFactory {
-	@SuppressWarnings({"CanBeFinal", "FieldMayBeFinal", "FieldCanBeLocal"})
 	private static boolean profilingEnabled = true;
 
 	private EventFactory() { }

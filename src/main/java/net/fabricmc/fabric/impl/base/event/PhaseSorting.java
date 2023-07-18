@@ -16,15 +16,19 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
-import com.google.common.annotations.VisibleForTesting;
-import org.jetbrains.annotations.ApiStatus;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 
-import java.util.*;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * Contains phase-sorting logic for {@link ArrayBackedEvent}.
  */
-@ApiStatus.Internal
 public class PhaseSorting {
 	@VisibleForTesting
 	public static boolean ENABLE_CYCLE_WARNING = true;
