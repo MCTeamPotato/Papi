@@ -16,20 +16,18 @@
 
 package net.fabricmc.fabric.impl.gamerule;
 
-import static net.minecraft.server.command.CommandManager.literal;
-
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-
+import net.fabricmc.fabric.api.gamerule.v1.rule.EnumRule;
+import net.fabricmc.fabric.mixin.gamerule.GameRuleCommandAccessor;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.GameRules;
 
-import net.fabricmc.fabric.api.gamerule.v1.rule.EnumRule;
-import net.fabricmc.fabric.mixin.gamerule.GameRuleCommandAccessor;
+import static net.minecraft.server.command.CommandManager.literal;
 
 public final class EnumRuleCommand {
 	public static <E extends Enum<E>> void register(LiteralArgumentBuilder<ServerCommandSource> literalArgumentBuilder, GameRules.Key<EnumRule<E>> key, EnumRuleType<E> type) {

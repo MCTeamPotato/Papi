@@ -16,6 +16,9 @@
 
 package net.fabricmc.fabric.impl.event.interaction;
 
+import net.fabricmc.fabric.api.block.BlockPickInteractionAware;
+import net.fabricmc.fabric.api.entity.EntityPickInteractionAware;
+import net.fabricmc.fabric.api.event.client.player.ClientPickBlockGatherCallback;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -23,10 +26,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-
-import net.fabricmc.fabric.api.block.BlockPickInteractionAware;
-import net.fabricmc.fabric.api.entity.EntityPickInteractionAware;
-import net.fabricmc.fabric.api.event.client.player.ClientPickBlockGatherCallback;
 
 public class InteractionEventsRouterClient {
 	public static void onInitializeClient() {

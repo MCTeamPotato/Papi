@@ -17,14 +17,12 @@
 package net.fabricmc.fabric.api.gamerule.v1.rule;
 
 import com.mojang.brigadier.context.CommandContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.GameRules;
-
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class DoubleRule extends GameRules.Rule<DoubleRule> implements ValidateableRule {
 	private static final Logger LOGGER = LogManager.getLogger(GameRuleRegistry.class);

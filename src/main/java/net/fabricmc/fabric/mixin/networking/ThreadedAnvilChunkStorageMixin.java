@@ -16,20 +16,18 @@
 
 package net.fabricmc.fabric.mixin.networking;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.fabricmc.fabric.impl.networking.ThreadedAnvilChunkStorageTrackingExtensions;
+import net.fabricmc.fabric.mixin.networking.accessor.EntityTrackerAccessor;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ThreadedAnvilChunkStorage;
-
-import net.fabricmc.fabric.impl.networking.ThreadedAnvilChunkStorageTrackingExtensions;
-import net.fabricmc.fabric.mixin.networking.accessor.EntityTrackerAccessor;
+import java.util.Collection;
+import java.util.Collections;
 
 @Mixin(ThreadedAnvilChunkStorage.class)
 abstract class ThreadedAnvilChunkStorageMixin implements ThreadedAnvilChunkStorageTrackingExtensions {

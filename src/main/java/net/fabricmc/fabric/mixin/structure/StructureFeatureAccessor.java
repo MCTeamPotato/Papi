@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.mixin.structure;
 
-import java.util.List;
-
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.feature.StructureFeature;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.StructureFeature;
+import java.util.List;
 
 @Mixin(StructureFeature.class)
 public interface StructureFeatureAccessor {

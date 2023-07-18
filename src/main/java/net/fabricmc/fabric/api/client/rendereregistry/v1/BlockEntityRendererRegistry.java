@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.client.rendereregistry.v1;
 
-import java.util.function.Function;
-
+import net.fabricmc.fabric.impl.client.renderer.registry.BlockEntityRendererRegistryImpl;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 
-import net.fabricmc.fabric.impl.client.renderer.registry.BlockEntityRendererRegistryImpl;
+import java.util.function.Function;
 
 /**
  * Helper class for registering BlockEntityRenderers.

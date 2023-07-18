@@ -22,8 +22,7 @@ import org.spongepowered.asm.mixin.*;
 @Mixin(value = ForgeHooks.class, remap = false, priority = -1000)
 public abstract class MixinForgeHooks {
     @Shadow @Final private static Logger LOGGER;
-    @Unique
-    private static boolean fabric_itemPickCancelled;
+    @Unique private static boolean fabric_itemPickCancelled;
 
     @Unique
     private static int papi$modifyItemPick(PlayerInventory inventory, ItemStack stack) {

@@ -16,9 +16,8 @@
 
 package net.fabricmc.fabric.impl.gamerule;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.fabricmc.fabric.api.gamerule.v1.CustomGameRuleCategory;
+import org.jetbrains.annotations.Nullable;
 
 public interface RuleKeyExtensions {
 	@Nullable
