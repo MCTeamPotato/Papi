@@ -32,10 +32,8 @@ import java.util.Map;
 
 @Mixin(RenderLayers.class)
 public class MixinBlockRenderLayer {
-	@Final
-    @Shadow private static Map<Block, RenderLayer> BLOCKS;
-	@Final
-    @Shadow private static Map<Fluid, RenderLayer> FLUIDS;
+	@Final @Shadow private static Map<Block, RenderLayer> BLOCKS;
+	@Final @Shadow private static Map<Fluid, RenderLayer> FLUIDS;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void onInitialize(CallbackInfo info) {

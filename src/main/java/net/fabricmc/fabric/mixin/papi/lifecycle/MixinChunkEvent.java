@@ -1,4 +1,4 @@
-package net.fabricmc.fabric.mixin.papi.lifecycle_chunk_event;
+package net.fabricmc.fabric.mixin.papi.lifecycle;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
@@ -26,9 +26,9 @@ public abstract class MixinChunkEvent {
             WorldAccess worldAccess = this.getWorld();
             Chunk chunk = this.getChunk();
             int side = MixinUtil.checkSide(worldAccess, chunk);
-            if (side == 1) {
+            if (side == MixinUtil.SERVER) {
                 ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ServerWorld) worldAccess, (WorldChunk) chunk);
-            } else if (side == 2) {
+            } else if (side == MixinUtil.CLIENT) {
                 ClientChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ClientWorld) worldAccess, (WorldChunk) chunk);
             }
         }
@@ -45,9 +45,9 @@ public abstract class MixinChunkEvent {
             WorldAccess worldAccess = this.getWorld();
             Chunk chunk = this.getChunk();
             int side = MixinUtil.checkSide(worldAccess, chunk);
-            if (side == 1) {
+            if (side == MixinUtil.SERVER) {
                 ServerChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ServerWorld) worldAccess, (WorldChunk) chunk);
-            } else if (side == 2) {
+            } else if (side == MixinUtil.CLIENT) {
                 ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ClientWorld) worldAccess, (WorldChunk) chunk);
             }
         }
