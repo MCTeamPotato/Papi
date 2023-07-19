@@ -20,5 +20,5 @@ import net.minecraft.network.Packet;
 import net.minecraft.text.Text;
 
 public interface DisconnectPacketSource {
-	Packet<?> papi$createDisconnectPacket(Text message);
+	Packet<?> createDisconnectPacket(Text message);
 }

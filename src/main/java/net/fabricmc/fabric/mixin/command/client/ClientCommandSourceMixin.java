@@ -34,28 +34,28 @@ abstract class ClientCommandSourceMixin implements FabricClientCommandSource {
 	private MinecraftClient client;
 
 	@Override
-	public void papi$sendFeedback(Text message) {
+	public void sendFeedback(Text message) {
 		this.client.inGameHud.getChatHud().addMessage(message);
 		this.client.getNarratorManager().narrate(message);
 	}
 
 	@Override
-	public void papi$sendError(Text message) {
-		papi$sendFeedback(Text.literal("").append(message).formatted(Formatting.RED));
+	public void sendError(Text message) {
+		sendFeedback(Text.literal("").append(message).formatted(Formatting.RED));
 	}
 
 	@Override
-	public MinecraftClient papi$getClient() {
+	public MinecraftClient getClient() {
 		return client;
 	}
 
 	@Override
-	public ClientPlayerEntity papi$getPlayer() {
+	public ClientPlayerEntity getPlayer() {
 		return client.player;
 	}
 
 	@Override
-	public ClientWorld papi$getWorld() {
+	public ClientWorld getWorld() {
 		return client.world;
 	}
 }

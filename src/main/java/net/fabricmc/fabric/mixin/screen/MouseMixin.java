@@ -35,41 +35,41 @@ abstract class MouseMixin {
 	@Final
 	private MinecraftClient client;
 	@Unique
-	private Screen papi$currentScreen;
+	private Screen currentScreen;
 	@Unique
-	private Double papi$horizontalScrollAmount;
+	private Double horizontalScrollAmount;
 
 	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;mouseScrolled(DDD)Z"), locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
 	private void beforeMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci, double verticalAmount, double mouseX, double mouseY) {
 		// Store the screen in a variable in case someone tries to change the screen during this before event.
 		// If someone changes the screen, the after event will likely have class cast exceptions or throw a NPE.
-		this.papi$currentScreen = this.client.currentScreen;
+		this.currentScreen = this.client.currentScreen;
 
-		if (this.papi$currentScreen == null) {
+		if (this.currentScreen == null) {
 			return;
 		}
 
 		// Apply same calculations to horizontal scroll as vertical scroll amount has
-		this.papi$horizontalScrollAmount = this.client.options.getDiscreteMouseScroll().getValue() ? Math.signum(horizontal) : horizontal * this.client.options.getMouseWheelSensitivity().getValue();
+		this.horizontalScrollAmount = this.client.options.getDiscreteMouseScroll().getValue() ? Math.signum(horizontal) : horizontal * this.client.options.getMouseWheelSensitivity().getValue();
 
-		if (!ScreenMouseEvents.allowMouseScroll(this.papi$currentScreen).invoker().allowMouseScroll(this.papi$currentScreen, mouseX, mouseY, this.papi$horizontalScrollAmount, verticalAmount)) {
-			this.papi$currentScreen = null;
-			this.papi$horizontalScrollAmount = null;
+		if (!ScreenMouseEvents.allowMouseScroll(this.currentScreen).invoker().allowMouseScroll(this.currentScreen, mouseX, mouseY, this.horizontalScrollAmount, verticalAmount)) {
+			this.currentScreen = null;
+			this.horizontalScrollAmount = null;
 			ci.cancel();
 			return;
 		}
 
-		ScreenMouseEvents.beforeMouseScroll(this.papi$currentScreen).invoker().beforeMouseScroll(this.papi$currentScreen, mouseX, mouseY, this.papi$horizontalScrollAmount, verticalAmount);
+		ScreenMouseEvents.beforeMouseScroll(this.currentScreen).invoker().beforeMouseScroll(this.currentScreen, mouseX, mouseY, this.horizontalScrollAmount, verticalAmount);
 	}
 
 	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;mouseScrolled(DDD)Z", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
 	private void afterMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci, double verticalAmount, double mouseX, double mouseY) {
-		if (this.papi$currentScreen == null) {
+		if (this.currentScreen == null) {
 			return;
 		}
 
-		ScreenMouseEvents.afterMouseScroll(this.papi$currentScreen).invoker().afterMouseScroll(this.papi$currentScreen, mouseX, mouseY, this.papi$horizontalScrollAmount, verticalAmount);
-		this.papi$currentScreen = null;
-		this.papi$horizontalScrollAmount = null;
+		ScreenMouseEvents.afterMouseScroll(this.currentScreen).invoker().afterMouseScroll(this.currentScreen, mouseX, mouseY, this.horizontalScrollAmount, verticalAmount);
+		this.currentScreen = null;
+		this.horizontalScrollAmount = null;
 	}
 }

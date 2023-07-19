@@ -75,7 +75,7 @@ public final class NetworkingImpl {
 				ids.add(buf.readIdentifier());
 			}
 
-			((ChannelInfoHolder) handler.getConnection()).papi$getPendingChannelsNames().addAll(ids);
+			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
 			NetworkingImpl.LOGGER.debug("Received accepted channels from the client for \"{}\"", handler.getConnectionInfo());
 		});
 	}

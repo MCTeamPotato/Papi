@@ -24,5 +24,5 @@ public interface PacketCallbackListener {
 	 *
 	 * @param packet the packet
 	 */
-	void papi$sent(Packet<?> packet);
+	void sent(Packet<?> packet);
 }

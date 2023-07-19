@@ -42,30 +42,30 @@ abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	private MinecraftClient client;
 
 	@Unique
-	private ClientLoginNetworkAddon papi$addon;
+	private ClientLoginNetworkAddon addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.papi$addon = new ClientLoginNetworkAddon((ClientLoginNetworkHandler) (Object) this, this.client);
+		this.addon = new ClientLoginNetworkAddon((ClientLoginNetworkHandler) (Object) this, this.client);
 	}
 
 	@Redirect(method = "onQueryRequest", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
 	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
-		return this.papi$addon.handlePacket((LoginQueryRequestS2CPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
+		return this.addon.handlePacket((LoginQueryRequestS2CPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void invokeLoginDisconnectEvent(Text reason, CallbackInfo ci) {
-		this.papi$addon.handleDisconnect();
+		this.addon.handleDisconnect();
 	}
 
 	@Inject(method = "onSuccess", at = @At("HEAD"))
 	private void handlePlayTransition(CallbackInfo ci) {
-		papi$addon.handlePlayTransition();
+		addon.handlePlayTransition();
 	}
 
 	@Override
-	public ClientLoginNetworkAddon papi$getAddon() {
-		return this.papi$addon;
+	public ClientLoginNetworkAddon getAddon() {
+		return this.addon;
 	}
 }

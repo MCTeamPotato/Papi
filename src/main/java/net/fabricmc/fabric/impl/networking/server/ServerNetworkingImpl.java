@@ -33,11 +33,11 @@ public final class ServerNetworkingImpl {
 	public static final GlobalReceiverRegistry<ServerPlayNetworking.PlayChannelHandler> PLAY = new GlobalReceiverRegistry<>();
 
 	public static ServerPlayNetworkAddon getAddon(ServerPlayNetworkHandler handler) {
-		return (ServerPlayNetworkAddon) ((NetworkHandlerExtensions) handler).papi$getAddon();
+		return (ServerPlayNetworkAddon) ((NetworkHandlerExtensions) handler).getAddon();
 	}
 
 	public static ServerLoginNetworkAddon getAddon(ServerLoginNetworkHandler handler) {
-		return (ServerLoginNetworkAddon) ((NetworkHandlerExtensions) handler).papi$getAddon();
+		return (ServerLoginNetworkAddon) ((NetworkHandlerExtensions) handler).getAddon();
 	}
 
 	public static Packet<ClientPlayPacketListener> createPlayC2SPacket(Identifier channel, PacketByteBuf buf) {

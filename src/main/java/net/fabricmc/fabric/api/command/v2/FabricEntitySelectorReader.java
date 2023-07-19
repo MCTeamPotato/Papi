@@ -30,7 +30,7 @@ public interface FabricEntitySelectorReader {
 	 * @param key the key of the flag
 	 * @param value the value of the flag
 	 */
-	default void papi$setCustomFlag(Identifier key, boolean value) {
+	default void setCustomFlag(Identifier key, boolean value) {
 		throw new UnsupportedOperationException("Implemented via mixin");
 	}
 
@@ -39,7 +39,7 @@ public interface FabricEntitySelectorReader {
 	 * @param key the key of the flag
 	 * @return the value, or {@code false} if the flag is not set
 	 */
-	default boolean papi$getCustomFlag(Identifier key) {
+	default boolean getCustomFlag(Identifier key) {
 		throw new UnsupportedOperationException("Implemented via mixin");
 	}
 }

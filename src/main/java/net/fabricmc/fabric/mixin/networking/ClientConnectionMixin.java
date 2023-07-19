@@ -64,7 +64,7 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 		Text disconnectMessage = Text.translatable("disconnect.genericReason", "Internal Exception: " + ex);
 
 		if (handler instanceof DisconnectPacketSource) {
-			this.send(((DisconnectPacketSource) handler).papi$createDisconnectPacket(disconnectMessage), listener);
+			this.send(((DisconnectPacketSource) handler).createDisconnectPacket(disconnectMessage), listener);
 		} else {
 			this.disconnect(disconnectMessage); // Don't send packet if we cannot send proper packets
 		}
@@ -73,14 +73,14 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 	@Inject(method = "sendImmediately", at = @At(value = "FIELD", target = "Lnet/minecraft/network/ClientConnection;packetsSentCounter:I"))
 	private void checkPacket(Packet<?> packet, PacketCallbacks callback, CallbackInfo ci) {
 		if (this.packetListener instanceof PacketCallbackListener) {
-			((PacketCallbackListener) this.packetListener).papi$sent(packet);
+			((PacketCallbackListener) this.packetListener).sent(packet);
 		}
 	}
 
 	@Inject(method = "channelInactive", at = @At("HEAD"))
 	private void handleDisconnect(ChannelHandlerContext channelHandlerContext, CallbackInfo ci) {
 		if (packetListener instanceof NetworkHandlerExtensions) { // not the case for client/server query
-			((NetworkHandlerExtensions) packetListener).papi$getAddon().handleDisconnect();
+			((NetworkHandlerExtensions) packetListener).getAddon().handleDisconnect();
 		}
 	}
 
@@ -94,7 +94,7 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 	}
 
 	@Override
-	public Collection<Identifier> papi$getPendingChannelsNames() {
+	public Collection<Identifier> getPendingChannelsNames() {
 		return this.playChannels;
 	}
 }

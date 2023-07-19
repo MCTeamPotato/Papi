@@ -28,19 +28,19 @@ import java.util.Set;
 @Mixin(EntitySelectorReader.class)
 public class EntitySelectorReaderMixin implements FabricEntitySelectorReader {
 	@Unique
-	private final Set<Identifier> papi$flags = new HashSet<>();
+	private final Set<Identifier> flags = new HashSet<>();
 
 	@Override
-	public void papi$setCustomFlag(Identifier key, boolean value) {
+	public void setCustomFlag(Identifier key, boolean value) {
 		if (value) {
-			this.papi$flags.add(key);
+			this.flags.add(key);
 		} else {
-			this.papi$flags.remove(key);
+			this.flags.remove(key);
 		}
 	}
 
 	@Override
-	public boolean papi$getCustomFlag(Identifier key) {
-		return this.papi$flags.contains(key);
+	public boolean getCustomFlag(Identifier key) {
+		return this.flags.contains(key);
 	}
 }

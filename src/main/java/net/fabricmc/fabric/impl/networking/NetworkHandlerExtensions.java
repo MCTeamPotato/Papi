@@ -17,5 +17,5 @@
 package net.fabricmc.fabric.impl.networking;
 
 public interface NetworkHandlerExtensions {
-	AbstractNetworkAddon<?> papi$getAddon();
+	AbstractNetworkAddon<?> getAddon();
 }

@@ -52,80 +52,80 @@ abstract class ScreenMixin implements ScreenExtensions {
 	public List<Drawable> drawables;
 
 	@Unique
-	private ButtonList papi$fabricButtons;
+	private ButtonList fabricButtons;
 	@Unique
-	private Event<ScreenEvents.Remove> papi$removeEvent;
+	private Event<ScreenEvents.Remove> removeEvent;
 	@Unique
-	private Event<ScreenEvents.BeforeTick> papi$beforeTickEvent;
+	private Event<ScreenEvents.BeforeTick> beforeTickEvent;
 	@Unique
-	private Event<ScreenEvents.AfterTick> papi$afterTickEvent;
+	private Event<ScreenEvents.AfterTick> afterTickEvent;
 	@Unique
-	private Event<ScreenEvents.BeforeRender> papi$beforeRenderEvent;
+	private Event<ScreenEvents.BeforeRender> beforeRenderEvent;
 	@Unique
-	private Event<ScreenEvents.AfterRender> papi$afterRenderEvent;
+	private Event<ScreenEvents.AfterRender> afterRenderEvent;
 
 	// Keyboard
 	@Unique
-	private Event<ScreenKeyboardEvents.AllowKeyPress> papi$allowKeyPressEvent;
+	private Event<ScreenKeyboardEvents.AllowKeyPress> allowKeyPressEvent;
 	@Unique
-	private Event<ScreenKeyboardEvents.BeforeKeyPress> papi$beforeKeyPressEvent;
+	private Event<ScreenKeyboardEvents.BeforeKeyPress> beforeKeyPressEvent;
 	@Unique
-	private Event<ScreenKeyboardEvents.AfterKeyPress> papi$afterKeyPressEvent;
+	private Event<ScreenKeyboardEvents.AfterKeyPress> afterKeyPressEvent;
 	@Unique
-	private Event<ScreenKeyboardEvents.AllowKeyRelease> papi$allowKeyReleaseEvent;
+	private Event<ScreenKeyboardEvents.AllowKeyRelease> allowKeyReleaseEvent;
 	@Unique
-	private Event<ScreenKeyboardEvents.BeforeKeyRelease> papi$beforeKeyReleaseEvent;
+	private Event<ScreenKeyboardEvents.BeforeKeyRelease> beforeKeyReleaseEvent;
 	@Unique
-	private Event<ScreenKeyboardEvents.AfterKeyRelease> papi$afterKeyReleaseEvent;
+	private Event<ScreenKeyboardEvents.AfterKeyRelease> afterKeyReleaseEvent;
 
 	// Mouse
 	@Unique
-	private Event<ScreenMouseEvents.AllowMouseClick> papi$allowMouseClickEvent;
+	private Event<ScreenMouseEvents.AllowMouseClick> allowMouseClickEvent;
 	@Unique
-	private Event<ScreenMouseEvents.BeforeMouseClick> papi$beforeMouseClickEvent;
+	private Event<ScreenMouseEvents.BeforeMouseClick> beforeMouseClickEvent;
 	@Unique
-	private Event<ScreenMouseEvents.AfterMouseClick> papi$afterMouseClickEvent;
+	private Event<ScreenMouseEvents.AfterMouseClick> afterMouseClickEvent;
 	@Unique
-	private Event<ScreenMouseEvents.AllowMouseRelease> papi$allowMouseReleaseEvent;
+	private Event<ScreenMouseEvents.AllowMouseRelease> allowMouseReleaseEvent;
 	@Unique
-	private Event<ScreenMouseEvents.BeforeMouseRelease> papi$beforeMouseReleaseEvent;
+	private Event<ScreenMouseEvents.BeforeMouseRelease> beforeMouseReleaseEvent;
 	@Unique
-	private Event<ScreenMouseEvents.AfterMouseRelease> papi$afterMouseReleaseEvent;
+	private Event<ScreenMouseEvents.AfterMouseRelease> afterMouseReleaseEvent;
 	@Unique
-	private Event<ScreenMouseEvents.AllowMouseScroll> papi$allowMouseScrollEvent;
+	private Event<ScreenMouseEvents.AllowMouseScroll> allowMouseScrollEvent;
 	@Unique
-	private Event<ScreenMouseEvents.BeforeMouseScroll> papi$beforeMouseScrollEvent;
+	private Event<ScreenMouseEvents.BeforeMouseScroll> beforeMouseScrollEvent;
 	@Unique
-	private Event<ScreenMouseEvents.AfterMouseScroll> papi$afterMouseScrollEvent;
+	private Event<ScreenMouseEvents.AfterMouseScroll> afterMouseScrollEvent;
 
 	@Inject(method = "init(Lnet/minecraft/client/MinecraftClient;II)V", at = @At("HEAD"))
 	private void beforeInitScreen(MinecraftClient client, int width, int height, CallbackInfo ci) {
 		// All elements are repopulated on the screen, so we need to reinitialize all events
-		this.papi$fabricButtons = null;
-		this.papi$removeEvent = ScreenEventFactory.createRemoveEvent();
-		this.papi$beforeRenderEvent = ScreenEventFactory.createBeforeRenderEvent();
-		this.papi$afterRenderEvent = ScreenEventFactory.createAfterRenderEvent();
-		this.papi$beforeTickEvent = ScreenEventFactory.createBeforeTickEvent();
-		this.papi$afterTickEvent = ScreenEventFactory.createAfterTickEvent();
+		this.fabricButtons = null;
+		this.removeEvent = ScreenEventFactory.createRemoveEvent();
+		this.beforeRenderEvent = ScreenEventFactory.createBeforeRenderEvent();
+		this.afterRenderEvent = ScreenEventFactory.createAfterRenderEvent();
+		this.beforeTickEvent = ScreenEventFactory.createBeforeTickEvent();
+		this.afterTickEvent = ScreenEventFactory.createAfterTickEvent();
 
 		// Keyboard
-		this.papi$allowKeyPressEvent = ScreenEventFactory.createAllowKeyPressEvent();
-		this.papi$beforeKeyPressEvent = ScreenEventFactory.createBeforeKeyPressEvent();
-		this.papi$afterKeyPressEvent = ScreenEventFactory.createAfterKeyPressEvent();
-		this.papi$allowKeyReleaseEvent = ScreenEventFactory.createAllowKeyReleaseEvent();
-		this.papi$beforeKeyReleaseEvent = ScreenEventFactory.createBeforeKeyReleaseEvent();
-		this.papi$afterKeyReleaseEvent = ScreenEventFactory.createAfterKeyReleaseEvent();
+		this.allowKeyPressEvent = ScreenEventFactory.createAllowKeyPressEvent();
+		this.beforeKeyPressEvent = ScreenEventFactory.createBeforeKeyPressEvent();
+		this.afterKeyPressEvent = ScreenEventFactory.createAfterKeyPressEvent();
+		this.allowKeyReleaseEvent = ScreenEventFactory.createAllowKeyReleaseEvent();
+		this.beforeKeyReleaseEvent = ScreenEventFactory.createBeforeKeyReleaseEvent();
+		this.afterKeyReleaseEvent = ScreenEventFactory.createAfterKeyReleaseEvent();
 
 		// Mouse
-		this.papi$allowMouseClickEvent = ScreenEventFactory.createAllowMouseClickEvent();
-		this.papi$beforeMouseClickEvent = ScreenEventFactory.createBeforeMouseClickEvent();
-		this.papi$afterMouseClickEvent = ScreenEventFactory.createAfterMouseClickEvent();
-		this.papi$allowMouseReleaseEvent = ScreenEventFactory.createAllowMouseReleaseEvent();
-		this.papi$beforeMouseReleaseEvent = ScreenEventFactory.createBeforeMouseReleaseEvent();
-		this.papi$afterMouseReleaseEvent = ScreenEventFactory.createAfterMouseReleaseEvent();
-		this.papi$allowMouseScrollEvent = ScreenEventFactory.createAllowMouseScrollEvent();
-		this.papi$beforeMouseScrollEvent = ScreenEventFactory.createBeforeMouseScrollEvent();
-		this.papi$afterMouseScrollEvent = ScreenEventFactory.createAfterMouseScrollEvent();
+		this.allowMouseClickEvent = ScreenEventFactory.createAllowMouseClickEvent();
+		this.beforeMouseClickEvent = ScreenEventFactory.createBeforeMouseClickEvent();
+		this.afterMouseClickEvent = ScreenEventFactory.createAfterMouseClickEvent();
+		this.allowMouseReleaseEvent = ScreenEventFactory.createAllowMouseReleaseEvent();
+		this.beforeMouseReleaseEvent = ScreenEventFactory.createBeforeMouseReleaseEvent();
+		this.afterMouseReleaseEvent = ScreenEventFactory.createAfterMouseReleaseEvent();
+		this.allowMouseScrollEvent = ScreenEventFactory.createAllowMouseScrollEvent();
+		this.beforeMouseScrollEvent = ScreenEventFactory.createBeforeMouseScrollEvent();
+		this.afterMouseScrollEvent = ScreenEventFactory.createAfterMouseScrollEvent();
 
 		ScreenEvents.BEFORE_INIT.invoker().beforeInit(client, (Screen) (Object) this, width, height);
 	}
@@ -138,15 +138,15 @@ abstract class ScreenMixin implements ScreenExtensions {
 	@Override
 	public List<ClickableWidget> fabric_getButtons() {
 		// Lazy init to make the list access safe after Screen#init
-		if (this.papi$fabricButtons == null) {
-			this.papi$fabricButtons = new ButtonList(this.drawables, this.selectables, this.children);
+		if (this.fabricButtons == null) {
+			this.fabricButtons = new ButtonList(this.drawables, this.selectables, this.children);
 		}
 
-		return this.papi$fabricButtons;
+		return this.fabricButtons;
 	}
 
 	@Unique
-	private <T> Event<T> papi$ensureEventsAreInitialized(Event<T> event) {
+	private <T> Event<T> ensureEventsAreInitialized(Event<T> event) {
 		if (event == null) {
 			throw new IllegalStateException(String.format("[fabric-screen-api-v1] The current screen (%s) has not been correctly initialised, please send this crash log to the mod author. This is usually caused by calling setScreen on the wrong thread.", this.getClass().getName()));
 		}
@@ -156,105 +156,105 @@ abstract class ScreenMixin implements ScreenExtensions {
 
 	@Override
 	public Event<ScreenEvents.Remove> fabric_getRemoveEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$removeEvent);
+		return ensureEventsAreInitialized(this.removeEvent);
 	}
 
 	@Override
 	public Event<ScreenEvents.BeforeTick> fabric_getBeforeTickEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeTickEvent);
+		return ensureEventsAreInitialized(this.beforeTickEvent);
 	}
 
 	@Override
 	public Event<ScreenEvents.AfterTick> fabric_getAfterTickEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterTickEvent);
+		return ensureEventsAreInitialized(this.afterTickEvent);
 	}
 
 	@Override
 	public Event<ScreenEvents.BeforeRender> fabric_getBeforeRenderEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeRenderEvent);
+		return ensureEventsAreInitialized(this.beforeRenderEvent);
 	}
 
 	@Override
 	public Event<ScreenEvents.AfterRender> fabric_getAfterRenderEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterRenderEvent);
+		return ensureEventsAreInitialized(this.afterRenderEvent);
 	}
 
 	// Keyboard
 
 	@Override
 	public Event<ScreenKeyboardEvents.AllowKeyPress> fabric_getAllowKeyPressEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$allowKeyPressEvent);
+		return ensureEventsAreInitialized(this.allowKeyPressEvent);
 	}
 
 	@Override
 	public Event<ScreenKeyboardEvents.BeforeKeyPress> fabric_getBeforeKeyPressEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeKeyPressEvent);
+		return ensureEventsAreInitialized(this.beforeKeyPressEvent);
 	}
 
 	@Override
 	public Event<ScreenKeyboardEvents.AfterKeyPress> fabric_getAfterKeyPressEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterKeyPressEvent);
+		return ensureEventsAreInitialized(this.afterKeyPressEvent);
 	}
 
 	@Override
 	public Event<ScreenKeyboardEvents.AllowKeyRelease> fabric_getAllowKeyReleaseEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$allowKeyReleaseEvent);
+		return ensureEventsAreInitialized(this.allowKeyReleaseEvent);
 	}
 
 	@Override
 	public Event<ScreenKeyboardEvents.BeforeKeyRelease> fabric_getBeforeKeyReleaseEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeKeyReleaseEvent);
+		return ensureEventsAreInitialized(this.beforeKeyReleaseEvent);
 	}
 
 	@Override
 	public Event<ScreenKeyboardEvents.AfterKeyRelease> fabric_getAfterKeyReleaseEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterKeyReleaseEvent);
+		return ensureEventsAreInitialized(this.afterKeyReleaseEvent);
 	}
 
 	// Mouse
 
 	@Override
 	public Event<ScreenMouseEvents.AllowMouseClick> fabric_getAllowMouseClickEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$allowMouseClickEvent);
+		return ensureEventsAreInitialized(this.allowMouseClickEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.BeforeMouseClick> fabric_getBeforeMouseClickEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeMouseClickEvent);
+		return ensureEventsAreInitialized(this.beforeMouseClickEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.AfterMouseClick> fabric_getAfterMouseClickEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterMouseClickEvent);
+		return ensureEventsAreInitialized(this.afterMouseClickEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.AllowMouseRelease> fabric_getAllowMouseReleaseEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$allowMouseReleaseEvent);
+		return ensureEventsAreInitialized(this.allowMouseReleaseEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.BeforeMouseRelease> fabric_getBeforeMouseReleaseEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeMouseReleaseEvent);
+		return ensureEventsAreInitialized(this.beforeMouseReleaseEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.AfterMouseRelease> fabric_getAfterMouseReleaseEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterMouseReleaseEvent);
+		return ensureEventsAreInitialized(this.afterMouseReleaseEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.AllowMouseScroll> fabric_getAllowMouseScrollEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$allowMouseScrollEvent);
+		return ensureEventsAreInitialized(this.allowMouseScrollEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.BeforeMouseScroll> fabric_getBeforeMouseScrollEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$beforeMouseScrollEvent);
+		return ensureEventsAreInitialized(this.beforeMouseScrollEvent);
 	}
 
 	@Override
 	public Event<ScreenMouseEvents.AfterMouseScroll> fabric_getAfterMouseScrollEvent() {
-		return papi$ensureEventsAreInitialized(this.papi$afterMouseScrollEvent);
+		return ensureEventsAreInitialized(this.afterMouseScrollEvent);
 	}
 }

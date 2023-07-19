@@ -41,13 +41,13 @@ public abstract class DisconnectedScreenMixin extends Screen {
 	private int reasonHeight;
 
 	@Unique
-	private int papi$actualReasonHeight;
+	private int actualReasonHeight;
 
 	@Unique
-	private int papi$scroll;
+	private int scroll;
 
 	@Unique
-	private int papi$maxScroll;
+	private int maxScroll;
 
 	private DisconnectedScreenMixin() {
 		super(null);
@@ -56,28 +56,28 @@ public abstract class DisconnectedScreenMixin extends Screen {
 	// Inject to right after reasonHeight is stored, to make sure the back button have correct position.
 	@Inject(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/client/gui/screen/DisconnectedScreen;reasonHeight:I", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
 	private void init(CallbackInfo ci) {
-		papi$actualReasonHeight = reasonHeight;
+		actualReasonHeight = reasonHeight;
 		reasonHeight = Math.min(reasonHeight, height - 100);
-		papi$scroll = 0;
-		papi$maxScroll = papi$actualReasonHeight - reasonHeight;
+		scroll = 0;
+		maxScroll = actualReasonHeight - reasonHeight;
 	}
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/MultilineText;drawCenterWithShadow(Lnet/minecraft/client/util/math/MatrixStack;II)I"))
 	private int render(MultilineText instance, MatrixStack matrixStack, int x, int y) {
 		DrawableHelper.enableScissor(0, y, width, y + reasonHeight);
-		instance.drawCenterWithShadow(matrixStack, x, y - papi$scroll);
+		instance.drawCenterWithShadow(matrixStack, x, y - scroll);
 		RenderSystem.disableScissor();
 
 		// Draw gradient at the top/bottom to indicate that the text is scrollable.
-		if (papi$actualReasonHeight > reasonHeight) {
+		if (actualReasonHeight > reasonHeight) {
 			int startX = (width - instance.getMaxWidth()) / 2;
 			int endX = (width + instance.getMaxWidth()) / 2;
 
-			if (papi$scroll > 0) {
+			if (scroll > 0) {
 				fillGradient(matrixStack, startX, y, endX, y + 10, 0xFF000000, 0);
 			}
 
-			if (papi$scroll < papi$maxScroll) {
+			if (scroll < maxScroll) {
 				fillGradient(matrixStack, startX, y + reasonHeight - 10, endX, y + reasonHeight, 0, 0xFF000000);
 			}
 		}
@@ -87,7 +87,7 @@ public abstract class DisconnectedScreenMixin extends Screen {
 
 	@Override
 	public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-		papi$scroll = MathHelper.clamp(papi$scroll - (MathHelper.sign(amount) * client.textRenderer.fontHeight * 10), 0, papi$maxScroll);
+		scroll = MathHelper.clamp(scroll - (MathHelper.sign(amount) * client.textRenderer.fontHeight * 10), 0, maxScroll);
 		return super.mouseScrolled(mouseX, mouseY, amount);
 	}
 }

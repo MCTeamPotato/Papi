@@ -45,34 +45,34 @@ abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 	public ClientConnection connection;
 
 	@Unique
-	private ServerPlayNetworkAddon papi$addon;
+	private ServerPlayNetworkAddon addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.papi$addon = new ServerPlayNetworkAddon((ServerPlayNetworkHandler) (Object) this, this.server);
+		this.addon = new ServerPlayNetworkAddon((ServerPlayNetworkHandler) (Object) this, this.server);
 		// A bit of a hack but it allows the field above to be set in case someone registers handlers during INIT event which refers to said field
-		this.papi$addon.lateInit();
+		this.addon.lateInit();
 	}
 
 	@Inject(method = "onCustomPayload", at = @At("HEAD"), cancellable = true)
 	private void handleCustomPayloadReceivedAsync(CustomPayloadC2SPacket packet, CallbackInfo ci) {
-		if (this.papi$addon.handle(packet)) {
+		if (this.addon.handle(packet)) {
 			ci.cancel();
 		}
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.papi$addon.handleDisconnect();
+		this.addon.handleDisconnect();
 	}
 
 	@Override
-	public ServerPlayNetworkAddon papi$getAddon() {
-		return this.papi$addon;
+	public ServerPlayNetworkAddon getAddon() {
+		return this.addon;
 	}
 
 	@Override
-	public Packet<?> papi$createDisconnectPacket(Text message) {
+	public Packet<?> createDisconnectPacket(Text message) {
 		return new DisconnectS2CPacket(message);
 	}
 }
