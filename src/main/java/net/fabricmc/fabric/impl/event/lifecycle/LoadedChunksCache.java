@@ -14,19 +14,25 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.command;
+package net.fabricmc.fabric.impl.event.lifecycle;
 
-import net.minecraft.command.argument.ArgumentTypes;
-import net.minecraft.command.argument.serialize.ArgumentSerializer;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.world.chunk.WorldChunk;
 
-import java.util.Map;
+import java.util.Set;
 
-@Mixin(ArgumentTypes.class)
-public interface ArgumentTypesAccessor {
-	@Accessor("CLASS_MAP")
-	static Map<Class<?>, ArgumentSerializer<?, ?>> fabric_getClassMap() {
-		throw new AssertionError("");
-	}
+/**
+ * A simple marker interface which holds references to chunks which block entities may be loaded or unloaded from.
+ */
+public interface LoadedChunksCache {
+	Set<WorldChunk> fabric_getLoadedChunks();
+
+	/**
+	 * Marks a chunk as loaded in a world.
+	 */
+	void fabric_markLoaded(WorldChunk chunk);
+
+	/**
+	 * Marks a chunk as unloaded in a world.
+	 */
+	void fabric_markUnloaded(WorldChunk chunk);
 }
