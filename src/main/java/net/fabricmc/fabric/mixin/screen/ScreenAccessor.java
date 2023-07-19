@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.networking;
+package net.fabricmc.fabric.mixin.screen;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.render.item.ItemRenderer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-import java.util.Collection;
+@Mixin(Screen.class)
+public interface ScreenAccessor {
+	@Accessor
+	ItemRenderer getItemRenderer();
 
-public interface ChannelInfoHolder {
-	/**
-	 * @return Channels which are declared as receivable by the other side but have not been declared yet.
-	 */
-	Collection<Identifier> papi$getPendingChannelsNames();
+	@Accessor
+	TextRenderer getTextRenderer();
+
+	@Accessor
+	MinecraftClient getClient();
 }

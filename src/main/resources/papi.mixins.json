@@ -20,13 +20,18 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor"
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "papi.screen.MixinForgeHooksClient"
   ],
   "client": [
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin",
     "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
-    "networking.client.accessor.MinecraftClientAccessor"
+    "networking.client.accessor.MinecraftClientAccessor",
+    "screen.MinecraftClientMixin",
+    "screen.MouseMixin",
+    "screen.ScreenAccessor",
+    "screen.ScreenMixin"
   ]
 }

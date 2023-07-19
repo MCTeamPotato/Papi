@@ -16,17 +16,14 @@
 
 package net.fabricmc.fabric.api.client.networking.v1;
 
-import java.util.List;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.util.Identifier;
 
-
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import java.util.List;
 
 /**
  * Offers access to events related to the indication of a connected server's ability to receive packets in certain channels.

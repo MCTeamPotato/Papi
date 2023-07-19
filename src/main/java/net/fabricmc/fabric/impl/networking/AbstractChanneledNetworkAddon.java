@@ -16,29 +16,21 @@
 
 package net.fabricmc.fabric.impl.networking;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import io.netty.util.AsciiString;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.PacketCallbacks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.InvalidIdentifierException;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 /**
  * A network addon which is aware of the channels the other side may receive.
@@ -165,7 +157,7 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 	}
 
 	void unregister(List<Identifier> ids) {
-		this.sendableChannels.removeAll(ids);
+		ids.forEach(this.sendableChannels::remove);
 		this.invokeUnregisterEvent(ids);
 	}
 

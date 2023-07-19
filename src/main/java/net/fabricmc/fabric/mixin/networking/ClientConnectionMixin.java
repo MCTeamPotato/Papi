@@ -16,13 +16,14 @@
 
 package net.fabricmc.fabric.mixin.networking;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.concurrent.ConcurrentHashMap;
-
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
+import net.fabricmc.fabric.impl.networking.*;
+import net.minecraft.network.*;
+import net.minecraft.network.listener.PacketListener;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -33,20 +34,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.network.ClientConnection;
-import net.minecraft.network.NetworkSide;
-import net.minecraft.network.NetworkState;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketCallbacks;
-import net.minecraft.network.listener.PacketListener;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.impl.networking.ChannelInfoHolder;
-import net.fabricmc.fabric.impl.networking.DisconnectPacketSource;
-import net.fabricmc.fabric.impl.networking.GenericFutureListenerHolder;
-import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
-import net.fabricmc.fabric.impl.networking.PacketCallbackListener;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Mixin(ClientConnection.class)
 abstract class ClientConnectionMixin implements ChannelInfoHolder {

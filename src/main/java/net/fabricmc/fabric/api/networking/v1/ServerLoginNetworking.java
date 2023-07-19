@@ -16,19 +16,17 @@
 
 package net.fabricmc.fabric.api.networking.v1;
 
-import java.util.Objects;
-import java.util.Set;
-import java.util.concurrent.Future;
-
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.impl.networking.server.ServerNetworkingImpl;
+import net.fabricmc.fabric.mixin.networking.accessor.ServerLoginNetworkHandlerAccessor;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.impl.networking.server.ServerNetworkingImpl;
-import net.fabricmc.fabric.mixin.networking.accessor.ServerLoginNetworkHandlerAccessor;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.Future;
 
 /**
  * Offers access to login stage server-side networking functionalities.
