@@ -35,12 +35,12 @@ public abstract class MixinLootSupplier implements FabricLootSupplier {
 	@Shadow @Final private LootFunction[] functions;
 
 	@Override
-	public List<LootPool> papi$getPools() {
+	public List<LootPool> getPools() {
 		return pools;
 	}
 
 	@Override
-	public List<LootFunction> papi$getFunctions() {
+	public List<LootFunction> getFunctions() {
 		return Arrays.asList(functions);
 	}
 

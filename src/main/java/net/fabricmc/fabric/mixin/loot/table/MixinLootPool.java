@@ -38,17 +38,17 @@ public abstract class MixinLootPool implements FabricLootPool {
 	@Accessor @Override public abstract LootTableRange getRolls();
 
 	@Override
-	public List<LootPoolEntry> papi$getEntries() {
+	public List<LootPoolEntry> getEntries() {
 		return entries;
 	}
 
 	@Override
-	public List<LootCondition> papi$getConditions() {
+	public List<LootCondition> getConditions() {
 		return conditions;
 	}
 
 	@Override
-	public List<LootFunction> papi$getFunctions() {
+	public List<LootFunction> getFunctions() {
 		return Arrays.asList(functions);
 	}
 

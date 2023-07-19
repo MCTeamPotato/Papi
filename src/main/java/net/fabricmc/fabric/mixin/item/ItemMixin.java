@@ -30,10 +30,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Item.class)
 abstract class ItemMixin implements ItemExtensions {
 	@Unique
-	private EquipmentSlotProvider papi$equipmentSlotProvider;
+	private EquipmentSlotProvider equipmentSlotProvider;
 
 	@Unique
-	private CustomDamageHandler papi$customDamageHandler;
+	private CustomDamageHandler customDamageHandler;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void onConstruct(Item.Settings settings, CallbackInfo info) {
@@ -42,21 +42,21 @@ abstract class ItemMixin implements ItemExtensions {
 
 	@Override
 	public EquipmentSlotProvider fabric_getEquipmentSlotProvider() {
-		return papi$equipmentSlotProvider;
+		return equipmentSlotProvider;
 	}
 
 	@Override
 	public void fabric_setEquipmentSlotProvider(EquipmentSlotProvider equipmentSlotProvider) {
-		this.papi$equipmentSlotProvider = equipmentSlotProvider;
+		this.equipmentSlotProvider = equipmentSlotProvider;
 	}
 
 	@Override
 	public CustomDamageHandler fabric_getCustomDamageHandler() {
-		return papi$customDamageHandler;
+		return customDamageHandler;
 	}
 
 	@Override
 	public void fabric_setCustomDamageHandler(CustomDamageHandler handler) {
-		this.papi$customDamageHandler = handler;
+		this.customDamageHandler = handler;
 	}
 }

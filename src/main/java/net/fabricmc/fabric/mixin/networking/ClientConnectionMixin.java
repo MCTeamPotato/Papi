@@ -54,11 +54,11 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 	public abstract void disconnect(Text disconnectReason);
 
 	@Unique
-	private Collection<Identifier> papi$playChannels;
+	private Collection<Identifier> playChannels;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddedFields(NetworkSide side, CallbackInfo ci) {
-		this.papi$playChannels = Collections.newSetFromMap(new ConcurrentHashMap<>());
+		this.playChannels = Collections.newSetFromMap(new ConcurrentHashMap<>());
 	}
 
 	// Must be fully qualified due to mixin not working in production without it
@@ -67,7 +67,7 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 		PacketListener handler = this.packetListener;
 
 		if (handler instanceof DisconnectPacketSource) {
-			this.send(((DisconnectPacketSource) handler).papi$createDisconnectPacket(new TranslatableText("disconnect.genericReason")), listener);
+			this.send(((DisconnectPacketSource) handler).createDisconnectPacket(new TranslatableText("disconnect.genericReason")), listener);
 		} else {
 			this.disconnect(new TranslatableText("disconnect.genericReason")); // Don't send packet if we cannot send proper packets
 		}
@@ -76,19 +76,19 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 	@Inject(method = "sendImmediately", at = @At(value = "FIELD", target = "Lnet/minecraft/network/ClientConnection;packetsSentCounter:I"))
 	private void checkPacket(Packet<?> packet, GenericFutureListener<? extends Future<? super Void>> callback, CallbackInfo ci) {
 		if (this.packetListener instanceof PacketCallbackListener) {
-			((PacketCallbackListener) this.packetListener).papi$sent(packet);
+			((PacketCallbackListener) this.packetListener).sent(packet);
 		}
 	}
 
 	@Inject(method = "channelInactive", at = @At("HEAD"))
 	private void handleDisconnect(ChannelHandlerContext channelHandlerContext, CallbackInfo ci) {
 		if (packetListener instanceof NetworkHandlerExtensions) { // not the case for client/server query
-			((NetworkHandlerExtensions) packetListener).papi$getAddon().handleDisconnect();
+			((NetworkHandlerExtensions) packetListener).getAddon().handleDisconnect();
 		}
 	}
 
 	@Override
-	public Collection<Identifier> papi$getPendingChannelsNames() {
-		return this.papi$playChannels;
+	public Collection<Identifier> getPendingChannelsNames() {
+		return this.playChannels;
 	}
 }

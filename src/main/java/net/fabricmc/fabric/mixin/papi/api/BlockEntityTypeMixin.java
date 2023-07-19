@@ -14,7 +14,7 @@ public class BlockEntityTypeMixin implements ExtendedBlockEntityType {
     @Shadow @Final private Set<Block> blocks;
 
     @Override
-    public Set<Block> papi$getBlocks() {
+    public Set<Block> getBlocks() {
         return this.blocks;
     }
 }

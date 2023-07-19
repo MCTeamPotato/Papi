@@ -33,8 +33,8 @@ public interface FabricLootPool {
 		return (LootPool) this;
 	}
 
-	List<LootPoolEntry> papi$getEntries();
-	List<LootCondition> papi$getConditions();
-	List<LootFunction> papi$getFunctions();
+	List<LootPoolEntry> getEntries();
+	List<LootCondition> getConditions();
+	List<LootFunction> getFunctions();
 	LootTableRange getRolls();
 }

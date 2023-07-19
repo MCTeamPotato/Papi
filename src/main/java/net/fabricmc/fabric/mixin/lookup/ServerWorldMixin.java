@@ -31,30 +31,30 @@ import java.util.Map;
 
 @Mixin(ServerWorld.class)
 abstract class ServerWorldMixin implements ServerWorldCache {
-	@Unique private final Map<BlockPos, List<WeakReference<BlockApiCacheImpl<?, ?>>>> papi$apiLookupCaches = new Object2ReferenceOpenHashMap<>();
+	@Unique private final Map<BlockPos, List<WeakReference<BlockApiCacheImpl<?, ?>>>> apiLookupCaches = new Object2ReferenceOpenHashMap<>();
 
 	/**
 	 * Ensures that the apiLookupCaches map is iterated over every once in a while to clean up caches.
 	 */
-	@Unique private int papi$apiLookupAccessesWithoutCleanup = 0;
+	@Unique private int apiLookupAccessesWithoutCleanup = 0;
 
 	@Override
 	public void fabric_registerCache(BlockPos pos, BlockApiCacheImpl<?, ?> cache) {
-		List<WeakReference<BlockApiCacheImpl<?, ?>>> caches = papi$apiLookupCaches.computeIfAbsent(pos.toImmutable(), ignored -> new ArrayList<>());
+		List<WeakReference<BlockApiCacheImpl<?, ?>>> caches = apiLookupCaches.computeIfAbsent(pos.toImmutable(), ignored -> new ArrayList<>());
 		caches.removeIf(weakReference -> weakReference.get() == null);
 		caches.add(new WeakReference<>(cache));
-		papi$apiLookupAccessesWithoutCleanup++;
+		apiLookupAccessesWithoutCleanup++;
 	}
 
 	@Override
 	public void fabric_invalidateCache(BlockPos pos) {
-		List<WeakReference<BlockApiCacheImpl<?, ?>>> caches = papi$apiLookupCaches.get(pos);
+		List<WeakReference<BlockApiCacheImpl<?, ?>>> caches = apiLookupCaches.get(pos);
 
 		if (caches != null) {
 			caches.removeIf(weakReference -> weakReference.get() == null);
 
 			if (caches.size() == 0) {
-				papi$apiLookupCaches.remove(pos);
+				apiLookupCaches.remove(pos);
 			} else {
 				caches.forEach(weakReference -> {
 					BlockApiCacheImpl<?, ?> cache = weakReference.get();
@@ -66,16 +66,16 @@ abstract class ServerWorldMixin implements ServerWorldCache {
 			}
 		}
 
-		papi$apiLookupAccessesWithoutCleanup++;
+		apiLookupAccessesWithoutCleanup++;
 
 		// Try to invalidate GC'd lookups from the cache after 2 * the number of cached lookups
-		if (papi$apiLookupAccessesWithoutCleanup > 2 * papi$apiLookupCaches.size()) {
-			papi$apiLookupCaches.entrySet().removeIf(entry -> {
+		if (apiLookupAccessesWithoutCleanup > 2 * apiLookupCaches.size()) {
+			apiLookupCaches.entrySet().removeIf(entry -> {
 				entry.getValue().removeIf(weakReference -> weakReference.get() == null);
 				return entry.getValue().isEmpty();
 			});
 
-			papi$apiLookupAccessesWithoutCleanup = 0;
+			apiLookupAccessesWithoutCleanup = 0;
 		}
 	}
 }

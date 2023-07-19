@@ -34,7 +34,7 @@ abstract class MinecraftClientMixin {
 	public Screen currentScreen;
 
 	@Unique
-	private Screen papi$tickingScreen;
+	private Screen tickingScreen;
 
 	@Inject(method = "openScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;removed()V", shift = At.Shift.AFTER))
 	private void onScreenRemove(@Nullable Screen screen, CallbackInfo ci) {
@@ -49,13 +49,13 @@ abstract class MinecraftClientMixin {
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;wrapScreenError(Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;)V"))
 	private void onTick(Runnable task, String errorTitle, String screenName) {
 		Screen.wrapScreenError(() -> {
-			this.papi$tickingScreen = this.currentScreen;
-			ScreenEvents.beforeTick(this.papi$tickingScreen).invoker().beforeTick(this.papi$tickingScreen);
+			this.tickingScreen = this.currentScreen;
+			ScreenEvents.beforeTick(this.tickingScreen).invoker().beforeTick(this.tickingScreen);
 
 			this.currentScreen.tick();
 
-			ScreenEvents.afterTick(this.papi$tickingScreen).invoker().afterTick(this.papi$tickingScreen);
-			this.papi$tickingScreen = null;
+			ScreenEvents.afterTick(this.tickingScreen).invoker().afterTick(this.tickingScreen);
+			this.tickingScreen = null;
 		}, "Ticking screen", this.currentScreen.getClass().getCanonicalName());
 	}
 }

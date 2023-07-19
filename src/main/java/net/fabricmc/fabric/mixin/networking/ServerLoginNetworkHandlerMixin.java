@@ -46,17 +46,17 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	public abstract void acceptPlayer();
 
 	@Unique
-	private ServerLoginNetworkAddon papi$addon;
+	private ServerLoginNetworkAddon addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.papi$addon = new ServerLoginNetworkAddon((ServerLoginNetworkHandler) (Object) this);
+		this.addon = new ServerLoginNetworkAddon((ServerLoginNetworkHandler) (Object) this);
 	}
 
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginNetworkHandler;acceptPlayer()V"))
 	private void handlePlayerJoin(ServerLoginNetworkHandler handler) {
 		// Do not accept the player, thereby moving into play stage until all login futures being waited on are completed
-		if (this.papi$addon.queryTick()) {
+		if (this.addon.queryTick()) {
 			this.acceptPlayer();
 		}
 	}
@@ -64,7 +64,7 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	@Inject(method = "onQueryResponse", at = @At("HEAD"), cancellable = true)
 	private void handleCustomPayloadReceivedAsync(LoginQueryResponseC2SPacket packet, CallbackInfo ci) {
 		// Handle queries
-		if (this.papi$addon.handle(packet)) {
+		if (this.addon.handle(packet)) {
 			ci.cancel();
 		}
 	}
@@ -76,33 +76,33 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.papi$addon.handleDisconnect();
+		this.addon.handleDisconnect();
 	}
 
 	@Inject(method = "acceptPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/PlayerManager;onPlayerConnect(Lnet/minecraft/network/ClientConnection;Lnet/minecraft/server/network/ServerPlayerEntity;)V"))
 	private void handlePlayTransitionNormal(CallbackInfo ci) {
-		this.papi$addon.handlePlayTransition();
+		this.addon.handlePlayTransition();
 	}
 
 	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/PlayerManager;onPlayerConnect(Lnet/minecraft/network/ClientConnection;Lnet/minecraft/server/network/ServerPlayerEntity;)V"))
 	private void handlePlayTransitionDelayed(CallbackInfo ci) {
-		this.papi$addon.handlePlayTransition();
+		this.addon.handlePlayTransition();
 	}
 
 	@Override
-	public void papi$sent(Packet<?> packet) {
+	public void sent(Packet<?> packet) {
 		if (packet instanceof LoginQueryRequestS2CPacket) {
-			this.papi$addon.registerOutgoingPacket((LoginQueryRequestS2CPacket) packet);
+			this.addon.registerOutgoingPacket((LoginQueryRequestS2CPacket) packet);
 		}
 	}
 
 	@Override
-	public ServerLoginNetworkAddon papi$getAddon() {
-		return this.papi$addon;
+	public ServerLoginNetworkAddon getAddon() {
+		return this.addon;
 	}
 
 	@Override
-	public Packet<?> papi$createDisconnectPacket(Text message) {
+	public Packet<?> createDisconnectPacket(Text message) {
 		return new LoginDisconnectS2CPacket(message);
 	}
 }

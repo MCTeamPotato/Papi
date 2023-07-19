@@ -28,28 +28,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
 	@Unique
-    private MinecraftClient papi$getThis() {
+    private MinecraftClient getThis() {
 		return (MinecraftClient) (Object) this;
 	}
 
 	@Inject(at = @At("HEAD"), method = "tick")
 	private void onStartTick(CallbackInfo info) {
-		ClientTickEvents.START_CLIENT_TICK.invoker().onStartTick(papi$getThis());
+		ClientTickEvents.START_CLIENT_TICK.invoker().onStartTick(getThis());
 	}
 
 	@Inject(at = @At("RETURN"), method = "tick")
 	private void onEndTick(CallbackInfo info) {
-		ClientTickEvents.END_CLIENT_TICK.invoker().onEndTick(papi$getThis());
+		ClientTickEvents.END_CLIENT_TICK.invoker().onEndTick(getThis());
 	}
 
 	@Inject(at = @At(value = "INVOKE", target = "Lorg/apache/logging/log4j/Logger;info(Ljava/lang/String;)V", shift = At.Shift.AFTER, remap = false), method = "stop")
 	private void onStopping(CallbackInfo ci) {
-		ClientLifecycleEvents.CLIENT_STOPPING.invoker().onClientStopping(papi$getThis());
+		ClientLifecycleEvents.CLIENT_STOPPING.invoker().onClientStopping(getThis());
 	}
 
 	// We inject after the thread field is set so `ThreadExecutor#getThread` will work
 	@Inject(at = @At(value = "FIELD", target = "Lnet/minecraft/client/MinecraftClient;thread:Ljava/lang/Thread;", shift = At.Shift.AFTER), method = "run")
 	private void onStart(CallbackInfo ci) {
-		ClientLifecycleEvents.CLIENT_STARTED.invoker().onClientStarted(papi$getThis());
+		ClientLifecycleEvents.CLIENT_STARTED.invoker().onClientStarted(getThis());
 	}
 }

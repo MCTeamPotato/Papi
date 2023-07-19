@@ -89,9 +89,9 @@ public class FabricLootPoolBuilder extends LootPool.Builder {
 	 */
 	public FabricLootPoolBuilder copyFrom(LootPool pool, boolean copyRolls) {
 		FabricLootPool extendedPool = (FabricLootPool) pool;
-		extended.getConditions().addAll(extendedPool.papi$getConditions());
-		extended.getFunctions().addAll(extendedPool.papi$getFunctions());
-		extended.getEntries().addAll(extendedPool.papi$getEntries());
+		extended.getConditions().addAll(extendedPool.getConditions());
+		extended.getFunctions().addAll(extendedPool.getFunctions());
+		extended.getEntries().addAll(extendedPool.getEntries());
 
 		if (copyRolls) {
 			rolls(extendedPool.getRolls());

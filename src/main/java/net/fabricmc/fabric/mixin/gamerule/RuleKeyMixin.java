@@ -27,15 +27,15 @@ import org.spongepowered.asm.mixin.Unique;
 public abstract class RuleKeyMixin implements RuleKeyExtensions {
 	@Unique
 	@Nullable
-	private CustomGameRuleCategory papi$customCategory;
+	private CustomGameRuleCategory customCategory;
 
 	@Override
 	public CustomGameRuleCategory fabric_getCustomCategory() {
-		return this.papi$customCategory;
+		return this.customCategory;
 	}
 
 	@Override
 	public void fabric_setCustomCategory(CustomGameRuleCategory customCategory) {
-		this.papi$customCategory = customCategory;
+		this.customCategory = customCategory;
 	}
 }

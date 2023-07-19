@@ -37,28 +37,28 @@ public interface FabricClientCommandSource extends CommandSource {
 	 *
 	 * @param message the feedback message
 	 */
-	void papi$sendFeedback(Text message);
+	void sendFeedback(Text message);
 
 	/**
 	 * Sends an error message to the player.
 	 *
 	 * @param message the error message
 	 */
-	void papi$sendError(Text message);
+	void sendError(Text message);
 
 	/**
 	 * Gets the client instance used to run the command.
 	 *
 	 * @return the client
 	 */
-	MinecraftClient papi$getClient();
+	MinecraftClient getClient();
 
 	/**
 	 * Gets the player that used the command.
 	 *
 	 * @return the player
 	 */
-	ClientPlayerEntity papi$getPlayer();
+	ClientPlayerEntity getPlayer();
 
 	/**
 	 * Gets the entity that used the command.
@@ -66,7 +66,7 @@ public interface FabricClientCommandSource extends CommandSource {
 	 * @return the entity
 	 */
 	default Entity getEntity() {
-		return papi$getPlayer();
+		return getPlayer();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public interface FabricClientCommandSource extends CommandSource {
 	 * @return the position
 	 */
 	default Vec3d getPosition() {
-		return papi$getPlayer().getPos();
+		return getPlayer().getPos();
 	}
 
 	/**
@@ -84,7 +84,7 @@ public interface FabricClientCommandSource extends CommandSource {
 	 * @return the rotation
 	 */
 	default Vec2f getRotation() {
-		return papi$getPlayer().getRotationClient();
+		return getPlayer().getRotationClient();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public interface FabricClientCommandSource extends CommandSource {
 	 *
 	 * @return the world
 	 */
-	ClientWorld papi$getWorld();
+	ClientWorld getWorld();
 
 	/**
 	 * Gets the meta property under {@code key} that was assigned to this source.

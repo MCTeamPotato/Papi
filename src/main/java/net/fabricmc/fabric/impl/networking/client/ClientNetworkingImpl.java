@@ -51,11 +51,11 @@ public final class ClientNetworkingImpl {
 	private static ClientPlayNetworkAddon currentPlayAddon;
 
 	public static ClientPlayNetworkAddon getAddon(ClientPlayNetworkHandler handler) {
-		return (ClientPlayNetworkAddon) ((NetworkHandlerExtensions) handler).papi$getAddon();
+		return (ClientPlayNetworkAddon) ((NetworkHandlerExtensions) handler).getAddon();
 	}
 
 	public static ClientLoginNetworkAddon getAddon(ClientLoginNetworkHandler handler) {
-		return (ClientLoginNetworkAddon) ((NetworkHandlerExtensions) handler).papi$getAddon();
+		return (ClientLoginNetworkAddon) ((NetworkHandlerExtensions) handler).getAddon();
 	}
 
 	public static Packet<?> createPlayC2SPacket(Identifier channelName, PacketByteBuf buf) {
@@ -121,7 +121,7 @@ public final class ClientNetworkingImpl {
 				ids.add(buf.readIdentifier());
 			}
 
-			((ChannelInfoHolder) handler.getConnection()).papi$getPendingChannelsNames().addAll(ids);
+			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
 			NetworkingImpl.LOGGER.debug("Received accepted channels from the server");
 
 			PacketByteBuf response = PacketByteBufs.create();

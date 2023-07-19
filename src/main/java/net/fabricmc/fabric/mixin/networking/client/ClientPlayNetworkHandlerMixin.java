@@ -40,35 +40,35 @@ abstract class ClientPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 	private MinecraftClient client;
 
 	@Unique
-	private ClientPlayNetworkAddon papi$addon;
+	private ClientPlayNetworkAddon addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.papi$addon = new ClientPlayNetworkAddon((ClientPlayNetworkHandler) (Object) this, this.client);
+		this.addon = new ClientPlayNetworkAddon((ClientPlayNetworkHandler) (Object) this, this.client);
 		// A bit of a hack but it allows the field above to be set in case someone registers handlers during INIT event which refers to said field
-		ClientNetworkingImpl.setClientPlayAddon(this.papi$addon);
-		this.papi$addon.lateInit();
+		ClientNetworkingImpl.setClientPlayAddon(this.addon);
+		this.addon.lateInit();
 	}
 
 	@Inject(method = "onGameJoin", at = @At("RETURN"))
 	private void handleServerPlayReady(GameJoinS2CPacket packet, CallbackInfo ci) {
-		this.papi$addon.onServerReady();
+		this.addon.onServerReady();
 	}
 
 	@Inject(method = "onCustomPayload", at = @At("HEAD"), cancellable = true)
 	private void handleCustomPayload(CustomPayloadS2CPacket packet, CallbackInfo ci) {
-		if (this.papi$addon.handle(packet)) {
+		if (this.addon.handle(packet)) {
 			ci.cancel();
 		}
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.papi$addon.handleDisconnect();
+		this.addon.handleDisconnect();
 	}
 
 	@Override
-	public ClientPlayNetworkAddon papi$getAddon() {
-		return this.papi$addon;
+	public ClientPlayNetworkAddon getAddon() {
+		return this.addon;
 	}
 }

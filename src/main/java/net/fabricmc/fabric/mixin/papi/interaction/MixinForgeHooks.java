@@ -25,7 +25,7 @@ public abstract class MixinForgeHooks {
     @Unique private static boolean fabric_itemPickCancelled;
 
     @Unique
-    private static int papi$modifyItemPick(PlayerInventory inventory, ItemStack stack) {
+    private static int modifyItemPick(PlayerInventory inventory, ItemStack stack) {
         MinecraftClient client = MinecraftClient.getInstance();
         ItemStack result = ClientPickBlockApplyCallback.EVENT.invoker().pick(client.player, client.crosshairTarget, stack);
         fabric_itemPickCancelled = result.isEmpty();
@@ -78,7 +78,7 @@ public abstract class MixinForgeHooks {
                 }
                 return true;
             } else {
-                int slot = papi$modifyItemPick(player.inventory, result);
+                int slot = modifyItemPick(player.inventory, result);
                 if (fabric_itemPickCancelled) return false;
                 if (slot != -1) {
                     if (PlayerInventory.isValidHotbarIndex(slot)) {
