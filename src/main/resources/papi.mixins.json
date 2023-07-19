@@ -1,26 +1,32 @@
 {
   "required": true,
-  "package": "net.fabricmc.fabric.mixin.event.lifecycle",
+  "package": "net.fabricmc.fabric.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "DataPackContentsMixin",
-    "MinecraftServerMixin",
-    "PlayerManagerMixin",
-    "ServerWorldEntityLoaderMixin",
-    "ServerWorldMixin",
-    "ThreadedAnvilChunkStorageMixin",
-    "WorldMixin"
+    "event.lifecycle.DataPackContentsMixin",
+    "event.lifecycle.MinecraftServerMixin",
+    "event.lifecycle.PlayerManagerMixin",
+    "event.lifecycle.ServerWorldEntityLoaderMixin",
+    "event.lifecycle.ServerWorldMixin",
+    "event.lifecycle.WorldMixin",
+    "command.HelpCommandAccessor",
+    "papi.event.command.MixinForgeEventFactory",
+    "papi.event.lifecycle.MixinChunkEvent.MixinLoad",
+    "papi.event.lifecycle.MixinChunkEvent.MixinUnload"
   ],
   "client": [
-    "client.ClientChunkManagerMixin",
-    "client.ClientPlayNetworkHandlerMixin",
-    "client.ClientWorldEntityLoaderMixin",
-    "client.ClientWorldMixin",
-    "client.MinecraftClientMixin",
-    "client.WorldChunkMixin"
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldEntityLoaderMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin",
+    "event.lifecycle.client.WorldChunkMixin",
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
+    "command.client.MinecraftClientMixin"
   ],
   "server": [
-    "server.WorldChunkMixin"
+    "event.lifecycle.server.WorldChunkMixin"
   ],
   "injectors": {
     "defaultRequire": 1,

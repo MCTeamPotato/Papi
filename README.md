@@ -17,14 +17,14 @@ Yea another Fabric API reforged project.
 - [ ] Dimensions
 - [ ] Entity Events
 - [ ] Events Interaction
-- [ ] Events Lifecycle
+- [x] Events Lifecycle
 - [ ] Game Rule API
 - [ ] Game Test API
 - [ ] Item API
 - [ ] Item Groups
 - [ ] Key Binding API
 - [ ] Keybindings
-- [ ] Lifecycle Events
+- [x] Lifecycle Events
 - [ ] Loot API
 - [ ] Loot Tables
 - [ ] Mining Level API
