@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.test.base;
 
-/**
- * Represents a function that accepts an boolean-valued argument and produces a result.
- *
- * <p>This is the {@code boolean}-consuming primitive specialization for {@link java.util.function.Function}.
- */
-@FunctionalInterface
-public interface BooleanFunction<R> {
-	/**
-	 * Applies this function to the given argument.
-	 *
-	 * @param value the function argument
-	 * @return the function result
-	 */
-	R apply(boolean value);
+import org.spongepowered.asm.mixin.MixinEnvironment;
+
+import net.minecraft.test.GameTest;
+import net.minecraft.test.TestContext;
+
+import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
+
+public class FabricApiBaseGameTest {
+	@GameTest(structureName = FabricGameTest.EMPTY_STRUCTURE)
+	public void auditMixins(TestContext context) {
+		MixinEnvironment.getCurrentEnvironment().audit();
+
+		context.complete();
+	}
 }

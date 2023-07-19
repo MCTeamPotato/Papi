@@ -16,10 +16,11 @@
 
 package net.fabricmc.fabric.api.event;
 
-import net.fabricmc.fabric.impl.base.event.EventFactoryImpl;
+import java.util.function.Function;
+
 import net.minecraft.util.Identifier;
 
-import java.util.function.Function;
+import net.fabricmc.fabric.impl.base.event.EventFactoryImpl;
 
 /**
  * Helper for creating {@link Event} classes.
