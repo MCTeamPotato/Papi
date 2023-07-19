@@ -32,8 +32,6 @@ import net.minecraft.util.Identifier;
 import net.fabricmc.fabric.api.event.Event;
 
 class ArrayBackedEvent<T> extends Event<T> {
-	static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-base");
-
 	private final Function<T[], T> invokerFactory;
 	private final Object lock = new Object();
 	private T[] handlers;
