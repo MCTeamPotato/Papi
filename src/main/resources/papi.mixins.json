@@ -11,6 +11,10 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "command.ArgumentTypesAccessor",
+    "command.EntitySelectorOptionsAccessor",
+    "command.EntitySelectorReaderMixin",
+    "command.HelpCommandAccessor",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -21,9 +25,13 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "papi.command.MixinForgeEventFactory",
     "papi.screen.MixinForgeHooksClient"
   ],
   "client": [
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin",
     "networking.client.DisconnectedScreenMixin",
