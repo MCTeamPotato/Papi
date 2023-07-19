@@ -31,6 +31,7 @@ public abstract class LivingEntityMixin {
 	private boolean getEquipmentChanges(IEventBus iEventBus, Event event) {
 		if (event instanceof LivingEquipmentChangeEvent livingEquipmentChangeEvent) {
 			ServerEntityEvents.EQUIPMENT_CHANGE.invoker().onChange((LivingEntity) (Object) this, livingEquipmentChangeEvent.getSlot(), livingEquipmentChangeEvent.getFrom(), livingEquipmentChangeEvent.getTo());
+			return iEventBus.post(event);
 		}
 		throw new RuntimeException();
 	}
