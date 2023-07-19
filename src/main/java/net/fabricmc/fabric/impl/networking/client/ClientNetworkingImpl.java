@@ -118,7 +118,7 @@ public final class ClientNetworkingImpl {
 				ids.add(buf.readIdentifier());
 			}
 
-			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
+			((ChannelInfoHolder) handler.getConnection()).papi$getPendingChannelsNames().addAll(ids);
 			NetworkingImpl.LOGGER.debug("Received accepted channels from the server");
 
 			PacketByteBuf response = PacketByteBufs.create();
