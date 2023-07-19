@@ -11,13 +11,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 @Mod(Papi.MOD_ID)
 public class Papi {
     public static final String MOD_ID = "papi";
-
     public Papi() {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
+    public void onClientSetup(FMLClientSetupEvent event) {
         ClientNetworkingImpl.clientInit();
     }
 

@@ -44,7 +44,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 
-
 public final class ClientNetworkingImpl {
 	public static final GlobalReceiverRegistry<ClientLoginNetworking.LoginQueryRequestHandler> LOGIN = new GlobalReceiverRegistry<>();
 	public static final GlobalReceiverRegistry<ClientPlayNetworking.PlayChannelHandler> PLAY = new GlobalReceiverRegistry<>();
@@ -119,7 +118,7 @@ public final class ClientNetworkingImpl {
 				ids.add(buf.readIdentifier());
 			}
 
-			ChannelInfoHolder.ChannelInfoHolderGetter.cast(handler.getConnection()).getPendingChannelsNames().addAll(ids);
+			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
 			NetworkingImpl.LOGGER.debug("Received accepted channels from the server");
 
 			PacketByteBuf response = PacketByteBufs.create();

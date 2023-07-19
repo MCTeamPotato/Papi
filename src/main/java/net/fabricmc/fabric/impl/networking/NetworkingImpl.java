@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.List;
 
 public final class NetworkingImpl {
-	public static final String MOD_ID = "fabric-networking-api-v1";
+	public static final String MOD_ID = "fabric_networking_api_v1";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	/**
 	 * Id of packet used to register supported channels.
@@ -75,7 +75,7 @@ public final class NetworkingImpl {
 				ids.add(buf.readIdentifier());
 			}
 
-			ChannelInfoHolder.ChannelInfoHolderGetter.cast(handler.getConnection()).getPendingChannelsNames().addAll(ids);
+			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
 			NetworkingImpl.LOGGER.debug("Received accepted channels from the client for \"{}\"", handler.getConnectionInfo());
 		});
 	}

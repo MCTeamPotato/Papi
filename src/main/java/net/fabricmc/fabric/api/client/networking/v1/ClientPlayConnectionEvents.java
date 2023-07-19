@@ -16,12 +16,15 @@
 
 package net.fabricmc.fabric.api.client.networking.v1;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.util.Identifier;
+
+
+
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 
 /**
  * Offers access to events related to the connection to a server on a logical client.
@@ -65,16 +68,19 @@ public final class ClientPlayConnectionEvents {
 	private ClientPlayConnectionEvents() {
 	}
 
+	
 	@FunctionalInterface
 	public interface Init {
 		void onPlayInit(ClientPlayNetworkHandler handler, MinecraftClient client);
 	}
 
+	
 	@FunctionalInterface
 	public interface Join {
 		void onPlayReady(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client);
 	}
 
+	
 	@FunctionalInterface
 	public interface Disconnect {
 		void onPlayDisconnect(ClientPlayNetworkHandler handler, MinecraftClient client);

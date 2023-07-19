@@ -16,11 +16,14 @@
 
 package net.fabricmc.fabric.api.client.networking.v1;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientLoginNetworkHandler;
 import net.minecraft.util.Identifier;
+
+
+
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 
 /**
  * Offers access to events related to the connection to a server on the client while the server is processing the client's login request.
@@ -77,6 +80,7 @@ public final class ClientLoginConnectionEvents {
 	/**
 	 * @see ClientLoginConnectionEvents#INIT
 	 */
+	
 	@FunctionalInterface
 	public interface Init {
 		void onLoginStart(ClientLoginNetworkHandler handler, MinecraftClient client);
@@ -85,6 +89,7 @@ public final class ClientLoginConnectionEvents {
 	/**
 	 * @see ClientLoginConnectionEvents#QUERY_START
 	 */
+	
 	@FunctionalInterface
 	public interface QueryStart {
 		void onLoginQueryStart(ClientLoginNetworkHandler handler, MinecraftClient client);
@@ -93,6 +98,7 @@ public final class ClientLoginConnectionEvents {
 	/**
 	 * @see ClientLoginConnectionEvents#DISCONNECT
 	 */
+	
 	@FunctionalInterface
 	public interface Disconnect {
 		void onLoginDisconnect(ClientLoginNetworkHandler handler, MinecraftClient client);
