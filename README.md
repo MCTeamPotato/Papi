@@ -1,4 +1,50 @@
 # Papi
 Yea another Fabric API reforged project.
 
-Currently only contains Fabric Networking API part for the [EventHorizon](https://github.com/MCTeamPotato/EventHorizon) mod.
+### TODO:
+- [x] API Base
+- [ ] Lookup API
+- [ ] Biome API
+- [ ] Block API
+- [ ] Block Render Layer
+- [ ] Command API
+- [ ] Commands
+- [ ] Containers
+- [ ] Content Registries
+- [ ] Convention Tags
+- [ ] Crash Report Info 
+- [ ] Data Generation API
+- [ ] Dimensions
+- [ ] Entity Events
+- [ ] Events Interaction
+- [ ] Events Lifecycle
+- [ ] Game Rule API
+- [ ] Game Test API
+- [ ] Item API
+- [ ] Item Groups
+- [ ] Key Binding API
+- [ ] Keybindings
+- [ ] Lifecycle Events
+- [ ] Loot API
+- [ ] Loot Tables
+- [ ] Mining Level API
+- [ ] Models
+- [ ] Networking API
+- [ ] Networking
+- [ ] Object Builder API
+- [ ] Particles
+- [ ] Registry Sync
+- [ ] Renderer API
+- [ ] Renderer Indigo
+- [ ] Renderer Registries
+- [ ] Rendering Data Attachment
+- [ ] Rendering Fluids
+- [ ] Rendering
+- [ ] Resource Conditions API
+- [ ] Resource Loader
+- [ ] Screen API
+- [ ] Screen Handler API
+- [ ] Textures
+- [ ] Transfer API
+- [ ] Transitive AccessWideners
+
