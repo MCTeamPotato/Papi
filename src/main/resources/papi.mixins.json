@@ -3,33 +3,49 @@
   "package": "net.fabricmc.fabric.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "command.HelpCommandAccessor",
     "event.lifecycle.DataPackContentsMixin",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.PlayerManagerMixin",
     "event.lifecycle.ServerWorldEntityLoaderMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
-    "command.HelpCommandAccessor",
     "papi.event.command.MixinForgeEventFactory",
     "papi.event.lifecycle.MixinChunkEvent.MixinLoad",
-    "papi.event.lifecycle.MixinChunkEvent.MixinUnload"
+    "papi.event.lifecycle.MixinChunkEvent.MixinUnload",
+    "papi.rendering.MixinRenderTooltipEventPre"
   ],
   "client": [
+    "client.rendering.CapeFeatureRendererMixin",
+    "client.rendering.DimensionEffectsAccessor",
+    "client.rendering.EntityModelLayersAccessor",
+    "client.rendering.EntityModelsMixin",
+    "client.rendering.LivingEntityRendererAccessor",
+    "client.rendering.MixinArmorFeatureRenderer",
+    "client.rendering.MixinBlockColorMap",
+    "client.rendering.MixinBlockEntityRenderers",
+    "client.rendering.MixinBuiltinModelItemRenderer",
+    "client.rendering.MixinEntityRenderers",
+    "client.rendering.MixinInGameHud",
+    "client.rendering.MixinItemColorMap",
+    "client.rendering.MixinWorldRenderer",
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
+    "command.client.MinecraftClientMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldEntityLoaderMixin",
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
-    "event.lifecycle.client.WorldChunkMixin",
-    "command.client.ClientCommandSourceMixin",
-    "command.client.ClientPlayerEntityMixin",
-    "command.client.ClientPlayNetworkHandlerMixin",
-    "command.client.MinecraftClientMixin"
+    "event.lifecycle.client.WorldChunkMixin"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"
   ],
   "injectors": {
-    "defaultRequire": 1,
-    "maxShiftBy": 3
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "conformVisibility": true
   }
 }

@@ -7,8 +7,8 @@ Yea another Fabric API reforged project.
 - [ ] Biome API
 - [ ] Block API
 - [ ] Block Render Layer
-- [ ] Command API
-- [ ] Commands
+- [x] Command API
+- [x] Commands
 - [ ] Containers
 - [ ] Content Registries
 - [ ] Convention Tags
@@ -39,7 +39,7 @@ Yea another Fabric API reforged project.
 - [ ] Renderer Registries
 - [ ] Rendering Data Attachment
 - [ ] Rendering Fluids
-- [ ] Rendering
+- [x] Rendering
 - [ ] Resource Conditions API
 - [ ] Resource Loader
 - [ ] Screen API
