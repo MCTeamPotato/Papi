@@ -36,6 +36,7 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 // For any future maintainers who wonder why this class does not compile because of jsr305, please reload gradle using `--refresh-dependencies`.
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(EditGameRulesScreen.RuleListWidget.class)
 public abstract class RuleListWidgetMixin extends net.minecraft.client.gui.widget.EntryListWidget<EditGameRulesScreen.AbstractRuleWidget> {
 	@Unique

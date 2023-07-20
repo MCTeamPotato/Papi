@@ -29,6 +29,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(LootTable.class)
 public abstract class MixinLootSupplier implements FabricLootSupplier {
 	@Shadow @Final private List<LootPool> pools;

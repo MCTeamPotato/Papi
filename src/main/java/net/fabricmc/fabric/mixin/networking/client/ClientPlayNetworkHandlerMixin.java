@@ -34,6 +34,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
 
 //clientside only
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(value = ClientPlayNetworkHandler.class, priority = 999)
 abstract class ClientPlayNetworkHandlerMixin implements NetworkHandlerExtensions {
 	@Shadow

@@ -33,6 +33,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Collection;
 import java.util.List;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(ClientWorld.class)
 public abstract class ClientWorldMixin extends WorldMixin {
 	// Call our load event after vanilla has loaded the entity

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(ServerWorld.class)
 abstract class ServerWorldMixin implements ServerWorldCache {
 	@Unique private final Map<BlockPos, List<WeakReference<BlockApiCacheImpl<?, ?>>>> apiLookupCaches = new Object2ReferenceOpenHashMap<>();

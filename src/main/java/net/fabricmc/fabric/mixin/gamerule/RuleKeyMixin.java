@@ -23,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(GameRules.Key.class)
 public abstract class RuleKeyMixin implements RuleKeyExtensions {
 	@Unique

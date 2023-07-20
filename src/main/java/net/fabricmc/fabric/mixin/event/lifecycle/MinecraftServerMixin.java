@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BooleanSupplier;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
 	@Shadow private ServerResourceManager serverResourceManager;

@@ -19,6 +19,7 @@ import net.minecraftforge.common.ForgeHooks;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.*;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(value = ForgeHooks.class, remap = false, priority = -1000)
 public abstract class MixinForgeHooks {
     @Shadow @Final private static Logger LOGGER;
