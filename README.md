@@ -29,8 +29,8 @@ Yea another Fabric API reforged project.
 - [ ] Loot Tables
 - [ ] Mining Level API
 - [ ] Models
-- [x] Networking API
-- [x] Networking
+- [x] Networking API **(NEED TEST)**
+- [x] Networking **(NEED TEST)**
 - [ ] Object Builder API
 - [ ] Particles
 - [ ] Registry Sync
@@ -39,12 +39,12 @@ Yea another Fabric API reforged project.
 - [ ] Renderer Registries
 - [ ] Rendering Data Attachment
 - [ ] Rendering Fluids
-- [x] Rendering
+- [x] Rendering **(NEED TEST)**
 - [ ] Resource Conditions API
-- [ ] Resource Loader
+- [x] Resource Loader **(NEED TEST)**
 - [ ] Screen API
 - [ ] Screen Handler API
-- [ ] Textures
+- [x] Textures **(NEED TEST)**
 - [ ] Transfer API
 - [ ] Transitive AccessWideners
 

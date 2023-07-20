@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "package": "net.fabricmc.fabric.mixin.resource.loader",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "DefaultResourcePackMixin",
+    "DefaultResourcePackResourceMixin",
+    "FileResourcePackProviderAccessor",
+    "KeyedResourceReloadListenerMixin",
+    "LifecycledResourceManagerImplMixin",
+    "MainMixin",
+    "MinecraftServerMixin",
+    "NamespaceResourceManagerAccessor",
+    "NamespaceResourceManagerMixin",
+    "ReloadableResourceManagerImplMixin",
+    "ResourceImplMixin",
+    "ResourceMixin",
+    "ResourcePackManagerAccessor",
+    "ResourcePackManagerMixin",
+    "ResourcePackProfileMixin",
+    "SimpleResourceReloadMixin",
+    "TestServerMixin"
+  ],
+  "client": [
+    "client.ClientBuiltinResourcePackProviderMixin",
+    "client.FontManagerResourceReloadListenerMixin",
+    "client.KeyedResourceReloadListenerClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -27,6 +27,8 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     forge "net.minecraftforge:forge:${project.forge_version}"
+
+    testImplementation "net.fabricmc:fabric-loader-junit:${project.fabricloader_version}"
 }
 
 processResources {

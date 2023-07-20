@@ -6,13 +6,31 @@ import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.client.LegacyClientEventInvokers;
 import net.fabricmc.fabric.impl.networking.OldClientNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
+import net.fabricmc.fabric.impl.resource.loader.ModResourcePackCreator;
+import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
+import net.fabricmc.fabric.papi.event.ResLoaderImpl;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.resource.ReloadableResourceManagerImpl;
+import net.minecraft.resource.ResourceReloader;
+import net.minecraft.resource.ResourceType;
+import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AddPackFindersEvent;
+import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
+
+import java.util.List;
 
 @Mod(Papi.MOD_ID)
 public class Papi {
     public static final String MOD_ID = "papi";
     public Papi() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+
         LegacyEventInvokers.onInitialize();
         LifecycleEventsImpl.onInitialize();
         OldNetworkingHooks.onInitialize();
@@ -20,6 +38,10 @@ public class Papi {
             LegacyClientEventInvokers.onInitializeClient();
             ClientLifecycleEventsImpl.onInitializeClient();
             OldClientNetworkingHooks.onInitializeClient();
+            modEventBus.addListener(ResLoaderImpl::onClientResourcesReload);
         }
+
+        modEventBus.addListener(ResLoaderImpl::addPackFinders);
+        forgeEventBus.addListener(ResLoaderImpl::onServerDataReload);
     }
 }
