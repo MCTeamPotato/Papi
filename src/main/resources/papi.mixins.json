@@ -70,7 +70,6 @@
     "structure.StructuresConfigAccessor"
   ],
   "client": [
-    "block_render_layer.MixinBlockRenderLayer",
     "client.keybinding.KeyBindingAccessor",
     "client.keybinding.KeyCodeAccessor",
     "client.keybinding.MixinGameOptions",

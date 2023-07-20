@@ -19,8 +19,10 @@ package net.fabricmc.fabric.impl.blockrenderlayer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -98,5 +100,9 @@ public class BlockRenderLayerMapImpl implements BlockRenderLayerMap {
 		blockHandler = blockHandlerIn;
 		itemHandler = itemHandlerIn;
 		fluidHandler = fluidHandlerIn;
+	}
+
+	public static void onClientSetup(FMLClientSetupEvent event) {
+		event.enqueueWork(() -> initialize(RenderLayers::setRenderLayer, RenderLayers::setRenderLayer));
 	}
 }

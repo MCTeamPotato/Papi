@@ -19,18 +19,14 @@ package net.fabricmc.fabric.impl.client.keybinding;
 import com.google.common.collect.Lists;
 import net.fabricmc.fabric.mixin.client.keybinding.KeyBindingAccessor;
 import net.minecraft.client.options.KeyBinding;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public final class KeyBindingRegistryImpl {
-	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static final List<KeyBinding> moddedKeyBindings = Lists.newArrayList();
-
 	private KeyBindingRegistryImpl() {
 	}
 
