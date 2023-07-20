@@ -10,10 +10,23 @@
     "event.lifecycle.ServerWorldEntityLoaderMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
+    "networking.ClientConnectionMixin",
+    "networking.EntityTrackerEntryMixin",
+    "networking.PlayerManagerMixin",
+    "networking.ServerLoginNetworkHandlerMixin",
+    "networking.ServerPlayNetworkHandlerMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "papi.event.command.MixinForgeEventFactory",
     "papi.event.lifecycle.MixinChunkEvent.MixinLoad",
     "papi.event.lifecycle.MixinChunkEvent.MixinUnload",
-    "papi.rendering.MixinRenderTooltipEventPre"
+    "papi.rendering.MixinRenderTooltipEventPre",
+    "papi.screen.MixinForgeHooksClient",
+    "screen.MouseMixin",
+    "screen.ScreenAccessor"
   ],
   "client": [
     "client.rendering.CapeFeatureRendererMixin",
@@ -37,7 +50,13 @@
     "event.lifecycle.client.ClientWorldEntityLoaderMixin",
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
-    "event.lifecycle.client.WorldChunkMixin"
+    "event.lifecycle.client.WorldChunkMixin",
+    "networking.accessor.ConnectScreenAccessor",
+    "networking.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.ClientPlayNetworkHandlerMixin"
+    "screen.MinecraftClientMixin",
+    "screen.ScreenMixin"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"

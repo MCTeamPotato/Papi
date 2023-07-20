@@ -29,8 +29,8 @@ Yea another Fabric API reforged project.
 - [ ] Loot Tables
 - [ ] Mining Level API
 - [ ] Models
-- [ ] Networking API
-- [ ] Networking
+- [x] Networking API
+- [x] Networking
 - [ ] Object Builder API
 - [ ] Particles
 - [ ] Registry Sync
