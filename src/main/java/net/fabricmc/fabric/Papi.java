@@ -14,6 +14,7 @@ public class Papi {
         LifecycleEventsImpl.onInitialize();
         NetworkingImpl.init();
         LifecycleEventsImpl.onInitialize();
+
         if (FMLLoader.getDist().isClient()) {
             ClientNetworkingImpl.clientInit();
             ClientLifecycleEventsImpl.onInitializeClient();

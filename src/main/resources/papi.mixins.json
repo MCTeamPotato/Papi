@@ -16,6 +16,7 @@
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
+    "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
     "networking.ServerLoginNetworkHandlerMixin",
