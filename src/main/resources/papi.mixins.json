@@ -11,17 +11,11 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "command.ArgumentTypesAccessor",
-    "command.EntitySelectorOptionsAccessor",
-    "command.EntitySelectorReaderMixin",
-    "command.HelpCommandAccessor",
     "event.lifecycle.DataPackContentsMixin",
-    "event.lifecycle.LivingEntityMixin",
     "event.lifecycle.PlayerManagerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
-    "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
     "networking.ServerLoginNetworkHandlerMixin",
@@ -31,28 +25,10 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "papi.command.MixinForgeEventFactory",
     "papi.lifecycle.MixinChunkEvent$MixinLoad",
-    "papi.lifecycle.MixinChunkEvent$MixinUnload",
-    "papi.rendering.MixinRenderTooltipEventPre",
-    "papi.screen.MixinForgeHooksClient"
+    "papi.lifecycle.MixinChunkEvent$MixinUnload"
   ],
   "client": [
-    "client.rendering.ArmorFeatureRendererMixin",
-    "client.rendering.BlockColorsMixin",
-    "client.rendering.BlockEntityRendererFactoriesMixin",
-    "client.rendering.BuiltinModelItemRendererMixin",
-    "client.rendering.CapeFeatureRendererMixin",
-    "client.rendering.DimensionEffectsAccessor",
-    "client.rendering.EntityModelLayersAccessor",
-    "client.rendering.EntityRenderersMixin",
-    "client.rendering.InGameHudMixin",
-    "client.rendering.ItemColorsMixin",
-    "client.rendering.LivingEntityRendererAccessor",
-    "client.rendering.WorldRendererMixin",
-    "command.client.ClientCommandSourceMixin",
-    "command.client.ClientPlayerEntityMixin",
-    "command.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
     "event.lifecycle.client.ClientWorldMixin",
@@ -61,10 +37,9 @@
     "networking.client.ClientPlayNetworkHandlerMixin",
     "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
-    "networking.client.accessor.MinecraftClientAccessor",
-    "screen.MinecraftClientMixin",
-    "screen.MouseMixin",
-    "screen.ScreenAccessor",
-    "screen.ScreenMixin"
+    "networking.client.accessor.MinecraftClientAccessor"
+  ],
+  "server": [
+    "event.lifecycle.server.WorldChunkMixin"
   ]
 }

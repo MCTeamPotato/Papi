@@ -21,6 +21,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.impl.event.lifecycle.LoadedChunksCache;
 import net.minecraft.block.entity.BlockEntity;
 
+
 public final class ClientLifecycleEventsImpl {
 	public static void onInitializeClient() {
 		// Part of impl for block entity events

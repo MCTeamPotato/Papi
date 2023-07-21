@@ -37,26 +37,12 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Map;
 
+
 @Mixin(WorldChunk.class)
 abstract class WorldChunkMixin {
 	@Shadow
 	public abstract World getWorld();
 
-	/*
-	 * @Inject(method = "setBlockEntity", at = @At(value = "CONSTANT", args = "nullValue=true"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	 *
-	 * i509VCB: Yes this is very brittle.
-	 * Sadly mixin does not want to cooperate with the Inject annotation commented out above.
-	 * Our goal is to place the inject JUST after the possibly removed block entity is stored onto the stack so we can use local capture:
-	 *
-	 *  INVOKEVIRTUAL net/minecraft/util/math/BlockPos.toImmutable ()Lnet/minecraft/util/math/BlockPos;
-	 *  ALOAD 1
-	 *  INVOKEINTERFACE java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; (itf)
-	 *  CHECKCAST net/minecraft/block/entity/BlockEntity
-	 *  ASTORE 3
-	 *  <======== HERE
-	 * L6
-	 */
 	@Inject(method = "setBlockEntity", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
 	private void onLoadBlockEntity(BlockEntity blockEntity, CallbackInfo ci, BlockPos blockPos, @Nullable BlockEntity removedBlockEntity) {
 		// Only fire the load event if the block entity has actually changed

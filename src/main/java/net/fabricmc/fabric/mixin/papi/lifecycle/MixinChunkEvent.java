@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-public abstract class MixinChunkEvent {
+public class MixinChunkEvent {
     @Mixin(value = ChunkEvent.Load.class, remap = false)
     public static abstract class MixinLoad extends ChunkEvent {
         public MixinLoad(Chunk chunk) {
@@ -26,9 +26,9 @@ public abstract class MixinChunkEvent {
             WorldAccess worldAccess = this.getLevel();
             Chunk chunk = this.getChunk();
             int side = MixinUtil.checkSide(worldAccess, chunk);
-            if (side == 1) {
+            if (side == MixinUtil.SERVER) {
                 ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ServerWorld) worldAccess, (WorldChunk) chunk);
-            } else if (side == 2) {
+            } else if (side == MixinUtil.CLIENT) {
                 ClientChunkEvents.CHUNK_LOAD.invoker().onChunkLoad((ClientWorld) worldAccess, (WorldChunk) chunk);
             }
         }
@@ -45,12 +45,11 @@ public abstract class MixinChunkEvent {
             WorldAccess worldAccess = this.getLevel();
             Chunk chunk = this.getChunk();
             int side = MixinUtil.checkSide(worldAccess, chunk);
-            if (side == 1) {
+            if (side == MixinUtil.SERVER) {
                 ServerChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ServerWorld) worldAccess, (WorldChunk) chunk);
-            } else if (side == 2) {
+            } else if (side == MixinUtil.CLIENT) {
                 ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload((ClientWorld) worldAccess, (WorldChunk) chunk);
             }
         }
     }
 }
-

@@ -16,14 +16,9 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle.server;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
+import java.util.Map;
+
 import org.jetbrains.annotations.Nullable;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,7 +28,15 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.util.Map;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.WorldChunk;
+
+
+
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 
 /**
  * This is a server only mixin for good reason:
@@ -44,22 +47,6 @@ import java.util.Map;
 abstract class WorldChunkMixin {
 	@Shadow
 	public abstract World getWorld();
-
-	/*
-	 * @Inject(method = "setBlockEntity", at = @At(value = "CONSTANT", args = "nullValue=true"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	 *
-	 * i509VCB: Yes this is very brittle.
-	 * Sadly mixin does not want to cooperate with the Inject annotation commented out above.
-	 * Our goal is to place the inject JUST after the possibly removed block entity is stored onto the stack so we can use local capture:
-	 *
-	 *  INVOKEVIRTUAL net/minecraft/util/math/BlockPos.toImmutable ()Lnet/minecraft/util/math/BlockPos;
-	 *  ALOAD 1
-	 *  INVOKEINTERFACE java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; (itf)
-	 *  CHECKCAST net/minecraft/block/entity/BlockEntity
-	 *  ASTORE 3
-	 *  <======== HERE
-	 * L6
-	 */
 	@Inject(method = "setBlockEntity", at = @At(value = "INVOKE", target = "Ljava/util/Map;put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
 	private void onLoadBlockEntity(BlockEntity blockEntity, CallbackInfo ci, BlockPos blockPos, @Nullable BlockEntity removedBlockEntity) {
 		// Only fire the load event if the block entity has actually changed
@@ -80,7 +67,8 @@ abstract class WorldChunkMixin {
 	}
 
 	// Use the slice to not redirect codepath where block entity is loaded
-	@Redirect(method = "getBlockEntity(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/chunk/WorldChunk$CreationType;)Lnet/minecraft/block/entity/BlockEntity;", at = @At(value = "INVOKE", target = "Ljava/util/Map;remove(Ljava/lang/Object;)Ljava/lang/Object;"), slice = @Slice(to = @At(value = "FIELD", target = "Lnet/minecraft/world/chunk/WorldChunk;blockEntityNbts:Ljava/util/Map;", opcode = Opcodes.GETFIELD)))
+	@Redirect(method = "getBlockEntity(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/chunk/WorldChunk$CreationType;)Lnet/minecraft/block/entity/BlockEntity;", at = @At(value = "INVOKE", target = "Ljava/util/Map;remove(Ljava/lang/Object;)Ljava/lang/Object;"),
+			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/world/chunk/WorldChunk;createBlockEntity(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/entity/BlockEntity;")))
 	private <K, V> Object onRemoveBlockEntity(Map<K, V> map, K key) {
 		@Nullable final V removed = map.remove(key);
 

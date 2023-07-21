@@ -32,8 +32,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 public final class EventFactoryImpl {
-	private static final Set<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS
-			= Collections.newSetFromMap(new MapMaker().weakKeys().makeMap());
+	private static final Set<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS = Collections.newSetFromMap(new MapMaker().weakKeys().makeMap());
 
 	private EventFactoryImpl() { }
 

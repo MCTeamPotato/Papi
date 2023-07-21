@@ -11,6 +11,7 @@ import net.minecraftforge.fml.loading.FMLLoader;
 public class Papi {
     public static final String MOD_ID = "papi";
     public Papi() {
+        LifecycleEventsImpl.onInitialize();
         NetworkingImpl.init();
         LifecycleEventsImpl.onInitialize();
         if (FMLLoader.getDist().isClient()) {

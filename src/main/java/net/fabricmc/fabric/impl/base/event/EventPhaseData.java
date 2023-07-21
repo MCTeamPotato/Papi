@@ -16,12 +16,12 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
-import net.minecraft.util.Identifier;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import net.minecraft.util.Identifier;
 
 /**
  * Data of an {@link ArrayBackedEvent} phase.

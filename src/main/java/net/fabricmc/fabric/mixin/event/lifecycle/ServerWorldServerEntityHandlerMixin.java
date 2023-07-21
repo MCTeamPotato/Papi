@@ -26,14 +26,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(targets = "net/minecraft/server/world/ServerWorld$ServerEntityHandler")
 abstract class ServerWorldServerEntityHandlerMixin {
-
 	@Inject(method = "startTracking(Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
 	private void invokeEntityLoadEvent(Entity entity, CallbackInfo ci) {
-		if (entity.world instanceof ServerWorld) ServerEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ServerWorld) entity.world);
+		if(entity.world instanceof ServerWorld) ServerEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ServerWorld) entity.world);
 	}
 
 	@Inject(method = "stopTracking(Lnet/minecraft/entity/Entity;)V", at = @At("HEAD"))
 	private void invokeEntityUnloadEvent(Entity entity, CallbackInfo info) {
-		if (entity.world instanceof ServerWorld) ServerEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ServerWorld) entity.world);
+		if(entity.world instanceof ServerWorld) ServerEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ServerWorld) entity.world);
 	}
 }
