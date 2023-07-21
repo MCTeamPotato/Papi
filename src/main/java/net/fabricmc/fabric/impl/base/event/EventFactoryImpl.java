@@ -67,7 +67,6 @@ public final class EventFactoryImpl {
 
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
-	@SuppressWarnings("SuspiciousInvocationHandlerImplementation")
 	private static <T> T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
 		Method funcIfMethod = null;

@@ -42,15 +42,15 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BooleanSupplier;
 
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
-	@Shadow private ServerResourceManager serverResourceManager;
 
 	@Unique
 	private MinecraftServer getThis() {
 		return (MinecraftServer) (Object) this;
 	}
+	@Shadow
+	private ServerResourceManager serverResourceManager;
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;setupServer()Z"), method = "runServer")
 	private void beforeSetupServer(CallbackInfo info) {
@@ -82,11 +82,8 @@ public abstract class MinecraftServerMixin {
 		ServerTickEvents.END_SERVER_TICK.invoker().onEndTick(getThis());
 	}
 
-	/**
-	 * When a world is closed, it means the world will be unloaded.
-	 */
 	@Redirect(method = "shutdown", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/eventbus/api/IEventBus;post(Lnet/minecraftforge/eventbus/api/Event;)Z", remap = false))
-	private boolean closeWorld(IEventBus iEventBus, Event event) {
+	private boolean closeWorld(IEventBus instance, Event event) {
 		if (!(event instanceof WorldEvent.Unload)) throw new RuntimeException();//This should not happen
 
 		if (((WorldEvent.Unload) event).getWorld() instanceof ServerWorld) {
@@ -122,6 +119,6 @@ public abstract class MinecraftServerMixin {
 			// Hook into fail
 			ServerLifecycleEvents.END_DATA_PACK_RELOAD.invoker().endDataPackReload(getThis(), this.serverResourceManager, throwable == null);
 			return value;
-		}, getThis());
+		}, (MinecraftServer) (Object) this);
 	}
 }

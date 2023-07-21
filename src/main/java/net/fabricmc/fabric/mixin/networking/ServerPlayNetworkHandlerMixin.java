@@ -26,16 +26,18 @@ import net.minecraft.network.packet.s2c.play.DisconnectS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.text.Text;
+import net.minecraftforge.fml.network.ICustomPacket;
+import net.minecraftforge.fml.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(value = ServerPlayNetworkHandler.class, priority = 999)
 abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions, DisconnectPacketSource {
 	@Shadow
@@ -55,11 +57,10 @@ abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 		this.addon.lateInit();
 	}
 
-	@Inject(method = "onCustomPayload", at = @At("HEAD"), cancellable = true)
-	private void handleCustomPayloadReceivedAsync(CustomPayloadC2SPacket packet, CallbackInfo ci) {
-		if (this.addon.handle(packet)) {
-			ci.cancel();
-		}
+	@Redirect(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/fml/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
+	private boolean handleCustomPayloadReceivedAsync(ICustomPacket<CustomPayloadC2SPacket> packet, ClientConnection manager) {
+		if (!(packet instanceof CustomPayloadC2SPacket)) throw new ClassCastException();
+		return this.addon.handle((CustomPayloadC2SPacket) packet) || NetworkHooks.onCustomPayload(packet, this.connection);
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))

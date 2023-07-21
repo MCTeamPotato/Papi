@@ -20,7 +20,7 @@ import net.minecraft.client.gui.screen.ConnectScreen;
 import net.minecraft.network.ClientConnection;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
-//clientside only
+
 @Mixin(ConnectScreen.class)
 public interface ConnectScreenAccessor {
 	@Accessor

@@ -156,7 +156,7 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 	}
 
 	void unregister(List<Identifier> ids) {
-		ids.forEach(this.sendableChannels::remove);
+		this.sendableChannels.removeAll(ids);
 		this.invokeUnregisterEvent(ids);
 	}
 

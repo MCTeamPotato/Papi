@@ -24,12 +24,11 @@ import java.util.function.Function;
 /**
  * Helper for creating {@link Event} classes.
  */
-@SuppressWarnings("unused")
 public final class EventFactory {
-	@SuppressWarnings({"CanBeFinal", "FieldMayBeFinal", "FieldCanBeLocal"})
+	@SuppressWarnings({"FieldCanBeLocal", "CanBeFinal", "FieldMayBeFinal"})
 	private static boolean profilingEnabled = true;
 
-	private EventFactory() { }
+	private EventFactory() {}
 
 	/**
 	 * @return True if events are supposed to be profiled.

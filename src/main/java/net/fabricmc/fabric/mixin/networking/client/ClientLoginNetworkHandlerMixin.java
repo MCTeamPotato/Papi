@@ -20,19 +20,20 @@ import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
 import net.fabricmc.fabric.impl.networking.client.ClientLoginNetworkAddon;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientLoginNetworkHandler;
+import net.minecraft.network.ClientConnection;
 import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.text.Text;
+import net.minecraftforge.fml.network.ICustomPacket;
+import net.minecraftforge.fml.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-
-//clientside only
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(ClientLoginNetworkHandler.class)
 abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtensions {
 	@Shadow
@@ -47,11 +48,9 @@ abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtension
 		this.addon = new ClientLoginNetworkAddon((ClientLoginNetworkHandler) (Object) this, this.client);
 	}
 
-	@Inject(method = "onQueryRequest", at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V", remap = false, shift = At.Shift.AFTER), cancellable = true)
-	private void handleQueryRequest(LoginQueryRequestS2CPacket packet, CallbackInfo ci) {
-		if (this.addon.handlePacket(packet)) {
-			ci.cancel();
-		}
+	@Redirect(method = "onQueryRequest", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/fml/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
+	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
+		return this.addon.handlePacket((LoginQueryRequestS2CPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))

@@ -25,7 +25,6 @@ import java.util.Objects;
 /**
  * Helper methods for working with and creating {@link PacketByteBuf}s.
  */
-@SuppressWarnings("unused")
 public final class PacketByteBufs {
 	private static final PacketByteBuf EMPTY_PACKET_BYTE_BUF = new PacketByteBuf(Unpooled.EMPTY_BUFFER);
 

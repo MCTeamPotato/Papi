@@ -2,7 +2,7 @@ package net.fabricmc.fabric.mixin.papi.lifecycle;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
-import net.fabricmc.fabric.papi.util.MixinUtil;
+import net.fabricmc.fabric.papi.MixinUtil;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.WorldAccess;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-public abstract class MixinChunkEvent {
+public class MixinChunkEvent {
     @Mixin(value = ChunkEvent.Load.class, remap = false)
     public static abstract class MixinLoad extends ChunkEvent {
         public MixinLoad(Chunk chunk) {

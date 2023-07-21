@@ -22,8 +22,6 @@ import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -57,7 +55,7 @@ public final class C2SPlayChannelEvents {
 	/**
 	 * @see C2SPlayChannelEvents#REGISTER
 	 */
-	@OnlyIn(Dist.CLIENT)
+	
 	@FunctionalInterface
 	public interface Register {
 		void onChannelRegister(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client, List<Identifier> channels);
@@ -66,7 +64,7 @@ public final class C2SPlayChannelEvents {
 	/**
 	 * @see C2SPlayChannelEvents#UNREGISTER
 	 */
-	@OnlyIn(Dist.CLIENT)
+	
 	@FunctionalInterface
 	public interface Unregister {
 		void onChannelUnregister(ClientPlayNetworkHandler handler, PacketSender sender, MinecraftClient client, List<Identifier> channels);

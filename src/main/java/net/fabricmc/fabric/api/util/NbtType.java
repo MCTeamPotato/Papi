@@ -27,7 +27,6 @@ import net.minecraft.nbt.Tag;
  * @see CompoundTag#contains(String, int)
  * @see net.minecraft.nbt.TagReaders#of(int)
  */
-@SuppressWarnings("unused")
 public final class NbtType {
 	public static final int END = 0;
 	public static final int BYTE = 1;

@@ -22,7 +22,6 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-//clientside only
 @Mixin(MinecraftClient.class)
 public interface MinecraftClientAccessor {
 	@Nullable

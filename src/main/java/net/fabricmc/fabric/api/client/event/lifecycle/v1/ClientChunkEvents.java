@@ -16,15 +16,15 @@
 
 package net.fabricmc.fabric.api.client.event.lifecycle.v1;
 
+
+
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.chunk.WorldChunk;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+
 public final class ClientChunkEvents {
 	private ClientChunkEvents() {
 	}

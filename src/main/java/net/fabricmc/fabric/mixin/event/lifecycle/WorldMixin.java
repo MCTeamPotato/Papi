@@ -33,7 +33,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Collection;
 import java.util.List;
 
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(World.class)
 public abstract class WorldMixin {
 	@Shadow
@@ -41,17 +40,18 @@ public abstract class WorldMixin {
 
 	@Unique
 	private World getThis() {
-		return (World)(Object)this;
+		return (World)(Object) this;
 	}
 
 	@Inject(method = "addBlockEntity", at = @At("TAIL"))
 	protected void onLoadBlockEntity(BlockEntity blockEntity, CallbackInfoReturnable<Boolean> cir) {
-		if (getThis() instanceof ServerWorld) { // Only fire this event if we are a server world
-			ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.invoker().onLoad(blockEntity, (ServerWorld) getThis());
+		World world = getThis();
+		if (world instanceof ServerWorld) { // Only fire this event if we are a server world
+			ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.invoker().onLoad(blockEntity, (ServerWorld) world);
 		}
 	}
 
-	// Mojang what the hell, why do you need three ways to unload block entities
+	// Mojang what hell, why do you need three ways to unload block entities
 	@Redirect(method = "removeBlockEntity", at = @At(value = "INVOKE", target = "Ljava/util/List;remove(Ljava/lang/Object;)Z", ordinal = 1, remap = false))
 	protected boolean onUnloadBlockEntity(List<Object> blockEntityList, Object blockEntity) {
 		if (getThis() instanceof ServerWorld && blockEntity instanceof BlockEntity) {
@@ -84,8 +84,9 @@ public abstract class WorldMixin {
 
 	@Inject(at = @At("RETURN"), method = "tickBlockEntities")
 	protected void tickWorldAfterBlockEntities(CallbackInfo ci) {
-		if (getThis() instanceof ServerWorld) {
-			ServerTickEvents.END_WORLD_TICK.invoker().onEndTick((ServerWorld) getThis());
+		World world = getThis();
+		if (world instanceof ServerWorld) {
+			ServerTickEvents.END_WORLD_TICK.invoker().onEndTick((ServerWorld) world);
 		}
 	}
 }

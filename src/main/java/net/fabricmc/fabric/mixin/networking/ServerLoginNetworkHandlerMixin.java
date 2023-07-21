@@ -20,6 +20,7 @@ import net.fabricmc.fabric.impl.networking.DisconnectPacketSource;
 import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
 import net.fabricmc.fabric.impl.networking.PacketCallbackListener;
 import net.fabricmc.fabric.impl.networking.server.ServerLoginNetworkAddon;
+import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
 import net.minecraft.network.packet.s2c.login.LoginDisconnectS2CPacket;
@@ -27,6 +28,8 @@ import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.text.Text;
+import net.minecraftforge.fml.network.ICustomPacket;
+import net.minecraftforge.fml.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,16 +39,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(ServerLoginNetworkHandler.class)
 abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtensions, DisconnectPacketSource, PacketCallbackListener {
 	@Shadow
-	@Final
-	private MinecraftServer server;
-
-	@Shadow
 	public abstract void acceptPlayer();
 
+	@Shadow @Final public ClientConnection connection;
 	@Unique
 	private ServerLoginNetworkAddon addon;
 
@@ -62,12 +61,11 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 		}
 	}
 
-	@Inject(method = "onQueryResponse", at = @At("HEAD"), cancellable = true)
-	private void handleCustomPayloadReceivedAsync(LoginQueryResponseC2SPacket packet, CallbackInfo ci) {
+	@Redirect(method = "onQueryResponse", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/fml/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
+	private boolean handleCustomPayloadReceivedAsync(ICustomPacket<LoginQueryResponseC2SPacket> packet, ClientConnection manager) {
 		// Handle queries
-		if (this.addon.handle(packet)) {
-			ci.cancel();
-		}
+		if (!(packet instanceof LoginQueryResponseC2SPacket)) throw new ClassCastException();
+		return this.addon.handle((LoginQueryResponseC2SPacket) packet) || NetworkHooks.onCustomPayload(packet, this.connection);
 	}
 
 	@Redirect(method = "acceptPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;getNetworkCompressionThreshold()I", ordinal = 0))

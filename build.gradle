@@ -21,6 +21,7 @@ loom {
             "papi.mixins.json"
         ]
     }
+    mixin.defaultRefmapName.set("papi.refmap.json")
 }
 
 repositories {}

@@ -33,32 +33,35 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Collection;
 import java.util.List;
 
-@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(ClientWorld.class)
 public abstract class ClientWorldMixin extends WorldMixin {
+	@Unique
+	private ClientWorld getThis() {
+		return (ClientWorld) (Object) this;
+	}
 	// Call our load event after vanilla has loaded the entity
 	@Inject(method = "addEntityPrivate", at = @At("TAIL"))
 	private void onEntityLoad(int id, Entity entity, CallbackInfo ci) {
-		ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, getThis());
+		ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ClientWorld) (Object) this);
 	}
 
 	// Call our unload event before vanilla does.
 	@Inject(method = "finishRemovingEntity", at = @At("HEAD"))
 	private void onEntityUnload(Entity entity, CallbackInfo ci) {
-		ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, getThis());
+		ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ClientWorld) (Object) this);
 	}
 
-	// We override our injection on the client world so only the client's block entity invocations will run
+	// We override our injection on the clientworld so only the client's block entity invocations will run
 	@Override
 	protected void onLoadBlockEntity(BlockEntity blockEntity, CallbackInfoReturnable<Boolean> cir) {
-		ClientBlockEntityEvents.BLOCK_ENTITY_LOAD.invoker().onLoad(blockEntity, getThis());
+		ClientBlockEntityEvents.BLOCK_ENTITY_LOAD.invoker().onLoad(blockEntity, (ClientWorld) (Object) this);
 	}
 
 	// We override our injection on the client world so only the client's block entity invocations will run
 	@Override
 	protected boolean onUnloadBlockEntity(List<Object> blockEntityList, Object blockEntity) {
 		if (blockEntity instanceof BlockEntity){
-			ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) blockEntity, getThis());
+			ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) blockEntity, this.getThis());
 		}
 		return super.onUnloadBlockEntity(blockEntityList, blockEntity);
 	}
@@ -66,7 +69,7 @@ public abstract class ClientWorldMixin extends WorldMixin {
 	@Override
 	protected boolean onRemoveBlockEntity(List<Object> blockEntityList, Object blockEntity) {
 		if (blockEntity instanceof BlockEntity){
-			ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) blockEntity, getThis());
+			ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) blockEntity, this.getThis());
 		}
 		return super.onRemoveBlockEntity(blockEntityList, blockEntity);
 	}
@@ -75,26 +78,21 @@ public abstract class ClientWorldMixin extends WorldMixin {
 	protected boolean onPurgeRemovedBlockEntities(List<Object> blockEntityList, Collection<Object> removals) {
 		for (Object removal : removals) {
 			if (removal instanceof BlockEntity){
-				ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) removal, getThis());
+				ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) removal, this.getThis());
 			}
 		}
 
 		return super.onPurgeRemovedBlockEntities(blockEntityList, removals); // Call super
 	}
 
-	// We override our injection on the client world so only the client world's tick invocations will run
+	// We override our injection on the clientworld so only the client world's tick invocations will run
 	@Override
 	protected void tickWorldAfterBlockEntities(CallbackInfo ci) {
-		ClientTickEvents.END_WORLD_TICK.invoker().onEndTick(getThis());
+		ClientTickEvents.END_WORLD_TICK.invoker().onEndTick((ClientWorld) (Object) this);
 	}
 
 	@Inject(method = "tickEntities", at = @At("HEAD"))
 	private void startWorldTick(CallbackInfo ci) {
-		ClientTickEvents.START_WORLD_TICK.invoker().onStartTick(getThis());
-	}
-
-	@Unique
-    private ClientWorld getThis() {
-		return (ClientWorld) (Object)this;
+		ClientTickEvents.START_WORLD_TICK.invoker().onStartTick((ClientWorld) (Object) this);
 	}
 }

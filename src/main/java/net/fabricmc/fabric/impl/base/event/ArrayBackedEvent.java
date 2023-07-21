@@ -26,7 +26,7 @@ import java.util.*;
 import java.util.function.Function;
 
 class ArrayBackedEvent<T> extends Event<T> {
-	static final Logger LOGGER = LogManager.getLogger("Froge");
+	static final Logger LOGGER = LogManager.getLogger("fabric-api-base");
 
 	private final Function<T[], T> invokerFactory;
 	private final Object lock = new Object();

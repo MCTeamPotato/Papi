@@ -26,7 +26,6 @@ import org.jetbrains.annotations.ApiStatus;
  * @see EventFactory
  */
 @ApiStatus.NonExtendable // Should only be extended by fabric API.
-@SuppressWarnings("unused")
 public abstract class Event<T> {
 	/**
 	 * The invoker field. This should be updated by the implementation to

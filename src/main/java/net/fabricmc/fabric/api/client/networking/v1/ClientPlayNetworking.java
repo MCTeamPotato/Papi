@@ -25,8 +25,6 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -43,7 +41,7 @@ import java.util.Set;
  * @see ClientLoginNetworking
  * @see ServerPlayNetworking
  */
-@OnlyIn(Dist.CLIENT)
+
 public final class ClientPlayNetworking {
 	/**
 	 * Registers a handler to a channel.
@@ -229,7 +227,7 @@ public final class ClientPlayNetworking {
 	private ClientPlayNetworking() {
 	}
 
-	@OnlyIn(Dist.CLIENT)
+	
 	@FunctionalInterface
 	public interface PlayChannelHandler {
 		/**
