@@ -11,9 +11,14 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "command.HelpCommandAccessor",
+    "dimension.EntityMixin",
+    "dimension.ServerBugfixMixin",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
+    "lookup.BlockEntityTypeAccessor",
+    "lookup.ServerWorldMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -25,15 +30,25 @@
     "networking.accessor.LoginQueryRequestS2CPacketAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.blockentity.MixinBlockEntity",
+    "papi.command.MixinForgeEventFactory",
     "papi.lifecycle.MixinChunkEvent$MixinLoad",
     "papi.lifecycle.MixinChunkEvent$MixinUnload"
   ],
   "client": [
+    "client.rendering.fluid.MixinFluidRenderer",
+    "client.texture.MixinSpriteAtlasTexture",
+    "blockrenderlayer.MixinBlockRenderLayer",
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
+    "command.client.MinecraftClientMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
     "networking.accessor.ConnectScreenAccessor",
     "networking.accessor.MinecraftClientAccessor",
+    "networking.blockentity.MixinClientPlayNetworkHandler",
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin"
   ]

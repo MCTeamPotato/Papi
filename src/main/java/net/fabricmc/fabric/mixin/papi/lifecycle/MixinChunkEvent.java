@@ -20,7 +20,6 @@ public class MixinChunkEvent {
         public MixinLoad(Chunk chunk) {
             super(chunk);
         }
-
         @Inject(method = "<init>", at = @At("RETURN"))
         private void onInit(CallbackInfo callbackInfo) {
             WorldAccess worldAccess = this.getWorld();
