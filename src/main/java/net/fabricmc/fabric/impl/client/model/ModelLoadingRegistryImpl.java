@@ -37,8 +37,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
-	private static final boolean DEBUG_MODEL_LOADING = !FMLLoader.isProduction()
-			|| Boolean.parseBoolean(System.getProperty("fabric.debugModelLoading", "false"));
+	private static final boolean DEBUG_MODEL_LOADING = !FMLLoader.isProduction() || Boolean.parseBoolean(System.getProperty("fabric.debugModelLoading", "false"));
 
 	@FunctionalInterface
 	private interface CustomModelItf<T> {

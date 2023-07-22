@@ -87,7 +87,7 @@ public abstract class MixinModelLoader implements ModelLoaderHooks {
 		}
 	}
 
-	@Inject(at = @At("RETURN"), method = "<init>*")
+	@Inject(at = @At("RETURN"), method = "<init>(Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/client/color/block/BlockColors;Lnet/minecraft/util/profiler/Profiler;I)V")
 	private void initFinishedHook(CallbackInfo info) {
 		fabric_mlrLoaderInstance.finish();
 	}

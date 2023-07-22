@@ -36,7 +36,7 @@ public class MixinBlockRenderLayer {
 	@Final @Shadow private static Map<Fluid, RenderLayer> FLUIDS;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
-	private static void onInitialize(CallbackInfo info) {
+	private void onInitialize(CallbackInfo info) {
 		BlockRenderLayerMapImpl.initialize(BLOCKS::put, FLUIDS::put);
 	}
 }

@@ -87,7 +87,7 @@ public abstract class HopperBlockEntityMixin extends BlockEntity implements Inve
 			cancellable = true,
 			allow = 1
 	)
-	private static void hookExtract(Hopper hopper, CallbackInfoReturnable<Boolean> cir, Inventory inputInventory) {
+	private static void hookExtract(Hopper hopper, CallbackInfoReturnable<Boolean> cir, Boolean ret, Inventory inputInventory) {
 		// Let vanilla handle the transfer if it found an inventory.
 		if (inputInventory != null) return;
 
