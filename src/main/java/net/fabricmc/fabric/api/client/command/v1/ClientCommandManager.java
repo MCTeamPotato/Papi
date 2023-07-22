@@ -20,8 +20,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+
+
 
 /**
  * Manages client-sided commands and provides some related helper methods.
@@ -29,7 +29,7 @@ import net.fabricmc.api.Environment;
  * <p>Client-sided commands are fully executed on the client,
  * so players can use them in both singleplayer and multiplayer.
  *
- * <p>Registrations can be done in the {@link #DISPATCHER} during a {@link net.fabricmc.api.ClientModInitializer}'s
+ * <p>Registrations can be done in the {@link #DISPATCHER} during an
  * initialization. (See example below.)
  *
  * <p>The commands are run on the client game thread by default.
@@ -57,7 +57,7 @@ import net.fabricmc.api.Environment;
  * }
  * </pre>
  */
-@Environment(EnvType.CLIENT)
+
 public final class ClientCommandManager {
 	/**
 	 * The command dispatcher that handles client command registration and execution.

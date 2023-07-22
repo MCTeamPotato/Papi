@@ -31,7 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 @Mixin(Entity.class)
 public class EntityMixin {
-	@SuppressWarnings("ConstantConditions")
 	@Inject(method = "getTeleportTarget", at = @At("HEAD"), cancellable = true, allow = 1)
 	public void getTeleportTarget(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cri) {
 		// Check if a destination has been set for the entity currently being teleported

@@ -32,6 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 @Mixin(PlayerEntity.class)
 abstract class PlayerEntityMixin {
 	@Inject(method = "trySleep", at = @At("HEAD"), cancellable = true)
@@ -43,7 +44,7 @@ abstract class PlayerEntityMixin {
 		}
 	}
 
-	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/event/ForgeEventFactory;fireSleepingTimeCheck(Lnet/minecraft/entity/player/PlayerEntity;Ljava/util/Optional;)Z"))
+	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/event/ForgeEventFactory;fireSleepingTimeCheck(Lnet/minecraft/entity/player/PlayerEntity;Ljava/util/Optional;)Z", remap = false))
 	private boolean redirectDaySleepCheck(PlayerEntity player, Optional<BlockPos> sleepingLocation) {
 		boolean day = player.world.isDay();
 

@@ -155,9 +155,7 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 					Identifier resourceId = new Identifier(modelId.getNamespace(), "item/" + modelId.getPath());
 					model = loadModelFromResource(resourceId);
 
-					if (model != null) {
-						return model;
-					}
+					return model;
 				}
 
 				return null;

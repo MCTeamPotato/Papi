@@ -62,7 +62,7 @@ public interface RenderAttachedBlockView extends BlockRenderView {
 	 */
 	@Nullable
 	default Object getBlockEntityRenderAttachment(BlockPos pos) {
-		BlockEntity be = ((BlockRenderView) this).getBlockEntity(pos);
+		BlockEntity be = this.getBlockEntity(pos);
 		return be == null ? null : ((RenderAttachmentBlockEntity) be).getRenderAttachmentData();
 	}
 }

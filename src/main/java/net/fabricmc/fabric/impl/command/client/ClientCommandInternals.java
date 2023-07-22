@@ -71,8 +71,7 @@ public final class ClientCommandInternals {
 		MinecraftClient client = MinecraftClient.getInstance();
 
 		// The interface is implemented on ClientCommandSource with a mixin.
-		// noinspection ConstantConditions
-		FabricClientCommandSource commandSource = (FabricClientCommandSource) client.getNetworkHandler().getCommandSource();
+        FabricClientCommandSource commandSource = (FabricClientCommandSource) client.getNetworkHandler().getCommandSource();
 
 		client.getProfiler().push(message);
 

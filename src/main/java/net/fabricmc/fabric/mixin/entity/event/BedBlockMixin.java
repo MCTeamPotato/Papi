@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 
 @Mixin(BedBlock.class)
 abstract class BedBlockMixin {
-	@Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lcom/mojang/datafixers/util/Either;ifLeft(Ljava/util/function/Consumer;)Lcom/mojang/datafixers/util/Either;"))
+	@Redirect(method = "onUse", at = @At(value = "INVOKE", target = "Lcom/mojang/datafixers/util/Either;ifLeft(Ljava/util/function/Consumer;)Lcom/mojang/datafixers/util/Either;", remap = false))
 	private Either<?, ?> onUse(Either<PlayerEntity.SleepFailureReason, ?> instance, Consumer<PlayerEntity.SleepFailureReason> consumer) {
 		return instance.ifLeft(o -> {
 			if (o.toText() == null) return;

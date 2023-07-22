@@ -37,12 +37,16 @@ import java.util.Set;
 @Mixin(ModelLoader.class)
 public abstract class MixinModelLoader implements ModelLoaderHooks {
 	// this is the first one
+	@Final
 	@Shadow
 	public static ModelIdentifier MISSING;
+	@Final
 	@Shadow
-	private ResourceManager resourceManager;
+	protected ResourceManager resourceManager;
+	@Final
 	@Shadow
 	private Set<Identifier> modelsToLoad;
+	@Final
 	@Shadow
 	private Map<Identifier, UnbakedModel> unbakedModels;
 	@Shadow
@@ -76,7 +80,6 @@ public abstract class MixinModelLoader implements ModelLoaderHooks {
 	@Inject(at = @At("HEAD"), method = "addModel")
 	private void addModelHook(ModelIdentifier id, CallbackInfo info) {
 		if (id == MISSING) {
-			//noinspection RedundantCast
 			ModelLoaderHooks hooks = this;
 
 			fabric_mlrLoaderInstance = ModelLoadingRegistryImpl.begin((ModelLoader) (Object) this, resourceManager);
@@ -84,9 +87,8 @@ public abstract class MixinModelLoader implements ModelLoaderHooks {
 		}
 	}
 
-	@Inject(at = @At("RETURN"), method = "<init>")
+	@Inject(at = @At("RETURN"), method = "<init>*")
 	private void initFinishedHook(CallbackInfo info) {
-		//noinspection ConstantConditions
 		fabric_mlrLoaderInstance.finish();
 	}
 

@@ -102,7 +102,6 @@ public abstract class MixinWorldRenderer {
 		context.renderBlockOutline = WorldRenderEvents.BEFORE_BLOCK_OUTLINE.invoker().beforeBlockOutline(context, client.crosshairTarget);
 	}
 
-	@SuppressWarnings("ConstantConditions")
 	@Inject(method = "drawBlockOutline", at = @At("HEAD"), cancellable = true)
 	private void onDrawBlockOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
 		if (!context.renderBlockOutline) {

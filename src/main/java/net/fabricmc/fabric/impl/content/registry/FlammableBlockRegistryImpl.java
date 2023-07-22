@@ -16,22 +16,23 @@
 
 package net.fabricmc.fabric.impl.content.registry;
 
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.resource.ResourceReloadListenerKeys;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
+import net.minecraft.block.Block;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
+import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.block.Block;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.tag.Tag;
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourceReloadListenerKeys;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-
+@Mod.EventBusSubscriber
 public class FlammableBlockRegistryImpl implements FlammableBlockRegistry, SimpleSynchronousResourceReloadListener {
 	private static final FlammableBlockRegistry.Entry REMOVED = new FlammableBlockRegistry.Entry(0, 0);
 	private static final Map<Block, FlammableBlockRegistryImpl> REGISTRIES = new HashMap<>();
@@ -46,9 +47,13 @@ public class FlammableBlockRegistryImpl implements FlammableBlockRegistry, Simpl
 	private boolean tagsPresent = false;
 
 	private FlammableBlockRegistryImpl(Block key) {
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(this);
 		this.id = new Identifier("fabric:private/fire_registry_" + (++idCounter));
 		this.key = key;
+	}
+
+	@SubscribeEvent
+	public void onAddReloadListener(AddReloadListenerEvent event) {
+		event.addListener(this);
 	}
 
 	// TODO: Asynchronous?

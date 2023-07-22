@@ -16,8 +16,8 @@
 
 package net.fabricmc.fabric.api.client.command.v1;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -30,7 +30,7 @@ import net.minecraft.util.math.Vec3d;
 /**
  * Extensions to {@link CommandSource} for client-sided commands.
  */
-@Environment(EnvType.CLIENT)
+
 public interface FabricClientCommandSource extends CommandSource {
 	/**
 	 * Sends a feedback message to the player.

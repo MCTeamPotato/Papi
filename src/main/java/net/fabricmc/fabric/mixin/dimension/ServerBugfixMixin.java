@@ -43,7 +43,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  * a new set of level properties is created. This will apply the same logic as reloading the
  * level.dat after a restart, now including all datapack dimensions.
  *
- * <p>See https://bugs.mojang.com/browse/MC-195468 for a related bug report.
+ * <p>See <a href="https://bugs.mojang.com/browse/MC-195468">...</a> for a related bug report.
  *
  * <p>In 1.17: Retest if this bug still occurs without this Mixin by launching a dedicated server with the
  * dimension testmod, and no world directory. If the dimension is available (i.e. in /execute in, or via
