@@ -34,6 +34,17 @@
     "papi.command.MixinForgeEventFactory",
     "papi.lifecycle.MixinChunkEvent$MixinLoad",
     "papi.lifecycle.MixinChunkEvent$MixinUnload",
+    "resource.loader.AbstractFileResourcePackAccessor",
+    "resource.loader.DefaultResourcePackMixin",
+    "resource.loader.FileResourcePackProviderAccessor",
+    "resource.loader.KeyedResourceReloadListenerMixin",
+    "resource.loader.MinecraftServerMixin",
+    "resource.loader.NamespaceResourceManagerAccessor",
+    "resource.loader.NamespaceResourceManagerMixin",
+    "resource.loader.ReloadableResourceManagerImplMixin",
+    "resource.loader.ResourcePackManagerAccessor",
+    "resource.loader.ResourcePackManagerMixin",
+    "resource.loader.ResourcePackProfileAccessor",
     "structure.FlatChunkGeneratorConfigAccessor",
     "structure.StructureFeatureAccessor",
     "structure.StructureManagerMixin",
@@ -54,6 +65,11 @@
     "networking.accessor.MinecraftClientAccessor",
     "networking.blockentity.MixinClientPlayNetworkHandler",
     "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin"
+    "networking.client.ClientPlayNetworkHandlerMixin",
+    "resource.loader.client.ClientBuiltinResourcePackProviderMixin",
+    "resource.loader.client.CreateWorldScreenMixin",
+    "resource.loader.client.FontManagerResourceReloadListenerMixin",
+    "resource.loader.client.GameOptionsMixin",
+    "resource.loader.client.KeyedResourceReloadListenerClientMixin"
   ]
 }

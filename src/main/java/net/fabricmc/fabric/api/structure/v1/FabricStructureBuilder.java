@@ -16,21 +16,19 @@
 
 package net.fabricmc.fabric.api.structure.v1;
 
-import java.util.Objects;
-
 import com.google.common.collect.ImmutableList;
-
-import net.minecraft.world.gen.GenerationStep;
+import net.fabricmc.fabric.impl.structure.FabricStructureImpl;
+import net.fabricmc.fabric.mixin.structure.FlatChunkGeneratorConfigAccessor;
+import net.fabricmc.fabric.mixin.structure.StructureFeatureAccessor;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.chunk.StructuresConfig;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-import net.fabricmc.fabric.impl.structure.FabricStructureImpl;
-import net.fabricmc.fabric.mixin.structure.FlatChunkGeneratorConfigAccessor;
-import net.fabricmc.fabric.mixin.structure.StructureFeatureAccessor;
+import java.util.Objects;
 
 /**
  * A builder for registering custom structures.

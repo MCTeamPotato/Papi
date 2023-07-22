@@ -10,7 +10,6 @@ import net.minecraftforge.fml.loading.FMLLoader;
 public class Papi {
 
     public static final String MOD_ID = "papi";
-
     public Papi() {
         NetworkingImpl.init();
         FabricStructureImpl.init();

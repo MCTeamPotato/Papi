@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.dimension;
 
+import net.fabricmc.fabric.impl.dimension.FabricDimensionInternals;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.TeleportTarget;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.TeleportTarget;
-
-import net.fabricmc.fabric.impl.dimension.FabricDimensionInternals;
 
 /**
  * This mixin implements Entity#getTeleportTarget(ServerWorld) for modded dimensions, as Vanilla will

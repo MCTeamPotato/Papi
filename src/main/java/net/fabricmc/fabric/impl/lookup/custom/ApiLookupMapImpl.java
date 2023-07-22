@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.impl.lookup.custom;
 
+import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
+import net.minecraft.util.Identifier;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 
 public final class ApiLookupMapImpl<L> implements ApiLookupMap<L> {
 	private final Map<Identifier, StoredLookup<L>> lookups = new HashMap<>();

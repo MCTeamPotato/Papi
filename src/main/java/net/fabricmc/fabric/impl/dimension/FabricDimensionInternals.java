@@ -17,12 +17,10 @@
 package net.fabricmc.fabric.impl.dimension;
 
 import com.google.common.base.Preconditions;
-
+import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.TeleportTarget;
-
-import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 
 public final class FabricDimensionInternals {
 	/**
