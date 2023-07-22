@@ -1,4 +1,6 @@
 accessWidener   v2  named
+accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/tag/Tag;I)V
+accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/item/ItemConvertible;I)V
 accessible	class	net/minecraft/screen/ScreenHandlerType$Factory
 accessible	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
 extendable	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
