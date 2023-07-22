@@ -2,6 +2,7 @@ package net.fabricmc.fabric;
 
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.structure.FabricStructureImpl;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLLoader;
 
@@ -12,6 +13,7 @@ public class Papi {
 
     public Papi() {
         NetworkingImpl.init();
+        FabricStructureImpl.init();
         if (FMLLoader.getDist().isClient()) {
             ClientNetworkingImpl.clientInit();
         }

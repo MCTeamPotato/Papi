@@ -33,12 +33,16 @@
     "networking.blockentity.MixinBlockEntity",
     "papi.command.MixinForgeEventFactory",
     "papi.lifecycle.MixinChunkEvent$MixinLoad",
-    "papi.lifecycle.MixinChunkEvent$MixinUnload"
+    "papi.lifecycle.MixinChunkEvent$MixinUnload",
+    "structure.FlatChunkGeneratorConfigAccessor",
+    "structure.StructureFeatureAccessor",
+    "structure.StructureManagerMixin",
+    "structure.StructuresConfigAccessor"
   ],
   "client": [
+    "blockrenderlayer.MixinBlockRenderLayer",
     "client.rendering.fluid.MixinFluidRenderer",
     "client.texture.MixinSpriteAtlasTexture",
-    "blockrenderlayer.MixinBlockRenderLayer",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientPlayerEntityMixin",
     "command.client.ClientPlayNetworkHandlerMixin",
