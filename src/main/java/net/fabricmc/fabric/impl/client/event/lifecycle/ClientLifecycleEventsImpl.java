@@ -23,7 +23,7 @@ import net.minecraft.block.entity.BlockEntity;
 
 
 public final class ClientLifecycleEventsImpl {
-	public static void onInitializeClient() {
+	public static void clientInit() {
 		// Part of impl for block entity events
 		ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
 			((LoadedChunksCache) world).fabric_markLoaded(chunk);
