@@ -24,7 +24,7 @@ Yea another Fabric API reforged project.
 - [ ] Item Groups
 - [ ] Key Binding API
 - [ ] Keybindings
-- [x] Lifecycle Events
+- [x] Lifecycle Events (Fail with [WorldChunkMixin](src/main/java/net/fabricmc/fabric/mixin/event/lifecycle/client/WorldChunkMixin.java))
 - [ ] Loot API
 - [ ] Loot Tables
 - [ ] Mining Level API
