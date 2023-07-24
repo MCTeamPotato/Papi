@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 import com.google.common.annotations.VisibleForTesting;
+import net.fabricmc.fabric.Papi;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
@@ -127,7 +128,7 @@ public class PhaseSorting {
 			phase.visitStatus = 2;
 		} else if (phase.visitStatus == 1 && ENABLE_CYCLE_WARNING) {
 			// Already visiting, so we have found a cycle.
-			ArrayBackedEvent.LOGGER.warn(String.format(
+			Papi.LOGGER.warn(String.format(
 					"Event phase ordering conflict detected.%nEvent phase %s is ordered both before and after event phase %s.",
 					phase.id,
 					parent.id

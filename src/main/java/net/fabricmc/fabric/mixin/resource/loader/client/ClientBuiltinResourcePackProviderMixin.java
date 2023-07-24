@@ -47,14 +47,14 @@ public class ClientBuiltinResourcePackProviderMixin {
 	}
 
 	// ClientBuiltinResourcePackProvider#method_25454 first lambda.
-	@Inject(method = "method_25457", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "method_25457(Ljava/io/File;)Lnet/minecraft/resource/ResourcePack;", at = @At("RETURN"), cancellable = true)
 	private static void onSupplyZipProgrammerArtPack(File file, CallbackInfoReturnable<ResourcePack> cir) {
 		AbstractFileResourcePack originalPack = (AbstractFileResourcePack) cir.getReturnValue();
 		cir.setReturnValue(new ProgrammerArtResourcePack(originalPack, getProgrammerArtModResourcePacks()));
 	}
 
 	// ClientBuiltinResourcePackProvider#method_25454 second lambda.
-	@Inject(method = "method_25456", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "method_25456(Ljava/io/File;)Lnet/minecraft/resource/ResourcePack;", at = @At("RETURN"), cancellable = true)
 	private static void onSupplyDirProgrammerArtPack(File file, CallbackInfoReturnable<ResourcePack> cir) {
 		AbstractFileResourcePack originalPack = (AbstractFileResourcePack) cir.getReturnValue();
 		cir.setReturnValue(new ProgrammerArtResourcePack(originalPack, getProgrammerArtModResourcePacks()));
