@@ -2,6 +2,7 @@
   "required": true,
   "package": "net.fabricmc.fabric.mixin",
   "compatibilityLevel": "JAVA_16",
+  "refmap": "papi-refmap.json",
   "mixins": [
     "command.HelpCommandAccessor",
     "event.lifecycle.DataPackContentsMixin",
@@ -21,8 +22,8 @@
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "papi.event.command.MixinForgeEventFactory",
-    "papi.event.lifecycle.MixinChunkEvent.MixinLoad",
-    "papi.event.lifecycle.MixinChunkEvent.MixinUnload",
+    "papi.event.lifecycle.MixinChunkEvent$MixinLoad",
+    "papi.event.lifecycle.MixinChunkEvent$MixinUnload",
     "papi.rendering.MixinRenderTooltipEventPre",
     "papi.screen.MixinForgeHooksClient",
     "resource.loader.DefaultResourcePackMixin",
