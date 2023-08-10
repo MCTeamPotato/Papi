@@ -1,26 +1,3 @@
 accessWidener   v2  named
 
-accessible  method  net/minecraft/world/GameRules$Type <init>  (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/GameRules$Acceptor;)V
-extendable  method  net/minecraft/world/GameRules$Type <init>  (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/GameRules$Acceptor;)V
-accessible  class   net/minecraft/world/GameRules$Acceptor
-accessible  class   net/minecraft/client/gui/screen/world/EditGameRulesScreen$RuleWidgetFactory
-accessible  field   net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;
-mutable  field   net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;
-
-# fields for mods to check whether the environment is as desired for registration
-transitive-accessible field net/minecraft/server/command/CommandManager$RegistrationEnvironment dedicated Z
-transitive-accessible field net/minecraft/server/command/CommandManager$RegistrationEnvironment integrated Z
-
-accessible    class    net/minecraft/server/MinecraftServer$ResourceManagerHolder
-accessible    class    net/minecraft/client/world/ClientChunkManager$ClientChunkMap
-accessible    method    net/minecraft/client/world/ClientChunkManager$ClientChunkMap    isInRadius    (II)Z
-
-accessible	class	net/minecraft/screen/ScreenHandlerType$Factory
-accessible	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
-extendable	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
-
-accessible	class	net/minecraft/client/gui/screen/ingame/HandledScreens$Provider
-accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens register (Lnet/minecraft/screen/ScreenHandlerType;Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;)V
-accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens getProvider (Lnet/minecraft/screen/ScreenHandlerType;)Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;
-
-accessible	field	net/minecraft/screen/SimpleNamedScreenHandlerFactory baseFactory Lnet/minecraft/screen/ScreenHandlerFactory;
+accessible class net/minecraft/server/world/ThreadedAnvilChunkStorage$EntityTracker

@@ -1,15 +1,5 @@
-# gradle
-
-.gradle/
-build/
-out/
-classes/
-
-# idea
-
-.idea/
-*.iml
-*.ipr
-*.iws
+.gradle
+build
+.idea
 .source-1.19.2
 .source-1.16.5

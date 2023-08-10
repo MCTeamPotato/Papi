@@ -88,7 +88,6 @@ public abstract class DisconnectedScreenMixin extends Screen {
 
 	@Override
 	public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-		if (client == null ) return super.mouseScrolled(mouseX, mouseY, amount);
 		scroll = MathHelper.clamp(scroll - (MathHelper.sign(amount) * client.textRenderer.fontHeight * 10), 0, maxScroll);
 		return super.mouseScrolled(mouseX, mouseY, amount);
 	}

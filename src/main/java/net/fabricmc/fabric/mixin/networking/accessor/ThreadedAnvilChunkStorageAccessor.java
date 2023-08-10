@@ -25,5 +25,5 @@ import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 @Mixin(ThreadedAnvilChunkStorage.class)
 public interface ThreadedAnvilChunkStorageAccessor {
 	@Accessor
-	Int2ObjectMap<EntityTrackerAccessor> getEntityTrackers();
+	Int2ObjectMap<ThreadedAnvilChunkStorage.EntityTracker> getEntityTrackers();
 }
