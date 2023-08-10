@@ -112,11 +112,11 @@ public final class PlayerLookup {
 
 		if (manager instanceof ServerChunkManager) {
 			ThreadedAnvilChunkStorage storage = ((ServerChunkManager) manager).threadedAnvilChunkStorage;
-			EntityTrackerAccessor tracker = ((ThreadedAnvilChunkStorageAccessor) storage).getEntityTrackers().get(entity.getId());
+			ThreadedAnvilChunkStorage.EntityTracker tracker = ((ThreadedAnvilChunkStorageAccessor) storage).getEntityTrackers().get(entity.getId());
 
 			// return an immutable collection to guard against accidental removals.
 			if (tracker != null) {
-				return tracker.getPlayersTracking()
+				return ((EntityTrackerAccessor)tracker).getPlayersTracking()
                         .stream().map(EntityTrackingListener::getPlayer).collect(Collectors.toUnmodifiableSet());
 			}
 
