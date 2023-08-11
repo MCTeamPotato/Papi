@@ -23,6 +23,8 @@
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
+    "lookup.BlockEntityTypeAccessor",
+    "lookup.ServerWorldMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -33,11 +35,10 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "papi.command.ForgeEventFactoryMixin",
-    "lookup.BlockEntityTypeAccessor",
-    "lookup.ServerWorldMixin"
+    "papi.command.ForgeEventFactoryMixin"
   ],
   "client": [
+    "blockrenderlayer.RenderLayersMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientPlayerEntityMixin",
     "command.client.ClientPlayNetworkHandlerMixin",
