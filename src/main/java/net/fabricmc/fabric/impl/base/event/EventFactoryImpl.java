@@ -16,6 +16,11 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
+import com.google.common.collect.MapMaker;
+import net.fabricmc.fabric.api.event.Event;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
@@ -26,12 +31,6 @@ import java.lang.reflect.Proxy;
 import java.util.Collections;
 import java.util.Set;
 import java.util.function.Function;
-
-import com.google.common.collect.MapMaker;
-
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.event.Event;
 
 public final class EventFactoryImpl {
 	private static final Set<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS
@@ -71,23 +70,10 @@ public final class EventFactoryImpl {
 
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
+	@SuppressWarnings("SuspiciousInvocationHandlerImplementation")
 	private static <T> T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
-		Method funcIfMethod = null;
-
-		for (Method m : handlerClass.getMethods()) {
-			if ((m.getModifiers() & (Modifier.STRICT | Modifier.PRIVATE)) == 0) {
-				if (funcIfMethod != null) {
-					throw new IllegalStateException("Multiple virtual methods in " + handlerClass + "; cannot build empty invoker!");
-				}
-
-				funcIfMethod = m;
-			}
-		}
-
-		if (funcIfMethod == null) {
-			throw new IllegalStateException("No virtual methods in " + handlerClass + "; cannot build empty invoker!");
-		}
+		Method funcIfMethod = getFuncIfMethod(handlerClass);
 
 		Object defValue = null;
 
@@ -121,5 +107,25 @@ public final class EventFactoryImpl {
 		//noinspection unchecked
 		return (T) Proxy.newProxyInstance(EventFactoryImpl.class.getClassLoader(), new Class[]{handlerClass},
 			(proxy, method, args) -> returnValue);
+	}
+
+	@NotNull
+	private static <T> Method getFuncIfMethod(Class<T> handlerClass) {
+		Method funcIfMethod = null;
+
+		for (Method m : handlerClass.getMethods()) {
+			if ((m.getModifiers() & (Modifier.STRICT | Modifier.PRIVATE)) == 0) {
+				if (funcIfMethod != null) {
+					throw new IllegalStateException("Multiple virtual methods in " + handlerClass + "; cannot build empty invoker!");
+				}
+
+				funcIfMethod = m;
+			}
+		}
+
+		if (funcIfMethod == null) {
+			throw new IllegalStateException("No virtual methods in " + handlerClass + "; cannot build empty invoker!");
+		}
+		return funcIfMethod;
 	}
 }

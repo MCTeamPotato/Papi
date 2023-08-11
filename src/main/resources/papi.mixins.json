@@ -33,7 +33,9 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "papi.command.ForgeEventFactoryMixin"
+    "papi.command.ForgeEventFactoryMixin",
+    "lookup.BlockEntityTypeAccessor",
+    "lookup.ServerWorldMixin"
   ],
   "client": [
     "command.client.ClientCommandSourceMixin",
