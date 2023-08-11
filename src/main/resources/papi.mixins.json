@@ -11,7 +11,12 @@
     "defaultRequire": 1,
     "maxShiftBy": 3
   },
+  "server": [
+    "event.lifecycle.server.WorldChunkMixin"
+  ],
   "mixins": [
+    "block.BlockMixin",
+    "block.BlockStateMixin",
     "command.ArgumentTypesAccessor",
     "command.EntitySelectorOptionsAccessor",
     "command.EntitySelectorReaderMixin",
@@ -23,22 +28,23 @@
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
+    "event.lifecycle.client.WorldChunkMixin",
     "lookup.BlockEntityTypeAccessor",
     "lookup.ServerWorldMixin",
-    "networking.ClientConnectionMixin",
-    "networking.EntityTrackerEntryMixin",
-    "networking.PlayerManagerMixin",
-    "networking.ServerLoginNetworkHandlerMixin",
-    "networking.ServerPlayNetworkHandlerMixin",
     "networking.accessor.CustomPayloadC2SPacketAccessor",
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "networking.ClientConnectionMixin",
+    "networking.EntityTrackerEntryMixin",
+    "networking.PlayerManagerMixin",
+    "networking.ServerLoginNetworkHandlerMixin",
+    "networking.ServerPlayNetworkHandlerMixin",
     "papi.command.ForgeEventFactoryMixin"
   ],
   "client": [
-    "blockrenderlayer.RenderLayersMixin",
+    "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientPlayerEntityMixin",
     "command.client.ClientPlayNetworkHandlerMixin",
@@ -48,13 +54,9 @@
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
     "event.lifecycle.client.WorldChunkMixin",
-    "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin",
-    "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
-    "networking.client.accessor.MinecraftClientAccessor"
-  ],
-  "server": [
-    "event.lifecycle.server.WorldChunkMixin"
+    "networking.client.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.DisconnectedScreenMixin"
   ]
 }
