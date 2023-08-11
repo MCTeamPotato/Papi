@@ -6,6 +6,7 @@ import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
 
 @Mod(Papi.MOD_ID)
@@ -13,10 +14,15 @@ public class Papi {
     public static final String MOD_ID = "papi";
     public Papi() {
         NetworkingImpl.init();
+
         LifecycleEventsImpl.init();
         MinecraftForge.EVENT_BUS.register(LifecycleEventsImpl.class);
+
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(RegisterCommandImpl::registerArgumentTypes);
+
         if (FMLLoader.getDist().isClient()) {
             ClientNetworkingImpl.clientInit();
+
             ClientLifecycleEventsImpl.clientInit();
         }
     }

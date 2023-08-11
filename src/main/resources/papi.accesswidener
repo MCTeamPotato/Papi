@@ -1,5 +1,7 @@
 accessWidener   v2  named
 
+accessible field net/minecraft/server/command/CommandManager$RegistrationEnvironment dedicated Z
+accessible field net/minecraft/server/command/CommandManager$RegistrationEnvironment integrated Z
 accessible class net/minecraft/server/world/ThreadedAnvilChunkStorage$EntityTracker
 accessible    class    net/minecraft/server/MinecraftServer$ResourceManagerHolder
 accessible    class    net/minecraft/client/world/ClientChunkManager$ClientChunkMap
