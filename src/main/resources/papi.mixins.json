@@ -8,7 +8,8 @@
   },
   "refmap": "papi-refmap.json",
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 1,
+    "maxShiftBy": 3
   },
   "mixins": [
     "networking.ClientConnectionMixin",
@@ -20,13 +21,29 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor"
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "event.lifecycle.DataPackContentsMixin",
+    "event.lifecycle.LivingEntityMixin",
+    "event.lifecycle.MinecraftServerMixin",
+    "event.lifecycle.PlayerManagerMixin",
+    "event.lifecycle.ServerWorldMixin",
+    "event.lifecycle.ServerWorldServerEntityHandlerMixin",
+    "event.lifecycle.WorldMixin"
   ],
   "client": [
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin",
-    "networking.client.DisconnectedScreenMixin"
+    "networking.client.DisconnectedScreenMixin",
+    "event.lifecycle.client.ClientChunkManagerMixin",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin",
+    "event.lifecycle.client.WorldChunkMixin"
+  ],
+  "server": [
+    "event.lifecycle.server.WorldChunkMixin"
   ]
 }
