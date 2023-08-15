@@ -87,7 +87,6 @@ public class BlockRenderLayerMapImpl implements BlockRenderLayerMap {
 	}
 
 	public static void onClientSetup(FMLClientSetupEvent event) {
-		//noinspection removal
-		event.enqueueWork(() -> initialize(RenderLayers::setRenderLayer, RenderLayers::setRenderLayer));
+		event.enqueueWork(() -> initialize(((block, renderLayer) -> RenderLayers.setRenderLayer(block, renderLayer)), RenderLayers::setRenderLayer));
 	}
 }
