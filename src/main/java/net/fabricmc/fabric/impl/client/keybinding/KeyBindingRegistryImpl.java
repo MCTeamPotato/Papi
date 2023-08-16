@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.impl.client.keybinding;
 
+import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
+import net.fabricmc.fabric.mixin.client.keybinding.KeyBindingAccessor;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import com.google.common.collect.Lists;
-import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
-
-import net.minecraft.client.option.KeyBinding;
-
-import net.fabricmc.fabric.mixin.client.keybinding.KeyBindingAccessor;
 
 public final class KeyBindingRegistryImpl {
 	private static final List<KeyBinding> MODDED_KEY_BINDINGS = new ReferenceArrayList<>(); // ArrayList with identity based comparisons for contains/remove/indexOf etc., required for correctly handling duplicate keybinds
@@ -68,11 +66,14 @@ public final class KeyBindingRegistryImpl {
 	/**
 	 * Processes the keybindings array for our modded ones by first removing existing modded keybindings and readding them,
 	 * we can make sure that there are no duplicates this way.
-	 */
 	public static KeyBinding[] process(KeyBinding[] keysAll) {
 		List<KeyBinding> newKeysAll = Lists.newArrayList(keysAll);
 		newKeysAll.removeAll(MODDED_KEY_BINDINGS);
 		newKeysAll.addAll(MODDED_KEY_BINDINGS);
 		return newKeysAll.toArray(new KeyBinding[0]);
+	}*/
+
+	public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+		for (KeyBinding keyBinding : MODDED_KEY_BINDINGS) event.register(keyBinding);
 	}
 }

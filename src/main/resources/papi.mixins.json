@@ -44,7 +44,6 @@
     "papi.command.ForgeEventFactoryMixin"
   ],
   "client": [
-    "client.keybinding.GameOptionsMixin",
     "client.keybinding.KeyBindingAccessor",
     "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
