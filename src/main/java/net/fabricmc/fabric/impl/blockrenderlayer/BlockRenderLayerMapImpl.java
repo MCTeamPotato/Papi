@@ -24,8 +24,8 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraftforge.client.ChunkRenderTypeSet;
-import net.minecraftforge.client.loading.ClientModLoader;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -94,7 +94,10 @@ public class BlockRenderLayerMapImpl implements BlockRenderLayerMap {
 	public static void onClientSetup(FMLClientSetupEvent event) {
 		event.enqueueWork(() -> initialize(((block, type) -> {
 			Preconditions.checkArgument(type.getChunkLayerId() >= 0, "The argument must be a valid chunk render type returned by RenderType#chunkBufferLayers().");
-			RenderLayersAccessor.getBlockRenderTypes().put(ForgeRegistries.BLOCKS.getDelegateOrThrow(block), ChunkRenderTypeSet.of(type));
+			Map<RegistryEntry.Reference<Block>, ChunkRenderTypeSet> BLOCK_RENDER_TYPES = RenderLayersAccessor.getBlockRenderTypes();
+			synchronized (BLOCK_RENDER_TYPES) {
+				BLOCK_RENDER_TYPES.put(ForgeRegistries.BLOCKS.getDelegateOrThrow(block), ChunkRenderTypeSet.of(type));
+			}
 		}), RenderLayers::setRenderLayer));
 	}
 }
