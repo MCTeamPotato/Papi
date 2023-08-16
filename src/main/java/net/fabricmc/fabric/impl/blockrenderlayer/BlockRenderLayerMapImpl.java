@@ -16,13 +16,18 @@
 
 package net.fabricmc.fabric.impl.blockrenderlayer;
 
+import com.google.common.base.Preconditions;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.mixin.papi.blockrenderlayer.RenderLayersAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.ChunkRenderTypeSet;
+import net.minecraftforge.client.loading.ClientModLoader;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,6 +92,9 @@ public class BlockRenderLayerMapImpl implements BlockRenderLayerMap {
 	}
 
 	public static void onClientSetup(FMLClientSetupEvent event) {
-		event.enqueueWork(() -> initialize(((block, renderLayer) -> RenderLayers.setRenderLayer(block, renderLayer)), RenderLayers::setRenderLayer));
+		event.enqueueWork(() -> initialize(((block, type) -> {
+			Preconditions.checkArgument(type.getChunkLayerId() >= 0, "The argument must be a valid chunk render type returned by RenderType#chunkBufferLayers().");
+			RenderLayersAccessor.getBlockRenderTypes().put(ForgeRegistries.BLOCKS.getDelegateOrThrow(block), ChunkRenderTypeSet.of(type));
+		}), RenderLayers::setRenderLayer));
 	}
 }

@@ -31,19 +31,21 @@
     "event.lifecycle.client.WorldChunkMixin",
     "lookup.BlockEntityTypeAccessor",
     "lookup.ServerWorldMixin",
-    "networking.accessor.CustomPayloadC2SPacketAccessor",
-    "networking.accessor.EntityTrackerAccessor",
-    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
     "networking.ServerLoginNetworkHandlerMixin",
     "networking.ServerPlayNetworkHandlerMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "papi.command.ForgeEventFactoryMixin"
   ],
   "client": [
+    "client.keybinding.GameOptionsMixin",
+    "client.keybinding.KeyBindingAccessor",
     "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientPlayerEntityMixin",
@@ -54,9 +56,10 @@
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
     "event.lifecycle.client.WorldChunkMixin",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor",
-    "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.DisconnectedScreenMixin"
+    "papi.blockrenderlayer.RenderLayersAccessor"
   ]
 }
