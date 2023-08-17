@@ -21,6 +21,13 @@
     "command.EntitySelectorOptionsAccessor",
     "command.EntitySelectorReaderMixin",
     "command.HelpCommandAccessor",
+    "entity.event.EntityMixin",
+    "entity.event.LivingEntityMixin",
+    "entity.event.PlayerEntityMixin",
+    "entity.event.PlayerManagerMixin",
+    "entity.event.TeleportCommandMixin",
+    "entity.event.elytra.LivingEntityMixin",
+    "entity.event.elytra.PlayerEntityMixin",
     "event.lifecycle.DataPackContentsMixin",
     "event.lifecycle.LivingEntityMixin",
     "event.lifecycle.MinecraftServerMixin",
@@ -54,6 +61,7 @@
   "client": [
     "client.keybinding.KeyBindingAccessor",
     "client.sound.SoundInstanceMixin",
+    "client.texture.SpriteAtlasTextureMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientPlayerEntityMixin",
     "command.client.ClientPlayNetworkHandlerMixin",
@@ -75,7 +83,6 @@
     "screen.MinecraftClientMixin",
     "screen.MouseMixin",
     "screen.ScreenAccessor",
-    "screen.ScreenMixin",
-    "client.texture.SpriteAtlasTextureMixin"
+    "screen.ScreenMixin"
   ]
 }

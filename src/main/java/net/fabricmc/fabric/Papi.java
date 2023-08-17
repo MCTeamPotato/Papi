@@ -4,6 +4,7 @@ import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.impl.client.screen.ScreenEventHooks;
+import net.fabricmc.fabric.impl.entity.event.EntityEventHooks;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
@@ -28,6 +29,7 @@ public class Papi {
         NetworkingImpl.init();
         LifecycleEventsImpl.init();
         MinecraftForge.EVENT_BUS.register(LifecycleEventsImpl.class);
+        MinecraftForge.EVENT_BUS.register(EntityEventHooks.class);
         ApiLookupImpl.init();
         if (FMLLoader.getDist().isClient()) {
             ClientNetworkingImpl.clientInit();
