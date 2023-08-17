@@ -59,6 +59,7 @@
     "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor",
-    "papi.blockrenderlayer.RenderLayersAccessor"
+    "papi.blockrenderlayer.RenderLayersAccessor",
+    "papi.command.ClientCommandHandlerMixin"
   ]
 }

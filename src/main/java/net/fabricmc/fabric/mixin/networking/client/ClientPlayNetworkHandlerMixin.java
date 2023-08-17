@@ -61,7 +61,9 @@ abstract class ClientPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 
 	@Redirect(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
 	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
-		return this.addon.handle((CustomPayloadS2CPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
+		boolean forge = NetworkHooks.onCustomPayload(packet, connection);
+		boolean fabric = this.addon.handle((CustomPayloadS2CPacket) packet);
+		return forge || fabric;
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))

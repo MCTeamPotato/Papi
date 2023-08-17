@@ -16,8 +16,14 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle.client;
 
-import java.util.function.Consumer;
-
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
+import net.minecraft.client.world.ClientChunkManager;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.ChunkData;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,15 +33,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.network.packet.s2c.play.ChunkData;
-import net.minecraft.client.world.ClientChunkManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.world.chunk.WorldChunk;
-import net.minecraft.util.math.ChunkPos;
-
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
+import java.util.function.Consumer;
 
 @Mixin(ClientChunkManager.class)
 public abstract class ClientChunkManagerMixin {
@@ -69,8 +67,6 @@ public abstract class ClientChunkManagerMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD
 	)
 	private void onUpdateLoadDistance(int loadDistance, CallbackInfo ci, int oldRadius, int newRadius, ClientChunkManager.ClientChunkMap clientChunkMap, int k, WorldChunk oldChunk, ChunkPos chunkPos) {
-		if (!clientChunkMap.isInRadius(chunkPos.x, chunkPos.z)) {
-			ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(this.world, oldChunk);
-		}
+		if (!clientChunkMap.isInRadius(chunkPos.x, chunkPos.z)) ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(this.world, oldChunk);
 	}
 }
