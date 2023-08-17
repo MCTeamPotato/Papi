@@ -61,6 +61,8 @@
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
+    "client.model.BakedModelManagerMixin",
+    "client.model.ModelLoaderMixin",
     "client.sound.SoundInstanceMixin",
     "client.texture.SpriteAtlasTextureMixin",
     "command.client.ClientCommandSourceMixin",
