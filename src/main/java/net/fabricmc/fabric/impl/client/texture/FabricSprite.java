@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.item.group;
+package net.fabricmc.fabric.impl.client.texture;
 
-import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
-import net.minecraft.item.ItemGroup;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import net.minecraft.client.texture.NativeImage;
+import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.texture.SpriteAtlasTexture;
 
-@Mixin(ItemGroup.class)
-public abstract class ItemGroupMixin implements ItemGroupExtensions {
-	@Shadow
-	public static ItemGroup[] GROUPS;
-
-	@Override
-	public void fabric_expandArray() {
-		ItemGroup[] tempGroups = GROUPS;
-		GROUPS = new ItemGroup[GROUPS.length + 1];
-
-		System.arraycopy(tempGroups, 0, GROUPS, 0, tempGroups.length);
+public class FabricSprite extends Sprite {
+	public FabricSprite(SpriteAtlasTexture spriteAtlasTexture, Sprite.Info info, int mipmap, int u, int v, int x, int y, NativeImage nativeImage) {
+		super(spriteAtlasTexture, info, mipmap, u, v, x, y, nativeImage);
 	}
 }

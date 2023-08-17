@@ -34,6 +34,7 @@
     "gamerule.GameRulesBooleanRuleAccessor",
     "gamerule.GameRulesIntRuleAccessor",
     "gamerule.GameRulesKeyMixin",
+    "item.group.ItemGroupMixin",
     "lookup.BlockEntityTypeAccessor",
     "lookup.ServerWorldMixin",
     "networking.ClientConnectionMixin",
@@ -46,7 +47,9 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "papi.command.ForgeEventFactoryMixin"
+    "papi.command.ForgeEventFactoryMixin",
+    "screenhandler.NamedScreenHandlerFactoryMixin",
+    "screenhandler.ServerPlayerEntityMixin"
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
@@ -68,6 +71,11 @@
     "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor",
-    "papi.blockrenderlayer.RenderLayersAccessor"
+    "papi.blockrenderlayer.RenderLayersAccessor",
+    "screen.MinecraftClientMixin",
+    "screen.MouseMixin",
+    "screen.ScreenAccessor",
+    "screen.ScreenMixin",
+    "client.texture.SpriteAtlasTextureMixin"
   ]
 }

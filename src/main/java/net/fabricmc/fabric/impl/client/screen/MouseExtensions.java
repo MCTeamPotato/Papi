@@ -14,23 +14,8 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.item.group;
+package net.fabricmc.fabric.impl.client.screen;
 
-import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
-import net.minecraft.item.ItemGroup;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-
-@Mixin(ItemGroup.class)
-public abstract class ItemGroupMixin implements ItemGroupExtensions {
-	@Shadow
-	public static ItemGroup[] GROUPS;
-
-	@Override
-	public void fabric_expandArray() {
-		ItemGroup[] tempGroups = GROUPS;
-		GROUPS = new ItemGroup[GROUPS.length + 1];
-
-		System.arraycopy(tempGroups, 0, GROUPS, 0, tempGroups.length);
-	}
+public interface MouseExtensions {
+    double papi$getHorizontalScroll();
 }

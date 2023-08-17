@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.item.group;
+package net.fabricmc.fabric.api.client.texture;
 
-import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
-import net.minecraft.item.ItemGroup;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import java.util.Set;
 
-@Mixin(ItemGroup.class)
-public abstract class ItemGroupMixin implements ItemGroupExtensions {
-	@Shadow
-	public static ItemGroup[] GROUPS;
+import net.minecraft.util.Identifier;
 
-	@Override
-	public void fabric_expandArray() {
-		ItemGroup[] tempGroups = GROUPS;
-		GROUPS = new ItemGroup[GROUPS.length + 1];
-
-		System.arraycopy(tempGroups, 0, GROUPS, 0, tempGroups.length);
-	}
+/**
+ * Implement this interface on a Sprite to declare additional dependencies
+ * that should be processed prior to this sprite.
+ *
+ * <p>Best used in conjunction with {@link net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback}.
+ */
+public interface DependentSprite {
+	/**
+	 * @return A set of all sprites that should be loaded before this sprite.
+	 */
+	Set<Identifier> getDependencies();
 }

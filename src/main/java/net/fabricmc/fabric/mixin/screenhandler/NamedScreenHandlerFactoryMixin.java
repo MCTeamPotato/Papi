@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.item.group;
+package net.fabricmc.fabric.mixin.screenhandler;
 
-import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
-import net.minecraft.item.ItemGroup;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(ItemGroup.class)
-public abstract class ItemGroupMixin implements ItemGroupExtensions {
-	@Shadow
-	public static ItemGroup[] GROUPS;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 
-	@Override
-	public void fabric_expandArray() {
-		ItemGroup[] tempGroups = GROUPS;
-		GROUPS = new ItemGroup[GROUPS.length + 1];
+import net.fabricmc.fabric.api.screenhandler.v1.FabricScreenHandlerFactory;
 
-		System.arraycopy(tempGroups, 0, GROUPS, 0, tempGroups.length);
-	}
+@Mixin(NamedScreenHandlerFactory.class)
+public interface NamedScreenHandlerFactoryMixin extends FabricScreenHandlerFactory {
 }

@@ -3,10 +3,12 @@ package net.fabricmc.fabric;
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
+import net.fabricmc.fabric.impl.client.screen.ScreenEventHooks;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 public class Papi {
     public static final String MOD_ID = "papi";
 
-    public static final Logger LOGGER= LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public Papi() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -32,6 +34,8 @@ public class Papi {
             ClientLifecycleEventsImpl.clientInit();
             bus.addListener(BlockRenderLayerMapImpl::onClientSetup);
             bus.addListener(KeyBindingRegistryImpl::onRegisterKeyMappings);
+            MinecraftForge.EVENT_BUS.register(ScreenEventHooks.class);
+            ClientNetworking.clientInit();
         }
     }
 }
