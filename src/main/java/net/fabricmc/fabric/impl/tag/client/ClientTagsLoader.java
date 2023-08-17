@@ -20,6 +20,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.JsonOps;
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.tag.client.v1.ClientTags;
 import net.minecraft.tag.TagEntry;
 import net.minecraft.tag.TagFile;
@@ -33,8 +34,6 @@ import net.minecraftforge.fml.loading.moddiscovery.ModFileInfo;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +46,6 @@ import java.util.Set;
 
 @ApiStatus.Internal
 public class ClientTagsLoader {
-	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-client-tags-api-v1");
 	/**
 	 * Load a given tag from the available mods into a set of {@code Identifier}s.
 	 * Parsing based on {@link net.minecraft.tag.TagGroupLoader#loadTags(net.minecraft.resource.ResourceManager)}
@@ -70,7 +68,7 @@ public class ClientTagsLoader {
 					tags.addAll(maybeTagFile.entries());
 				}
 			} catch (IOException e) {
-				LOGGER.error("Error loading tag: " + tagKey, e);
+				Papi.LOGGER.error("Error loading tag: " + tagKey, e);
 			}
 		}
 
