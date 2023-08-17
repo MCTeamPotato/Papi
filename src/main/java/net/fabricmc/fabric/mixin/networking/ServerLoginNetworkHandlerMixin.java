@@ -20,7 +20,6 @@ import net.fabricmc.fabric.impl.networking.DisconnectPacketSource;
 import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
 import net.fabricmc.fabric.impl.networking.PacketCallbackListener;
 import net.fabricmc.fabric.impl.networking.server.ServerLoginNetworkAddon;
-import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
 import net.minecraft.network.packet.s2c.login.LoginDisconnectS2CPacket;
@@ -29,8 +28,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraftforge.network.ICustomPacket;
-import net.minecraftforge.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -60,19 +57,10 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 		}
 	}
 
-	/*@Inject(method = "onQueryResponse", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "onQueryResponse", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginNetworkHandler;disconnect(Lnet/minecraft/text/Text;)V", shift = At.Shift.BEFORE), cancellable = true)
 	private void handleCustomPayloadReceivedAsync(LoginQueryResponseC2SPacket packet, CallbackInfo ci) {
 		// Handle queries
-		if (this.addon.handle(packet)) {
-			ci.cancel();
-		}
-	}*/
-
-	@Redirect(method = "onQueryResponse", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
-	private boolean handleCustomPayloadReceivedAsync(ICustomPacket<?> packet, ClientConnection manager) {
-		boolean fabric = this.addon.handle((LoginQueryResponseC2SPacket)packet);
-		boolean forge = NetworkHooks.onCustomPayload(packet, manager);
-		return forge || !fabric;
+		if (this.addon.handle(packet)) ci.cancel();
 	}
 
 	@Redirect(method = "acceptPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;getNetworkCompressionThreshold()I", ordinal = 0))

@@ -21,19 +21,15 @@ import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.ClientConnection;
 import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.text.Text;
-import net.minecraftforge.network.ICustomPacket;
-import net.minecraftforge.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
@@ -59,11 +55,11 @@ abstract class ClientPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 		this.addon.onServerReady();
 	}
 
-	@Redirect(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
-	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
-		boolean forge = NetworkHooks.onCustomPayload(packet, connection);
-		boolean fabric = this.addon.handle((CustomPayloadS2CPacket) packet);
-		return forge || fabric;
+	@Inject(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/NetworkThreadUtils;forceMainThread(Lnet/minecraft/network/Packet;Lnet/minecraft/network/listener/PacketListener;Lnet/minecraft/util/thread/ThreadExecutor;)V", shift = At.Shift.BEFORE), cancellable = true)
+	private void handleCustomPayload(CustomPayloadS2CPacket packet, CallbackInfo ci) {
+		if (this.addon.handle(packet)) {
+			ci.cancel();
+		}
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))

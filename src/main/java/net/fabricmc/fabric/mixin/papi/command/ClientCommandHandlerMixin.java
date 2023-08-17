@@ -7,13 +7,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(ClientCommandHandler.class)
+@Mixin(value = ClientCommandHandler.class, remap = false)
 public abstract class ClientCommandHandlerMixin {
     @Inject(method = "runCommand", at = @At("RETURN"), cancellable = true)
     private static void onSendCommand(String command, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue()) return;
-        if (ClientCommandInternals.executeCommand(command)) {
-            cir.setReturnValue(false);
-        }
+        if (ClientCommandInternals.executeCommand(command)) cir.setReturnValue(false);
     }
 }
