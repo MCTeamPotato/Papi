@@ -48,28 +48,28 @@ abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 	public ClientConnection connection;
 
 	@Unique
-	private ServerPlayNetworkAddon addon;
+	private ServerPlayNetworkAddon papi$addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.addon = new ServerPlayNetworkAddon((ServerPlayNetworkHandler) (Object) this, this.server);
+		this.papi$addon = new ServerPlayNetworkAddon((ServerPlayNetworkHandler) (Object) this, this.server);
 		// A bit of a hack but it allows the field above to be set in case someone registers handlers during INIT event which refers to said field
-		this.addon.lateInit();
+		this.papi$addon.lateInit();
 	}
 
 	@Redirect(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
 	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
-		return this.addon.handle((CustomPayloadC2SPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
+		return this.papi$addon.handle((CustomPayloadC2SPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.addon.handleDisconnect();
+		this.papi$addon.handleDisconnect();
 	}
 
 	@Override
 	public ServerPlayNetworkAddon getAddon() {
-		return this.addon;
+		return this.papi$addon;
 	}
 
 	@Override

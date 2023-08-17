@@ -60,11 +60,11 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 	public abstract void send(Packet<?> packet, @Nullable PacketCallbacks arg);
 
 	@Unique
-	private Collection<Identifier> playChannels;
+	private Collection<Identifier> papi$playChannels;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddedFields(NetworkSide side, CallbackInfo ci) {
-		this.playChannels = Collections.newSetFromMap(new ConcurrentHashMap<>());
+		this.papi$playChannels = Collections.newSetFromMap(new ConcurrentHashMap<>());
 	}
 
 	// Must be fully qualified due to mixin not working in production without it
@@ -105,6 +105,6 @@ abstract class ClientConnectionMixin implements ChannelInfoHolder {
 
 	@Override
 	public Collection<Identifier> getPendingChannelsNames() {
-		return this.playChannels;
+		return this.papi$playChannels;
 	}
 }

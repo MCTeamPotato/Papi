@@ -42,17 +42,17 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	public abstract void acceptPlayer();
 
 	@Unique
-	private ServerLoginNetworkAddon addon;
+	private ServerLoginNetworkAddon papi$addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.addon = new ServerLoginNetworkAddon((ServerLoginNetworkHandler) (Object) this);
+		this.papi$addon = new ServerLoginNetworkAddon((ServerLoginNetworkHandler) (Object) this);
 	}
 
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginNetworkHandler;acceptPlayer()V"))
 	private void handlePlayerJoin(ServerLoginNetworkHandler handler) {
 		// Do not accept the player, thereby moving into play stage until all login futures being waited on are completed
-		if (this.addon.queryTick()) {
+		if (this.papi$addon.queryTick()) {
 			this.acceptPlayer();
 		}
 	}
@@ -60,7 +60,7 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 	@Inject(method = "onQueryResponse", at = @At("HEAD"), cancellable = true)
 	private void handleCustomPayloadReceivedAsync(LoginQueryResponseC2SPacket packet, CallbackInfo ci) {
 		// Handle queries
-		if (this.addon.handle(packet)) {
+		if (this.papi$addon.handle(packet)) {
 			ci.cancel();
 		}
 	}
@@ -72,24 +72,24 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.addon.handleDisconnect();
+		this.papi$addon.handleDisconnect();
 	}
 
 	@Inject(method = "addToServer", at = @At("HEAD"))
 	private void handlePlayTransitionNormal(ServerPlayerEntity player, CallbackInfo ci) {
-		this.addon.handlePlayTransition();
+		this.papi$addon.handlePlayTransition();
 	}
 
 	@Override
 	public void sent(Packet<?> packet) {
 		if (packet instanceof LoginQueryRequestS2CPacket) {
-			this.addon.registerOutgoingPacket((LoginQueryRequestS2CPacket) packet);
+			this.papi$addon.registerOutgoingPacket((LoginQueryRequestS2CPacket) packet);
 		}
 	}
 
 	@Override
 	public ServerLoginNetworkAddon getAddon() {
-		return this.addon;
+		return this.papi$addon;
 	}
 
 	@Override
