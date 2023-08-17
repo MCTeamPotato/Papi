@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.client.keybinding;
 
+import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
 import net.fabricmc.fabric.mixin.client.keybinding.KeyBindingAccessor;
 import net.minecraft.client.option.KeyBinding;
@@ -66,12 +67,14 @@ public final class KeyBindingRegistryImpl {
 	/**
 	 * Processes the keybindings array for our modded ones by first removing existing modded keybindings and readding them,
 	 * we can make sure that there are no duplicates this way.
+	 **/
+	@Deprecated(forRemoval = true)
 	public static KeyBinding[] process(KeyBinding[] keysAll) {
 		List<KeyBinding> newKeysAll = Lists.newArrayList(keysAll);
 		newKeysAll.removeAll(MODDED_KEY_BINDINGS);
 		newKeysAll.addAll(MODDED_KEY_BINDINGS);
 		return newKeysAll.toArray(new KeyBinding[0]);
-	}*/
+	}
 
 	public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
 		for (KeyBinding keyBinding : MODDED_KEY_BINDINGS) event.register(keyBinding);
