@@ -57,10 +57,12 @@ abstract class ServerLoginNetworkHandlerMixin implements NetworkHandlerExtension
 		}
 	}
 
-	@Inject(method = "onQueryResponse", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerLoginNetworkHandler;disconnect(Lnet/minecraft/text/Text;)V", shift = At.Shift.BEFORE), cancellable = true)
+	@Inject(method = "onQueryResponse", at = @At("HEAD"), cancellable = true)
 	private void handleCustomPayloadReceivedAsync(LoginQueryResponseC2SPacket packet, CallbackInfo ci) {
 		// Handle queries
-		if (this.addon.handle(packet)) ci.cancel();
+		if (this.addon.handle(packet)) {
+			ci.cancel();
+		}
 	}
 
 	@Redirect(method = "acceptPlayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/MinecraftServer;getNetworkCompressionThreshold()I", ordinal = 0))

@@ -30,7 +30,7 @@ import net.minecraft.util.Formatting;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 @Mixin(ClientCommandSource.class)
-public abstract class ClientCommandSourceMixin implements FabricClientCommandSource {
+abstract class ClientCommandSourceMixin implements FabricClientCommandSource {
 	@Shadow
 	@Final
 	private MinecraftClient client;
