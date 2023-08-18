@@ -84,7 +84,17 @@
     "rendering.data.attachment.WorldViewMixin",
     "resource.loader.ResourceMixin",
     "screenhandler.NamedScreenHandlerFactoryMixin",
-    "screenhandler.ServerPlayerEntityMixin"
+    "screenhandler.ServerPlayerEntityMixin",
+    "transfer.AbstractFurnaceBlockEntityMixin",
+    "transfer.BucketItemAccessor",
+    "transfer.BucketItemMixin",
+    "transfer.DoubleInventoryAccessor",
+    "transfer.DropperBlockMixin",
+    "transfer.FluidMixin",
+    "transfer.HopperBlockEntityMixin",
+    "transfer.ItemMixin",
+    "transfer.LootableContainerBlockEntityMixin",
+    "transfer.SimpleInventoryMixin"
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
