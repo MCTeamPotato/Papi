@@ -51,7 +51,8 @@ public class HopperBlockEntityMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD,
 			cancellable = true
 	)
-	private static void hookInsert(World world, BlockPos pos, BlockState state, Inventory inventory, CallbackInfoReturnable<Boolean> cir, Inventory targetInventory) {
+	private static void hookInsert(World world, BlockPos pos, BlockState state, HopperBlockEntity inventory, CallbackInfoReturnable<Boolean> cir, Inventory targetInventory) {
+
 		// Let vanilla handle the transfer if it found an inventory.
 		if (targetInventory != null) return;
 
@@ -81,7 +82,7 @@ public class HopperBlockEntityMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD,
 			cancellable = true
 	)
-	private static void hookExtract(World world, Hopper hopper, CallbackInfoReturnable<Boolean> cir, Inventory inputInventory) {
+	private static void hookExtract(World world, Hopper hopper, CallbackInfoReturnable<Boolean> cir, Boolean ret, Inventory inputInventory) {
 		// Let vanilla handle the transfer if it found an inventory.
 		if (inputInventory != null) return;
 
