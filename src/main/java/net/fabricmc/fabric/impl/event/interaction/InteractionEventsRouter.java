@@ -30,7 +30,6 @@ import net.minecraftforge.fml.loading.FMLLoader;
 
 public class InteractionEventsRouter {
 	public static void init() {
-		if (FMLLoader.getDist().isClient()) InteractionEventsRouterClient.clientInit();
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			BlockState state = world.getBlockState(pos);
 

@@ -75,7 +75,6 @@ public class CustomIngredientSync {
     }
 
 	public static void init() {
-		if (FMLLoader.getDist().isClient()) CustomIngredientSyncClient.clientInit();
 		ServerLoginConnectionEvents.QUERY_START.register((handler, server, sender, synchronizer) -> {
 			// Send packet with 1 so the client can send us back the list of supported tags.
 			// 1 is sent in case we need a different protocol later for some reason.
