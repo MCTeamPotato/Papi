@@ -24,9 +24,11 @@ import net.minecraft.util.math.BlockPos;
 
 import net.fabricmc.fabric.api.rendering.data.v1.RenderAttachedBlockView;
 import net.fabricmc.fabric.impl.rendering.data.attachment.RenderDataObjectConsumer;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(ChunkRendererRegion.class)
 public abstract class ChunkRendererRegionMixin implements RenderAttachedBlockView, RenderDataObjectConsumer {
+	@Unique
 	private Long2ObjectOpenHashMap<Object> fabric_renderDataObjects;
 
 	@Override

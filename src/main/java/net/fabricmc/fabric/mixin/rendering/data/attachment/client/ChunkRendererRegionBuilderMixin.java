@@ -41,6 +41,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class ChunkRendererRegionBuilderMixin {
 	@Unique
 	private static final AtomicInteger ERROR_COUNTER = new AtomicInteger();
+
 	@Inject(at = @At("RETURN"), method = "build", locals = LocalCapture.CAPTURE_FAILHARD)
 	private void create(World world, BlockPos startPos, BlockPos endPos, int chunkRadius, CallbackInfoReturnable<ChunkRendererRegion> info, int i, int j, int k, int l, ChunkRendererRegionBuilder.ClientChunk[][] chunkData) {
 		// instantiated lazily - avoids allocation for chunks without any data objects - which is most of them!

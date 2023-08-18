@@ -21,8 +21,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraftforge.fml.loading.FMLLoader;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -34,15 +32,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MinecraftClient.class)
 abstract class MinecraftClientMixin {
 	@Unique
-	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-screen-api-v1");
-	@Unique
 	private static final boolean DEBUG_SCREEN = !FMLLoader.isProduction() || Boolean.getBoolean("fabric.debugScreen");
 
 	@Shadow
 	public Screen currentScreen;
 
 	@Unique
-	private Screen tickingScreen;
+	private Screen papi$tickingScreen;
 
 	@Inject(method = "setScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;removed()V", shift = At.Shift.AFTER))
 	private void onScreenRemove(@Nullable Screen screen, CallbackInfo ci) {
@@ -55,13 +51,13 @@ abstract class MinecraftClientMixin {
 	}
 
 	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;wrapScreenError(Ljava/lang/Runnable;Ljava/lang/String;Ljava/lang/String;)V"))
-	private void onTick(Runnable crashreport, String crashreportcategory, String throwable) {
+	private void onTick(Runnable crashReport, String crashReportCategory, String throwable) {
 		Screen.wrapScreenError(() -> {
-			this.tickingScreen = this.currentScreen;
-			ScreenEvents.beforeTick(this.tickingScreen).invoker().beforeTick(this.tickingScreen);
+			this.papi$tickingScreen = this.currentScreen;
+			ScreenEvents.beforeTick(this.papi$tickingScreen).invoker().beforeTick(this.papi$tickingScreen);
 			this.currentScreen.tick();
-			ScreenEvents.afterTick(this.tickingScreen).invoker().afterTick(this.tickingScreen);
-			this.tickingScreen = null;
+			ScreenEvents.afterTick(this.papi$tickingScreen).invoker().afterTick(this.papi$tickingScreen);
+			this.papi$tickingScreen = null;
 		}, "Ticking screen", this.currentScreen.getClass().getCanonicalName());
 	}
 
@@ -71,14 +67,14 @@ abstract class MinecraftClientMixin {
 	private void beforeLoadingScreenTick(CallbackInfo ci) {
 		// Store the screen in a variable in case someone tries to change the screen during this before tick event.
 		// If someone changes the screen, the after tick event will likely have class cast exceptions or throw a NPE.
-		this.tickingScreen = this.currentScreen;
-		ScreenEvents.beforeTick(this.tickingScreen).invoker().beforeTick(this.tickingScreen);
+		this.papi$tickingScreen = this.currentScreen;
+		ScreenEvents.beforeTick(this.papi$tickingScreen).invoker().beforeTick(this.papi$tickingScreen);
 	}
 
 	@Inject(method = "startIntegratedServer(Ljava/lang/String;Lnet/minecraft/world/level/storage/LevelStorage$Session;Lnet/minecraft/resource/ResourcePackManager;Lnet/minecraft/server/SaveLoader;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;render(Z)V"))
 	private void afterLoadingScreenTick(CallbackInfo ci) {
-		ScreenEvents.afterTick(this.tickingScreen).invoker().afterTick(this.tickingScreen);
+		ScreenEvents.afterTick(this.papi$tickingScreen).invoker().afterTick(this.papi$tickingScreen);
 		// Finally set the currently ticking screen to null
-		this.tickingScreen = null;
+		this.papi$tickingScreen = null;
 	}
 }

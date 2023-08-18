@@ -14,13 +14,26 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.screenhandler;
+package net.fabricmc.fabric.mixin.loot;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.function.LootFunction;
 
-import net.fabricmc.fabric.api.screenhandler.v1.FabricScreenHandlerFactory;
+import java.util.List;
 
-@Mixin(NamedScreenHandlerFactory.class)
-public interface NamedScreenHandlerFactoryMixin extends FabricScreenHandlerFactory {}
+/**
+ * Accesses loot table fields for {@link net.fabricmc.fabric.api.loot.v2.FabricLootTableBuilder#copyOf(LootTable)}.
+ * These are normally available in the transitive access widener module.
+ */
+@Mixin(LootTable.class)
+public interface LootTableAccessor {
+	@Accessor(value = "f_79109_", remap = false)
+	List<LootPool> fabric_getPools();
+
+	@Accessor("functions")
+	LootFunction[] fabric_getFunctions();
+}

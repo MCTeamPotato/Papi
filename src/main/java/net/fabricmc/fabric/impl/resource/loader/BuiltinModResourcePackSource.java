@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.screenhandler;
+package net.fabricmc.fabric.impl.resource.loader;
 
-import org.spongepowered.asm.mixin.Mixin;
+import net.minecraft.resource.ResourcePackSource;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
-import net.minecraft.screen.NamedScreenHandlerFactory;
+public class BuiltinModResourcePackSource implements ResourcePackSource {
+    private final String modId;
 
-import net.fabricmc.fabric.api.screenhandler.v1.FabricScreenHandlerFactory;
+    public BuiltinModResourcePackSource(String modId) {
+        this.modId = modId;
+    }
 
-@Mixin(NamedScreenHandlerFactory.class)
-public interface NamedScreenHandlerFactoryMixin extends FabricScreenHandlerFactory {}
+    @Override
+    public Text decorate(Text packName) {
+        return Text.translatable("pack.nameAndSource", packName, Text.translatable("pack.source.builtinMod", modId)).formatted(Formatting.GRAY);
+    }
+}

@@ -35,7 +35,7 @@ abstract class MouseMixin implements MouseExtensions {
 	@Unique
 	private Double papi$horizontalScrollAmount;
 
-	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;onScreenMouseScrollPre(Lnet/minecraft/client/Mouse;Lnet/minecraft/client/gui/screen/Screen;D)Z"))
+	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;onScreenMouseScrollPre(Lnet/minecraft/client/Mouse;Lnet/minecraft/client/gui/screen/Screen;D)Z", shift = At.Shift.BEFORE))
 	private void beforeMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci) {
 		// Apply same calculations to horizontal scroll as vertical scroll amount has
 		this.papi$horizontalScrollAmount = this.client.options.getDiscreteMouseScroll().getValue() ? Math.signum(horizontal) : horizontal * this.client.options.getMouseWheelSensitivity().getValue();

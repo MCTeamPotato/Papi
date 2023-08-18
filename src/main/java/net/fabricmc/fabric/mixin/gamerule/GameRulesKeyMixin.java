@@ -29,15 +29,15 @@ import net.fabricmc.fabric.impl.gamerule.RuleKeyExtensions;
 public abstract class GameRulesKeyMixin implements RuleKeyExtensions {
 	@Unique
 	@Nullable
-	private CustomGameRuleCategory customCategory;
+	private CustomGameRuleCategory papi$customCategory;
 
 	@Override
 	public CustomGameRuleCategory fabric_getCustomCategory() {
-		return this.customCategory;
+		return this.papi$customCategory;
 	}
 
 	@Override
 	public void fabric_setCustomCategory(CustomGameRuleCategory customCategory) {
-		this.customCategory = customCategory;
+		this.papi$customCategory = customCategory;
 	}
 }
