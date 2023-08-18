@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ForgeHooksMixin {
     @Inject(method = "getAttributeModifiers", at = @At("RETURN"), cancellable = true)
     private static void hookGetAttributeModifiers(ItemStack item, EquipmentSlot slot, Multimap<EntityAttribute, EntityAttributeModifier> attributes, CallbackInfoReturnable<Multimap<EntityAttribute, EntityAttributeModifier>> cir) {
-        Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = LinkedHashMultimap.create(((FabricItem)item).getAttributeModifiers(item, slot));
+        Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = LinkedHashMultimap.create(((FabricItem)item.getItem()).getAttributeModifiers(item, slot));
         ModifyItemAttributeModifiersCallback.EVENT.invoker().modifyAttributeModifiers(item, slot, attributeModifiers);
         cir.setReturnValue(attributeModifiers);
     }

@@ -44,14 +44,14 @@ public class BrewingStandBlockEntityMixin {
 	}
 
 	@Redirect(method = "craft", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;hasCraftingRemainingItem()Z"))
-	private static boolean hasStackRecipeRemainder(Item instance) {
+	private static boolean hasStackRecipeRemainder(ItemStack stack) {
 		return !REMAINDER_STACK.get().isEmpty();
 	}
 
 	/**
 	 * Injected after the {@link Item#getRecipeRemainder} to replace the old remainder with are new one.
 	 */
-	@ModifyVariable(method = "craft", at = @At(value = "STORE"), index = 4)
+	@ModifyVariable(method = "craft", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getCraftingRemainingItem()Lnet/minecraft/item/ItemStack;", shift = At.Shift.AFTER))
 	private static ItemStack createStackRecipeRemainder(ItemStack old) {
 		ItemStack remainder = REMAINDER_STACK.get();
 		REMAINDER_STACK.remove();
