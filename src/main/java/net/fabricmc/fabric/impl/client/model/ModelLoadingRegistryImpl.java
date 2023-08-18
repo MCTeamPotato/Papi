@@ -24,9 +24,9 @@ import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.fml.loading.FMLLoader;
-import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,6 +37,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ModelLoadingRegistryImpl.class);
 	private static final boolean DEBUG_MODEL_LOADING = !FMLLoader.isProduction()
 			|| Boolean.parseBoolean(System.getProperty("fabric.debugModelLoading", "false"));
 
@@ -52,7 +53,6 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 		private final List<ModelResourceProvider> modelResourceProviders;
 		private final List<ExtraModelProvider> modelAppenders;
 		private ModelLoader loader;
-		private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
 
 		private LoaderInstance(ModelLoadingRegistryImpl i, ModelLoader loader, ResourceManager manager) {
 			this.logger = ModelLoadingRegistryImpl.LOGGER;
