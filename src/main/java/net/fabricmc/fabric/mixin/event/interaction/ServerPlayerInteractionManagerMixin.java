@@ -18,7 +18,6 @@ package net.fabricmc.fabric.mixin.event.interaction;
 
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.network.Packet;
@@ -75,7 +74,7 @@ public class ServerPlayerInteractionManagerMixin {
 	}
 
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onBroken(Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V"), method = "removeBlock", locals = LocalCapture.CAPTURE_FAILHARD)
-	private void onBlockBroken(BlockPos pos, boolean canHarvest, CallbackInfoReturnable<Boolean> cir, BlockState state, BlockEntity entity, Block block, boolean b1) {
+	private void onBlockBroken(BlockPos pos, boolean canHarvest, CallbackInfoReturnable<Boolean> cir, BlockState state, boolean b1) {
 		PlayerBlockBreakEvents.AFTER.invoker().afterBlockBreak(this.world, this.player, pos, state, this.world.getBlockEntity(pos));
 	}
 }

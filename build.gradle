@@ -21,7 +21,9 @@ loom {
     }
 }
 
-repositories {}
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"

@@ -1,5 +1,10 @@
 accessWidener   v2  named
 
+extendable    class    net/minecraft/recipe/Ingredient
+accessible    method    net/minecraft/recipe/Ingredient    <init>    (Ljava/util/stream/Stream;)V
+accessible    field    net/minecraft/recipe/Ingredient    matchingStacks    [Lnet/minecraft/item/ItemStack;
+accessible    field    net/minecraft/network/ClientConnection    channel    Lio/netty/channel/Channel;
+accessible    class    net/minecraft/client/render/chunk/ChunkRendererRegionBuilder$ClientChunk
 accessible	class	net/minecraft/screen/ScreenHandlerType$Factory
 accessible	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
 extendable	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
