@@ -16,19 +16,17 @@
 
 package net.fabricmc.fabric.api.recipe.v1.ingredient;
 
-import java.util.Objects;
-
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.AllIngredient;
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.AnyIngredient;
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.DifferenceIngredient;
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.NbtIngredient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.recipe.Ingredient;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.impl.recipe.ingredient.builtin.AllIngredient;
-import net.fabricmc.fabric.impl.recipe.ingredient.builtin.DifferenceIngredient;
-import net.fabricmc.fabric.impl.recipe.ingredient.builtin.NbtIngredient;
-import net.fabricmc.fabric.impl.recipe.ingredient.builtin.AnyIngredient;
+import java.util.Objects;
 
 /**
  * Factory methods for the custom ingredients directly provided by Fabric API.

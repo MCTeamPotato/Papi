@@ -16,14 +16,12 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import org.jetbrains.annotations.ApiStatus;
-
-import net.minecraft.nbt.NbtCompound;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
+import net.minecraft.nbt.NbtCompound;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * A storage that can store a single transfer variant at any given time.

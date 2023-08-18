@@ -16,11 +16,10 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import org.jetbrains.annotations.ApiStatus;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * A transfer variant storage view that contains a blank variant all the time (it's always empty), but may have a nonzero capacity.

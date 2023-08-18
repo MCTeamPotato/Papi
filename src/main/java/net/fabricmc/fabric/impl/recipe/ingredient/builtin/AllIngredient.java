@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.impl.recipe.ingredient.builtin;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AllIngredient extends CombinedIngredient {
 	public static final CustomIngredientSerializer<AllIngredient> SERIALIZER =

@@ -16,8 +16,10 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle;
 
-import java.util.Map;
-
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,11 +27,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import java.util.Map;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {

@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.transfer.v1.transaction.base;
 
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import org.jetbrains.annotations.ApiStatus;
-
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
-import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 
 /**
  * A base participant implementation that modifies itself during transactions,

@@ -16,13 +16,11 @@
 
 package net.fabricmc.fabric.impl.client.item;
 
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
-
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public final class ItemApiClientEventHooks {
 

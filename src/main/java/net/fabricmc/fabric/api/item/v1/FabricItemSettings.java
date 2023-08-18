@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.api.item.v1;
 
+import net.fabricmc.fabric.impl.item.FabricItemInternals;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Rarity;
-
-import net.fabricmc.fabric.impl.item.FabricItemInternals;
 
 /**
  * Fabric's version of Item.Settings. Adds additional methods and hooks

@@ -16,10 +16,13 @@
 
 package net.fabricmc.fabric.api.transfer.v1.item;
 
-import java.util.List;
-
-import org.jetbrains.annotations.ApiStatus;
-
+import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
+import net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SidedStorageBlockEntity;
+import net.fabricmc.fabric.impl.transfer.item.ComposterWrapper;
+import net.fabricmc.fabric.mixin.transfer.DoubleInventoryAccessor;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.InventoryProvider;
@@ -29,14 +32,9 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.ApiStatus;
 
-import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.SidedStorageBlockEntity;
-import net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage;
-import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
-import net.fabricmc.fabric.impl.transfer.item.ComposterWrapper;
-import net.fabricmc.fabric.mixin.transfer.DoubleInventoryAccessor;
+import java.util.List;
 
 /**
  * Access to {@link Storage Storage&lt;ItemVariant&gt;} instances.

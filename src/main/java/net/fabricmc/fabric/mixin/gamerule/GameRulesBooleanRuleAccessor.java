@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.mixin.gamerule;
 
-import java.util.function.BiConsumer;
-
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.GameRules;
+import java.util.function.BiConsumer;
 
 @Mixin(GameRules.BooleanRule.class)
 public interface GameRulesBooleanRuleAccessor {

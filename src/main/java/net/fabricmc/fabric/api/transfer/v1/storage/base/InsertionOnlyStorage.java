@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import java.util.Collections;
-import java.util.Iterator;
-
-import org.jetbrains.annotations.ApiStatus;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
+
+import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * A {@link Storage} that supports insertion, and not extraction. By default, it doesn't have any storage view either.

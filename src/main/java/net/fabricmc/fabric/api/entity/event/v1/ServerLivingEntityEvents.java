@@ -16,11 +16,10 @@
 
 package net.fabricmc.fabric.api.entity.event.v1;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 
 /**
  * Various server-side only events related to living entities.

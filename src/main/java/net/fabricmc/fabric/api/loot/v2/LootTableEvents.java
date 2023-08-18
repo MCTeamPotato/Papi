@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.api.loot.v2;
 
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootTable;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Events for manipulating loot tables.

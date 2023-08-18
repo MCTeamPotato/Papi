@@ -16,20 +16,18 @@
 
 package net.fabricmc.fabric.impl.gamerule;
 
-import static net.minecraft.server.command.CommandManager.literal;
-
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
-
+import net.fabricmc.fabric.api.gamerule.v1.rule.EnumRule;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.GameRules;
 
-import net.fabricmc.fabric.api.gamerule.v1.rule.EnumRule;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
+import static net.minecraft.server.command.CommandManager.literal;
 
 public final class EnumRuleType<E extends Enum<E>> extends GameRules.Type<EnumRule<E>> {
 	private final E[] supportedValues;

@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import org.jetbrains.annotations.ApiStatus;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * A {@link Storage} that supports extraction, and not insertion.

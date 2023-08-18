@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.mixin.client.keybinding;
 
-import java.util.Map;
-
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import java.util.Map;
 
 @Mixin(KeyBinding.class)
 public interface KeyBindingAccessor {

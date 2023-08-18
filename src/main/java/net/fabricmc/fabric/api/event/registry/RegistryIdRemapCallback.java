@@ -17,12 +17,10 @@
 package net.fabricmc.fabric.api.event.registry;
 
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
-
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.impl.registry.sync.ListenableRegistry;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 /**
  * The remapping process functions as follows:

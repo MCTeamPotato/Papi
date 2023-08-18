@@ -16,18 +16,6 @@
 
 package net.fabricmc.fabric.api.transfer.v1.context;
 
-import java.util.List;
-
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.util.Hand;
-
 import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage;
@@ -36,11 +24,17 @@ import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
-import net.fabricmc.fabric.impl.transfer.context.ConstantContainerItemContext;
-import net.fabricmc.fabric.impl.transfer.context.CreativeInteractionContainerItemContext;
-import net.fabricmc.fabric.impl.transfer.context.InitialContentsContainerItemContext;
-import net.fabricmc.fabric.impl.transfer.context.PlayerContainerItemContext;
-import net.fabricmc.fabric.impl.transfer.context.SingleSlotContainerItemContext;
+import net.fabricmc.fabric.impl.transfer.context.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.util.Hand;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * A context that allows an item-queried {@link Storage} implementation to interact with its containing inventory,

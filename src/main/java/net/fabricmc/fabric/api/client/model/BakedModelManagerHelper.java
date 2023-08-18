@@ -16,14 +16,12 @@
 
 package net.fabricmc.fabric.api.client.model;
 
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.impl.client.model.BakedModelManagerHooks;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.BakedModelManager;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.impl.client.model.BakedModelManagerHooks;
+import org.jetbrains.annotations.Nullable;
 
 public final class BakedModelManagerHelper {
 	/**

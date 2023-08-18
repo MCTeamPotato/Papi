@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.rendering.data.v1;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * {@link BlockRenderView}-extending interface to be used by {@code FabricBakedModel}

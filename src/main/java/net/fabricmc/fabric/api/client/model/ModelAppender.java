@@ -16,11 +16,11 @@
 
 package net.fabricmc.fabric.api.client.model;
 
-import java.util.function.Consumer;
-
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
+
+import java.util.function.Consumer;
 
 /**
  * @deprecated use {@link ExtraModelProvider}, which supports loading of plain {@link Identifier}s

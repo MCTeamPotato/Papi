@@ -16,12 +16,12 @@
 
 package net.fabricmc.fabric.impl.recipe.ingredient;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
+
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
 
 /**
  * Helper class to perform a shapeless recipe match when ingredients that require testing are involved.

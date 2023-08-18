@@ -16,36 +16,34 @@
 
 package net.fabricmc.fabric.mixin.registry.sync;
 
-import java.util.EnumSet;
-import java.util.Set;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-
-import net.minecraft.util.registry.Registry;
-
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
 import net.fabricmc.fabric.impl.registry.sync.FabricRegistry;
+import net.minecraft.util.registry.Registry;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 @Mixin(Registry.class)
 public abstract class RegistryMixin<T> implements RegistryAttributeHolder, FabricRegistry {
 	@Unique
-	private final EnumSet<RegistryAttribute> attributes = EnumSet.noneOf(RegistryAttribute.class);
+	private final EnumSet<RegistryAttribute> papi$attributes = EnumSet.noneOf(RegistryAttribute.class);
 
 	@Override
 	public RegistryAttributeHolder addAttribute(RegistryAttribute attribute) {
-		attributes.add(attribute);
+		papi$attributes.add(attribute);
 		return this;
 	}
 
 	@Override
 	public boolean hasAttribute(RegistryAttribute attribute) {
-		return attributes.contains(attribute);
+		return papi$attributes.contains(attribute);
 	}
 
 	@Override
 	public void build(Set<RegistryAttribute> attributes) {
-		this.attributes.addAll(attributes);
+		this.papi$attributes.addAll(attributes);
 	}
 }

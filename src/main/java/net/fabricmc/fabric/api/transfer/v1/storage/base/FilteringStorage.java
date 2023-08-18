@@ -16,16 +16,15 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import java.util.Iterator;
-import java.util.function.Supplier;
-
 import com.google.common.collect.Iterators;
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Iterator;
+import java.util.function.Supplier;
 
 /**
  * A base {@link Storage} implementation that delegates every call to another storage,

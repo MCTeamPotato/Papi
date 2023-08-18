@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.block.v1;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockRenderView;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * General-purpose Fabric-provided extensions for {@link BlockState}, matching the functionality provided in {@link FabricBlock}.

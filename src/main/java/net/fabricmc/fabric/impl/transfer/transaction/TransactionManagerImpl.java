@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.impl.transfer.transaction;
 
-import java.util.ArrayList;
-
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import java.util.ArrayList;
 
 public class TransactionManagerImpl {
 	public static final ThreadLocal<TransactionManagerImpl> MANAGERS = ThreadLocal.withInitial(TransactionManagerImpl::new);

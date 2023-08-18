@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.api.recipe.v1.ingredient;
 
-import java.util.List;
-
-import org.jetbrains.annotations.ApiStatus;
-
+import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import org.jetbrains.annotations.ApiStatus;
 
-import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl;
+import java.util.List;
 
 /**
  * Interface that modders can implement to create new behaviors for {@link Ingredient}s.

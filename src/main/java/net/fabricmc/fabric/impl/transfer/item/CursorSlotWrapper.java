@@ -16,14 +16,12 @@
 
 package net.fabricmc.fabric.impl.transfer.item;
 
-import java.util.Map;
-
 import com.google.common.collect.MapMaker;
-
+import net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 
-import net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage;
+import java.util.Map;
 
 /**
  * Wrapper around the cursor slot of a screen handler.

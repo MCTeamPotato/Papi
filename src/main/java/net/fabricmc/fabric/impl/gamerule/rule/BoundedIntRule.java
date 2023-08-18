@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.impl.gamerule.rule;
 
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-
-import net.minecraft.world.GameRules;
-
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.mixin.gamerule.GameRulesIntRuleAccessor;
+import net.minecraft.world.GameRules;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("DataFlowIssue")
 public final class BoundedIntRule extends GameRules.IntRule {

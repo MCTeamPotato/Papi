@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.advancement;
 
+import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
 import net.minecraft.advancement.criterion.Criterion;
 import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
 
 /**
  * Allows registering advancement criteria for triggers.

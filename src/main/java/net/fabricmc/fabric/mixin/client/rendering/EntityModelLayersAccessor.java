@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.mixin.client.rendering;
 
-import java.util.Set;
-
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
+import java.util.Set;
 
 @Mixin(EntityModelLayers.class)
 public interface EntityModelLayersAccessor {

@@ -16,15 +16,17 @@
 
 package net.fabricmc.fabric.mixin.registry.sync;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Map;
-
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.fabricmc.fabric.impl.registry.sync.RegistryMapSerializer;
+import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
+import net.fabricmc.fabric.impl.registry.sync.RemapException;
+import net.fabricmc.fabric.impl.registry.sync.RemappableRegistry;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtIo;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.DynamicRegistryManager;
+import net.minecraft.world.SaveProperties;
+import net.minecraft.world.level.storage.LevelStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Final;
@@ -36,17 +38,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtIo;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.DynamicRegistryManager;
-import net.minecraft.world.SaveProperties;
-import net.minecraft.world.level.storage.LevelStorage;
-
-import net.fabricmc.fabric.impl.registry.sync.RegistryMapSerializer;
-import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
-import net.fabricmc.fabric.impl.registry.sync.RemapException;
-import net.fabricmc.fabric.impl.registry.sync.RemappableRegistry;
+import java.io.*;
+import java.nio.file.Files;
+import java.util.Map;
 
 @Mixin(LevelStorage.Session.class)
 public class LevelStorageSessionMixin {
@@ -61,7 +55,7 @@ public class LevelStorageSessionMixin {
 
 	@Shadow
 	@Final
-	private LevelStorage.LevelSave directory;
+	LevelStorage.LevelSave directory;
 
 	@Unique
 	private boolean fabric_readIdMapFile(File file) throws IOException, RemapException {

@@ -16,24 +16,17 @@
 
 package net.fabricmc.fabric.impl.registry.sync.packet;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import com.google.common.base.Preconditions;
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A more optimized method to sync registry ids to client.

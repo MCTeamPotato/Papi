@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.mixin.transfer;
 
+import net.fabricmc.fabric.impl.transfer.item.SpecialLogicInventory;
+import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-
-import net.fabricmc.fabric.impl.transfer.item.SpecialLogicInventory;
 
 /**
  * Defer markDirty until the outer transaction close callback when setStack is called from an inventory wrapper.

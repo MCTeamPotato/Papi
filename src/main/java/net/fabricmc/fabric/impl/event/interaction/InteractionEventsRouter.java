@@ -16,17 +16,15 @@
 
 package net.fabricmc.fabric.impl.event.interaction;
 
-import net.minecraft.util.math.BlockPos;
+import net.fabricmc.fabric.api.block.BlockAttackInteractionAware;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.network.packet.s2c.play.BlockUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
-
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.block.BlockAttackInteractionAware;
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.loading.FMLLoader;
 
 public class InteractionEventsRouter {
 	public static void init() {

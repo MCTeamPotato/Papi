@@ -16,10 +16,10 @@
 
 package net.fabricmc.fabric.impl.recipe.ingredient;
 
-import java.util.Set;
-
 import net.minecraft.network.PacketEncoder;
 import net.minecraft.util.Identifier;
+
+import java.util.Set;
 
 /**
  * Implemented on {@link PacketEncoder} to store which custom ingredients the client supports.

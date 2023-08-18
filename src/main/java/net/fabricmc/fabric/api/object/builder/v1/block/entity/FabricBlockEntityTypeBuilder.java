@@ -16,17 +16,16 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.block.entity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.mojang.datafixers.types.Type;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Fabric's version of BlockEntityType.Builder with additional convenience methods.

@@ -16,21 +16,19 @@
 
 package net.fabricmc.fabric.mixin.client.rendering;
 
-import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.impl.client.rendering.EntityModelLayerImpl;
+import net.minecraft.client.model.TexturedModelData;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.EntityModels;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.client.model.TexturedModelData;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModels;
-
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.impl.client.rendering.EntityModelLayerImpl;
+import java.util.Map;
 
 @Mixin(EntityModels.class)
 abstract class EntityModelsMixin {

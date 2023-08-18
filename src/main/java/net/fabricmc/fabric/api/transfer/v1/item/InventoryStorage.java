@@ -16,22 +16,20 @@
 
 package net.fabricmc.fabric.api.transfer.v1.item;
 
-import java.util.List;
-import java.util.Objects;
-
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
+import net.fabricmc.fabric.impl.transfer.item.InventoryStorageImpl;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
-import net.fabricmc.fabric.impl.transfer.item.InventoryStorageImpl;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * An implementation of {@code Storage<ItemVariant>} for vanilla's {@link Inventory}, {@link SidedInventory} and {@link PlayerInventory}.

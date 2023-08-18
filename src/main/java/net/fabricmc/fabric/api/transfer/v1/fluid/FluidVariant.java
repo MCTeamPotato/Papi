@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.api.transfer.v1.fluid;
 
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
+import net.fabricmc.fabric.impl.transfer.fluid.FluidVariantImpl;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-
-import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
-import net.fabricmc.fabric.impl.transfer.fluid.FluidVariantImpl;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * An immutable association of a still fluid and an optional NBT tag.

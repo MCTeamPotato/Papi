@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.mixin.loot;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
-
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.LootFunction;
 import net.minecraft.loot.provider.number.LootNumberProvider;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
 /**
  * Accesses loot pool fields for {@link net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder#copyOf(LootPool)}.

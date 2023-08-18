@@ -16,14 +16,12 @@
 
 package net.fabricmc.fabric.api.client.rendering.v1;
 
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.impl.client.rendering.ColorProviderRegistryImpl;
 import net.minecraft.block.Block;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.item.ItemConvertible;
-
-import net.fabricmc.fabric.impl.client.rendering.ColorProviderRegistryImpl;
+import org.jetbrains.annotations.Nullable;
 
 public interface ColorProviderRegistry<T, Provider> {
 	ColorProviderRegistry<ItemConvertible, ItemColorProvider> ITEM = ColorProviderRegistryImpl.ITEM;

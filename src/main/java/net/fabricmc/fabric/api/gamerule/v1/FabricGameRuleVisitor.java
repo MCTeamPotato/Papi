@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.gamerule.v1;
 
-import net.minecraft.world.GameRules;
-
 import net.fabricmc.fabric.api.gamerule.v1.rule.DoubleRule;
 import net.fabricmc.fabric.api.gamerule.v1.rule.EnumRule;
+import net.minecraft.world.GameRules;
 
 /**
  * An extended game rule visitor which supports Fabric's own rule types.

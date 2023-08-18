@@ -16,9 +16,8 @@
 
 package net.fabricmc.fabric.impl.item;
 
-import org.jetbrains.annotations.ApiStatus;
-
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
 public class RecipeRemainderHandler {

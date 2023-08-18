@@ -16,17 +16,15 @@
 
 package net.fabricmc.fabric.api.event.player;
 
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Callback for left-clicking ("attacking") an entity.

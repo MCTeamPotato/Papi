@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import org.jetbrains.annotations.ApiStatus;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Base implementation of a fixed-capacity "continuous" storage for item-provided storage APIs.

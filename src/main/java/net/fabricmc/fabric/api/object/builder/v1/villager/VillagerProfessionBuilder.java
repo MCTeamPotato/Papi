@@ -16,13 +16,7 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.villager;
 
-import static com.google.common.base.Preconditions.checkState;
-
-import java.util.function.Predicate;
-
 import com.google.common.collect.ImmutableSet;
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
@@ -33,6 +27,11 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Predicate;
+
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Allows for the creation of new {@link VillagerProfession}s.

@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.command;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import net.fabricmc.fabric.api.command.v2.FabricEntitySelectorReader;
+import net.minecraft.command.EntitySelectorReader;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-import net.minecraft.command.EntitySelectorReader;
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.command.v2.FabricEntitySelectorReader;
+import java.util.HashSet;
+import java.util.Set;
 
 @Mixin(EntitySelectorReader.class)
 public class EntitySelectorReaderMixin implements FabricEntitySelectorReader {

@@ -18,21 +18,19 @@ package net.fabricmc.fabric.mixin.recipe.ingredient;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
+import net.fabricmc.fabric.api.recipe.v1.ingredient.FabricIngredient;
+import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl;
+import net.fabricmc.fabric.impl.recipe.ingredient.builtin.AnyIngredient;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-
-import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
-import net.fabricmc.fabric.api.recipe.v1.ingredient.FabricIngredient;
-import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl;
-import net.fabricmc.fabric.impl.recipe.ingredient.builtin.AnyIngredient;
 
 @Mixin(Ingredient.class)
 public class IngredientMixin implements FabricIngredient {

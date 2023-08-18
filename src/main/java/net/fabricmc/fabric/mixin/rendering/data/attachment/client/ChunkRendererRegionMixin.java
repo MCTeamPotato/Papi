@@ -17,13 +17,11 @@
 package net.fabricmc.fabric.mixin.rendering.data.attachment.client;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import org.spongepowered.asm.mixin.Mixin;
-
-import net.minecraft.client.render.chunk.ChunkRendererRegion;
-import net.minecraft.util.math.BlockPos;
-
 import net.fabricmc.fabric.api.rendering.data.v1.RenderAttachedBlockView;
 import net.fabricmc.fabric.impl.rendering.data.attachment.RenderDataObjectConsumer;
+import net.minecraft.client.render.chunk.ChunkRendererRegion;
+import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(ChunkRendererRegion.class)

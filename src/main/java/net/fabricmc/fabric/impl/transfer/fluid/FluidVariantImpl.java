@@ -16,12 +16,8 @@
 
 package net.fabricmc.fabric.impl.transfer.fluid;
 
-import java.util.Objects;
-
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.Papi;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -29,8 +25,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import java.util.Objects;
 
 public class FluidVariantImpl implements FluidVariant {
 	public static FluidVariant of(Fluid fluid, @Nullable NbtCompound nbt) {
@@ -57,8 +54,6 @@ public class FluidVariantImpl implements FluidVariant {
 			return new FluidVariantImpl(fluid, nbt);
 		}
 	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-transfer-api-v1/fluid");
 
 	private final Fluid fluid;
 	private final @Nullable NbtCompound nbt;
@@ -103,7 +98,7 @@ public class FluidVariantImpl implements FluidVariant {
 			NbtCompound nbt = compound.contains("tag") ? compound.getCompound("tag") : null;
 			return of(fluid, nbt);
 		} catch (RuntimeException runtimeException) {
-			LOGGER.debug("Tried to load an invalid FluidVariant from NBT: {}", compound, runtimeException);
+			Papi.LOGGER.debug("Tried to load an invalid FluidVariant from NBT: {}", compound, runtimeException);
 			return FluidVariant.blank();
 		}
 	}

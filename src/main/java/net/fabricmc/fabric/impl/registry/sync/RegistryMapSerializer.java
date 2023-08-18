@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.impl.registry.sync;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class RegistryMapSerializer {
 	public static final int VERSION = 1;

@@ -16,18 +16,13 @@
 
 package net.fabricmc.fabric.impl.networking;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.util.Identifier;
 
 public final class GlobalReceiverRegistry<H> {
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();

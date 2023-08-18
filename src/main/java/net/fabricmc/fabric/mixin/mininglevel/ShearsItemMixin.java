@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.mininglevel;
 
+import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
-
-import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
 
 /**
  * Adds support for {@link FabricMineableTags#SHEARS_MINEABLE}.

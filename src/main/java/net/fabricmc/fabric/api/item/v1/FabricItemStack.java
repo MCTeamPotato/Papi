@@ -18,7 +18,6 @@ package net.fabricmc.fabric.api.item.v1;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.common.extensions.IForgeItemStack;
 
 /*

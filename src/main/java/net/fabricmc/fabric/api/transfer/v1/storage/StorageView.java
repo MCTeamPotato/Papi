@@ -16,9 +16,8 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage;
 
-import org.jetbrains.annotations.ApiStatus;
-
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * A view of a single stored resource in a {@link Storage}, for use with {@link Storage#iterator} or {@link Storage#exactView}.

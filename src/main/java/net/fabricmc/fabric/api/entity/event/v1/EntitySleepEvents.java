@@ -16,8 +16,8 @@
 
 package net.fabricmc.fabric.api.entity.event.v1;
 
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,9 +25,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Events about the sleep of {@linkplain LivingEntity living entities}.

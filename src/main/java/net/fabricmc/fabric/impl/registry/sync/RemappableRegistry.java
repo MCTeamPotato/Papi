@@ -17,7 +17,6 @@
 package net.fabricmc.fabric.impl.registry.sync;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-
 import net.minecraft.util.Identifier;
 
 public interface RemappableRegistry {

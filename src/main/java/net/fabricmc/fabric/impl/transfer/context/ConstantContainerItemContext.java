@@ -16,15 +16,15 @@
 
 package net.fabricmc.fabric.impl.transfer.context;
 
-import java.util.Collections;
-import java.util.List;
-
 import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+
+import java.util.Collections;
+import java.util.List;
 
 public class ConstantContainerItemContext implements ContainerItemContext {
 	private final SingleVariantStorage<ItemVariant> backingSlot = new SingleVariantStorage<>() {

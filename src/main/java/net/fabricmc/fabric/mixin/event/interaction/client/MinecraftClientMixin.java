@@ -16,15 +16,10 @@
 
 package net.fabricmc.fabric.mixin.event.interaction.client;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
+import net.fabricmc.fabric.api.event.client.player.ClientPickBlockApplyCallback;
+import net.fabricmc.fabric.api.event.client.player.ClientPickBlockCallback;
+import net.fabricmc.fabric.api.event.client.player.ClientPickBlockGatherCallback;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -40,11 +35,14 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
-
-import net.fabricmc.fabric.api.event.client.player.ClientPickBlockApplyCallback;
-import net.fabricmc.fabric.api.event.client.player.ClientPickBlockCallback;
-import net.fabricmc.fabric.api.event.client.player.ClientPickBlockGatherCallback;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {

@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.client.model;
 
-import java.util.Map;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-
+import net.fabricmc.fabric.impl.client.model.BakedModelManagerHooks;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.BakedModelManager;
 import net.minecraft.util.Identifier;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
-import net.fabricmc.fabric.impl.client.model.BakedModelManagerHooks;
+import java.util.Map;
 
 @Mixin(BakedModelManager.class)
 public class BakedModelManagerMixin implements BakedModelManagerHooks {

@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.util.math.Direction;
-
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <b>Optional</b> helper class that can be implemented on block entities that wish to provide a {@linkplain FluidStorage#SIDED sided fluid storage}

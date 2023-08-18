@@ -16,12 +16,6 @@
 
 package net.fabricmc.fabric.api.transfer.v1.fluid.base;
 
-import java.util.function.Function;
-
-import org.jetbrains.annotations.ApiStatus;
-
-import net.minecraft.item.Item;
-
 import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
@@ -29,6 +23,10 @@ import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.ExtractionOnlyStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.minecraft.item.Item;
+import org.jetbrains.annotations.ApiStatus;
+
+import java.util.function.Function;
 
 /**
  * Base implementation of a fluid storage for a full item.

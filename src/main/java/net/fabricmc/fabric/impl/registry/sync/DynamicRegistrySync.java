@@ -17,17 +17,11 @@
 package net.fabricmc.fabric.impl.registry.sync;
 
 import com.mojang.serialization.Lifecycle;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.DynamicRegistryManager;
-import net.minecraft.util.registry.MutableRegistry;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.mixin.registry.sync.RegistryAccessor;
+import net.minecraft.util.registry.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handles synchronising changes to the built-in registries into the dynamic registry manager's template manager,

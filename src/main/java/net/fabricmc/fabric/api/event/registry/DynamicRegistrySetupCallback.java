@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.event.registry;
 
-import net.minecraft.util.registry.DynamicRegistryManager;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.util.registry.DynamicRegistryManager;
 
 /**
  * This event gets triggered when a new {@link DynamicRegistryManager} gets created, but before it gets filled.

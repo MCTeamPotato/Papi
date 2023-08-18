@@ -16,6 +16,12 @@
 
 package net.fabricmc.fabric.mixin.networking.client;
 
+import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
+import net.fabricmc.fabric.impl.networking.client.ClientLoginNetworkAddon;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientLoginNetworkHandler;
+import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,14 +29,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientLoginNetworkHandler;
-import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
-import net.minecraft.text.Text;
-
-import net.fabricmc.fabric.impl.networking.NetworkHandlerExtensions;
-import net.fabricmc.fabric.impl.networking.client.ClientLoginNetworkAddon;
 
 @Mixin(ClientLoginNetworkHandler.class)
 abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtensions {

@@ -16,9 +16,10 @@
 
 package net.fabricmc.fabric.mixin.object.builder;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeRegistry;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -27,10 +28,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.DefaultAttributeRegistry;
+import java.util.HashMap;
+import java.util.Map;
 
 @Mixin(DefaultAttributeRegistry.class)
 public abstract class DefaultAttributeRegistryMixin {

@@ -16,9 +16,9 @@
 
 package net.fabricmc.fabric.api.client.texture;
 
-import java.util.Set;
-
 import net.minecraft.util.Identifier;
+
+import java.util.Set;
 
 /**
  * Implement this interface on a Sprite to declare additional dependencies

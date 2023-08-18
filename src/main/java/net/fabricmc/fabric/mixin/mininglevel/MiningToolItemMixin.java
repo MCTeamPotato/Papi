@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.mininglevel;
 
+import net.fabricmc.fabric.api.mininglevel.v1.MiningLevelManager;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.MiningToolItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
-import net.minecraft.block.BlockState;
-import net.minecraft.item.MiningToolItem;
-
-import net.fabricmc.fabric.api.mininglevel.v1.MiningLevelManager;
 
 @Mixin(MiningToolItem.class)
 abstract class MiningToolItemMixin {

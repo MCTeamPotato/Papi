@@ -16,13 +16,13 @@
 
 package net.fabricmc.fabric.api.screenhandler.v1;
 
-import java.util.Objects;
-
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
+
+import java.util.Objects;
 
 /**
  * A {@link ScreenHandlerType} for an extended screen handler that

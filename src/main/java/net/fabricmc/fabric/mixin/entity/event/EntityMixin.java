@@ -16,17 +16,15 @@
 
 package net.fabricmc.fabric.mixin.entity.event;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
-
-import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
 
 @Mixin(Entity.class)
 abstract class EntityMixin {

@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.mixin.entity.event;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.minecraft.server.PlayerManager;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.server.PlayerManager;
-import net.minecraft.server.network.ServerPlayerEntity;
-
-import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 
 @Mixin(PlayerManager.class)
 abstract class PlayerManagerMixin {

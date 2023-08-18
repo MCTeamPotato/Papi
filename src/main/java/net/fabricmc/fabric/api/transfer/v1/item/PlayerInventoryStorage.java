@@ -16,18 +16,16 @@
 
 package net.fabricmc.fabric.api.transfer.v1.item;
 
-import org.jetbrains.annotations.ApiStatus;
-
+import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.fabricmc.fabric.impl.transfer.item.CursorSlotWrapper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.Hand;
-
-import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
-import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
-import net.fabricmc.fabric.impl.transfer.item.CursorSlotWrapper;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * A {@code Storage<ItemVariant>} implementation for a {@link PlayerInventory}.

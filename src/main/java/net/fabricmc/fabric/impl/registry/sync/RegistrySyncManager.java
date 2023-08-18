@@ -16,6 +16,30 @@
 
 package net.fabricmc.fabric.impl.registry.sync;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Sets;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import it.unimi.dsi.fastutil.ints.IntSet;
+import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
+import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.impl.registry.sync.packet.DirectRegistryPacketHandler;
+import net.fabricmc.fabric.impl.registry.sync.packet.NbtRegistryPacketHandler;
+import net.fabricmc.fabric.impl.registry.sync.packet.RegistryPacketHandler;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.thread.ThreadExecutor;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,32 +51,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
-
-import com.google.common.base.Joiner;
-import com.google.common.collect.Sets;
-import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import it.unimi.dsi.fastutil.ints.IntSet;
-import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.thread.ThreadExecutor;
-
-import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
-import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.impl.registry.sync.packet.DirectRegistryPacketHandler;
-import net.fabricmc.fabric.impl.registry.sync.packet.NbtRegistryPacketHandler;
-import net.fabricmc.fabric.impl.registry.sync.packet.RegistryPacketHandler;
 
 public final class RegistrySyncManager {
 	public static final boolean DEBUG = Boolean.getBoolean("fabric.registry.debug");

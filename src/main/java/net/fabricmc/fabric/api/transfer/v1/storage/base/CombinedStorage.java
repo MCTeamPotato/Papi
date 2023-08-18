@@ -16,16 +16,15 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
-
-import org.jetbrains.annotations.ApiStatus;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import org.jetbrains.annotations.ApiStatus;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * A {@link Storage} wrapping multiple storages.

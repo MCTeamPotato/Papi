@@ -16,22 +16,20 @@
 
 package net.fabricmc.fabric.impl.client.rendering;
 
-import java.util.IdentityHashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.client.render.DimensionEffects;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
-
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry.CloudRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry.SkyRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry.WeatherRenderer;
 import net.fabricmc.fabric.mixin.client.rendering.DimensionEffectsAccessor;
+import net.minecraft.client.render.DimensionEffects;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public final class DimensionRenderingRegistryImpl {
 	private static final Map<RegistryKey<World>, SkyRenderer> SKY_RENDERERS = new IdentityHashMap<>();

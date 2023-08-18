@@ -16,19 +16,17 @@
 
 package net.fabricmc.fabric.mixin.item;
 
+import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
+import net.fabricmc.fabric.impl.item.ItemExtensions;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
-import net.fabricmc.fabric.impl.item.ItemExtensions;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {

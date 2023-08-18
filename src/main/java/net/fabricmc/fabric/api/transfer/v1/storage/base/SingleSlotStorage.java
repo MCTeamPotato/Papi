@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage.base;
 
-import java.util.Iterator;
-
-import org.jetbrains.annotations.ApiStatus;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.impl.transfer.TransferApiImpl;
+import org.jetbrains.annotations.ApiStatus;
+
+import java.util.Iterator;
 
 /**
  * A storage that is also its only storage view.

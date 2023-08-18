@@ -16,10 +16,7 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.world.poi;
 
-import java.util.Set;
-
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Identifier;
@@ -28,6 +25,8 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.poi.PointOfInterest;
 import net.minecraft.world.poi.PointOfInterestType;
 import net.minecraft.world.poi.PointOfInterestTypes;
+
+import java.util.Set;
 
 /**
  * This class provides utilities to create a {@link PointOfInterestType}.

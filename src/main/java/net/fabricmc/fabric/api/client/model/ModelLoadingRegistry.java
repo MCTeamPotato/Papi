@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.client.model;
 
-import java.util.function.Function;
-
+import net.fabricmc.fabric.impl.client.model.ModelLoadingRegistryImpl;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.fabric.impl.client.model.ModelLoadingRegistryImpl;
+import java.util.function.Function;
 
 public interface ModelLoadingRegistry {
 	ModelLoadingRegistry INSTANCE = new ModelLoadingRegistryImpl();

@@ -16,11 +16,9 @@
 
 package net.fabricmc.fabric.mixin.rendering.data.attachment;
 
-import org.spongepowered.asm.mixin.Mixin;
-
-import net.minecraft.block.entity.BlockEntity;
-
 import net.fabricmc.fabric.api.rendering.data.v1.RenderAttachmentBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BlockEntity.class)
 public class BlockEntityMixin implements RenderAttachmentBlockEntity {

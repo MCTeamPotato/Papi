@@ -16,11 +16,7 @@
 
 package net.fabricmc.fabric.api.lookup.v1.block;
 
-import java.util.function.BiFunction;
-
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.impl.lookup.block.BlockApiLookupImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -28,8 +24,10 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.impl.lookup.block.BlockApiLookupImpl;
+import java.util.function.BiFunction;
 
 /**
  * An object that allows retrieving APIs from blocks in a world.

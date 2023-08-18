@@ -16,12 +16,8 @@
 
 package net.fabricmc.fabric.impl.transfer.item;
 
-import java.util.Objects;
-
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.Papi;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -29,8 +25,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import java.util.Objects;
 
 public class ItemVariantImpl implements ItemVariant {
 	public static ItemVariant of(Item item, @Nullable NbtCompound tag) {
@@ -43,8 +40,6 @@ public class ItemVariantImpl implements ItemVariant {
 			return new ItemVariantImpl(item, tag);
 		}
 	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-transfer-api-v1/item");
 
 	private final Item item;
 	private final @Nullable NbtCompound nbt;
@@ -94,7 +89,7 @@ public class ItemVariantImpl implements ItemVariant {
 			NbtCompound aTag = tag.contains("tag") ? tag.getCompound("tag") : null;
 			return of(item, aTag);
 		} catch (RuntimeException runtimeException) {
-			LOGGER.debug("Tried to load an invalid ItemVariant from NBT: {}", tag, runtimeException);
+			Papi.LOGGER.debug("Tried to load an invalid ItemVariant from NBT: {}", tag, runtimeException);
 			return ItemVariant.blank();
 		}
 	}

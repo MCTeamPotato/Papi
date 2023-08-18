@@ -16,19 +16,18 @@
 
 package net.fabricmc.fabric.api.client.itemgroup;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
+import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 
-import net.fabricmc.fabric.impl.item.group.ItemGroupExtensions;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * A builder for {@link ItemGroup}. Item groups are used to group items in the creative

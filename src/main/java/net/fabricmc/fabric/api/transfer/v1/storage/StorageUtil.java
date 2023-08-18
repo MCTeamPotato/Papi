@@ -16,21 +16,19 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Predicate;
-
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.inventory.Inventory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.util.math.MathHelper;
-
 import net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * Helper functions to work with {@link Storage}s.

@@ -16,13 +16,11 @@
 
 package net.fabricmc.fabric.mixin.transfer;
 
-import org.spongepowered.asm.mixin.Mixin;
-
-import net.minecraft.item.Item;
-
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.impl.transfer.item.ItemVariantCache;
 import net.fabricmc.fabric.impl.transfer.item.ItemVariantImpl;
+import net.minecraft.item.Item;
+import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 /**

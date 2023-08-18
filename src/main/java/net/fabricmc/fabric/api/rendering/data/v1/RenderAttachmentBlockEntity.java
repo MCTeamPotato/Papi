@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.rendering.data.v1;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.BlockRenderView;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Interface for {@link BlockEntity}s which provide dynamic model state data.

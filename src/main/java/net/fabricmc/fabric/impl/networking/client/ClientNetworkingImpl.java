@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -121,7 +122,7 @@ public final class ClientNetworkingImpl {
 			}
 
 			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
-			NetworkingImpl.LOGGER.debug("Received accepted channels from the server");
+			Papi.LOGGER.debug("Received accepted channels from the server");
 
 			PacketByteBuf response = PacketByteBufs.create();
 			Collection<Identifier> channels = ClientPlayNetworking.getGlobalReceivers();
@@ -131,7 +132,7 @@ public final class ClientNetworkingImpl {
 				response.writeIdentifier(id);
 			}
 
-			NetworkingImpl.LOGGER.debug("Sent accepted channels to the server");
+			Papi.LOGGER.debug("Sent accepted channels to the server");
 			return CompletableFuture.completedFuture(response);
 		});
 	}

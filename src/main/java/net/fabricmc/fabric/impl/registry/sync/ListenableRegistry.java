@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.impl.registry.sync;
 
-import net.minecraft.util.registry.Registry;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryRemovedCallback;
 import net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback;
+import net.minecraft.util.registry.Registry;
 
 public interface ListenableRegistry<T> {
 	Event<RegistryEntryAddedCallback<T>> fabric_getAddObjectEvent();

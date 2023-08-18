@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.villager;
 
+import net.fabricmc.fabric.Papi;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.village.VillagerType;
 import net.minecraft.world.biome.Biome;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
@@ -44,8 +43,6 @@ import java.util.Objects;
  */
 @Deprecated
 public final class VillagerTypeHelper {
-	private static final Logger LOGGER = LoggerFactory.getLogger(VillagerTypeHelper.class);
-
 	/**
 	 * Creates and registers a new villager type.
 	 *
@@ -68,7 +65,7 @@ public final class VillagerTypeHelper {
 		Objects.requireNonNull(villagerType, "Villager type cannot be null");
 
 		if (VillagerType.BIOME_TO_TYPE.put(biomeKey, villagerType) != null) {
-			LOGGER.debug("Overriding existing Biome -> VillagerType registration for Biome {}", biomeKey.getValue().toString());
+			Papi.LOGGER.debug("Overriding existing Biome -> VillagerType registration for Biome {}", biomeKey.getValue().toString());
 		}
 	}
 

@@ -17,6 +17,12 @@
 package net.fabricmc.fabric.mixin.networking.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.font.MultilineText;
+import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.screen.DisconnectedScreen;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.math.MathHelper;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,13 +31,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.font.MultilineText;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.screen.DisconnectedScreen;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.MathHelper;
 
 /**
  * This mixin makes disconnect reason text scrollable.

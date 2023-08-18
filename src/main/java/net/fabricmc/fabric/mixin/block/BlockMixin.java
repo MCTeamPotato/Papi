@@ -16,11 +16,9 @@
 
 package net.fabricmc.fabric.mixin.block;
 
-import org.spongepowered.asm.mixin.Mixin;
-
-import net.minecraft.block.Block;
-
 import net.fabricmc.fabric.api.block.v1.FabricBlock;
+import net.minecraft.block.Block;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Block.class)
 public class BlockMixin implements FabricBlock { }

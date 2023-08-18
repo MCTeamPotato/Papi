@@ -1,7 +1,6 @@
 package net.fabricmc.fabric.mixin.registry.sync;
 
 import net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit;
-
 import net.minecraftforge.registries.RegistryManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

@@ -16,14 +16,15 @@
 
 package net.fabricmc.fabric.impl.transfer.item;
 
-import static net.minecraft.util.math.Direction.UP;
-
-import java.util.Map;
-import java.util.Objects;
-
 import com.google.common.collect.MapMaker;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.ExtractionOnlyStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.InsertionOnlyStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.Items;
@@ -33,15 +34,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
-import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.ExtractionOnlyStorage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.InsertionOnlyStorage;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
-import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
-import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
+import java.util.Map;
+import java.util.Objects;
+
+import static net.minecraft.util.math.Direction.UP;
 
 /**
  * Implementation of {@code Storage<ItemVariant>} for composters.

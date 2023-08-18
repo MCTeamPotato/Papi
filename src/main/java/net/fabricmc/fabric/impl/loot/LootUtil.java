@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.impl.loot;
 
-import net.minecraft.resource.Resource;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourcePackSource;
-import net.minecraft.util.Identifier;
-
 import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.fabricmc.fabric.impl.resource.loader.BuiltinModResourcePackSource;
 import net.fabricmc.fabric.impl.resource.loader.FabricResource;
 import net.fabricmc.fabric.impl.resource.loader.ModResourcePackCreator;
+import net.minecraft.resource.Resource;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourcePackSource;
+import net.minecraft.util.Identifier;
 
 public final class LootUtil {
 	public static LootTableSource determineSource(Identifier lootTableId, ResourceManager resourceManager) {

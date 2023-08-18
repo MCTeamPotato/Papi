@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.client.model;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.client.render.model.UnbakedModel;
 import net.minecraft.client.util.ModelIdentifier;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Interface for model variant providers.

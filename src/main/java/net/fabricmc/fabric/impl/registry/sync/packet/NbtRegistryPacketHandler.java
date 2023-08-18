@@ -16,18 +16,16 @@
 
 package net.fabricmc.fabric.impl.registry.sync.packet;
 
-import java.util.Map;
-
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.impl.registry.sync.RegistryMapSerializer;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.impl.registry.sync.RegistryMapSerializer;
+import java.util.Map;
 
 /**
  * A method to sync registry ids using {@link NbtCompound} and {@link PacketByteBuf#writeNbt}.

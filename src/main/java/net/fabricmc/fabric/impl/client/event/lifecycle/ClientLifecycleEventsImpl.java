@@ -16,11 +16,10 @@
 
 package net.fabricmc.fabric.impl.client.event.lifecycle;
 
-import net.minecraft.block.entity.BlockEntity;
-
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.impl.event.lifecycle.LoadedChunksCache;
+import net.minecraft.block.entity.BlockEntity;
 
 public final class ClientLifecycleEventsImpl {
 	public static void clientInit() {

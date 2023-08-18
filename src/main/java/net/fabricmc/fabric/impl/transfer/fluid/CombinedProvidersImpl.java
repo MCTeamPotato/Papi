@@ -16,14 +16,6 @@
 
 package net.fabricmc.fabric.impl.transfer.fluid;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
@@ -32,6 +24,12 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CombinedProvidersImpl {
 	public static Event<FluidStorage.CombinedItemApiProvider> createEvent(boolean invokeFallback) {

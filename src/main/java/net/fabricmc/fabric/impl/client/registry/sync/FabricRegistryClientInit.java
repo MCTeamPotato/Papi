@@ -16,14 +16,12 @@
 
 package net.fabricmc.fabric.impl.client.registry.sync;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import net.minecraft.text.Text;
-
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
 import net.fabricmc.fabric.impl.registry.sync.packet.RegistryPacketHandler;
+import net.minecraft.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FabricRegistryClientInit {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FabricRegistryClientInit.class);

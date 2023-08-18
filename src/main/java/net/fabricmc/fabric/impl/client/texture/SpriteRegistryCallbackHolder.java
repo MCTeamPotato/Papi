@@ -16,17 +16,16 @@
 
 package net.fabricmc.fabric.impl.client.texture;
 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
+import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
+import net.minecraft.util.Identifier;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 
 public final class SpriteRegistryCallbackHolder {
 	public static final Event<ClientSpriteRegistryCallback> EVENT_GLOBAL = createEvent();

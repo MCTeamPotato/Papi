@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.trade;
 
-import java.util.List;
-import java.util.function.Consumer;
-
+import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
 
-import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Utilities to help with registration of trade offers.

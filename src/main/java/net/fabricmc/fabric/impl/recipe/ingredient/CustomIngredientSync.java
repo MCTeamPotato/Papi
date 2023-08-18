@@ -20,12 +20,10 @@ import io.netty.channel.ChannelHandler;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
-import net.fabricmc.fabric.impl.recipe.ingredient.client.CustomIngredientSyncClient;
 import net.fabricmc.fabric.mixin.recipe.ingredient.PacketEncoderMixin;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.PacketEncoder;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.fml.loading.FMLLoader;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;

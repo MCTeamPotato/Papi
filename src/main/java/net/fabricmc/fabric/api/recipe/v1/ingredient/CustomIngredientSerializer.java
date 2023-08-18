@@ -18,12 +18,10 @@ package net.fabricmc.fabric.api.recipe.v1.ingredient;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Serializer for a {@link CustomIngredient}.

@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.api.transfer.v1.storage;
 
-import java.util.Objects;
-
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
+import java.util.Objects;
 
 /**
  * An immutable association of an immutable object instance (for example {@code Item} or {@code Fluid}) and an optional NBT tag.

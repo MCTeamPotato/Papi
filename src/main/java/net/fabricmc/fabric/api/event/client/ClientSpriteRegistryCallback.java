@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.api.event.client;
 
-import java.util.Map;
-import java.util.function.Consumer;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.impl.client.texture.SpriteRegistryCallbackHolder;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.impl.client.texture.SpriteRegistryCallbackHolder;
+import java.util.Map;
+import java.util.function.Consumer;
 
 public interface ClientSpriteRegistryCallback {
 	/**

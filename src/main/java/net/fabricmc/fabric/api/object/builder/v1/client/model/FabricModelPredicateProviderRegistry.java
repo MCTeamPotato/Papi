@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.client.model;
 
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.client.item.UnclampedModelPredicateProvider;
-
 import net.fabricmc.fabric.mixin.object.builder.client.ModelPredicateProviderRegistryAccessor;
 import net.fabricmc.fabric.mixin.object.builder.client.ModelPredicateProviderRegistrySpecificAccessor;
+import net.minecraft.client.item.UnclampedModelPredicateProvider;
+import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
 
 /**
  * Allows registering model predicate providers for item models.

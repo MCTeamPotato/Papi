@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.entity.event.v1;
 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 
 /**
  * Events related to elytra flight for living entities. Elytra flight is also known as "fall flying".

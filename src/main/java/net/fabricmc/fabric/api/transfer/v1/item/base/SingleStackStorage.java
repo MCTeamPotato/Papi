@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.api.transfer.v1.item.base;
 
-import org.jetbrains.annotations.ApiStatus;
-
-import net.minecraft.item.ItemStack;
-
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * An item variant storage backed by an {@link ItemStack}.

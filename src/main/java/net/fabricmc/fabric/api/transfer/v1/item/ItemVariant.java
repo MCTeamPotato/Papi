@@ -16,18 +16,16 @@
 
 package net.fabricmc.fabric.api.transfer.v1.item;
 
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
+import net.fabricmc.fabric.impl.transfer.item.ItemVariantImpl;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-
-import net.fabricmc.fabric.impl.transfer.item.ItemVariantImpl;
-import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * An immutable count-less ItemStack, i.e. an immutable association of an item and an optional NBT compound tag.
