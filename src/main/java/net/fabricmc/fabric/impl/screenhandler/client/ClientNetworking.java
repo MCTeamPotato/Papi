@@ -16,7 +16,6 @@
 
 package net.fabricmc.fabric.impl.screenhandler.client;
 
-import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.fabricmc.fabric.impl.screenhandler.Networking;
@@ -30,8 +29,12 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ClientNetworking {
+	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-screen-handler-api-v1/client");
+
 	public static void clientInit() {
 		ClientPlayNetworking.registerGlobalReceiver(Networking.OPEN_ID, (client, handler, buf, responseSender) -> {
 			Identifier typeId = buf.readIdentifier();
@@ -51,12 +54,12 @@ public final class ClientNetworking {
 			ScreenHandlerType<?> type = ForgeRegistries.MENU_TYPES.getValue(typeId);
 
 			if (type == null) {
-				Papi.LOGGER.warn("Unknown screen handler ID: {}", typeId);
+				LOGGER.warn("Unknown screen handler ID: {}", typeId);
 				return;
 			}
 
 			if (!(type instanceof ExtendedScreenHandlerType<?>)) {
-				Papi.LOGGER.warn("Received extended opening packet for non-extended screen handler {}", typeId);
+				LOGGER.warn("Received extended opening packet for non-extended screen handler {}", typeId);
 				return;
 			}
 
@@ -76,7 +79,7 @@ public final class ClientNetworking {
 				player.currentScreenHandler = ((ScreenHandlerProvider<?>) screen).getScreenHandler();
 				client.setScreen(screen);
 			} else {
-				Papi.LOGGER.warn("Screen not registered for screen handler {}!", typeId);
+				LOGGER.warn("Screen not registered for screen handler {}!", typeId);
 			}
 		} finally {
 			buf.release(); // Release the buf

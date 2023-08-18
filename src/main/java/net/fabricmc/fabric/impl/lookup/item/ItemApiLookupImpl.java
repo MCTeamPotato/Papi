@@ -16,7 +16,6 @@
 
 package net.fabricmc.fabric.impl.lookup.item;
 
-import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
 import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
@@ -26,12 +25,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ItemApiLookupImpl<A, C> implements ItemApiLookup<A, C> {
+	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-lookup-api-v1/item");
 	private static final ApiLookupMap<ItemApiLookup<?, ?>> LOOKUPS = ApiLookupMap.create(ItemApiLookupImpl::new);
 
 	@SuppressWarnings("unchecked")
@@ -110,7 +112,7 @@ public class ItemApiLookupImpl<A, C> implements ItemApiLookup<A, C> {
 			Objects.requireNonNull(item, "Item convertible in item form may not be null.");
 
 			if (providerMap.putIfAbsent(item, provider) != null) {
-				Papi.LOGGER.warn("Encountered duplicate API provider registration for item: " + ForgeRegistries.ITEMS.getKey(item));
+				LOGGER.warn("Encountered duplicate API provider registration for item: " + ForgeRegistries.ITEMS.getKey(item));
 			}
 		}
 	}

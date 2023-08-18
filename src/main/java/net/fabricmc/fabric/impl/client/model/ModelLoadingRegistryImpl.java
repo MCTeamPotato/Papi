@@ -37,7 +37,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ModelLoadingRegistryImpl.class);
 	private static final boolean DEBUG_MODEL_LOADING = !FMLLoader.isProduction()
 			|| Boolean.parseBoolean(System.getProperty("fabric.debugModelLoading", "false"));
 
@@ -166,6 +165,8 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 			loader = null;
 		}
 	}
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ModelLoadingRegistryImpl.class);
 
 	private final List<Function<ResourceManager, ModelVariantProvider>> variantProviderSuppliers = new ArrayList<>();
 	private final List<Function<ResourceManager, ModelResourceProvider>> resourceProviderSuppliers = new ArrayList<>();

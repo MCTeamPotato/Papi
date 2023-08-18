@@ -18,18 +18,20 @@ package net.fabricmc.fabric.impl.mininglevel;
 
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
-import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class MiningLevelManagerImpl {
+	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-mining-level-api-v1/MiningLevelManagerImpl");
 	private static final String TOOL_TAG_NAMESPACE = "fabric";
 	private static final Pattern TOOL_TAG_PATTERN = Pattern.compile("^needs_tool_level_([0-9]+)$");
 
@@ -57,7 +59,7 @@ public final class MiningLevelManagerImpl {
 						int tagMiningLevel = Integer.parseInt(matcher.group(1));
 						miningLevel = Math.max(miningLevel, tagMiningLevel);
 					} catch (NumberFormatException e) {
-						Papi.LOGGER.error("Could not read mining level from tag #{}", tagId, e);
+						LOGGER.error("Could not read mining level from tag #{}", tagId, e);
 					}
 				}
 			}

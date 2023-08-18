@@ -29,21 +29,21 @@ import java.util.Set;
 @Mixin(Registry.class)
 public abstract class RegistryMixin<T> implements RegistryAttributeHolder, FabricRegistry {
 	@Unique
-	private final EnumSet<RegistryAttribute> papi$attributes = EnumSet.noneOf(RegistryAttribute.class);
+	private final EnumSet<RegistryAttribute> attributes = EnumSet.noneOf(RegistryAttribute.class);
 
 	@Override
 	public RegistryAttributeHolder addAttribute(RegistryAttribute attribute) {
-		papi$attributes.add(attribute);
+		attributes.add(attribute);
 		return this;
 	}
 
 	@Override
 	public boolean hasAttribute(RegistryAttribute attribute) {
-		return papi$attributes.contains(attribute);
+		return attributes.contains(attribute);
 	}
 
 	@Override
 	public void build(Set<RegistryAttribute> attributes) {
-		this.papi$attributes.addAll(attributes);
+		this.attributes.addAll(attributes);
 	}
 }

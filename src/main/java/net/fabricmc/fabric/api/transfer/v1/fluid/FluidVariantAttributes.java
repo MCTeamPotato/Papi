@@ -16,8 +16,8 @@
 
 package net.fabricmc.fabric.api.transfer.v1.fluid;
 
-import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
+import net.fabricmc.fabric.impl.transfer.TransferApiImpl;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -111,7 +111,7 @@ public final class FluidVariantAttributes {
 		int luminance = getHandlerOrDefault(variant.getFluid()).getLuminance(variant);
 
 		if (luminance < 0 || luminance > 15) {
-			Papi.LOGGER.warn("Broken FluidVariantAttributeHandler. Invalid luminance %d for fluid variant %s".formatted(luminance, variant));
+			TransferApiImpl.LOGGER.warn("Broken FluidVariantAttributeHandler. Invalid luminance %d for fluid variant %s".formatted(luminance, variant));
 			return DEFAULT_HANDLER.getLuminance(variant);
 		}
 
@@ -126,7 +126,7 @@ public final class FluidVariantAttributes {
 		int temperature = getHandlerOrDefault(variant.getFluid()).getTemperature(variant);
 
 		if (temperature < 0) {
-			Papi.LOGGER.warn("Broken FluidVariantAttributeHandler. Invalid temperature %d for fluid variant %s".formatted(temperature, variant));
+			TransferApiImpl.LOGGER.warn("Broken FluidVariantAttributeHandler. Invalid temperature %d for fluid variant %s".formatted(temperature, variant));
 			return DEFAULT_HANDLER.getTemperature(variant);
 		}
 
@@ -148,7 +148,7 @@ public final class FluidVariantAttributes {
 		int viscosity = getHandlerOrDefault(variant.getFluid()).getViscosity(variant, world);
 
 		if (viscosity <= 0) {
-			Papi.LOGGER.warn("Broken FluidVariantAttributeHandler. Invalid viscosity %d for fluid variant %s".formatted(viscosity, variant));
+			TransferApiImpl.LOGGER.warn("Broken FluidVariantAttributeHandler. Invalid viscosity %d for fluid variant %s".formatted(viscosity, variant));
 			return DEFAULT_HANDLER.getViscosity(variant, world);
 		}
 

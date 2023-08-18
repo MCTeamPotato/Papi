@@ -17,7 +17,6 @@
 package net.fabricmc.fabric.impl.screenhandler;
 
 import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.network.PacketByteBuf;
@@ -25,10 +24,13 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public final class Networking {
+	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-screen-handler-api-v1/server");
 
 	// [Packet format]
 	// typeId: identifier
@@ -53,7 +55,7 @@ public final class Networking {
 		Identifier typeId = ForgeRegistries.MENU_TYPES.getKey(handler.getType());
 
 		if (typeId == null) {
-			Papi.LOGGER.warn("Trying to open unregistered screen handler {}", handler);
+			LOGGER.warn("Trying to open unregistered screen handler {}", handler);
 			return;
 		}
 

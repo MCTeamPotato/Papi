@@ -18,12 +18,16 @@ package net.fabricmc.fabric.impl.base.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Function;
 
 class ArrayBackedEvent<T> extends Event<T> {
+	static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-base");
+
 	private final Function<T[], T> invokerFactory;
 	private final Object lock = new Object();
 	private T[] handlers;

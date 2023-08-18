@@ -13,19 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.fabricmc.fabric.mixin.registry.sync;
 
 import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
 import net.minecraft.Bootstrap;
+import net.minecraft.block.Blocks;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Items;
+import net.minecraft.world.biome.BiomeKeys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = Bootstrap.class, priority = 2000)
+@Mixin(Bootstrap.class)
 public class BootstrapMixin {
-	@Inject(method = "initialize", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/GameData;vanillaSnapshot()V", remap = false, shift = At.Shift.AFTER))
-	private static void afterVanillaSnapshot(CallbackInfo ci) {
+	@Inject(method = "setOutputStreams", at = @At("RETURN"))
+	private static void initialize(CallbackInfo info) {
+		// These seemingly pointless accesses are done to make sure each
+		// static initializer is called, to register vanilla-provided blocks
+		// and items from the respective classes - otherwise, they would
+		// duplicate our calls from below.
+		Object oBiome = BiomeKeys.THE_END;
+		Object oBlock = Blocks.AIR;
+		Object oFluid = Fluids.EMPTY;
+		Object oItem = Items.AIR;
+
 		RegistrySyncManager.bootstrapRegistries();
+	}
+
+	@Redirect(method = "initialize", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/registry/Registry;freezeRegistries()V"))
+	private static void skipFreeze() {
+		// Don't freeze
+	}
+
+	@Redirect(method = "initialize", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/registries/GameData;vanillaSnapshot()V"))
+	private static void skipVanillaSnapshot() {
+		// NO OP
 	}
 }

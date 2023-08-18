@@ -18,7 +18,7 @@ package net.fabricmc.fabric.impl.registry.sync;
 
 import com.mojang.serialization.Lifecycle;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.fabricmc.fabric.mixin.registry.sync.RegistryAccessor;
+import net.fabricmc.fabric.mixin.registry.sync.RegistriesAccessor;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -42,7 +42,7 @@ public class FabricRegistryInit {
 		if (Registry.REGISTRIES instanceof SimpleRegistry<?> rootRegistry)
 			rootRegistry.unfreeze();
 
-		REGISTRIES.forEach(registry -> RegistryAccessor.getROOT().add((RegistryKey<MutableRegistry<?>>) registry.getKey(), registry, Lifecycle.stable()));
+		REGISTRIES.forEach(registry -> RegistriesAccessor.getROOT().add((RegistryKey<MutableRegistry<?>>) registry.getKey(), registry, Lifecycle.stable()));
 
 		if (Registry.REGISTRIES instanceof SimpleRegistry<?> rootRegistry)
 			rootRegistry.freeze();
