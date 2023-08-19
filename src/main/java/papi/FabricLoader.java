@@ -1,4 +1,4 @@
-package net.fabricmc.loader.api;
+package papi;
 
 import net.minecraft.client.MinecraftClient;
 
