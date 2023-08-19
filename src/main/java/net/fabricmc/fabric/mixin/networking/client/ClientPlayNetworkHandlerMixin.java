@@ -21,19 +21,15 @@ import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.ClientConnection;
 import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.text.Text;
-import net.minecraftforge.network.ICustomPacket;
-import net.minecraftforge.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
@@ -44,33 +40,35 @@ abstract class ClientPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 	private MinecraftClient client;
 
 	@Unique
-	private ClientPlayNetworkAddon papi$addon;
+	private ClientPlayNetworkAddon addon;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void initAddon(CallbackInfo ci) {
-		this.papi$addon = new ClientPlayNetworkAddon((ClientPlayNetworkHandler) (Object) this, this.client);
+		this.addon = new ClientPlayNetworkAddon((ClientPlayNetworkHandler) (Object) this, this.client);
 		// A bit of a hack but it allows the field above to be set in case someone registers handlers during INIT event which refers to said field
-		ClientNetworkingImpl.setClientPlayAddon(this.papi$addon);
-		this.papi$addon.lateInit();
+		ClientNetworkingImpl.setClientPlayAddon(this.addon);
+		this.addon.lateInit();
 	}
 
 	@Inject(method = "onGameJoin", at = @At("RETURN"))
 	private void handleServerPlayReady(GameJoinS2CPacket packet, CallbackInfo ci) {
-		this.papi$addon.onServerReady();
+		this.addon.onServerReady();
 	}
 
-	@Redirect(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
-	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
-		return this.papi$addon.handle((CustomPayloadS2CPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
+	@Inject(method = "onCustomPayload", at = @At("HEAD"), cancellable = true)
+	private void handleCustomPayload(CustomPayloadS2CPacket packet, CallbackInfo ci) {
+		if (this.addon.handle(packet)) {
+			ci.cancel();
+		}
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
 	private void handleDisconnection(Text reason, CallbackInfo ci) {
-		this.papi$addon.handleDisconnect();
+		this.addon.handleDisconnect();
 	}
 
 	@Override
 	public ClientPlayNetworkAddon getAddon() {
-		return this.papi$addon;
+		return this.addon;
 	}
 }

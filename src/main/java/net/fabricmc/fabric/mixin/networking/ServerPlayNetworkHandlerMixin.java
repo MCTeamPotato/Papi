@@ -26,15 +26,12 @@ import net.minecraft.network.packet.s2c.play.DisconnectS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.text.Text;
-import net.minecraftforge.network.ICustomPacket;
-import net.minecraftforge.network.NetworkHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
@@ -57,9 +54,11 @@ abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions
 		this.papi$addon.lateInit();
 	}
 
-	@Redirect(method = "onCustomPayload", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/network/NetworkHooks;onCustomPayload(Lnet/minecraftforge/network/ICustomPacket;Lnet/minecraft/network/ClientConnection;)Z"))
-	private boolean handleQueryRequest(ICustomPacket<?> packet, final ClientConnection connection) {
-		return this.papi$addon.handle((CustomPayloadC2SPacket) packet) || NetworkHooks.onCustomPayload(packet, connection);
+	@Inject(method = "onCustomPayload", at = @At("HEAD"), cancellable = true)
+	private void handleCustomPayloadReceivedAsync(CustomPayloadC2SPacket packet, CallbackInfo ci) {
+		if (this.papi$addon.handle(packet)) {
+			ci.cancel();
+		}
 	}
 
 	@Inject(method = "onDisconnected", at = @At("HEAD"))
