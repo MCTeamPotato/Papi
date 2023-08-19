@@ -35,7 +35,13 @@ public class FluidRendererMixin {
 	private Sprite waterOverlaySprite;
 
 	@Unique
-	private final ThreadLocal<FluidRendererHookContainer> fabric_renderHandler = ThreadLocal.withInitial(FluidRendererHookContainer::new);
+	private ThreadLocal<FluidRendererHookContainer> fabric_renderHandler = null;
+
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void onInit(CallbackInfo ci) {
+		if (this.fabric_renderHandler == null) fabric_renderHandler = ThreadLocal.withInitial(FluidRendererHookContainer::new);
+	}
+
 	@Unique
 	private final ThreadLocal<Boolean> fabric_customRendering = ThreadLocal.withInitial(() -> false);
 
