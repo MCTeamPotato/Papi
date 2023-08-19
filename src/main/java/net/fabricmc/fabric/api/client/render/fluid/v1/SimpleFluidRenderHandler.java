@@ -16,13 +16,14 @@
 
 package net.fabricmc.fabric.api.client.render.fluid.v1;
 
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A simple fluid render handler that uses and loads sprites given by their
@@ -35,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
  * register the fluid textures. The "fabric-textures" API may come in handy for
  * that.
  */
-@SuppressWarnings("unused")
 public class SimpleFluidRenderHandler implements FluidRenderHandler {
 	/**
 	 * The vanilla still water texture identifier.

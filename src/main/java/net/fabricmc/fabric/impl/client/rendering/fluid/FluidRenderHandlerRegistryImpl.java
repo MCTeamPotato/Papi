@@ -35,14 +35,16 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.biome.BiomeKeys;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
 
 public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistry {
-	private static int DEFAULT_WATER_COLOR = Integer.MIN_VALUE;
+	/**
+	 * The water color of {@link BiomeKeys#OCEAN}.
+	 */
+	private static final int DEFAULT_WATER_COLOR = 0x3f76e4;
 	private final Map<Fluid, FluidRenderHandler> handlers = new IdentityHashMap<>();
 	private final Map<Fluid, FluidRenderHandler> modHandlers = new IdentityHashMap<>();
 	private final Map<Block, Boolean> overlayBlocks = new IdentityHashMap<>();
@@ -74,7 +76,15 @@ public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistr
 
 	@Override
 	public boolean isBlockTransparent(Block block) {
-		return overlayBlocks.computeIfAbsent(block, k -> k instanceof TransparentBlock || k instanceof LeavesBlock);
+		if (overlayBlocks.containsKey(block)) {
+			return overlayBlocks.get(block);
+		}
+		return block instanceof TransparentBlock || block instanceof LeavesBlock;
+	}
+
+	@Override
+	public boolean isBlockTransparent(BlockState state, BlockRenderView level, BlockPos pos, FluidState fluidState) {
+		return overlayBlocks.computeIfAbsent(state.getBlock(), block -> block.shouldDisplayFluidOverlay(state, level, pos, fluidState));
 	}
 
 	public void onFluidRendererReload(FluidRenderer renderer, Sprite[] waterSprites, Sprite[] lavaSprites, Sprite waterOverlay) {
@@ -108,7 +118,7 @@ public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistr
 	@NotNull
 	private static FluidRenderHandler getFluidRenderHandler(Sprite[] waterSprites, Sprite waterOverlay) {
 		Sprite[] waterSpritesFull = {waterSprites[0], waterSprites[1], waterOverlay};
-        return new FluidRenderHandler() {
+		return new FluidRenderHandler() {
 			@Override
 			public Sprite[] getFluidSprites(BlockRenderView view, BlockPos pos, FluidState state) {
 				return waterSpritesFull;
@@ -119,7 +129,6 @@ public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistr
 				if (view != null && pos != null) {
 					return BiomeColors.getWaterColor(view, pos);
 				} else {
-					if (DEFAULT_WATER_COLOR == Integer.MIN_VALUE) DEFAULT_WATER_COLOR = ForgeRegistries.BIOMES.getDelegateOrThrow(BiomeKeys.OCEAN).get().getWaterColor();
 					return DEFAULT_WATER_COLOR;
 				}
 			}

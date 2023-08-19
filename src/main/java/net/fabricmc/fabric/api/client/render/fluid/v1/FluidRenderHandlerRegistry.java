@@ -98,7 +98,6 @@ public interface FluidRenderHandlerRegistry {
 	 */
 	boolean isBlockTransparent(Block block);
 
-
 	/**
 	 * FFAPI: Forge-sensitive version of {@link #isBlockTransparent(Block)}
 	 */
