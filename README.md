@@ -20,8 +20,8 @@ Yea another Fabric API reforged project.
 - [x] Events Lifecycle
 - [ ] Game Rule API
 - [ ] Game Test API
-- [x] Item API **(NEED TEST)**
-- [ ] Item Groups
+- [x] Item API
+- [x] Item Groups
 - [ ] Key Binding API
 - [ ] Keybindings
 - [x] Lifecycle Events (Fail with [WorldChunkMixin](src/main/java/net/fabricmc/fabric/mixin/event/lifecycle/client/WorldChunkMixin.java))

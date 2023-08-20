@@ -18,6 +18,7 @@
     "item.ItemStackMixin",
     "item.LivingEntityMixin",
     "item.RecipeMixin",
+    "item.group.MixinItemGroup",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -99,7 +100,8 @@
     "event.lifecycle.server.WorldChunkMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 1,
+    "maxShiftBy": 3
   },
   "overwrites": {
     "conformVisibility": true
