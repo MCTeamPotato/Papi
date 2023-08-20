@@ -77,7 +77,7 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 			}
 		}
 
-		private <T> UnbakedModel loadCustomModel(CustomModelItf<T> function, Collection<T> loaders, String debugName) {
+		private <T> UnbakedModel loadCustomModel(CustomModelItf<T> function, Collection<T> loaders, String debugName) throws ModelProviderException {
 			if (!DEBUG_MODEL_LOADING) {
 				for (T provider : loaders) {
                     UnbakedModel model = function.load(provider);
@@ -124,12 +124,12 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 		}
 
 		@Nullable
-		public UnbakedModel loadModelFromResource(Identifier resourceId) {
+		public UnbakedModel loadModelFromResource(Identifier resourceId) throws ModelProviderException {
 			return loadCustomModel((r) -> r.loadModelResource(resourceId, this), modelResourceProviders, "resource provider");
 		}
 
 		@Nullable
-		public UnbakedModel loadModelFromVariant(Identifier variantId) {
+		public UnbakedModel loadModelFromVariant(Identifier variantId) throws ModelProviderException {
 			if (!(variantId instanceof ModelIdentifier modelId)) {
 				return loadModelFromResource(variantId);
 			} else {
