@@ -20,7 +20,7 @@ Yea another Fabric API reforged project.
 - [x] Events Lifecycle
 - [ ] Game Rule API
 - [ ] Game Test API
-- [ ] Item API
+- [x] Item API **(NEED TEST)**
 - [ ] Item Groups
 - [ ] Key Binding API
 - [ ] Keybindings
@@ -35,7 +35,7 @@ Yea another Fabric API reforged project.
 - [ ] Particles
 - [ ] Registry Sync
 - [ ] Renderer API
-- [ ] Renderer Indigo
+- [x] Renderer Indigo **(NEED TEST)**
 - [ ] Renderer Registries
 - [ ] Rendering Data Attachment
 - [ ] Rendering Fluids

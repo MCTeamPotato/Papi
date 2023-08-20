@@ -16,7 +16,7 @@ loom {
         convertAccessWideners = true
 
         mixinConfigs = [
-            "papi.mixins.json"
+                "papi.mixins.json", "fabric-renderer-indigo.mixins.json"
         ]
     }
 }

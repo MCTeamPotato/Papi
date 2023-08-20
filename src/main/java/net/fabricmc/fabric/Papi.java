@@ -1,5 +1,6 @@
 package net.fabricmc.fabric;
 
+import net.fabricmc.fabric.impl.client.indigo.Indigo;
 import net.fabricmc.fabric.impl.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LegacyEventInvokers;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
@@ -37,10 +38,13 @@ public class Papi {
         LegacyEventInvokers.onInitialize();
         LifecycleEventsImpl.onInitialize();
         OldNetworkingHooks.onInitialize();
+
         if (FMLLoader.getDist().isClient()) {
             LegacyClientEventInvokers.onInitializeClient();
             ClientLifecycleEventsImpl.onInitializeClient();
             OldClientNetworkingHooks.onInitializeClient();
+            Indigo.onInitializeClient();
+
             modEventBus.addListener(ResLoaderImpl::onClientResourcesReload);
         }
 
