@@ -36,14 +36,14 @@ public class InteractionEventsRouterClient {
 				BlockPos pos = ((BlockHitResult) result).getBlockPos();
 				BlockState state = view.getBlockState(pos);
 
-				if (state.getBlock() instanceof BlockPickInteractionAware) {
-					return (((BlockPickInteractionAware) state.getBlock()).getPickedStack(state, view, pos, player, result));
+				if (state.getBlock() instanceof BlockPickInteractionAware blockPickInteractionAware) {
+					return blockPickInteractionAware.getPickedStack(state, view, pos, player, result);
 				}
-			} else if (result instanceof EntityHitResult) {
-				Entity entity = ((EntityHitResult) result).getEntity();
+			} else if (result instanceof EntityHitResult entityHitResult) {
+				Entity entity = entityHitResult.getEntity();
 
-				if (entity instanceof EntityPickInteractionAware) {
-					return ((EntityPickInteractionAware) entity).getPickedStack(player, result);
+				if (entity instanceof EntityPickInteractionAware entityPickInteractionAware) {
+					return entityPickInteractionAware.getPickedStack(player, result);
 				}
 			}
 
