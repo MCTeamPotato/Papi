@@ -2,7 +2,7 @@ package net.fabricmc.fabric.mixin.papi.event.lifecycle;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
-import net.fabricmc.fabric.papi.util.MixinUtil;
+import net.fabricmc.papi.util.MixinUtil;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.WorldAccess;

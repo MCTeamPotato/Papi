@@ -16,39 +16,22 @@
 
 package net.fabricmc.fabric.impl.resource.loader;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
 
 import cpw.mods.niofs.union.UnionFileSystemProvider;
-import net.fabricmc.fabric.papi.util.ResLoaderUtil;
+import net.fabricmc.papi.util.LoaderUtil;
 import net.minecraftforge.forgespi.language.IModInfo;
 import net.minecraftforge.resource.PathResourcePack;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.InvalidIdentifierException;
 
 import net.fabricmc.fabric.api.resource.ModResourcePack;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -62,7 +45,7 @@ public class ModNioResourcePack extends PathResourcePack implements ModResourceP
 	private final ResourcePackActivationType activationType;
 
 	public static ModNioResourcePack create(String name, IModInfo mod, String subPath, ResourceType type, ResourcePackActivationType activationType) {
-		List<Path> rootPaths = ResLoaderUtil.getModContainerPaths(mod);
+		List<Path> rootPaths = LoaderUtil.getModContainerPaths(mod);
 		List<Path> paths;
 
 		if (subPath == null) {
@@ -85,7 +68,7 @@ public class ModNioResourcePack extends PathResourcePack implements ModResourceP
 		if (paths.isEmpty()) return null;
 
 		Path union = paths.size() == 1 ? paths.get(0) : UFSP.newFileSystem((a, b) -> true, paths.toArray(Path[]::new)).getRoot();
-		ModNioResourcePack ret = new ModNioResourcePack(name, ResLoaderUtil.getModContainerMetadata(mod), union, type, null, activationType);
+		ModNioResourcePack ret = new ModNioResourcePack(name, LoaderUtil.getModContainerMetadata(mod), union, type, null, activationType);
 
 		return ret.getNamespaces(type).isEmpty() ? null : ret;
 	}

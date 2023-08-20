@@ -29,9 +29,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 import com.google.common.collect.Lists;
-import net.fabricmc.fabric.papi.util.ResLoaderUtil;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.fabricmc.papi.util.LoaderUtil;
 import net.minecraftforge.forgespi.language.IModInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +70,7 @@ public class ResourceManagerHelperImpl implements ResourceManagerHelper {
 	 * @see ResourceManagerHelper#registerBuiltinResourcePack(Identifier, String, IModInfo, boolean)
 	 */
 	public static boolean registerBuiltinResourcePack(Identifier id, String subPath, IModInfo container, String displayName, ResourcePackActivationType activationType) {
-		List<Path> paths = ResLoaderUtil.getModContainerPaths(container);
+		List<Path> paths = LoaderUtil.getModContainerPaths(container);
 		String separator = paths.get(0).getFileSystem().getSeparator();
 		subPath = subPath.replace("/", separator);
 		String name = displayName;

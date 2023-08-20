@@ -1,11 +1,11 @@
-package net.fabricmc.fabric.papi.util;
+package net.fabricmc.papi.util;
 
 import net.minecraftforge.forgespi.language.IModInfo;
 
 import java.nio.file.Path;
 import java.util.List;
 
-public class ResLoaderUtil {
+public class LoaderUtil {
     public static List<Path> getModContainerPaths(IModInfo container) {
         return List.of(container.getOwningFile().getFile().findResource("."));
     }

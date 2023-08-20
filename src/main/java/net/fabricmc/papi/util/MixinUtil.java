@@ -1,4 +1,4 @@
-package net.fabricmc.fabric.papi.util;
+package net.fabricmc.papi.util;
 
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.world.ServerWorld;

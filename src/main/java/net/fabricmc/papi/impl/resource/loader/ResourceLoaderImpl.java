@@ -1,4 +1,4 @@
-package net.fabricmc.fabric.papi.event;
+package net.fabricmc.papi.impl.resource.loader;
 
 import net.fabricmc.fabric.impl.resource.loader.ModResourcePackCreator;
 import net.fabricmc.fabric.impl.resource.loader.ResourceManagerHelperImpl;
@@ -12,7 +12,7 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 
 import java.util.List;
 
-public class ResLoaderImpl {
+public class ResourceLoaderImpl {
     public static void onClientResourcesReload(RegisterClientReloadListenersEvent event) {
         List<ResourceReloader> existingListeners = ((ReloadableResourceManagerImpl) MinecraftClient.getInstance().getResourceManager()).reloaders;
         List<ResourceReloader> listeners = ResourceManagerHelperImpl.sort(ResourceType.CLIENT_RESOURCES, existingListeners);
