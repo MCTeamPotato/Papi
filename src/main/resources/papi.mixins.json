@@ -33,6 +33,7 @@
     "papi.event.lifecycle.MixinChunkEvent$MixinUnload",
     "papi.rendering.MixinRenderTooltipEventPre",
     "papi.screen.MixinForgeHooksClient",
+    "papi.item.ForgeHooksMixin",
     "resource.loader.DefaultResourcePackMixin",
     "resource.loader.DefaultResourcePackResourceMixin",
     "resource.loader.FileResourcePackProviderAccessor",
