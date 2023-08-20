@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Properties;
 
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,7 +107,7 @@ public class Indigo {
 			}
 		}
 
-		final boolean forceCompatibility = IndigoMixinConfigPlugin.shouldForceCompatibility();
+		final boolean forceCompatibility = false;
 		ENSURE_VERTEX_FORMAT_COMPATIBILITY = forceCompatibility;
 		// necessary because OF alters the BakedModel vertex format and will confuse the fallback model consumer
 		ALWAYS_TESSELATE_INDIGO = !forceCompatibility && asBoolean((String) properties.computeIfAbsent("always-tesselate-blocks", (a) -> "auto"), true);
@@ -127,16 +125,7 @@ public class Indigo {
 	}
 
 	public static void onInitializeClient() {
-		if (IndigoMixinConfigPlugin.shouldApplyIndigo()) {
-			LOGGER.info("[Indigo] Registering Indigo renderer!");
-
-			if (IndigoMixinConfigPlugin.shouldForceCompatibility()) {
-				LOGGER.info("[Indigo] Compatibility mode enabled.");
-			}
-
-			RendererAccess.INSTANCE.registerRenderer(IndigoRenderer.INSTANCE);
-		} else {
-			LOGGER.info("[Indigo] Different rendering plugin detected; not applying Indigo.");
-		}
+		LOGGER.info("[Indigo] Registering Indigo renderer!");
+		RendererAccess.INSTANCE.registerRenderer(IndigoRenderer.INSTANCE);
 	}
 }

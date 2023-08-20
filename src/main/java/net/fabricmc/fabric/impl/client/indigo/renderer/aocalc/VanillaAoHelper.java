@@ -31,7 +31,6 @@ import net.minecraft.world.BlockRenderView;
 import net.fabricmc.fabric.impl.client.indigo.Indigo;
 import net.fabricmc.fabric.impl.client.indigo.renderer.accessor.AccessAmbientOcclusionCalculator;
 import net.fabricmc.fabric.impl.client.indigo.renderer.accessor.AccessBlockModelRenderer;
-import net.fabricmc.loader.api.FabricLoader;
 
 public class VanillaAoHelper {
 	private static Supplier<AccessAmbientOcclusionCalculator> factory;
@@ -43,11 +42,12 @@ public class VanillaAoHelper {
 	public static void initialize(BlockModelRenderer instance) {
 		blockRenderer = (AccessBlockModelRenderer) instance;
 
-		final String target = FabricLoader.getInstance().getMappingResolver()
-				.mapClassName("intermediary", "net.minecraft.class_778$class_780");
+		//final String target = FabricLoader.getInstance().getMappingResolver()
+		//		.mapClassName("intermediary", "net.minecraft.class_778$class_780");
 
 		for (Class<?> innerClass : BlockModelRenderer.class.getDeclaredClasses()) {
-			if (innerClass.getName().equals(target)) {
+			//if (innerClass.getName().equals(target)) {
+			if (innerClass.getName().contains("AmbientOcclusionFace")) {
 				Constructor<?> constructor = innerClass.getDeclaredConstructors()[0];
 				constructor.setAccessible(true);
 
