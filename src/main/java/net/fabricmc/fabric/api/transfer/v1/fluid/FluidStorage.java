@@ -160,13 +160,11 @@ public final class FluidStorage {
 			return null;
 		});
 		// Register empty bottle storage, only water potion is supported!
-		combinedItemApiProvider(Items.GLASS_BOTTLE).register(context -> {
-			return new EmptyItemFluidStorage(context, emptyBottle -> {
-				ItemStack newStack = emptyBottle.toStack();
-				PotionUtil.setPotion(newStack, Potions.WATER);
-				return ItemVariant.of(Items.POTION, newStack.getNbt());
-			}, Fluids.WATER, FluidConstants.BOTTLE);
-		});
+		combinedItemApiProvider(Items.GLASS_BOTTLE).register(context -> new EmptyItemFluidStorage(context, emptyBottle -> {
+			ItemStack newStack = emptyBottle.toStack();
+			PotionUtil.setPotion(newStack, Potions.WATER);
+			return ItemVariant.of(Items.POTION, newStack.getNbt());
+		}, Fluids.WATER, FluidConstants.BOTTLE));
 		// Register water potion storage
 		combinedItemApiProvider(Items.POTION).register(WaterPotionStorage::find);
 	}

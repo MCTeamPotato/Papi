@@ -23,6 +23,7 @@ public interface RegistryAttributeHolder {
         return (RegistryAttributeHolder) registry;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     RegistryAttributeHolder addAttribute(RegistryAttribute attribute);
 
     boolean hasAttribute(RegistryAttribute attribute);

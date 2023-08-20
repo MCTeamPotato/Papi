@@ -70,23 +70,23 @@ public class TransferApiImpl {
 	public static final ThreadLocal<Object> SUPPRESS_SPECIAL_LOGIC = new ThreadLocal<>();
 
 	public static <T> Iterator<T> singletonIterator(T it) {
-		return new Iterator<T>() {
-			boolean hasNext = true;
+		return new Iterator<>() {
+            boolean hasNext = true;
 
-			@Override
-			public boolean hasNext() {
-				return hasNext;
-			}
+            @Override
+            public boolean hasNext() {
+                return hasNext;
+            }
 
-			@Override
-			public T next() {
-				if (!hasNext) {
-					throw new NoSuchElementException();
-				}
+            @Override
+            public T next() {
+                if (!hasNext) {
+                    throw new NoSuchElementException();
+                }
 
-				hasNext = false;
-				return it;
-			}
-		};
+                hasNext = false;
+                return it;
+            }
+        };
 	}
 }

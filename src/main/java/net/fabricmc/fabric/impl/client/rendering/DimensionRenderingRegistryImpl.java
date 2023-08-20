@@ -80,6 +80,7 @@ public final class DimensionRenderingRegistryImpl {
 		return WEATHER_RENDERERS.get(key);
 	}
 
+	@SuppressWarnings("DataFlowIssue")
 	@Nullable
 	public static DimensionEffects getDimensionEffects(Identifier key) {
 		return DimensionEffectsAccessor.getIdentifierMap().get(key);

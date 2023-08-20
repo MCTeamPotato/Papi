@@ -28,19 +28,19 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 public abstract class ColorProviderRegistryImpl<T, Provider, Underlying> implements ColorProviderRegistry<T, Provider> {
-	public static final ColorProviderRegistryImpl<Block, BlockColorProvider, BlockColors> BLOCK = new ColorProviderRegistryImpl<Block, BlockColorProvider, BlockColors>() {
-		@Override
-		void registerUnderlying(BlockColors map, BlockColorProvider mapper, Block block) {
-			map.registerColorProvider(mapper, block);
-		}
-	};
+	public static final ColorProviderRegistryImpl<Block, BlockColorProvider, BlockColors> BLOCK = new ColorProviderRegistryImpl<>() {
+        @Override
+        void registerUnderlying(BlockColors map, BlockColorProvider mapper, Block block) {
+            map.registerColorProvider(mapper, block);
+        }
+    };
 
-	public static final ColorProviderRegistryImpl<ItemConvertible, ItemColorProvider, ItemColors> ITEM = new ColorProviderRegistryImpl<ItemConvertible, ItemColorProvider, ItemColors>() {
-		@Override
-		void registerUnderlying(ItemColors map, ItemColorProvider mapper, ItemConvertible block) {
-			map.register(mapper, block);
-		}
-	};
+	public static final ColorProviderRegistryImpl<ItemConvertible, ItemColorProvider, ItemColors> ITEM = new ColorProviderRegistryImpl<>() {
+        @Override
+        void registerUnderlying(ItemColors map, ItemColorProvider mapper, ItemConvertible block) {
+            map.register(mapper, block);
+        }
+    };
 
 	private Underlying colorMap;
 	private Map<T, Provider> tempMappers = new IdentityHashMap<>();

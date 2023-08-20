@@ -47,7 +47,7 @@ class InventorySlotWrapper extends SingleStackStorage {
 	InventorySlotWrapper(InventoryStorageImpl storage, int slot) {
 		this.storage = storage;
 		this.slot = slot;
-		this.specialInv = storage.inventory instanceof SpecialLogicInventory specialInv ? specialInv : null;
+		this.specialInv = storage.inventory instanceof SpecialLogicInventory ? (SpecialLogicInventory) storage.inventory : null;
 	}
 
 	@Override

@@ -80,17 +80,12 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 		private <T> UnbakedModel loadCustomModel(CustomModelItf<T> function, Collection<T> loaders, String debugName) {
 			if (!DEBUG_MODEL_LOADING) {
 				for (T provider : loaders) {
-					try {
-						UnbakedModel model = function.load(provider);
+                    UnbakedModel model = function.load(provider);
 
-						if (model != null) {
-							return model;
-						}
-					} catch (ModelProviderException e) {
-						logger.error("Failed to load custom model", e);
-						return null;
-					}
-				}
+                    if (model != null) {
+                        return model;
+                    }
+                }
 
 				return null;
 			}
@@ -100,24 +95,19 @@ public class ModelLoadingRegistryImpl implements ModelLoadingRegistry {
 			List<T> providersApplied = null;
 
 			for (T provider : loaders) {
-				try {
-					UnbakedModel model = function.load(provider);
+                UnbakedModel model = function.load(provider);
 
-					if (model != null) {
-						if (providersApplied != null) {
-							providersApplied.add(provider);
-						} else if (providerUsed != null) {
-							providersApplied = Lists.newArrayList(providerUsed, provider);
-						} else {
-							modelLoaded = model;
-							providerUsed = provider;
-						}
-					}
-				} catch (ModelProviderException e) {
-					logger.error("Failed to load custom model", e);
-					return null;
-				}
-			}
+                if (model != null) {
+                    if (providersApplied != null) {
+                        providersApplied.add(provider);
+                    } else if (providerUsed != null) {
+                        providersApplied = Lists.newArrayList(providerUsed, provider);
+                    } else {
+                        modelLoaded = model;
+                        providerUsed = provider;
+                    }
+                }
+            }
 
 			if (providersApplied != null) {
 				StringBuilder builder = new StringBuilder("Conflict - multiple " + debugName + "s claimed the same unbaked model:");

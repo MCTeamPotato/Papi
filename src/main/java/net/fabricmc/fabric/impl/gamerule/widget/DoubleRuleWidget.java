@@ -61,6 +61,7 @@ public final class DoubleRuleWidget extends EditGameRulesScreen.NamedRuleWidget 
 	@Override
 	public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
 		// FIXME: Param names nightmare
+		//noinspection SuspiciousNameCombination
 		this.drawName(matrices, y, x);
 
 		this.textFieldWidget.x = x + entryWidth - 44;

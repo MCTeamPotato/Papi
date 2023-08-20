@@ -32,20 +32,20 @@ public abstract class WorldMixin implements LoadedChunksCache {
 	public abstract boolean isClient();
 
 	@Unique
-	private final Set<WorldChunk> loadedChunks = new HashSet<>();
+	private final Set<WorldChunk> papi$loadedChunks = new HashSet<>();
 
 	@Override
 	public Set<WorldChunk> fabric_getLoadedChunks() {
-		return this.loadedChunks;
+		return this.papi$loadedChunks;
 	}
 
 	@Override
 	public void fabric_markLoaded(WorldChunk chunk) {
-		this.loadedChunks.add(chunk);
+		this.papi$loadedChunks.add(chunk);
 	}
 
 	@Override
 	public void fabric_markUnloaded(WorldChunk chunk) {
-		this.loadedChunks.remove(chunk);
+		this.papi$loadedChunks.remove(chunk);
 	}
 }

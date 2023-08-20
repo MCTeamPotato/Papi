@@ -59,6 +59,7 @@ public final class ClientPlayNetworking {
 	 * @see ClientPlayNetworking#unregisterGlobalReceiver(Identifier)
 	 * @see ClientPlayNetworking#registerReceiver(Identifier, PlayChannelHandler)
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public static boolean registerGlobalReceiver(Identifier channelName, PlayChannelHandler channelHandler) {
 		return ClientNetworkingImpl.PLAY.registerGlobalReceiver(channelName, channelHandler);
 	}

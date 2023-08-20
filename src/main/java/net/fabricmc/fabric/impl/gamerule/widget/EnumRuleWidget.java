@@ -63,6 +63,7 @@ public final class EnumRuleWidget<E extends Enum<E>> extends EditGameRulesScreen
 
 	public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
 		// FIXME: Param names nightmare
+		//noinspection SuspiciousNameCombination
 		this.drawName(matrices, y, x);
 
 		this.buttonWidget.x = x + entryWidth - 89;

@@ -27,6 +27,7 @@ public interface MaterialBuilderAccessor {
 	@Accessor
 	void setPistonBehavior(PistonBehavior behavior);
 
+	@SuppressWarnings("UnusedReturnValue")
 	@Invoker
 	Material.Builder invokeLightPassesThrough();
 }

@@ -28,7 +28,7 @@ import java.util.function.BiConsumer;
  */
 public final class EntityRendererRegistryImpl {
 	private static final HashMap<EntityType<?>, EntityRendererFactory<?>> map = new HashMap<>();
-	private static BiConsumer<EntityType<?>, EntityRendererFactory<?>> handler = (type, function) -> map.put(type, function);
+	private static BiConsumer<EntityType<?>, EntityRendererFactory<?>> handler = map::put;
 
 	public static <T extends Entity> void register(EntityType<? extends T> entityType, EntityRendererFactory<T> factory) {
 		handler.accept(entityType, factory);

@@ -112,6 +112,7 @@ public final class CauldronFluidContent {
 	 * @param amountPerLevel How much fluid is contained in one level of the cauldron, in {@linkplain FluidConstants droplets}.
 	 * @param levelProperty The property used by the cauldron to store its levels. {@code null} if the cauldron only has one level.
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public static synchronized CauldronFluidContent registerCauldron(Block block, Fluid fluid, long amountPerLevel, @Nullable IntProperty levelProperty) {
 		CauldronFluidContent existingBlockData = BLOCK_TO_CAULDRON.get(block);
 
