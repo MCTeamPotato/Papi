@@ -1,6 +1,5 @@
 plugins {
     id "dev.architectury.loom" version "1.1-SNAPSHOT"
-    id "maven-publish"
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
