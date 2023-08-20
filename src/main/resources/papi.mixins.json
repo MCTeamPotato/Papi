@@ -6,7 +6,7 @@
   "overwrites": {
     "conformVisibility": true
   },
-  "refmap": "papi-refmap.json",
+  "refmap": "papi.refmap.json",
   "injectors": {
     "defaultRequire": 1,
     "maxShiftBy": 3
@@ -111,15 +111,11 @@
     "client.particle.ParticleManagerAccessor$SimpleSpriteProviderAccessor",
     "client.particle.ParticleManagerMixin",
     "client.rendering.ArmorFeatureRendererMixin",
-    "client.rendering.BlockColorsMixin",
-    "client.rendering.BlockEntityRendererFactoriesMixin",
     "client.rendering.BuiltinModelItemRendererMixin",
     "client.rendering.CapeFeatureRendererMixin",
     "client.rendering.DimensionEffectsAccessor",
     "client.rendering.EntityModelLayersAccessor",
-    "client.rendering.EntityModelsMixin",
     "client.rendering.EntityRenderersMixin",
-    "client.rendering.InGameHudMixin",
     "client.rendering.ItemColorsMixin",
     "client.rendering.LivingEntityRendererAccessor",
     "client.rendering.TooltipComponentMixin",

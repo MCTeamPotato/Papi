@@ -18,10 +18,8 @@ public interface TooltipComponentMixin {
     @Overwrite
     static TooltipComponent of(TooltipData data) {
         TooltipComponent component = TooltipComponentCallback.EVENT.invoker().getComponent(data);
+        if (component != null) return component;
 
-        if (component != null) {
-            return component;
-        }
         if (data instanceof BundleTooltipData) {
             return new BundleTooltipComponent((BundleTooltipData)data);
         }

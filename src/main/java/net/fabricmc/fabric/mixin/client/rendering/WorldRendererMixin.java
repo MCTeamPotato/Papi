@@ -24,6 +24,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.ShaderEffect;
 import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -48,118 +50,90 @@ public abstract class WorldRendererMixin {
 	@Final
 	@Shadow
 	private MinecraftClient client;
-	@Unique private final WorldRenderContextImpl context = new WorldRenderContextImpl();
-	@Unique private boolean didRenderParticles;
+
+	@Unique private WorldRenderContextImpl papi$context;
+
+	@Unique private boolean papi$didRenderParticles;
+
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void onInit(MinecraftClient client, EntityRenderDispatcher entityRenderDispatcher, BlockEntityRenderDispatcher blockEntityRenderDispatcher, BufferBuilderStorage bufferBuilders, CallbackInfo ci) {
+		this.papi$context = new WorldRenderContextImpl();
+	}
 
 	@Inject(method = "render", at = @At("HEAD"))
 	private void beforeRender(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
-		context.prepare((WorldRenderer) (Object) this, matrices, tickDelta, limitTime, renderBlockOutline, camera, gameRenderer, lightmapTextureManager, matrix4f, bufferBuilders.getEntityVertexConsumers(), world.getProfiler(), transparencyShader != null, world);
-		WorldRenderEvents.START.invoker().onStart(context);
-		didRenderParticles = false;
+		papi$context.prepare((WorldRenderer) (Object) this, matrices, tickDelta, limitTime, renderBlockOutline, camera, gameRenderer, lightmapTextureManager, matrix4f, bufferBuilders.getEntityVertexConsumers(), world.getProfiler(), transparencyShader != null, world);
+		WorldRenderEvents.START.invoker().onStart(papi$context);
+		papi$didRenderParticles = false;
 	}
 
 	@Inject(method = "setupTerrain", at = @At("RETURN"))
 	private void afterTerrainSetup(Camera camera, Frustum frustum, boolean hasForcedFrustum, boolean spectator, CallbackInfo ci) {
-		context.setFrustum(frustum);
-		WorldRenderEvents.AFTER_SETUP.invoker().afterSetup(context);
+		papi$context.setFrustum(frustum);
+		WorldRenderEvents.AFTER_SETUP.invoker().afterSetup(papi$context);
 	}
 
-	@Inject(
-			method = "render",
-			at = @At(
-				value = "INVOKE",
-				target = "Lnet/minecraft/client/render/WorldRenderer;renderLayer(Lnet/minecraft/client/render/RenderLayer;Lnet/minecraft/client/util/math/MatrixStack;DDDLnet/minecraft/util/math/Matrix4f;)V",
-				ordinal = 2,
-				shift = Shift.AFTER
-			)
-	)
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/WorldRenderer;renderLayer(Lnet/minecraft/client/render/RenderLayer;Lnet/minecraft/client/util/math/MatrixStack;DDDLnet/minecraft/util/math/Matrix4f;)V", ordinal = 2, shift = Shift.AFTER))
 	private void afterTerrainSolid(CallbackInfo ci) {
-		WorldRenderEvents.BEFORE_ENTITIES.invoker().beforeEntities(context);
+		WorldRenderEvents.BEFORE_ENTITIES.invoker().beforeEntities(papi$context);
 	}
 
 	@Inject(method = "render", at = @At(value = "CONSTANT", args = "stringValue=blockentities", ordinal = 0))
 	private void afterEntities(CallbackInfo ci) {
-		WorldRenderEvents.AFTER_ENTITIES.invoker().afterEntities(context);
+		WorldRenderEvents.AFTER_ENTITIES.invoker().afterEntities(papi$context);
 	}
 
-	@Inject(
-			method = "render",
-			at = @At(
-				value = "FIELD",
-				target = "Lnet/minecraft/client/MinecraftClient;crosshairTarget:Lnet/minecraft/util/hit/HitResult;",
-				shift = At.Shift.AFTER,
-				ordinal = 1
-			)
-	)
+	@Inject(method = "render", at = @At(value = "FIELD", target = "Lnet/minecraft/client/MinecraftClient;crosshairTarget:Lnet/minecraft/util/hit/HitResult;", shift = At.Shift.AFTER, ordinal = 1))
 	private void beforeRenderOutline(CallbackInfo ci) {
-		context.renderBlockOutline = WorldRenderEvents.BEFORE_BLOCK_OUTLINE.invoker().beforeBlockOutline(context, client.crosshairTarget);
+		papi$context.renderBlockOutline = WorldRenderEvents.BEFORE_BLOCK_OUTLINE.invoker().beforeBlockOutline(papi$context, client.crosshairTarget);
 	}
 
 	@Inject(method = "drawBlockOutline", at = @At("HEAD"), cancellable = true)
 	private void onDrawBlockOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
-		if (!context.renderBlockOutline) {
+		if (!papi$context.renderBlockOutline) {
 			// Was cancelled before we got here, so do not
 			// fire the BLOCK_OUTLINE event per contract of the API.
 			ci.cancel();
 		} else {
-			context.prepareBlockOutline(entity, cameraX, cameraY, cameraZ, blockPos, blockState);
+			papi$context.prepareBlockOutline(entity, cameraX, cameraY, cameraZ, blockPos, blockState);
 
-			if (!WorldRenderEvents.BLOCK_OUTLINE.invoker().onBlockOutline(context, context)) {
+			if (!WorldRenderEvents.BLOCK_OUTLINE.invoker().onBlockOutline(papi$context, papi$context)) {
 				ci.cancel();
 			}
 
 			// The immediate mode VertexConsumers use a shared buffer, so we have to make sure that the immediate mode VCP
 			// can accept block outline lines rendered to the existing vertexConsumer by the vanilla block overlay.
-			context.consumers().getBuffer(RenderLayer.getLines());
+			papi$context.consumers().getBuffer(RenderLayer.getLines());
 		}
 	}
 
-	@Inject(
-			method = "render",
-			at = @At(
-				value = "INVOKE",
-				target = "Lnet/minecraft/client/render/debug/DebugRenderer;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;DDD)V",
-				ordinal = 0
-			)
-	)
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/debug/DebugRenderer;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;DDD)V", ordinal = 0))
 	private void beforeDebugRender(CallbackInfo ci) {
-		WorldRenderEvents.BEFORE_DEBUG_RENDER.invoker().beforeDebugRender(context);
+		WorldRenderEvents.BEFORE_DEBUG_RENDER.invoker().beforeDebugRender(papi$context);
 	}
 
-	@Inject(
-			method = "render",
-			at = @At(
-				value = "INVOKE",
-				target = "Lnet/minecraft/client/particle/ParticleManager;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/client/render/Camera;FLnet/minecraft/client/render/Frustum;)V"
-			)
-	)
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleManager;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/client/render/Camera;FLnet/minecraft/client/render/Frustum;)V"))
 	private void onRenderParticles(CallbackInfo ci) {
 		// set a flag so we know the next pushMatrix call is after particles
-		didRenderParticles = true;
+		papi$didRenderParticles = true;
 	}
 
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;push()V"))
 	private void beforeClouds(CallbackInfo ci) {
-		if (didRenderParticles) {
-			didRenderParticles = false;
-			WorldRenderEvents.AFTER_TRANSLUCENT.invoker().afterTranslucent(context);
+		if (papi$didRenderParticles) {
+			papi$didRenderParticles = false;
+			WorldRenderEvents.AFTER_TRANSLUCENT.invoker().afterTranslucent(papi$context);
 		}
 	}
 
-	@Inject(
-			method = "render",
-			at = @At(
-				value = "INVOKE",
-				target = "Lnet/minecraft/client/render/WorldRenderer;renderChunkDebugInfo(Lnet/minecraft/client/render/Camera;)V"
-			)
-	)
+	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/WorldRenderer;renderChunkDebugInfo(Lnet/minecraft/client/render/Camera;)V"))
 	private void onChunkDebugRender(CallbackInfo ci) {
-		WorldRenderEvents.LAST.invoker().onLast(context);
+		WorldRenderEvents.LAST.invoker().onLast(papi$context);
 	}
 
 	@Inject(method = "render", at = @At("RETURN"))
 	private void afterRender(CallbackInfo ci) {
-		WorldRenderEvents.END.invoker().onEnd(context);
+		WorldRenderEvents.END.invoker().onEnd(papi$context);
 	}
 
 	@Inject(method = "reload()V", at = @At("HEAD"))
@@ -173,7 +147,7 @@ public abstract class WorldRendererMixin {
 			DimensionRenderingRegistry.WeatherRenderer renderer = DimensionRenderingRegistry.getWeatherRenderer(world.getRegistryKey());
 
 			if (renderer != null) {
-				renderer.render(context);
+				renderer.render(papi$context);
 				info.cancel();
 			}
 		}
@@ -185,7 +159,7 @@ public abstract class WorldRendererMixin {
 			DimensionRenderingRegistry.CloudRenderer renderer = DimensionRenderingRegistry.getCloudRenderer(world.getRegistryKey());
 
 			if (renderer != null) {
-				renderer.render(context);
+				renderer.render(papi$context);
 				info.cancel();
 			}
 		}
@@ -197,7 +171,7 @@ public abstract class WorldRendererMixin {
 			DimensionRenderingRegistry.SkyRenderer renderer = DimensionRenderingRegistry.getSkyRenderer(world.getRegistryKey());
 
 			if (renderer != null) {
-				renderer.render(context);
+				renderer.render(papi$context);
 				info.cancel();
 			}
 		}

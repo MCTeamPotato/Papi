@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 import java.util.Set;
 
-@Mixin(ModelLoader.class)
+@Mixin(value = ModelLoader.class, priority = 2000)
 public abstract class ModelLoaderMixin implements ModelLoaderHooks {
 	// this is the first one
 	@Final

@@ -3,6 +3,7 @@ package net.fabricmc.fabric;
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
+import net.fabricmc.fabric.impl.client.rendering.RenderingImpl;
 import net.fabricmc.fabric.impl.client.screen.ScreenEventHooks;
 import net.fabricmc.fabric.impl.entity.event.EntityEventHooks;
 import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouter;
@@ -48,6 +49,7 @@ public class Papi {
             ClientNetworking.clientInit();
             ClientNetworkingImpl.clientInit();
             CustomIngredientSyncClient.clientInit();
+            RenderingImpl.clientInit();
         }
     }
 }

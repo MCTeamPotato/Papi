@@ -18,7 +18,6 @@ package net.fabricmc.fabric.mixin.client.rendering;
 
 import com.google.common.collect.ImmutableMap;
 import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
-import net.fabricmc.fabric.impl.client.rendering.EntityRendererRegistryImpl;
 import net.fabricmc.fabric.impl.client.rendering.RegistrationHelperImpl;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -30,9 +29,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
 
@@ -44,22 +40,11 @@ public abstract class EntityRenderersMixin {
 
 	@Shadow @Final private static Map<String, EntityRendererFactory<AbstractClientPlayerEntity>> PLAYER_RENDERER_FACTORIES;
 
-	@Inject(method = "<clinit>*", at = @At(value = "RETURN"))
-	private static void onRegisterRenderers(CallbackInfo info) {
-		EntityRendererRegistryImpl.setup(((t, factory) -> RENDERER_FACTORIES.put(t, factory)));
-	}
-
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Unique
 	private static EntityRenderer<?> papi$createEntityRenderer(EntityRendererFactory<?> entityRendererFactory, EntityRendererFactory.Context context, EntityType<?> entityType) {
 		EntityRenderer<?> entityRenderer = entityRendererFactory.create(context);
-
-		if (entityRenderer instanceof LivingEntityRenderer) { // Must be living for features
-			LivingEntityFeatureRendererRegistrationCallback.EVENT.invoker()
-					.registerRenderers((EntityType<? extends LivingEntity>) entityType, (LivingEntityRenderer) entityRenderer,
-							new RegistrationHelperImpl(((LivingEntityRenderer)entityRenderer)::addFeature), context);
-		}
-
+		if (entityRenderer instanceof LivingEntityRenderer) LivingEntityFeatureRendererRegistrationCallback.EVENT.invoker().registerRenderers((EntityType<? extends LivingEntity>) entityType, (LivingEntityRenderer) entityRenderer, new RegistrationHelperImpl(((LivingEntityRenderer)entityRenderer)::addFeature), context);
 		return entityRenderer;
 	}
 
@@ -101,9 +86,7 @@ public abstract class EntityRenderersMixin {
 	@Unique
 	private static EntityRenderer<? extends PlayerEntity> papi$createPlayerEntityRenderer(EntityRendererFactory<AbstractClientPlayerEntity> playerEntityRendererFactory, EntityRendererFactory.Context context) {
 		EntityRenderer<? extends PlayerEntity> entityRenderer = playerEntityRendererFactory.create(context);
-		LivingEntityFeatureRendererRegistrationCallback.EVENT.invoker().registerRenderers(EntityType.PLAYER,
-				(LivingEntityRenderer) entityRenderer, new RegistrationHelperImpl(((LivingEntityRenderer)entityRenderer)::addFeature), context);
-
+		if (entityRenderer instanceof LivingEntityRenderer) LivingEntityFeatureRendererRegistrationCallback.EVENT.invoker().registerRenderers(EntityType.PLAYER, (LivingEntityRenderer) entityRenderer, new RegistrationHelperImpl(((LivingEntityRenderer) entityRenderer)::addFeature), context);
 		return entityRenderer;
 	}
 }

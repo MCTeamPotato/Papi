@@ -22,6 +22,9 @@ import net.fabricmc.fabric.impl.transfer.item.ItemVariantImpl;
 import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Cache the ItemVariant with a null tag inside each Item directly.
@@ -29,7 +32,12 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(Item.class)
 public class ItemMixin implements ItemVariantCache {
 	@Unique
-    private final ItemVariant fabric_cachedItemVariant = new ItemVariantImpl((Item) (Object) this, null);
+    private ItemVariant fabric_cachedItemVariant;
+	
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void onInit(Item.Settings settings, CallbackInfo ci) {
+		fabric_cachedItemVariant = new ItemVariantImpl((Item) (Object) this, null);
+	}
 
 	@Override
 	public ItemVariant fabric_getCachedItemVariant() {

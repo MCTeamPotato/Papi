@@ -58,6 +58,7 @@ abstract class LivingEntityMixin {
 
 	@Unique
 	private BlockState fabric_originalState;
+	
 	@Inject(method = "onDeath", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;onKilledOther(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/LivingEntity;)Z", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
 	private void onEntityKilledOther(DamageSource source, CallbackInfo ci, Entity attacker) {
 		// FIXME: Cannot use shadowed fields from supermixins - needs a fix so people can use fabric api in a dev environment even though this is fine in this repo and prod.

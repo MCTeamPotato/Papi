@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
@@ -42,7 +43,12 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public class FluidMixin implements FluidVariantCache {
 	@Unique
-    private final FluidVariant fabric_cachedFluidVariant = new FluidVariantImpl((Fluid) (Object) this, null);
+    private FluidVariant fabric_cachedFluidVariant;
+
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void onInit(CallbackInfo ci) {
+		fabric_cachedFluidVariant = new FluidVariantImpl((Fluid) (Object) this, null);
+	}
 
 	@Override
 	public FluidVariant fabric_getCachedFluidVariant() {
