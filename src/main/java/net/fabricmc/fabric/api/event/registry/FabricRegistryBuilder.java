@@ -100,12 +100,12 @@ public final class FabricRegistryBuilder<T, R extends MutableRegistry<T>> {
      * Applies the attributes to the registry and registers it.
      * @return the registry instance with the attributes applied
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public R buildAndRegister() {
         FabricRegistry fabricRegistry = (FabricRegistry) registry;
         fabricRegistry.build(attributes);
 
-        RegistryAccessor.getROOT().add((RegistryKey<MutableRegistry<?>>) registry.getKey(), registry, Lifecycle.stable());
+        RegistryAccessor.getROOT().add(((RegistryAccessor)registry).getRegistryKey(), registry, Lifecycle.stable());
 
         return registry;
     }

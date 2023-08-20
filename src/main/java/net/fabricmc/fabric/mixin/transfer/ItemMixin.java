@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemMixin implements ItemVariantCache {
 	@Unique
     private ItemVariant fabric_cachedItemVariant;
-	
+
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void onInit(Item.Settings settings, CallbackInfo ci) {
 		fabric_cachedItemVariant = new ItemVariantImpl((Item) (Object) this, null);
