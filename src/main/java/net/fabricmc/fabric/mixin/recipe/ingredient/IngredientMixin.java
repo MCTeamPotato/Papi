@@ -37,14 +37,7 @@ public class IngredientMixin implements FabricIngredient {
 	/**
 	 * Inject right when vanilla detected a json object and check for our custom key.
 	 */
-	@Inject(
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraftforge/common/crafting/CraftingHelper;getIngredient(Lcom/google/gson/JsonElement;)Lnet/minecraft/recipe/Ingredient;", ordinal = 0
-			),
-			method = "fromJson",
-			cancellable = true
-	)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/crafting/CraftingHelper;getIngredient(Lcom/google/gson/JsonElement;)Lnet/minecraft/recipe/Ingredient;", ordinal = 0), method = "fromJson", cancellable = true)
 	private static void injectFromJson(JsonElement json, CallbackInfoReturnable<Ingredient> cir) {
 		if (!json.isJsonObject()) return;
 		JsonObject obj = json.getAsJsonObject();
@@ -80,11 +73,7 @@ public class IngredientMixin implements FabricIngredient {
 		}
 	}
 
-	@Inject(
-			at = @At("HEAD"),
-			method = "fromPacket",
-			cancellable = true
-	)
+	@Inject(at = @At("HEAD"), method = "fromPacket", cancellable = true)
 	private static void injectFromPacket(PacketByteBuf buf, CallbackInfoReturnable<Ingredient> cir) {
 		int index = buf.readerIndex();
 

@@ -32,10 +32,7 @@ public class SimpleInventoryMixin implements SpecialLogicInventory {
 	@Unique
 	private boolean fabric_suppressSpecialLogic = false;
 
-	@Redirect(
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/inventory/SimpleInventory;markDirty()V"),
-			method = "setStack(ILnet/minecraft/item/ItemStack;)V"
-	)
+	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/inventory/SimpleInventory;markDirty()V"), method = "setStack(ILnet/minecraft/item/ItemStack;)V")
 	public void fabric_redirectMarkDirty(SimpleInventory self) {
 		if (!fabric_suppressSpecialLogic) {
 			self.markDirty();
@@ -48,6 +45,5 @@ public class SimpleInventoryMixin implements SpecialLogicInventory {
 	}
 
 	@Override
-	public void fabric_onFinalCommit(int slot, ItemStack oldStack, ItemStack newStack) {
-	}
+	public void fabric_onFinalCommit(int slot, ItemStack oldStack, ItemStack newStack) {}
 }
