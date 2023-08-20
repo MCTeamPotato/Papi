@@ -13,23 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package net.fabricmc.fabric.mixin.mininglevel;
-
-import net.fabricmc.fabric.api.mininglevel.v1.MiningLevelManager;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.MiningToolItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.MiningToolItem;
+
+import net.fabricmc.fabric.impl.mininglevel.MiningLevelManagerImpl;
 
 @Mixin(MiningToolItem.class)
+@SuppressWarnings("deprecation")
 abstract class MiningToolItemMixin {
-	@Inject(method = "isSuitableFor", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ToolMaterial;getMiningLevel()I"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-	private void fabric$onIsSuitableFor(BlockState state, CallbackInfoReturnable<Boolean> info, int toolMiningLevel) {
-		if (toolMiningLevel < MiningLevelManager.getRequiredMiningLevel(state)) {
+	@Inject(
+			method = "isSuitableFor(Lnet/minecraft/block/BlockState;)Z",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/MiningToolItem;getMaterial()Lnet/minecraft/item/ToolMaterial;", ordinal = 0),
+			cancellable = true
+	)
+	private void fabric$onIsSuitableFor(BlockState state, CallbackInfoReturnable<Boolean> info) {
+		if (((MiningToolItem) (Object) this).getMaterial().getMiningLevel() < MiningLevelManagerImpl.getRequiredFabricMiningLevel(state)) {
+			info.setReturnValue(false);
+		}
+	}
+
+	@Inject(method = "isCorrectToolForDrops(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/MiningToolItem;getMaterial()Lnet/minecraft/item/ToolMaterial;"), cancellable = true)
+	private void fabric$onForgeIsSuitableFor(ItemStack stack, BlockState state, CallbackInfoReturnable<Boolean> info) {
+		if (((MiningToolItem) (Object) this).getMaterial().getMiningLevel() < MiningLevelManagerImpl.getRequiredFabricMiningLevel(state)) {
 			info.setReturnValue(false);
 		}
 	}
