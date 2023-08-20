@@ -5,7 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import java.nio.file.Path;
 
 public class FabricLoader {
-    static FabricLoader INSTANCE = new FabricLoader();
+    private static final FabricLoader INSTANCE = new FabricLoader();
 
     private final Path configDir;
 

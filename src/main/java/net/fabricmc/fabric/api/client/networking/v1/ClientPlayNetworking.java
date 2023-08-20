@@ -286,9 +286,10 @@ public final class ClientPlayNetworking {
 	 * False if the client is not in game.
 	 */
 	public static boolean canSend(Identifier channelName) throws IllegalArgumentException {
+		ClientPlayNetworkHandler networkHandler = MinecraftClient.getInstance().getNetworkHandler();
 		// You cant send without a client player, so this is fine
-		if (MinecraftClient.getInstance().getNetworkHandler() != null) {
-			return ClientNetworkingImpl.getAddon(MinecraftClient.getInstance().getNetworkHandler()).getSendableChannels().contains(channelName);
+		if (networkHandler != null) {
+			return ClientNetworkingImpl.getAddon(networkHandler).getSendableChannels().contains(channelName);
 		}
 		return false;
 	}
@@ -323,9 +324,10 @@ public final class ClientPlayNetworking {
 	 * @throws IllegalStateException if the client is not connected to a server
 	 */
 	public static PacketSender getSender() throws IllegalStateException {
+		ClientPlayNetworkHandler networkHandler = MinecraftClient.getInstance().getNetworkHandler();
 		// You cant send without a client player, so this is fine
-		if (MinecraftClient.getInstance().getNetworkHandler() != null) {
-			return ClientNetworkingImpl.getAddon(MinecraftClient.getInstance().getNetworkHandler());
+		if (networkHandler != null) {
+			return ClientNetworkingImpl.getAddon(networkHandler);
 		}
 		throw new IllegalStateException("Cannot get packet sender when not in game!");
 	}
@@ -337,9 +339,10 @@ public final class ClientPlayNetworking {
 	 * @throws IllegalStateException if the client is not connected to a server
 	 */
 	public static void send(Identifier channelName, PacketByteBuf buf) throws IllegalStateException {
+		ClientPlayNetworkHandler networkHandler = MinecraftClient.getInstance().getNetworkHandler();
 		// You cant send without a client player, so this is fine
-		if (MinecraftClient.getInstance().getNetworkHandler() != null) {
-			MinecraftClient.getInstance().getNetworkHandler().sendPacket(createC2SPacket(channelName, buf));
+		if (networkHandler != null) {
+			networkHandler.sendPacket(createC2SPacket(channelName, buf));
 			return;
 		}
 		throw new IllegalStateException("Cannot send packets when not in game!");

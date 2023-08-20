@@ -18,6 +18,7 @@ package net.fabricmc.fabric.api.tag.client.v1;
 
 import net.fabricmc.fabric.impl.tag.client.ClientTagsLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -162,15 +163,14 @@ public final class ClientTags {
 	@SuppressWarnings("unchecked")
 	private static <T> Optional<? extends Registry<T>> getRegistry(TagKey<T> tagKey) {
 		Objects.requireNonNull(tagKey);
+		MinecraftClient minecraftClient = MinecraftClient.getInstance();
 
 		// Check if the tag represents a dynamic registry
-		if (MinecraftClient.getInstance() != null) {
-			if (MinecraftClient.getInstance().world != null) {
-				if (MinecraftClient.getInstance().world.getRegistryManager() != null) {
-					Optional<? extends Registry<T>> maybeRegistry = MinecraftClient.getInstance().world
-							.getRegistryManager().getOptional(tagKey.registry());
-					if (maybeRegistry.isPresent()) return maybeRegistry;
-				}
+		if (minecraftClient != null) {
+			ClientWorld clientWorld = minecraftClient.world;
+			if (clientWorld != null && clientWorld.getRegistryManager() != null) {
+				Optional<? extends Registry<T>> maybeRegistry = clientWorld.getRegistryManager().getOptional(tagKey.registry());
+				if (maybeRegistry.isPresent()) return maybeRegistry;
 			}
 		}
 
