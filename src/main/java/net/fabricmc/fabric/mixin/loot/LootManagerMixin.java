@@ -57,8 +57,7 @@ abstract class LootManagerMixin {
 				return;
 			}
 
-			// noinspection ConstantConditions
-			LootManager lootManager = (LootManager) (Object) this;
+            LootManager lootManager = (LootManager) (Object) this;
 			LootTableSource source = LootUtil.determineSource(id, resourceManager);
 
 			// Invoke the REPLACE event for the current loot table.

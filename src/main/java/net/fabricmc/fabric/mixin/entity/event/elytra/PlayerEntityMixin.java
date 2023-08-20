@@ -42,7 +42,6 @@ abstract class PlayerEntityMixin extends LivingEntity {
 	 * Allow the server-side and client-side elytra checks to fail when {@link EntityElytraEvents#ALLOW} blocks flight,
 	 * and otherwise to succeed for elytra flight through {@link EntityElytraEvents#CUSTOM}.
 	 */
-	@SuppressWarnings("ConstantConditions")
 	@Inject(at = @At(value = "FIELD", target = "Lnet/minecraft/entity/EquipmentSlot;CHEST:Lnet/minecraft/entity/EquipmentSlot;"), method = "checkFallFlying()Z", allow = 1, cancellable = true)
 	void injectElytraCheck(CallbackInfoReturnable<Boolean> cir) {
 		PlayerEntity self = (PlayerEntity) (Object) this;

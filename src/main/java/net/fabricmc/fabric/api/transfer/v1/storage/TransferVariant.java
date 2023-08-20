@@ -33,7 +33,7 @@ import java.util.Objects;
  * {@code hashCode} is guaranteed to be correct and constant time independently of the size of the NBT.
  *
  * @param <O> The type of the immutable object instance, for example {@code Item} or {@code Fluid}.
- *
+ * <p>
  * <b>Experimental feature</b>, we reserve the right to remove or change it without further notice.
  * The transfer API is a complex addition, and we want to be able to correct possible design mistakes.
  */

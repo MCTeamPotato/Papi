@@ -42,8 +42,7 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public class FluidMixin implements FluidVariantCache {
 	@Unique
-	@SuppressWarnings("ConstantConditions")
-	private final FluidVariant fabric_cachedFluidVariant = new FluidVariantImpl((Fluid) (Object) this, null);
+    private final FluidVariant fabric_cachedFluidVariant = new FluidVariantImpl((Fluid) (Object) this, null);
 
 	@Override
 	public FluidVariant fabric_getCachedFluidVariant() {

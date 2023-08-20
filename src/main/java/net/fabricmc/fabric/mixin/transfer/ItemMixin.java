@@ -29,8 +29,7 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(Item.class)
 public class ItemMixin implements ItemVariantCache {
 	@Unique
-	@SuppressWarnings("ConstantConditions")
-	private final ItemVariant fabric_cachedItemVariant = new ItemVariantImpl((Item) (Object) this, null);
+    private final ItemVariant fabric_cachedItemVariant = new ItemVariantImpl((Item) (Object) this, null);
 
 	@Override
 	public ItemVariant fabric_getCachedItemVariant() {

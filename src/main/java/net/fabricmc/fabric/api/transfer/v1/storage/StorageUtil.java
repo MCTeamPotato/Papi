@@ -247,6 +247,8 @@ public final class StorageUtil {
 	public static <T> ResourceAmount<T> findExtractableContent(@Nullable Storage<T> storage, Predicate<T> filter, @Nullable TransactionContext transaction) {
 		T extractableResource = findExtractableResource(storage, filter, transaction);
 
+		if (storage == null) return null;
+
 		if (extractableResource != null) {
 			long extractableAmount = storage.simulateExtract(extractableResource, Long.MAX_VALUE, transaction);
 

@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.api.lookup.v1.block;
 
 import net.fabricmc.fabric.impl.lookup.block.BlockApiLookupImpl;
+import net.fabricmc.fabric.mixin.lookup.BlockEntityTypeAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -226,7 +227,7 @@ public interface BlockApiLookup<A, C> {
 	 * but due to how generics work in java, the provider has to cast to the correct block entity class if necessary.
 	 *
 	 * <p>Note: The type is not used directly for detecting the supported blocks and block entities in the world, but it is converted to
-	 * its {@linkplain BlockEntityType#blocks} when this method is called.
+	 * its {@linkplain BlockEntityTypeAccessor#getBlocks()} when this method is called.
 	 * If the {@code blocks} field is empty, {@link IllegalArgumentException} is thrown.
 	 *
 	 * @param provider The provider.

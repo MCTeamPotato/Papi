@@ -41,7 +41,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * query it.
  *
  * <p>Client Tags resolve that issue by lazily reading the tag json files within the mods on the side of the caller,
- * directly, allowing for mods to query tags such as {@link net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags}
+ * directly, allowing for mods to query tags such as {net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags}
  * even when connected to a vanilla server.
  */
 @OnlyIn(Dist.CLIENT)

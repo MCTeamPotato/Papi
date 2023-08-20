@@ -35,6 +35,7 @@ import java.util.function.Supplier;
  *
  * @param <T> Entity class.
  */
+@SuppressWarnings({"unchecked", "UnusedReturnValue"})
 public class FabricEntityTypeBuilder<T extends Entity> {
 	private SpawnGroup spawnGroup;
 	private EntityType.EntityFactory<T> factory;
@@ -254,9 +255,7 @@ public class FabricEntityTypeBuilder<T extends Entity> {
 			// TODO: Flesh out once modded datafixers exist.
 		}
 
-		EntityType<T> type = new FabricEntityType<>(this.factory, this.spawnGroup, this.saveable, this.summonable, this.fireImmune, this.spawnableFarFromPlayer, this.specificSpawnBlocks, dimensions, trackRange, trackedUpdateRate, forceTrackedVelocityUpdates);
-
-		return type;
+        return new FabricEntityType<>(this.factory, this.spawnGroup, this.saveable, this.summonable, this.fireImmune, this.spawnableFarFromPlayer, this.specificSpawnBlocks, dimensions, trackRange, trackedUpdateRate, forceTrackedVelocityUpdates);
 	}
 
 	/**
@@ -264,6 +263,7 @@ public class FabricEntityTypeBuilder<T extends Entity> {
 	 *
 	 * @param <T> Entity class.
 	 */
+	@SuppressWarnings("unchecked")
 	public static class Living<T extends LivingEntity> extends FabricEntityTypeBuilder<T> {
 		@Nullable
 		private Supplier<DefaultAttributeContainer.Builder> defaultAttributeBuilder;
@@ -403,6 +403,7 @@ public class FabricEntityTypeBuilder<T extends Entity> {
 	 *
 	 * @param <T> Entity class.
 	 */
+	@SuppressWarnings("unchecked")
 	public static class Mob<T extends MobEntity> extends FabricEntityTypeBuilder.Living<T> {
 		private SpawnRestriction.Location restrictionLocation;
 		private Heightmap.Type restrictionHeightmap;

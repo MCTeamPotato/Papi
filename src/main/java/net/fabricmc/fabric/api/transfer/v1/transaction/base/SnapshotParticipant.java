@@ -27,7 +27,7 @@ import java.util.Objects;
 /**
  * A base participant implementation that modifies itself during transactions,
  * saving snapshots of its state in objects of type {@code T} in case it needs to revert to a previous state.
- *
+ * <p>
  * <h3>How to use from subclasses</h3>
  * <ul>
  *     <li>Call {@link #updateSnapshots} right before the state of your subclass is modified in a transaction.</li>
@@ -52,7 +52,7 @@ import java.util.Objects;
  * and {@link #onFinalCommit} will be called after the transaction is closed.
  *
  * @param <T> The objects that this participant uses to save its state snapshots.
- *
+ * <p>
  * <b>Experimental feature</b>, we reserve the right to remove or change it without further notice.
  * The transfer API is a complex addition, and we want to be able to correct possible design mistakes.
  */

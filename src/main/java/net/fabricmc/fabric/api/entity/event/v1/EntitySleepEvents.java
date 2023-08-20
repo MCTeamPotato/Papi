@@ -100,8 +100,8 @@ public final class EntitySleepEvents {
 	 * <p>This event is only checked <i>during</i> sleeping, so an entity can
 	 * {@linkplain LivingEntity#sleep(BlockPos) start sleeping} on any block, but will immediately
 	 * wake up if this check fails.
-	 *
-	 * @see LivingEntity#isSleepingInBed()
+	 * <p>
+	 * see LivingEntity#isSleepingInBed()
 	 */
 	public static final Event<AllowBed> ALLOW_BED = EventFactory.createArrayBacked(AllowBed.class, callbacks -> (entity, sleepingPos, state, vanillaResult) -> {
 		for (AllowBed callback : callbacks) {

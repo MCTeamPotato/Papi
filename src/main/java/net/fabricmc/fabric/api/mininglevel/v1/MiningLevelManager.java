@@ -26,7 +26,7 @@ import net.minecraft.util.registry.Registry;
 
 /**
  * Provides access to block mining levels.
- *
+ * <p>
  * <h2>Mining level tags</h2>
  * {@code MiningLevelManager} supports the vanilla minimum mining level tags:
  * {@link net.minecraft.tag.BlockTags#NEEDS_STONE_TOOL #needs_stone_tool},

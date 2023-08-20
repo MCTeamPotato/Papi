@@ -25,7 +25,7 @@ import java.util.function.Function;
  * Helper for creating {@link Event} classes.
  */
 public final class EventFactory {
-	@SuppressWarnings({"FieldCanBeLocal", "FieldMayBeFinal"})
+	@SuppressWarnings({"FieldCanBeLocal", "FieldMayBeFinal", "CanBeFinal"})
 	private static boolean profilingEnabled = true;
 
 	private EventFactory() { }

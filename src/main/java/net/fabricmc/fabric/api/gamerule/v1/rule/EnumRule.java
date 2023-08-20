@@ -146,7 +146,7 @@ public final class EnumRule<E extends Enum<E>> extends GameRules.Rule<EnumRule<E
 		checkNotNull(value);
 
 		if (!this.supports(value)) {
-			throw new IllegalArgumentException("Tried to set an unsupported value: " + value.toString());
+			throw new IllegalArgumentException("Tried to set an unsupported value: " + value);
 		}
 
 		this.value = value;

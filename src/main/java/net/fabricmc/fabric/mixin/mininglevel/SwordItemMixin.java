@@ -37,6 +37,7 @@ abstract class SwordItemMixin extends ToolItem {
 		super(material, settings);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Inject(method = "isSuitableFor", at = @At("HEAD"), cancellable = true)
 	private void fabric$onIsSuitableFor(BlockState state, CallbackInfoReturnable<Boolean> info) {
 		if (state.isIn(FabricMineableTags.SWORD_MINEABLE)) {

@@ -49,8 +49,7 @@ abstract class LootPoolBuilderMixin implements FabricLootPoolBuilder {
 
 	@Unique
 	private LootPool.Builder papi$self() {
-		// noinspection ConstantConditions
-		return (LootPool.Builder) (Object) this;
+        return (LootPool.Builder) (Object) this;
 	}
 
 	@Override

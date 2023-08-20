@@ -27,7 +27,7 @@ import java.util.Objects;
 /**
  * Implements {@link FabricResource} (resource source getter/setter)
  * for vanilla's basic {@link Resource} used for most game resources.
- *
+ * <p>
  * see NamespaceResourceManagerMixin the usage site for this mixin
  */
 @Mixin(Resource.class)

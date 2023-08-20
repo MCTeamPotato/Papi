@@ -27,7 +27,7 @@ import java.util.function.BiConsumer;
  * Helper class for registering EntityRenderers.
  */
 public final class EntityRendererRegistryImpl {
-	private static HashMap<EntityType<?>, EntityRendererFactory<?>> map = new HashMap<>();
+	private static final HashMap<EntityType<?>, EntityRendererFactory<?>> map = new HashMap<>();
 	private static BiConsumer<EntityType<?>, EntityRendererFactory<?>> handler = (type, function) -> map.put(type, function);
 
 	public static <T extends Entity> void register(EntityType<? extends T> entityType, EntityRendererFactory<T> factory) {

@@ -117,7 +117,7 @@ class InventorySlotWrapper extends SingleStackStorage {
 		super.updateSnapshots(transaction);
 
 		// For chests: also schedule a markDirty call for the other half
-		if (storage.inventory instanceof ChestBlockEntity chest && chest.getCachedState().get(ChestBlock.CHEST_TYPE) != ChestType.SINGLE) {
+		if (storage.inventory instanceof ChestBlockEntity chest && chest.getCachedState().get(ChestBlock.CHEST_TYPE) != ChestType.SINGLE && chest.getWorld() != null) {
 			BlockPos otherChestPos = chest.getPos().offset(ChestBlock.getFacing(chest.getCachedState()));
 
 			if (chest.getWorld().getBlockEntity(otherChestPos) instanceof ChestBlockEntity otherChest) {
@@ -141,7 +141,7 @@ class InventorySlotWrapper extends SingleStackStorage {
 			specialLogicInv.fabric_onFinalCommit(slot, original, currentStack);
 		}
 
-		if (!original.isEmpty() && original.getItem() == currentStack.getItem()) {
+		if (!original.isEmpty() && original.getItem() == currentStack.getItem() && currentStack.getNbt() != null) {
 			// None is empty and the items match: just update the amount and NBT, and reuse the original stack.
 			original.setCount(currentStack.getCount());
 			original.setNbt(currentStack.hasNbt() ? currentStack.getNbt().copy() : null);

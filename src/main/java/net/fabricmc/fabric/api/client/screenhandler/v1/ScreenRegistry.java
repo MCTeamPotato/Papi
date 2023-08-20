@@ -29,7 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 /**
  * An API for registering handled screens that represent screen handlers on the client.
  * Exposes vanilla's private {@link HandledScreens#register HandledScreens.register()} to modders as {@link #register ScreenRegistry.register()}.
- *
+ * <p>
  * <h2>Example</h2>
  * <pre>
  * {@code

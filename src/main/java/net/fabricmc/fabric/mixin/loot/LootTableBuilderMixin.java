@@ -47,8 +47,7 @@ abstract class LootTableBuilderMixin implements FabricLootTableBuilder {
 
 	@Unique
 	private LootTable.Builder papi$self() {
-		// noinspection ConstantConditions
-		return (LootTable.Builder) (Object) this;
+        return (LootTable.Builder) (Object) this;
 	}
 
 	@Override

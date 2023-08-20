@@ -37,7 +37,6 @@ abstract class LivingEntityMixin extends Entity {
 	/**
 	 * Handle ALLOW and CUSTOM {@link EntityElytraEvents} when an entity is fall flying.
 	 */
-	@SuppressWarnings("ConstantConditions")
 	@Inject(at = @At(value = "FIELD", target = "Lnet/minecraft/entity/EquipmentSlot;CHEST:Lnet/minecraft/entity/EquipmentSlot;"), method = "tickFallFlying()V", allow = 1, cancellable = true)
 	void injectElytraTick(CallbackInfo info) {
 		LivingEntity self = (LivingEntity) (Object) this;

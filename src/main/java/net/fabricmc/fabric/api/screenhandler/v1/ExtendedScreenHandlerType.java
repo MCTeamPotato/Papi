@@ -32,7 +32,7 @@ import java.util.Objects;
  * {@link net.minecraft.entity.player.PlayerEntity#openHandledScreen(NamedScreenHandlerFactory)
  * PlayerEntity.openHandledScreen} with an
  * {@link ExtendedScreenHandlerFactory}.
- *
+ * <p>
  * <h2>Example</h2>
  * <pre>
  * {@code

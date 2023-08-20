@@ -23,7 +23,7 @@ import org.jetbrains.annotations.ApiStatus;
  * A view of a single stored resource in a {@link Storage}, for use with {@link Storage#iterator} or {@link Storage#exactView}.
  *
  * @param <T> The type of the stored resource.
- *
+ * <p>
  * <b>Experimental feature</b>, we reserve the right to remove or change it without further notice.
  * The transfer API is a complex addition, and we want to be able to correct possible design mistakes.
  */

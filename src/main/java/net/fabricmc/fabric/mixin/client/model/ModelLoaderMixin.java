@@ -89,8 +89,7 @@ public abstract class ModelLoaderMixin implements ModelLoaderHooks {
 
 	@Inject(at = @At("RETURN"), method = "<init>")
 	private void initFinishedHook(CallbackInfo info) {
-		//noinspection ConstantConditions
-		fabric_mlrLoaderInstance.finish();
+        fabric_mlrLoaderInstance.finish();
 	}
 
 	@Override

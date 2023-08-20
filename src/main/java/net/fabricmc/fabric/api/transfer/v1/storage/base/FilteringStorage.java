@@ -36,7 +36,7 @@ import java.util.function.Supplier;
  * <p>The static functions can be used when insertion or/and extraction should be blocked entirely.
  *
  * @param <T> The type of the stored resources.
- *
+ * <p>
  * <b>Experimental feature</b>, we reserve the right to remove or change it without further notice.
  * The transfer API is a complex addition, and we want to be able to correct possible design mistakes.
  */

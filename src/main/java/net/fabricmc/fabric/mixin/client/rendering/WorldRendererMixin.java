@@ -95,7 +95,6 @@ public abstract class WorldRendererMixin {
 		context.renderBlockOutline = WorldRenderEvents.BEFORE_BLOCK_OUTLINE.invoker().beforeBlockOutline(context, client.crosshairTarget);
 	}
 
-	@SuppressWarnings("ConstantConditions")
 	@Inject(method = "drawBlockOutline", at = @At("HEAD"), cancellable = true)
 	private void onDrawBlockOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
 		if (!context.renderBlockOutline) {
@@ -131,7 +130,7 @@ public abstract class WorldRendererMixin {
 			method = "render",
 			at = @At(
 				value = "INVOKE",
-				target = "Lnet/minecraft/client/particle/ParticleManager;renderParticles(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/client/render/Camera;F)V"
+				target = "Lnet/minecraft/client/particle/ParticleManager;render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider$Immediate;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/client/render/Camera;FLnet/minecraft/client/render/Frustum;)V"
 			)
 	)
 	private void onRenderParticles(CallbackInfo ci) {
@@ -163,7 +162,7 @@ public abstract class WorldRendererMixin {
 		WorldRenderEvents.END.invoker().onEnd(context);
 	}
 
-	@Inject(method = "Lnet/minecraft/client/render/WorldRenderer;reload()V", at = @At("HEAD"))
+	@Inject(method = "reload()V", at = @At("HEAD"))
 	private void onReload(CallbackInfo ci) {
 		InvalidateRenderStateCallback.EVENT.invoker().onInvalidate();
 	}

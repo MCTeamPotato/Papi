@@ -28,7 +28,7 @@ import java.util.Iterator;
  * It can be used in APIs for storages that are wrappers around a single "slot", or for slightly more convenient implementation.
  *
  * @param <T> The type of the stored resource.
- *
+ * <p>
  * <b>Experimental feature</b>, we reserve the right to remove or change it without further notice.
  * The transfer API is a complex addition, and we want to be able to correct possible design mistakes.
  */

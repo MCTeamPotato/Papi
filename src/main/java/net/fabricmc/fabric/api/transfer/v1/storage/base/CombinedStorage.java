@@ -33,7 +33,7 @@ import java.util.NoSuchElementException;
  *
  * @param <T> The type of the stored resources.
  * @param <S> The class of every part. {@code ? extends Storage<T>} can be used if the parts are of different types.
- *
+ * <p>
  * <b>Experimental feature</b>, we reserve the right to remove or change it without further notice.
  * The transfer API is a complex addition, and we want to be able to correct possible design mistakes.
  */

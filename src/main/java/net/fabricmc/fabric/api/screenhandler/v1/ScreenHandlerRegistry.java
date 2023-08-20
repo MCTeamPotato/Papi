@@ -31,7 +31,7 @@ import net.minecraft.util.registry.Registry;
  * <p>Screen handlers types are used to synchronize {@linkplain ScreenHandler screen handlers}
  * between the server and the client. Screen handlers manage the items and integer properties that are
  * needed to show on screens, such as the items in a chest or the progress of a furnace.
- *
+ * <p>
  * <h2>Simple and extended screen handlers</h2>
  * Simple screen handlers are the type of screen handlers used in vanilla.
  * They can automatically synchronize items and integer properties between the server and the client,
@@ -40,7 +40,7 @@ import net.minecraft.util.registry.Registry;
  * <p>This module adds <i>extended screen handlers</i> that can synchronize their own custom data
  * when they are opened, which can be useful for defining additional properties of a screen on the server.
  * For example, a mod can synchronize text that will show up as a label.
- *
+ * <p>
  * <h2>Example</h2>
  * <pre>
  * {@code

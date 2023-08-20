@@ -21,7 +21,7 @@
  * between the server and the client. Their main job is to create screen handler instances on the client.
  * Screen handlers manage the items and integer properties that are
  * needed to show on screens, such as the items in a chest or the progress of a furnace.
- *
+ * <p>
  * <h2>Simple and extended screen handlers</h2>
  * "Simple" screen handlers are the type of screen handlers used in vanilla.
  * They can automatically synchronize items and integer properties between the server and the client,
@@ -33,14 +33,14 @@
  * For example, a mod can synchronize text that will show up as a label.
  * You can create extended screen handlers using
  * {@link net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType}.
- *
+ * <p>
  * <h2>Opening screen handlers</h2>
  * Screen handlers can be opened using
  * {@link net.minecraft.entity.player.PlayerEntity#openHandledScreen(net.minecraft.screen.NamedScreenHandlerFactory)}.
  * Note that calling it on the logical client does nothing. To open an extended screen handler, the factory passed in
  * should be an {@link net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory}, or a
  * {@link net.minecraft.screen.SimpleNamedScreenHandlerFactory} that wraps such factory.
- *
+ * <p>
  * <h2>Overwriting screen handlers</h2>
  * You might have noticed that calling {@link net.minecraft.entity.player.PlayerEntity#openHandledScreen(net.minecraft.screen.NamedScreenHandlerFactory) openHandledScreen} while on another screen will move
  * the cursor to the center of the screen. This is because the current screen gets closed before

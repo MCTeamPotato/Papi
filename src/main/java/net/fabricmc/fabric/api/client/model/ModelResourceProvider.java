@@ -48,5 +48,5 @@ public interface ModelResourceProvider {
 	 * (or if there was no error!).
 	 */
 	@Nullable
-	UnbakedModel loadModelResource(Identifier resourceId, ModelProviderContext context) throws ModelProviderException;
+	UnbakedModel loadModelResource(Identifier resourceId, ModelProviderContext context);
 }
