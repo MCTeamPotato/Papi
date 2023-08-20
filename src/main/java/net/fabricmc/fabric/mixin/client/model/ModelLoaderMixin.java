@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.mixin.client.model;
 
+import net.fabricmc.fabric.api.client.model.ModelProviderException;
 import net.fabricmc.fabric.impl.client.model.ModelLoaderHooks;
 import net.fabricmc.fabric.impl.client.model.ModelLoadingRegistryImpl;
 import net.minecraft.client.render.model.ModelLoader;
@@ -68,7 +69,7 @@ public abstract class ModelLoaderMixin implements ModelLoaderHooks {
 	@Shadow public abstract UnbakedModel getOrLoadModel(Identifier id);
 
 	@Inject(at = @At("HEAD"), method = "loadModel", cancellable = true)
-	private void loadModelHook(Identifier id, CallbackInfo ci) {
+	private void loadModelHook(Identifier id, CallbackInfo ci) throws ModelProviderException {
 		UnbakedModel customModel = fabric_mlrLoaderInstance.loadModelFromVariant(id);
 
 		if (customModel != null) {
