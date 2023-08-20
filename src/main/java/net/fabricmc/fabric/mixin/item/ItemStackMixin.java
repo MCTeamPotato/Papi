@@ -18,28 +18,21 @@ package net.fabricmc.fabric.mixin.item;
 
 import java.util.function.Consumer;
 
-import com.google.common.collect.LinkedHashMultimap;
-import com.google.common.collect.Multimap;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemStack;
 import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
-import net.fabricmc.fabric.api.item.v1.ModifyItemAttributeModifiersCallback;
 import net.fabricmc.fabric.impl.item.ItemExtensions;
 
 @Mixin(ItemStack.class)
