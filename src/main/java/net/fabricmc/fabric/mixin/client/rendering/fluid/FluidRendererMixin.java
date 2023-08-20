@@ -1,5 +1,16 @@
 package net.fabricmc.fabric.mixin.client.rendering.fluid;
 
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.impl.client.rendering.fluid.FluidRenderHandlerRegistryImpl;
+import net.fabricmc.fabric.impl.client.rendering.fluid.FluidRendererHookContainer;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.block.FluidRenderer;
+import net.minecraft.client.texture.Sprite;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockRenderView;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import org.objectweb.asm.Opcodes;
@@ -11,18 +22,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.block.BlockState;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.block.FluidRenderer;
-import net.minecraft.client.texture.Sprite;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockRenderView;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.impl.client.rendering.fluid.FluidRenderHandlerRegistryImpl;
-import net.fabricmc.fabric.impl.client.rendering.fluid.FluidRendererHookContainer;
 @Mixin(FluidRenderer.class)
 public class FluidRendererMixin {
 	@Final

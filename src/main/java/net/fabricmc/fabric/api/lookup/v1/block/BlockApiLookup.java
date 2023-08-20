@@ -207,7 +207,7 @@ public interface BlockApiLookup<A, C> {
 	 * This overload allows using the correct block entity class directly.
 	 *
 	 * <p>Note: The type is not used directly for detecting the supported blocks and block entities in the world, but it is converted to
-	 * its {@linkplain BlockEntityType#blocks} when this method is called.
+	 * its BlockEntityType#blocks when this method is called.
 	 * If the {@code blocks} field is empty, {@link IllegalArgumentException} is thrown.
 	 *
 	 * @param <T> The block entity class for which an API is exposed.

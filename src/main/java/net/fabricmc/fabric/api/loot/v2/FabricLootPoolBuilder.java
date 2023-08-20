@@ -50,6 +50,7 @@ public interface FabricLootPoolBuilder {
 	 * @param entries the added loot entries
 	 * @return this builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	default LootPool.Builder with(Collection<? extends LootPoolEntry> entries) {
 		throw new UnsupportedOperationException("Implemented via mixin");
 	}
@@ -70,6 +71,7 @@ public interface FabricLootPoolBuilder {
 	 * @param conditions the added conditions
 	 * @return this builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	default LootPool.Builder conditionally(Collection<? extends LootCondition> conditions) {
 		throw new UnsupportedOperationException("Implemented via mixin");
 	}
@@ -90,6 +92,7 @@ public interface FabricLootPoolBuilder {
 	 * @param functions the applied loot functions
 	 * @return this builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	default LootPool.Builder apply(Collection<? extends LootFunction> functions) {
 		throw new UnsupportedOperationException("Implemented via mixin");
 	}

@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 package net.fabricmc.fabric.mixin.mininglevel;
+
+import net.fabricmc.fabric.impl.mininglevel.MiningLevelManagerImpl;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.MiningToolItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MiningToolItem;
-
-import net.fabricmc.fabric.impl.mininglevel.MiningLevelManagerImpl;
 
 @Mixin(MiningToolItem.class)
 @SuppressWarnings("deprecation")

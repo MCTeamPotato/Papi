@@ -101,9 +101,12 @@ public abstract class WorldRendererMixin {
 				ci.cancel();
 			}
 
+
 			// The immediate mode VertexConsumers use a shared buffer, so we have to make sure that the immediate mode VCP
 			// can accept block outline lines rendered to the existing vertexConsumer by the vanilla block overlay.
-			papi$context.consumers().getBuffer(RenderLayer.getLines());
+			VertexConsumerProvider provider = papi$context.consumers();
+			if (provider == null) return;
+			provider.getBuffer(RenderLayer.getLines());
 		}
 	}
 

@@ -36,6 +36,7 @@ public final class KeyBindingRegistryImpl {
 		return KeyBindingAccessor.fabric_getCategoryMap();
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public static boolean addCategory(String categoryTranslationKey) {
 		Map<String, Integer> map = getCategoryMap();
 
