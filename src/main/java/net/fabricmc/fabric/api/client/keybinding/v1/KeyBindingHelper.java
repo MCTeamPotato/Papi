@@ -17,7 +17,6 @@
 package net.fabricmc.fabric.api.client.keybinding.v1;
 
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
-import net.fabricmc.fabric.mixin.client.keybinding.KeyBindingAccessor;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 
@@ -57,6 +56,6 @@ public final class KeyBindingHelper {
 	 * @return configured KeyCode
 	 */
 	public static InputUtil.Key getBoundKeyOf(KeyBinding keyBinding) {
-		return ((KeyBindingAccessor) keyBinding).fabric_getBoundKey();
+		return keyBinding.getKey();
 	}
 }

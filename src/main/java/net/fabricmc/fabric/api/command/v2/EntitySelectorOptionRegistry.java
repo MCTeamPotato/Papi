@@ -16,7 +16,6 @@
 
 package net.fabricmc.fabric.api.command.v2;
 
-import net.fabricmc.fabric.mixin.command.EntitySelectorOptionsAccessor;
 import net.minecraft.command.EntitySelectorOptions;
 import net.minecraft.command.EntitySelectorReader;
 import net.minecraft.text.Text;
@@ -63,7 +62,7 @@ public final class EntitySelectorOptionRegistry {
 	 * @param canUse the predicate that checks whether the option is syntactically valid
 	 */
 	public static void register(Identifier id, Text description, EntitySelectorOptions.SelectorHandler handler, Predicate<EntitySelectorReader> canUse) {
-		EntitySelectorOptionsAccessor.callPutOption(id.toUnderscoreSeparatedString(), handler, canUse, description);
+		EntitySelectorOptions.putOption(id.toUnderscoreSeparatedString(), handler, canUse, description);
 	}
 
 	/**

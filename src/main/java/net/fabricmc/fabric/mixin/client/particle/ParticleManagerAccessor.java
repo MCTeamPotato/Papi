@@ -33,7 +33,7 @@ public interface ParticleManagerAccessor {
 	@Accessor("particleAtlasTexture")
 	SpriteAtlasTexture getParticleAtlasTexture();
 
-	@Accessor("f_107293_")
+	@Accessor(value = "f_107293_", remap = false)
 	Map<Identifier, ParticleFactory<?>> getFactories();
 
 	// NOTE: The field signature is actually Map<Identifier, SimpleSpriteProvider>

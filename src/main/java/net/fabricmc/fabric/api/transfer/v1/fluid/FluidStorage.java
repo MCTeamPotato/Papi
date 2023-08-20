@@ -28,7 +28,6 @@ import net.fabricmc.fabric.api.transfer.v1.storage.base.SidedStorageBlockEntity;
 import net.fabricmc.fabric.impl.transfer.fluid.CombinedProvidersImpl;
 import net.fabricmc.fabric.impl.transfer.fluid.EmptyBucketStorage;
 import net.fabricmc.fabric.impl.transfer.fluid.WaterPotionStorage;
-import net.fabricmc.fabric.mixin.transfer.BucketItemAccessor;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
@@ -150,7 +149,7 @@ public final class FluidStorage {
 		// Register full bucket storage
 		GENERAL_COMBINED_PROVIDER.register(context -> {
 			if (context.getItemVariant().getItem() instanceof BucketItem bucketItem) {
-				Fluid bucketFluid = ((BucketItemAccessor) bucketItem).fabric_getFluid();
+				Fluid bucketFluid = bucketItem.getFluid();
 
 				// Make sure the mapping is bidirectional.
 				if (bucketFluid != null && bucketFluid.getBucketItem() == bucketItem) {

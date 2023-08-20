@@ -28,11 +28,7 @@ import net.fabricmc.fabric.impl.mininglevel.MiningLevelManagerImpl;
 @Mixin(MiningToolItem.class)
 @SuppressWarnings("deprecation")
 abstract class MiningToolItemMixin {
-	@Inject(
-			method = "isSuitableFor(Lnet/minecraft/block/BlockState;)Z",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/item/MiningToolItem;getMaterial()Lnet/minecraft/item/ToolMaterial;", ordinal = 0),
-			cancellable = true
-	)
+	@Inject(method = "isSuitableFor(Lnet/minecraft/block/BlockState;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/MiningToolItem;getMaterial()Lnet/minecraft/item/ToolMaterial;", ordinal = 0), cancellable = true)
 	private void fabric$onIsSuitableFor(BlockState state, CallbackInfoReturnable<Boolean> info) {
 		if (((MiningToolItem) (Object) this).getMaterial().getMiningLevel() < MiningLevelManagerImpl.getRequiredFabricMiningLevel(state)) {
 			info.setReturnValue(false);

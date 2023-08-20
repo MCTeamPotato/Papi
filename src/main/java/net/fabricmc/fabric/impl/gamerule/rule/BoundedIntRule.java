@@ -68,7 +68,7 @@ public final class BoundedIntRule extends GameRules.IntRule {
 
 	@Override
 	protected GameRules.IntRule copy() {
-		return new BoundedIntRule(this.type, ((GameRulesIntRuleAccessor) (Object) this).getValue(), this.minimumValue, this.maximumValue);
+		return new BoundedIntRule(this.type, this.getCommandResult(), this.minimumValue, this.maximumValue);
 	}
 
 	private static int parseInt(String input) {

@@ -103,8 +103,8 @@ public interface FabricLootPoolBuilder {
 	static LootPool.Builder copyOf(LootPool pool) {
 		LootPoolAccessor accessor = (LootPoolAccessor) pool;
 		LootPool.Builder builder = LootPool.builder();
-		builder.rolls(accessor.fabric_getRolls());
-		builder.bonusRolls(accessor.fabric_getBonusRolls());
+		builder.rolls(pool.getRolls());
+		builder.bonusRolls(pool.getBonusRolls());
 		((FabricLootPoolBuilder)builder).with(List.of(accessor.fabric_getEntries()));
 		((FabricLootPoolBuilder)builder).conditionally(List.of(accessor.fabric_getConditions()));
 		((FabricLootPoolBuilder)builder).apply(List.of(accessor.fabric_getFunctions()));

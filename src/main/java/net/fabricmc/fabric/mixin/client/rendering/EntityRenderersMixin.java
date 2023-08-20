@@ -55,10 +55,9 @@ public abstract class EntityRenderersMixin {
 		EntityRenderer<?> entityRenderer = entityRendererFactory.create(context);
 
 		if (entityRenderer instanceof LivingEntityRenderer) { // Must be living for features
-			LivingEntityRendererAccessor accessor = (LivingEntityRendererAccessor) entityRenderer;
 			LivingEntityFeatureRendererRegistrationCallback.EVENT.invoker()
 					.registerRenderers((EntityType<? extends LivingEntity>) entityType, (LivingEntityRenderer) entityRenderer,
-							new RegistrationHelperImpl(accessor::callAddFeature), context);
+							new RegistrationHelperImpl(((LivingEntityRenderer)entityRenderer)::addFeature), context);
 		}
 
 		return entityRenderer;
@@ -102,10 +101,8 @@ public abstract class EntityRenderersMixin {
 	@Unique
 	private static EntityRenderer<? extends PlayerEntity> papi$createPlayerEntityRenderer(EntityRendererFactory<AbstractClientPlayerEntity> playerEntityRendererFactory, EntityRendererFactory.Context context) {
 		EntityRenderer<? extends PlayerEntity> entityRenderer = playerEntityRendererFactory.create(context);
-
-		LivingEntityRendererAccessor accessor = (LivingEntityRendererAccessor) entityRenderer;
 		LivingEntityFeatureRendererRegistrationCallback.EVENT.invoker().registerRenderers(EntityType.PLAYER,
-				(LivingEntityRenderer) entityRenderer, new RegistrationHelperImpl(accessor::callAddFeature), context);
+				(LivingEntityRenderer) entityRenderer, new RegistrationHelperImpl(((LivingEntityRenderer)entityRenderer)::addFeature), context);
 
 		return entityRenderer;
 	}
