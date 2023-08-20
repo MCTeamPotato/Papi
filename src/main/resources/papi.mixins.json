@@ -141,7 +141,6 @@
     "item.client.HeldItemRendererMixin",
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin",
-    "networking.client.DisconnectedScreenMixin",
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor",
     "object.builder.client.EntityModelLayersMixin",
