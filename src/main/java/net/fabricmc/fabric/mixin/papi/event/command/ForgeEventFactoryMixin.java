@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ForgeEventFactory.class, remap = false)
-public class MixinForgeEventFactory {
+public class ForgeEventFactoryMixin {
     /**
      * Wait an inject in a constructor?
      * This is a new addition to Fabric's fork of mixin.

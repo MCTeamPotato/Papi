@@ -2,5 +2,8 @@ accessWidener	v2	named
 
 extendable class net/minecraft/item/ItemStack
 
+accessible class net/minecraft/client/world/ClientChunkManager$ClientChunkMap
 accessible class net/minecraft/server/MinecraftServer$ResourceManagerHolder
+
 accessible field net/minecraft/resource/ReloadableResourceManagerImpl reloaders Ljava/util/List;
+accessible method net/minecraft/client/world/ClientChunkManager$ClientChunkMap isInRadius (II)Z
