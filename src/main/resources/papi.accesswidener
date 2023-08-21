@@ -31,6 +31,7 @@ accessible class net/minecraft/client/world/ClientChunkManager$ClientChunkMap
 extendable class net/minecraft/block/entity/BlockEntityType$BlockEntityFactory
 extendable class net/minecraft/recipe/Ingredient
 extendable class net/minecraft/item/ItemStack
+extendable class net/minecraft/screen/SimpleNamedScreenHandlerFactory
 
 accessible field net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;
 accessible field net/minecraft/village/VillagerType BIOME_TO_TYPE Ljava/util/Map;

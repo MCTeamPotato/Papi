@@ -47,7 +47,7 @@ abstract class MouseMixin implements MouseExtensions {
 	}
 
 	@Override
-	public double papi$getHorizontalScroll() {
+	public double getHorizontalScroll() {
 		return papi$horizontalScrollAmount;
 	}
 }

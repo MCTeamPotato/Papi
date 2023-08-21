@@ -104,7 +104,7 @@ public final class ScreenEventHooks {
     @SubscribeEvent
     public static void beforeMouseScroll(ScreenEvent.MouseScrolled.Pre event) {
         Screen screen = event.getScreen();
-        double horizontalScroll = ((MouseExtensions) screen.getMinecraft().mouse).papi$getHorizontalScroll();
+        double horizontalScroll = ((MouseExtensions) screen.getMinecraft().mouse).getHorizontalScroll();
         if (!ScreenMouseEvents.allowMouseScroll(screen).invoker().allowMouseScroll(screen, event.getMouseX(), event.getMouseY(), horizontalScroll, event.getScrollDelta())) {
             event.setCanceled(true);
         } else {
@@ -115,7 +115,7 @@ public final class ScreenEventHooks {
     @SubscribeEvent
     public static void afterMouseScroll(ScreenEvent.MouseScrolled.Post event) {
         Screen screen = event.getScreen();
-        double horizontalScroll = ((MouseExtensions) screen.getMinecraft().mouse).papi$getHorizontalScroll();
+        double horizontalScroll = ((MouseExtensions) screen.getMinecraft().mouse).getHorizontalScroll();
         ScreenMouseEvents.afterMouseScroll(screen).invoker().afterMouseScroll(screen, event.getMouseX(), event.getMouseY(), horizontalScroll, event.getScrollDelta());
     }
 

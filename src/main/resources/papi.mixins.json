@@ -74,7 +74,6 @@
     "object.builder.AbstractBlockSettingsAccessor",
     "object.builder.CriteriaAccessor",
     "object.builder.DefaultAttributeRegistryAccessor",
-    "object.builder.DefaultAttributeRegistryMixin",
     "object.builder.DetectorRailBlockMixin",
     "object.builder.MaterialBuilderAccessor",
     "object.builder.TradeOffersTypeAwareBuyForOneEmeraldFactoryMixin",

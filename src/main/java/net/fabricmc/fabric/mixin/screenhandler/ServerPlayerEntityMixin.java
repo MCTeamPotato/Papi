@@ -64,7 +64,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
 	@Inject(method = "openHandledScreen(Lnet/minecraft/screen/NamedScreenHandlerFactory;)Ljava/util/OptionalInt;", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;incrementScreenHandlerSyncId()V"), cancellable = true)
 	private void fabric_replaceVanillaScreenPacket(NamedScreenHandlerFactory factory, CallbackInfoReturnable<OptionalInt> cir) {
-		if (factory instanceof SimpleNamedScreenHandlerFactory simpleFactory && ((SimpleNamedScreenHandlerFactoryAccessor) (Object) simpleFactory).getBaseFactory() instanceof ExtendedScreenHandlerFactory extendedFactory) {
+		if (factory instanceof SimpleNamedScreenHandlerFactory simpleFactory && ((SimpleNamedScreenHandlerFactoryAccessor) simpleFactory).getBaseFactory() instanceof ExtendedScreenHandlerFactory extendedFactory) {
 			factory = extendedFactory;
 		}
 

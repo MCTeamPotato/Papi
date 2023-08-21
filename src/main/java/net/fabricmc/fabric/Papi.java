@@ -13,6 +13,7 @@ import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.object.builder.ObjectBuilderImpl;
 import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit;
 import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientSync;
 import net.fabricmc.fabric.impl.recipe.ingredient.client.CustomIngredientSyncClient;
@@ -37,6 +38,7 @@ public class Papi {
         InteractionEventsRouter.init();
         CustomIngredientInit.init();
         CustomIngredientSync.init();
+        ObjectBuilderImpl.init();
         MinecraftForge.EVENT_BUS.register(LifecycleEventsHook.class);
         MinecraftForge.EVENT_BUS.register(EntityEventHooks.class);
         if (FMLLoader.getDist().isClient()) {
