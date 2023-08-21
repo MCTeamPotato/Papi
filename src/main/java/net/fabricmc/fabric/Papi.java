@@ -8,6 +8,7 @@ import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.client.LegacyClientEventInvokers;
 import net.fabricmc.fabric.impl.networking.OldClientNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
+import net.fabricmc.papi.impl.event.lifecycle.ChunkEventsImpl;
 import net.fabricmc.papi.impl.resource.loader.ResourceLoaderImpl;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -44,5 +45,6 @@ public class Papi {
 
         modEventBus.addListener(ResourceLoaderImpl::addPackFinders);
         forgeEventBus.addListener(ResourceLoaderImpl::onServerDataReload);
+        forgeEventBus.register(ChunkEventsImpl.class);
     }
 }

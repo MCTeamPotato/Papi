@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ForgeEventFactory.class, remap = false)
-public class MixinForgeEventFactory {
+public class ForgeEventFactoryMixin {
     @Inject(method = "onCommandRegister", at = @At("HEAD"))
     private static void fabric_addCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandManager.RegistrationEnvironment environment, CallbackInfo ci) {
         CommandRegistrationCallback.EVENT.invoker().register(dispatcher, environment == CommandManager.RegistrationEnvironment.DEDICATED);

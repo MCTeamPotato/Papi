@@ -19,7 +19,7 @@ package net.fabricmc.fabric.api.item.v1;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-import net.fabricmc.fabric.impl.client.item.ItemApiClientEventHooks;
+import net.fabricmc.fabric.impl.client.item.ItemApiClientHooks;
 import net.fabricmc.fabric.impl.item.FabricItemInternals;
 import net.fabricmc.fabric.impl.item.ItemExtensions;
 import net.minecraft.block.BlockState;
@@ -178,7 +178,7 @@ public interface FabricItem extends IForgeItem {
 	@Override
 	default boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 		if (IForgeItem.super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged)) {
-			PlayerEntity player = ItemApiClientEventHooks.getClientPlayerSafely();
+			PlayerEntity player = ItemApiClientHooks.getClientPlayerSafely();
 			Hand hand = oldStack == player.getMainHandStack() ? Hand.MAIN_HAND : Hand.OFF_HAND;
 			return FabricItemInternals.nonRecursiveApiCall(() -> allowNbtUpdateAnimation(player, hand, oldStack, newStack));
 		}
@@ -187,7 +187,7 @@ public interface FabricItem extends IForgeItem {
 
 	@Override
 	default boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
-		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && FabricItemInternals.nonRecursiveApiCall(() -> !allowContinuingBlockBreaking(ItemApiClientEventHooks.getClientPlayerSafely(), oldStack, newStack));
+		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && FabricItemInternals.nonRecursiveApiCall(() -> !allowContinuingBlockBreaking(ItemApiClientHooks.getClientPlayerSafely(), oldStack, newStack));
 	}
 
 	@Override

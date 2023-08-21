@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ForgeHooksClient.class, remap = false)
-public abstract class MixinForgeHooksClient {
+public abstract class ForgeHooksClientMixin {
     @Inject(method = "onScreenKeyPressedPre", at = @At("HEAD"), cancellable = true)
     private static void beforeKeyPressedEvent(Screen guiScreen, int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> ci) {
         if (guiScreen == null) return;
