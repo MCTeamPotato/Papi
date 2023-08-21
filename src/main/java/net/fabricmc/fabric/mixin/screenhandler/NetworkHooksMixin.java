@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.function.Consumer;
 
-@Mixin(value = NetworkHooks.class, remap = false)
+@Mixin(NetworkHooks.class)
+//remap IS needed.
 public class NetworkHooksMixin {
-
     @Inject(method = "openScreen(Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/screen/NamedScreenHandlerFactory;Ljava/util/function/Consumer;)V", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/screen/NamedScreenHandlerFactory;createMenu(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/screen/ScreenHandler;"), locals = LocalCapture.CAPTURE_FAILHARD)
     private static void injectOpenScreen(ServerPlayerEntity player, NamedScreenHandlerFactory containerSupplier, Consumer<PacketByteBuf> extraDataWriter, CallbackInfo ci, int openContainerId, PacketByteBuf extraData, PacketByteBuf output, ScreenHandler menu) {
         // Allows writeScreenOpeningData to access the current menu through the player

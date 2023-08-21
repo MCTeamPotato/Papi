@@ -18,7 +18,6 @@ import net.fabricmc.fabric.impl.object.builder.ObjectBuilderImpl;
 import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit;
 import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientSync;
 import net.fabricmc.fabric.impl.recipe.ingredient.client.CustomIngredientSyncClient;
-import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -50,7 +49,6 @@ public class Papi {
             MinecraftForge.EVENT_BUS.register(ScreenEventHooks.class);
             InteractionEventsRouterClient.clientInit();
             ClientLifecycleEventsImpl.clientInit();
-            ClientNetworking.clientInit();
             ClientNetworkingImpl.clientInit();
             CustomIngredientSyncClient.clientInit();
             RenderingImpl.clientInit();
