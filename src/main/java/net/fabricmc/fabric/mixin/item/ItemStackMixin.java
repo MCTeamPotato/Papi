@@ -16,80 +16,11 @@
 
 package net.fabricmc.fabric.mixin.item;
 
-import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
-import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemStack;
-import net.fabricmc.fabric.impl.item.ItemExtensions;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.function.Consumer;
+import net.minecraft.item.ItemStack;
+
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ItemStack.class)
-public abstract class ItemStackMixin implements FabricItemStack {
-	@Shadow public abstract Item getItem();
-
-	@Unique
-	private LivingEntity fabric_damagingEntity;
-
-	@Unique
-	private Consumer<LivingEntity> fabric_breakCallback;
-
-	@Inject(method = "damage(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V", at = @At("HEAD"))
-	private void saveDamager(int amount, LivingEntity entity, Consumer<LivingEntity> breakCallback, CallbackInfo ci) {
-		this.fabric_damagingEntity = entity;
-		this.fabric_breakCallback = breakCallback;
-	}
-
-	@ModifyArg(method = "damage(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;damage(ILnet/minecraft/util/math/random/Random;Lnet/minecraft/server/network/ServerPlayerEntity;)Z"), index = 0)
-	private int hookDamage(int amount) {
-		CustomDamageHandler handler = ((ItemExtensions) getItem()).fabric_getCustomDamageHandler();
-
-		if (handler != null) {
-			return handler.damage((ItemStack) (Object) this, amount, fabric_damagingEntity, fabric_breakCallback);
-		}
-
-		return amount;
-	}
-
-	@Inject(method = "damage(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V", at = @At("RETURN"))
-	private <T extends LivingEntity> void clearDamage(int amount, T entity, Consumer<T> breakCallback, CallbackInfo ci) {
-		this.fabric_damagingEntity = null;
-		this.fabric_breakCallback = null;
-	}
-
-	/**
-	 * @author Kasualix
-	 * @reason clean way to impl api
-	 */
-	@Overwrite
-	public boolean isSuitableFor(BlockState state) {
-		return ((FabricItem)this.getItem()).isSuitableFor((ItemStack) (Object) this, state) && this.getItem().isCorrectToolForDrops((ItemStack) (Object) this, state);
-	}
-
-	@Final
-	@Shadow
-	private Item item;
-	@Shadow
-	private int count;
-	@Shadow
-	private boolean empty;
-
-	/**
-	 * Soft-overwrite updateEmptyState to fix <a href="https://bugs.mojang.com/projects/MC/issues/MC-258939">MC-258939</a>.
-	 * Cannot hard-overwrite because Lithium contains a similar but insufficient inject.
-	 */
-	@Inject(method = "updateEmptyState", at = @At("HEAD"), cancellable = true)
-	private void updateEmptyState(CallbackInfo ci) {
-		this.empty = this.item == null || this.item == Items.AIR || this.count <= 0;
-		ci.cancel();
-	}
-}
+public abstract class ItemStackMixin implements FabricItemStack { }

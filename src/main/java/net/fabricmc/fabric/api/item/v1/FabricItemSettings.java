@@ -101,4 +101,10 @@ public class FabricItemSettings extends Item.Settings {
 		super.fireproof();
 		return this;
 	}
+
+	@Override
+	public FabricItemSettings setNoRepair() {
+		super.setNoRepair();
+		return this;
+	}
 }

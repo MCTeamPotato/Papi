@@ -139,8 +139,6 @@ public interface FabricItem extends IForgeItem {
 		return ItemStack.EMPTY;
 	}
 
-	// FFAPI: Forge default implementation
-
 	@Override
 	default ItemStack getCraftingRemainingItem(ItemStack stack) {
 		ItemStack fabricRemainder = FabricItemInternals.nonRecursiveApiCall(() -> getRecipeRemainder(stack));
@@ -181,7 +179,7 @@ public interface FabricItem extends IForgeItem {
 
 	@Override
 	default boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
-		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && FabricItemInternals.nonRecursiveApiCall(() -> !allowContinuingBlockBreaking(ItemApiClientEventHooks.getClientPlayerSafely(), oldStack, newStack));
+		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && !allowContinuingBlockBreaking(ItemApiClientEventHooks.getClientPlayerSafely(), oldStack, newStack);
 	}
 
 	@Override

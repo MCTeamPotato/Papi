@@ -104,7 +104,7 @@ public interface FabricLootTableBuilder {
 		LootTableAccessor accessor = (LootTableAccessor) table;
 
 		builder.type(table.getType());
-		((FabricLootTableBuilder)builder).pools(accessor.fabric_getPools());
+		((FabricLootTableBuilder)builder).pools(List.copyOf(accessor.fabric_getPools()));
 		((FabricLootTableBuilder)builder).apply(List.of(accessor.fabric_getFunctions()));
 
 		return builder;
