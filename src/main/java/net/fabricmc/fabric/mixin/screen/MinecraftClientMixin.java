@@ -16,6 +16,8 @@
 
 package net.fabricmc.fabric.mixin.screen;
 
+import net.minecraft.client.RunArgs;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,6 +34,14 @@ import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 
 @Mixin(MinecraftClient.class)
 abstract class MinecraftClientMixin {
+	@Unique
+	private static boolean DEBUG_SCREEN = false;
+
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void onInit(RunArgs args, CallbackInfo ci) {
+		DEBUG_SCREEN = !FMLEnvironment.production || Boolean.getBoolean("fabric.debugScreen");
+	}
+
 	@Shadow
 	public Screen currentScreen;
 

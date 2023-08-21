@@ -8,6 +8,8 @@ import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.client.LegacyClientEventInvokers;
 import net.fabricmc.fabric.impl.networking.OldClientNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
+import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
 import net.fabricmc.papi.impl.event.lifecycle.ChunkEventsImpl;
 import net.fabricmc.papi.impl.resource.loader.ResourceLoaderImpl;
 
@@ -29,14 +31,18 @@ public class Papi {
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
         LegacyEventInvokers.onInitialize();
-        LifecycleEventsImpl.onInitialize();
         OldNetworkingHooks.onInitialize();
+
+        LifecycleEventsImpl.onInitialize();
 
         if (FMLLoader.getDist().isClient()) {
             LegacyClientEventInvokers.onInitializeClient();
-            ClientLifecycleEventsImpl.onInitializeClient();
             OldClientNetworkingHooks.onInitializeClient();
+
             Indigo.onInitializeClient();
+            ClientLifecycleEventsImpl.onInitializeClient();
+            ClientNetworkingImpl.clientInit();
+            ClientNetworking.onInitializeClient();
 
             KeyBindingRegistryImpl.onRegisterKeyMappings();
 
@@ -44,6 +50,7 @@ public class Papi {
         }
 
         modEventBus.addListener(ResourceLoaderImpl::addPackFinders);
+
         forgeEventBus.addListener(ResourceLoaderImpl::onServerDataReload);
         forgeEventBus.register(ChunkEventsImpl.class);
     }

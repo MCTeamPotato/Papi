@@ -2,8 +2,17 @@ accessWidener	v2	named
 
 extendable class net/minecraft/item/ItemStack
 
-accessible class net/minecraft/client/world/ClientChunkManager$ClientChunkMap
-accessible class net/minecraft/server/MinecraftServer$ResourceManagerHolder
+extendable method net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
+
+accessible method net/minecraft/client/gui/screen/ingame/HandledScreens register (Lnet/minecraft/screen/ScreenHandlerType;Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;)V
+accessible method net/minecraft/client/gui/screen/ingame/HandledScreens getProvider (Lnet/minecraft/screen/ScreenHandlerType;)Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;
+accessible method net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
+accessible method net/minecraft/client/world/ClientChunkManager$ClientChunkMap isInRadius (II)Z
 
 accessible field net/minecraft/resource/ReloadableResourceManagerImpl reloaders Ljava/util/List;
-accessible method net/minecraft/client/world/ClientChunkManager$ClientChunkMap isInRadius (II)Z
+
+accessible class net/minecraft/client/gui/screen/ingame/HandledScreens$Provider
+accessible class net/minecraft/screen/ScreenHandlerType$Factory
+accessible class net/minecraft/client/render/chunk/ChunkRendererRegionBuilder$ClientChunk
+accessible class net/minecraft/client/world/ClientChunkManager$ClientChunkMap
+accessible class net/minecraft/server/MinecraftServer$ResourceManagerHolder

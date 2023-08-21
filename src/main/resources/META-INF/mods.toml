@@ -8,5 +8,7 @@ version = "${version}"
 displayName = "Papi"
 authors="Team Potato"
 description = '''
-Another Fabric API Reforged Project
+Another Fabric API Reforged Project.
+
+Essential hooks for modding with Fabric ported to MinecraftForge.
 '''

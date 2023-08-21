@@ -20,6 +20,9 @@
     "item.LivingEntityMixin",
     "item.RecipeMixin",
     "item.group.MixinItemGroup",
+    "mininglevel.MiningToolItemMixin",
+    "mininglevel.ShearsItemMixin",
+    "mininglevel.SwordItemMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -37,8 +40,11 @@
     "resource.loader.NamespaceResourceManagerAccessor",
     "resource.loader.NamespaceResourceManagerMixin",
     "resource.loader.ReloadableResourceManagerImplMixin",
+    "rendering.data.attachment.MixinBlockEntity",
+    "rendering.data.attachment.MixinViewableWorld",
     "screen.MouseMixin",
-    "screen.ScreenAccessor"
+    "screen.ScreenAccessor",
+    "screenhandler.ServerPlayerEntityMixin"
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
@@ -79,6 +85,8 @@
     "renderer.client.MixinSpriteAtlasTexture",
     "renderer.client.MixinWeightedBakedModel",
     "renderer.client.debughud.MixinDebugHud",
+    "rendering.data.attachment.client.MixinChunkRendererRegion",
+    "rendering.data.attachment.client.MixinChunkRendererRegionBuilder",
     "resource.loader.client.ClientBuiltinResourcePackProviderMixin",
     "resource.loader.client.FontManagerResourceReloadListenerMixin",
     "resource.loader.client.KeyedResourceReloadListenerClientMixin",
