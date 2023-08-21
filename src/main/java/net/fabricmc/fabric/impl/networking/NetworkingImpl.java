@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.List;
 
 public final class NetworkingImpl {
-	public static final String MOD_ID = "fabric-networking-api-v1";
+	public static final String MOD_ID = "fabric_networking_api_v1";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	/**
 	 * Id of packet used to register supported channels.

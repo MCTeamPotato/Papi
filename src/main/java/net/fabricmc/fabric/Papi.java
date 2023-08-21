@@ -2,6 +2,7 @@ package net.fabricmc.fabric;
 
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
+import net.fabricmc.fabric.impl.client.item.ItemApiClientEventHooks;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.impl.client.rendering.RenderingImpl;
 import net.fabricmc.fabric.impl.client.screen.ScreenEventHooks;
@@ -47,6 +48,7 @@ public class Papi {
             bus.addListener(BlockRenderLayerMapImpl::onClientSetup);
             bus.addListener(KeyBindingRegistryImpl::onRegisterKeyMappings);
             MinecraftForge.EVENT_BUS.register(ScreenEventHooks.class);
+            MinecraftForge.EVENT_BUS.register(ItemApiClientEventHooks.class);
             InteractionEventsRouterClient.clientInit();
             ClientLifecycleEventsImpl.clientInit();
             ClientNetworkingImpl.clientInit();
