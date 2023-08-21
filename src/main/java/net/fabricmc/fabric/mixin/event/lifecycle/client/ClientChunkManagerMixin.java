@@ -42,6 +42,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 @OnlyIn(Dist.CLIENT)
 @Mixin(ClientChunkManager.class)
 public abstract class ClientChunkManagerMixin {
+    /*
     @Final
     @Shadow
     private ClientWorld world;
@@ -62,4 +63,5 @@ public abstract class ClientChunkManagerMixin {
     private void onChunkUnload(int chunkX, int chunkZ, CallbackInfo ci, int i, WorldChunk chunk) {
         ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(this.world, chunk);
     }
+     */
 }
