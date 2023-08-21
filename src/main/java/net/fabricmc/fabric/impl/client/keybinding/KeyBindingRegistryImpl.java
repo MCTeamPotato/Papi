@@ -74,6 +74,8 @@ public final class KeyBindingRegistryImpl {
 	/**
 	 * Processes the keybindings array for our modded ones by first removing existing modded keybindings and readding them,
 	 * we can make sure that there are no duplicates this way.
+	 *
+	 * @deprecated Use {@link #onRegisterKeyMappings()}
 	 */
 	@Deprecated(forRemoval = true)
 	public static KeyBinding[] process(KeyBinding[] keysAll) {
@@ -84,6 +86,8 @@ public final class KeyBindingRegistryImpl {
 	}
 
 	public static void onRegisterKeyMappings() {
-		for (KeyBinding keyBinding : moddedKeyBindings) ClientRegistry.registerKeyBinding(keyBinding);
+		for (KeyBinding keyBinding : moddedKeyBindings) {
+			ClientRegistry.registerKeyBinding(keyBinding);
+		}
 	}
 }
