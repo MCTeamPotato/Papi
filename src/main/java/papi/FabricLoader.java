@@ -7,6 +7,7 @@ import java.nio.file.Path;
 
 public class FabricLoader {
     private final Path configDir;
+    private static FabricLoader instance = null;
 
     public FabricLoader() {
         this.configDir = getConfigPath();
@@ -23,9 +24,11 @@ public class FabricLoader {
     }
 
     public static FabricLoader getInstance() {
-        return new FabricLoader();
+        if (instance == null) instance = new FabricLoader();
+        return instance;
     }
 
+    @SuppressWarnings("unused")
     public Path getConfigDir() {
         return this.configDir;
     }
