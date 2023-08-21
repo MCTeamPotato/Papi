@@ -16,27 +16,26 @@
 
 package net.fabricmc.fabric.mixin.resource.loader.client;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
+import net.fabricmc.fabric.api.resource.ModResourcePack;
+import net.fabricmc.fabric.impl.resource.loader.ModResourcePackCreator;
+import net.fabricmc.fabric.impl.resource.loader.ModResourcePackUtil;
+import net.fabricmc.fabric.impl.resource.loader.client.pack.ProgrammerArtResourcePack;
+import net.minecraft.client.resource.ClientBuiltinResourcePackProvider;
+import net.minecraft.resource.AbstractFileResourcePack;
+import net.minecraft.resource.ResourcePack;
+import net.minecraft.resource.ResourcePackProfile;
+import net.minecraft.resource.ResourceType;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.resource.AbstractFileResourcePack;
-import net.minecraft.resource.ResourcePack;
-import net.minecraft.resource.ResourcePackProfile;
-import net.minecraft.client.resource.ClientBuiltinResourcePackProvider;
-import net.minecraft.resource.ResourceType;
-
-import net.fabricmc.fabric.api.resource.ModResourcePack;
-import net.fabricmc.fabric.impl.resource.loader.ModResourcePackCreator;
-import net.fabricmc.fabric.impl.resource.loader.ModResourcePackUtil;
-import net.fabricmc.fabric.impl.resource.loader.client.pack.ProgrammerArtResourcePack;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 @Mixin(ClientBuiltinResourcePackProvider.class)
 public class ClientBuiltinResourcePackProviderMixin {
@@ -47,14 +46,16 @@ public class ClientBuiltinResourcePackProviderMixin {
 	}
 
 	// ClientBuiltinResourcePackProvider#method_25454 first lambda.
-	@Inject(method = "method_25457(Ljava/io/File;)Lnet/minecraft/resource/ResourcePack;", at = @At("RETURN"), cancellable = true)
+	@Dynamic
+	@Inject(method = {"method_25457(Ljava/io/File;)Lnet/minecraft/resource/ResourcePack;", "m_174820_"}, at = @At("RETURN"), cancellable = true)
 	private static void onSupplyZipProgrammerArtPack(File file, CallbackInfoReturnable<ResourcePack> cir) {
 		AbstractFileResourcePack originalPack = (AbstractFileResourcePack) cir.getReturnValue();
 		cir.setReturnValue(new ProgrammerArtResourcePack(originalPack, getProgrammerArtModResourcePacks()));
 	}
 
 	// ClientBuiltinResourcePackProvider#method_25454 second lambda.
-	@Inject(method = "method_25456(Ljava/io/File;)Lnet/minecraft/resource/ResourcePack;", at = @At("RETURN"), cancellable = true)
+	@Dynamic
+	@Inject(method = {"method_25456(Ljava/io/File;)Lnet/minecraft/resource/ResourcePack;", "m_174822_"}, at = @At("RETURN"), cancellable = true)
 	private static void onSupplyDirProgrammerArtPack(File file, CallbackInfoReturnable<ResourcePack> cir) {
 		AbstractFileResourcePack originalPack = (AbstractFileResourcePack) cir.getReturnValue();
 		cir.setReturnValue(new ProgrammerArtResourcePack(originalPack, getProgrammerArtModResourcePacks()));

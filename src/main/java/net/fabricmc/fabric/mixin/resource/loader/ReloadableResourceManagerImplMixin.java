@@ -16,24 +16,24 @@
 
 package net.fabricmc.fabric.mixin.resource.loader;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import net.fabricmc.fabric.impl.resource.loader.GroupResourcePack;
+import net.minecraft.resource.ReloadableResourceManagerImpl;
+import net.minecraft.resource.ResourcePack;
+import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.resource.ReloadableResourceManagerImpl;
-import net.minecraft.resource.ResourcePack;
-
-import net.fabricmc.fabric.impl.resource.loader.GroupResourcePack;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mixin(ReloadableResourceManagerImpl.class)
 public class ReloadableResourceManagerImplMixin {
 	// private static synthetic method_29491(Ljava/util/List;)Ljava/lang/Object;
 	// Supplier lambda in beginMonitoredReload method.
-	@Inject(method = "method_29491(Ljava/util/List;)Ljava/lang/Object;", at = @At("HEAD"), cancellable = true)
+	@Dynamic
+	@Inject(method = {"method_29491(Ljava/util/List;)Ljava/lang/Object;", "m_203825_"}, at = @At("HEAD"), cancellable = true)
 	private static void getResourcePackNames(List<ResourcePack> packs, CallbackInfoReturnable<String> cir) {
 		cir.setReturnValue(packs.stream().map(pack -> {
 			if (pack instanceof GroupResourcePack) {

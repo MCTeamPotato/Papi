@@ -16,6 +16,16 @@
 
 package net.fabricmc.fabric.impl.resource.loader;
 
+import cpw.mods.niofs.union.UnionFileSystemProvider;
+import net.fabricmc.fabric.api.resource.ModResourcePack;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.papi.util.LoaderUtil;
+import net.minecraft.resource.ResourceType;
+import net.minecraftforge.forgespi.language.IModInfo;
+import net.minecraftforge.resource.PathResourcePack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -23,18 +33,6 @@ import java.nio.file.Path;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.ArrayList;
 import java.util.List;
-
-import cpw.mods.niofs.union.UnionFileSystemProvider;
-import net.fabricmc.papi.util.LoaderUtil;
-import net.minecraftforge.forgespi.language.IModInfo;
-import net.minecraftforge.resource.PathResourcePack;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-
-import net.minecraft.resource.ResourceType;
-
-import net.fabricmc.fabric.api.resource.ModResourcePack;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 
 public class ModNioResourcePack extends PathResourcePack implements ModResourcePack {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ModNioResourcePack.class);
@@ -68,7 +66,7 @@ public class ModNioResourcePack extends PathResourcePack implements ModResourceP
 		if (paths.isEmpty()) return null;
 
 		Path union = paths.size() == 1 ? paths.get(0) : UFSP.newFileSystem((a, b) -> true, paths.toArray(Path[]::new)).getRoot();
-		ModNioResourcePack ret = new ModNioResourcePack(name, LoaderUtil.getModContainerMetadata(mod), union, type, null, activationType);
+		ModNioResourcePack ret = new ModNioResourcePack(name, mod, union, type, null, activationType);
 
 		return ret.getNamespaces(type).isEmpty() ? null : ret;
 	}

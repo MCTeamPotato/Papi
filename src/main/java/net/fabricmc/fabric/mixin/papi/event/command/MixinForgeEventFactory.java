@@ -12,13 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ForgeEventFactory.class, remap = false)
 public class MixinForgeEventFactory {
-    /**
-     * Wait an inject in a constructor?
-     * This is a new addition to Fabric's fork of mixin.
-     * If you are not using fabric's fork of mixin this will fail.
-     *
-     * @reason Add commands before ambiguities are calculated.
-     */
     @Inject(method = "onCommandRegister", at = @At("HEAD"))
     private static void fabric_addCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandManager.RegistrationEnvironment environment, CallbackInfo ci) {
         CommandRegistrationCallback.EVENT.invoker().register(dispatcher, environment == CommandManager.RegistrationEnvironment.DEDICATED);

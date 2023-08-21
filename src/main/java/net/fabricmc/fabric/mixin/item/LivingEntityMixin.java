@@ -33,7 +33,7 @@ import net.fabricmc.fabric.impl.item.ItemExtensions;
 @Mixin(LivingEntity.class)
 abstract class LivingEntityMixin {
 	@Inject(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-	private static void onGetPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> info, Item item) {
+	private static void onGetPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> info, EquipmentSlot slot, Item item) {
 		EquipmentSlotProvider equipmentSlotProvider = ((ItemExtensions) item).fabric_getEquipmentSlotProvider();
 
 		if (equipmentSlotProvider != null) {

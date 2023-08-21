@@ -16,18 +16,10 @@
 
 package net.fabricmc.fabric.mixin.client.indigo.renderer;
 
-import java.util.Random;
-import java.util.Set;
-
-import net.minecraftforge.client.model.data.IModelData;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
+import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
+import net.fabricmc.fabric.impl.client.indigo.Indigo;
+import net.fabricmc.fabric.impl.client.indigo.renderer.accessor.AccessChunkRendererRegion;
+import net.fabricmc.fabric.impl.client.indigo.renderer.render.TerrainRenderContext;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -42,11 +34,18 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockRenderView;
+import net.minecraftforge.client.model.data.IModelData;
+import org.spongepowered.asm.mixin.Dynamic;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
-import net.fabricmc.fabric.impl.client.indigo.Indigo;
-import net.fabricmc.fabric.impl.client.indigo.renderer.accessor.AccessChunkRendererRegion;
-import net.fabricmc.fabric.impl.client.indigo.renderer.render.TerrainRenderContext;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Implements the main hooks for terrain rendering. Attempts to tread
@@ -69,10 +68,11 @@ public abstract class MixinChunkRebuildTask {
 	@Shadow
 	protected ChunkRendererRegion region;
 	@Final
-	@Shadow
-	protected BuiltChunk field_20839;
+	@Dynamic
+	@Shadow(aliases = {"this$1", "f_112859_"})
+	BuiltChunk field_20839;
 
-	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/client/render/chunk/ChunkBuilder$BuiltChunk$RebuildTask;render(FFFLnet/minecraft/client/render/chunk/ChunkBuilder$ChunkData;Lnet/minecraft/client/render/chunk/BlockBufferBuilderStorage;)Ljava/util/Set;")
+	@Inject(at = @At("HEAD"), method = "render(FFFLnet/minecraft/client/render/chunk/ChunkBuilder$ChunkData;Lnet/minecraft/client/render/chunk/BlockBufferBuilderStorage;)Ljava/util/Set;")
 	private void hookChunkBuild(float cameraX, float cameraY, float cameraZ, ChunkBuilder.ChunkData renderData, BlockBufferBuilderStorage builder, CallbackInfoReturnable<Set<BlockEntity>> ci) {
 		ChunkRendererRegion region = this.region;
 

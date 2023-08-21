@@ -42,7 +42,7 @@ public abstract class AbstractFurnaceBlockEntityMixin {
 		REMAINDER_STACK.set(((FabricItemStack)itemStack).getRecipeRemainder());
 	}
 
-	@ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/collection/DefaultedList;set(ILjava/lang/Object;)Ljava/lang/Object;"), index = 1, allow = 1)
+	@ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/collection/DefaultedList;set(ILjava/lang/Object;)Ljava/lang/Object;", ordinal = 1), index = 1, allow = 1)
 	private static <E> E setStackRemainder(E element) {
 		E remainder = (E) REMAINDER_STACK.get();
 		REMAINDER_STACK.remove();
