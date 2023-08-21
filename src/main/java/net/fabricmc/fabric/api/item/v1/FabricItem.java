@@ -179,7 +179,7 @@ public interface FabricItem extends IForgeItem {
 
 	@Override
 	default boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack) {
-		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && !allowContinuingBlockBreaking(ItemApiClientEventHooks.getClientPlayerSafely(), oldStack, newStack);
+		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && FabricItemInternals.nonRecursiveApiCall(() -> !allowContinuingBlockBreaking(ItemApiClientEventHooks.getClientPlayerSafely(), oldStack, newStack));
 	}
 
 	@Override
