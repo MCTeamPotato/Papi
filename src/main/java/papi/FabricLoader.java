@@ -17,7 +17,6 @@ public class FabricLoader {
         try {
             path = MinecraftClient.getInstance().runDirectory.toPath().resolve("config");
         } catch (Throwable e){
-
             path = ServerLifecycleHooks.getCurrentServer().getRunDirectory().toPath().resolve("config");
         }
         return path;
