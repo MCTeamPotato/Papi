@@ -1,5 +1,8 @@
 # Papi
-Yea another Fabric API reforged project.
+Yea another Fabric API reforged project. 
+
+Work on 1.16.5, 1.18.2, 1.19.2 minecraft version.
+
 Essential hooks for modding with Fabric ported to MinecraftForge.
 
 Papi is the library for essential hooks and interoperability mechanisms for mods. Examples include:
@@ -75,7 +78,7 @@ Each module contains its own `README.md`* explaining the module's purpose and ad
 | API                                  |          State           |  Lifecycle   |
 |:-------------------------------------|:------------------------:|:------------:|
 | fabric-api-base                      |         ✅ Tested         |    Stable    |
-| fabric-api-lookup-api-v1             |        ⚠️ Missing        |    Stable    |
+| fabric-api-lookup-api-v1             |       🛠️ Testing        |    Stable    |
 | fabric-biome-api-v1                  |        ⚠️ Missing        | Experimental |
 | fabric-block-api-v1                  |        ⚠️ Missing        |    Stable    |
 | fabric-blockrenderlayer-v1           |        ⚠️ Missing        |    Stable    |
@@ -87,7 +90,7 @@ Each module contains its own `README.md`* explaining the module's purpose and ad
 | fabric-data-generation-api-v1        |        ⚠️ Missing        |    Stable    |
 | fabric-dimensions-v1                 |        ⚠️ Missing        |    Stable    |
 | fabric-entity-events-v1              |        ⚠️ Missing        |    Stable    |
-| fabric-events-interaction-v0         |        ⚠️ Missing        |    Stable    |
+| fabric-events-interaction-v0         |       🛠️ Testing        |    Stable    |
 | fabric-game-rule-api-v1              |        ⚠️ Missing        |    Stable    |
 | fabric-gametest-api-v1               | 🚧 Not Planned [[2]](#2) |    Stable    |
 | fabric-item-api-v1                   |       🛠️ Testing        |    Stable    |
@@ -96,7 +99,7 @@ Each module contains its own `README.md`* explaining the module's purpose and ad
 | fabric-lifecycle-events-v1           |       🛠️ Testing        |    Stable    |
 | fabric-loot-api-v2                   |        ⚠️ Missing        |    Stable    |
 | fabric-message-api-v1                |        ⚠️ Missing        | Experimental |
-| fabric-mining-level-api-v1           |        ⚠️ Missing        |    Stable    |
+| fabric-mining-level-api-v1           |       🛠️ Testing        |    Stable    |
 | fabric-model-loading-api-v1          |        ⚠️ Missing        |    Stable    |
 | fabric-networking-api-v1             |       🛠️ Testing        |    Stable    |
 | fabric-object-builder-api-v1         |        ⚠️ Missing        |    Stable    |
@@ -122,7 +125,7 @@ Each module contains its own `README.md`* explaining the module's purpose and ad
 | fabric-keybindings-v0                |       🛠️ Testing        |  Deprecated  |
 | fabric-loot-tables-v1                |        ⚠️ Missing        |  Deprecated  |
 | fabric-models-v0                     |        ⚠️ Missing        |    Stable    |
-| fabric-networking-v0                 |        ⚠️ Missing        |  Deprecated  |
+| fabric-networking-v0                 |       🛠️ Testing        |  Deprecated  |
 | fabric-renderer-registries-v1        |        ⚠️ Missing        |  Deprecated  |
 | fabric-rendering-v0                  |        ⚠️ Missing        |  Deprecated  |
 

@@ -2,14 +2,19 @@ package net.fabricmc.fabric;
 
 import net.fabricmc.fabric.impl.client.indigo.Indigo;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
+import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouter;
+import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouterClient;
 import net.fabricmc.fabric.impl.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LegacyEventInvokers;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.client.LegacyClientEventInvokers;
+import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
+import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.OldClientNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
+import net.fabricmc.papi.impl.event.interaction.InteractionEventImpl;
 import net.fabricmc.papi.impl.event.lifecycle.ChunkEventsImpl;
 import net.fabricmc.papi.impl.resource.loader.ResourceLoaderImpl;
 
@@ -33,7 +38,10 @@ public class Papi {
         LegacyEventInvokers.onInitialize();
         OldNetworkingHooks.onInitialize();
 
+        ApiLookupImpl.onInitialize();
+        NetworkingImpl.init();
         LifecycleEventsImpl.onInitialize();
+        InteractionEventsRouter.onInitialize();
 
         if (FMLLoader.getDist().isClient()) {
             LegacyClientEventInvokers.onInitializeClient();
@@ -43,6 +51,7 @@ public class Papi {
             ClientLifecycleEventsImpl.onInitializeClient();
             ClientNetworkingImpl.clientInit();
             ClientNetworking.onInitializeClient();
+            InteractionEventsRouterClient.onInitializeClient();
 
             KeyBindingRegistryImpl.onRegisterKeyMappings();
 
@@ -53,5 +62,6 @@ public class Papi {
 
         forgeEventBus.addListener(ResourceLoaderImpl::onServerDataReload);
         forgeEventBus.register(ChunkEventsImpl.class);
+        forgeEventBus.register(InteractionEventImpl.class);
     }
 }
