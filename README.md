@@ -90,36 +90,36 @@ Each module contains its own `README.md`* explaining the module's purpose and ad
 | fabric-events-interaction-v0         |        ⚠️ Missing        |    Stable    |
 | fabric-game-rule-api-v1              |        ⚠️ Missing        |    Stable    |
 | fabric-gametest-api-v1               | 🚧 Not Planned [[2]](#2) |    Stable    |
-| fabric-item-api-v1                   |        ✅ Testing         |    Stable    |
-| fabric-item-group-api-v1             |        ✅ Testing         |    Stable    |
-| fabric-key-binding-api-v1            |        ✅ Testing         |    Stable    |
-| fabric-lifecycle-events-v1           |        ✅ Testing         |    Stable    |
+| fabric-item-api-v1                   |       🛠️ Testing        |    Stable    |
+| fabric-item-group-api-v1             |       🛠️ Testing        |    Stable    |
+| fabric-key-binding-api-v1            |       🛠️ Testing        |    Stable    |
+| fabric-lifecycle-events-v1           |       🛠️ Testing        |    Stable    |
 | fabric-loot-api-v2                   |        ⚠️ Missing        |    Stable    |
 | fabric-message-api-v1                |        ⚠️ Missing        | Experimental |
 | fabric-mining-level-api-v1           |        ⚠️ Missing        |    Stable    |
 | fabric-model-loading-api-v1          |        ⚠️ Missing        |    Stable    |
-| fabric-networking-api-v1             |        ✅ Testing         |    Stable    |
+| fabric-networking-api-v1             |       🛠️ Testing        |    Stable    |
 | fabric-object-builder-api-v1         |        ⚠️ Missing        |    Stable    |
 | fabric-particles-v1                  |        ⚠️ Missing        |    Stable    |
 | fabric-recipe-api-v1                 |        ⚠️ Missing        |    Stable    |
 | fabric-registry-sync-v0              |        ⚠️ Missing        |    Stable    |
-| fabric-renderer-api-v1               |        ✅ Testing         |    Stable    |
-| fabric-renderer-indigo               |        ✅ Testing         |    Stable    |
-| fabric-rendering-data-attachment-v1  |        ✅ Testing         |    Stable    |
+| fabric-renderer-api-v1               |       🛠️ Testing        |    Stable    |
+| fabric-renderer-indigo               |       🛠️ Testing        |    Stable    |
+| fabric-rendering-data-attachment-v1  |       🛠️ Testing        |    Stable    |
 | fabric-rendering-fluids-v1           |        ⚠️ Missing        |    Stable    |
-| fabric-rendering-v1                  |        ✅ Testing         |    Stable    |
+| fabric-rendering-v1                  |       🛠️ Testing        |    Stable    |
 | fabric-resource-conditions-api-v1    |        ⚠️ Missing        | Experimental |
-| fabric-resource-loader-v0            |        ✅ Testing         |    Stable    |
-| fabric-screen-api-v1                 |        ✅ Testing         |    Stable    |
-| fabric-screen-handler-api-v1         |        ✅ Testing         |    Stable    |
+| fabric-resource-loader-v0            |       🛠️ Testing        |    Stable    |
+| fabric-screen-api-v1                 |       🛠️ Testing        |    Stable    |
+| fabric-screen-handler-api-v1         |       🛠️ Testing        |    Stable    |
 | fabric-sound-api-v1                  |        ⚠️ Missing        |    Stable    |
 | fabric-transfer-api-v1               |        ⚠️ Missing        | Experimental |
 | fabric-transitive-access-wideners-v1 |        ⚠️ Missing        |    Stable    |
-| fabric-command-api-v1                |        ⚠️ Missing        |  Deprecated  |
-| fabric-commands-v0                   |        ⚠️ Missing        |  Deprecated  |
+| fabric-command-api-v1                |       🛠️ Testing        |  Deprecated  |
+| fabric-commands-v0                   |       🛠️ Testing        |  Deprecated  |
 | fabric-containers-v0                 |        ⚠️ Missing        |  Deprecated  |
-| fabric-events-lifecycle-v0           |        ⚠️ Missing        |  Deprecated  |
-| fabric-keybindings-v0                |        ⚠️ Missing        |  Deprecated  |
+| fabric-events-lifecycle-v0           |       🛠️ Testing        |  Deprecated  |
+| fabric-keybindings-v0                |       🛠️ Testing        |  Deprecated  |
 | fabric-loot-tables-v1                |        ⚠️ Missing        |  Deprecated  |
 | fabric-models-v0                     |        ⚠️ Missing        |    Stable    |
 | fabric-networking-v0                 |        ⚠️ Missing        |  Deprecated  |
