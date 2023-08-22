@@ -80,7 +80,7 @@ Each module contains its own `README.md`* explaining the module's purpose and ad
 | fabric-block-api-v1                  |        ⚠️ Missing        |    Stable    |
 | fabric-blockrenderlayer-v1           |        ⚠️ Missing        |    Stable    |
 | fabric-client-tags-api-v1            |        ⚠️ Missing        |    Stable    |
-| fabric-command-api-v2                |         ✅ Tested         |    Stable    |
+| fabric-command-api-v2                |       🛠️ Testing        |    Stable    |
 | fabric-content-registries-v0         |        ⚠️ Missing        |    Stable    |
 | fabric-convention-tags-v1            |        ⚠️ Missing        |    Stable    |
 | fabric-crash-report-info-v1          | 🚧 Not Planned [[1]](#1) |    Stable    |

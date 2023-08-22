@@ -49,12 +49,12 @@ public final class ClientNetworking {
 			// The buf will be released after the screen is opened
 			buf.retain();
 
-			client.execute(() -> this.openScreen(typeId, syncId, title, buf));
+			client.execute(() -> openScreen(typeId, syncId, title, buf));
 		});
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
-	private void openScreen(Identifier typeId, int syncId, Text title, PacketByteBuf buf) {
+	private static void openScreen(Identifier typeId, int syncId, Text title, PacketByteBuf buf) {
 		try {
 			ScreenHandlerType<?> type = Registry.SCREEN_HANDLER.get(typeId);
 
