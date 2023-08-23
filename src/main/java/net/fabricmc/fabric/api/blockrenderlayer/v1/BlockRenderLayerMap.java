@@ -33,6 +33,7 @@ import net.minecraft.fluid.Fluid;
  *
  * <p>Client-side only.
  */
+@SuppressWarnings("unused")
 public interface BlockRenderLayerMap {
 	BlockRenderLayerMap INSTANCE = new BlockRenderLayerMapImpl();
 
