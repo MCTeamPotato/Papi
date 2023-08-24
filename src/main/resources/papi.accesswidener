@@ -1,17 +1,1 @@
 accessWidener   v2  named
-extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Ljava/util/function/Function;)V
-extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Lnet/minecraft/block/MaterialColor;)V
-accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/tag/Tag;I)V
-accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/item/ItemConvertible;I)V
-accessible	class	net/minecraft/screen/ScreenHandlerType$Factory
-accessible	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
-extendable	method	net/minecraft/screen/ScreenHandlerType <init> (Lnet/minecraft/screen/ScreenHandlerType$Factory;)V
-accessible	class	net/minecraft/client/gui/screen/ingame/HandledScreens$Provider
-accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens register (Lnet/minecraft/screen/ScreenHandlerType;Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;)V
-accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens getProvider (Lnet/minecraft/screen/ScreenHandlerType;)Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;
-accessible  method  net/minecraft/world/GameRules$Type <init>  (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/GameRules$Acceptor;)V
-extendable  method  net/minecraft/world/GameRules$Type <init>  (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/GameRules$Acceptor;)V
-accessible  class   net/minecraft/world/GameRules$Acceptor
-accessible  class   net/minecraft/client/gui/screen/world/EditGameRulesScreen$RuleWidgetFactory
-accessible method net/minecraft/server/command/GameRuleCommand executeSet (Lcom/mojang/brigadier/context/CommandContext;Lnet/minecraft/world/GameRules$Key;)I
-accessible method net/minecraft/server/command/GameRuleCommand executeQuery (Lnet/minecraft/server/command/ServerCommandSource;Lnet/minecraft/world/GameRules$Key;)I
