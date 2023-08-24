@@ -1,6 +1,5 @@
 package net.fabricmc.fabric;
 
-import net.fabricmc.fabric.impl.client.indigo.Indigo;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouter;
 import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouterClient;
@@ -47,7 +46,6 @@ public class Papi {
             LegacyClientEventInvokers.onInitializeClient();
             OldClientNetworkingHooks.onInitializeClient();
 
-            Indigo.onInitializeClient();
             ClientLifecycleEventsImpl.onInitializeClient();
             ClientNetworkingImpl.clientInit();
             ClientNetworking.onInitializeClient();
