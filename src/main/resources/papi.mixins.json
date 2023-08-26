@@ -10,6 +10,10 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": [],
-  "client": []
+  "server": [
+  ],
+  "mixins": [
+  ],
+  "client": [
+  ]
 }

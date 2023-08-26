@@ -4,7 +4,6 @@ license="Apache License 2.0"
 
 [[mods]]
 modId = "papi"
-logoFile = "icon.png"
 version = "${version}"
 displayName = "Papi"
 authors="Team Potato"
