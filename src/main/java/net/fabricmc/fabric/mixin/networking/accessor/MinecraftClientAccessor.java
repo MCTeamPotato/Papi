@@ -16,17 +16,12 @@
 
 package net.fabricmc.fabric.mixin.networking.accessor;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.network.ClientConnection;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.ClientConnection;
-
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-@OnlyIn(Dist.CLIENT)
 @Mixin(MinecraftClient.class)
 public interface MinecraftClientAccessor {
 	@Nullable

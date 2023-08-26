@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.networking.accessor;
+package net.fabricmc.fabric.api.event.registry;
 
-import net.minecraft.client.gui.screen.ConnectScreen;
-import net.minecraft.network.ClientConnection;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+public enum RegistryAttribute {
+    /**
+     * Registry will be saved to disk when modded.
+     */
+    PERSISTED,
 
-@Mixin(ConnectScreen.class)
-public interface ConnectScreenAccessor {
-	@Accessor
-	ClientConnection getConnection();
+    /**
+     * Registry will be synced to the client when modded.
+     */
+    SYNCED,
+
+    /**
+     * Registry has been modded.
+     */
+    MODDED
 }

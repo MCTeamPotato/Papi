@@ -10,10 +10,35 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "server": [
-  ],
   "mixins": [
+    "event.lifecycle.MinecraftServerMixin",
+    "event.lifecycle.ServerWorldMixin",
+    "event.lifecycle.WorldMixin",
+    "networking.ClientConnectionMixin",
+    "networking.EntityTrackerEntryMixin",
+    "networking.PlayerManagerMixin",
+    "networking.ServerLoginNetworkHandlerMixin",
+    "networking.ServerPlayNetworkHandlerMixin",
+    "networking.ThreadedAnvilChunkStorageMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryRequestS2CPacketAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "registry.sync.AccessorRegistry",
+    "registry.sync.BootstrapMixin",
+    "registry.sync.RegistryMixin",
+    "registry.sync.SimpleRegistryMixin",
+    "resource.loader.ResourceMixin"
   ],
   "client": [
+    "client.keybinding.KeyBindingAccessor",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin",
+    "networking.accessor.ConnectScreenAccessor",
+    "networking.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.ClientPlayNetworkHandlerMixin"
   ]
 }

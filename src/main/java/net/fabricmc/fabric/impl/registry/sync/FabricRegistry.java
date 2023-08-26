@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.networking.accessor;
+package net.fabricmc.fabric.impl.registry.sync;
 
-import net.minecraft.client.gui.screen.ConnectScreen;
-import net.minecraft.network.ClientConnection;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
+import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
 
-@Mixin(ConnectScreen.class)
-public interface ConnectScreenAccessor {
-	@Accessor
-	ClientConnection getConnection();
+import java.util.Set;
+
+public interface FabricRegistry extends RegistryAttributeHolder {
+    void build(Set<RegistryAttribute> attributes);
 }

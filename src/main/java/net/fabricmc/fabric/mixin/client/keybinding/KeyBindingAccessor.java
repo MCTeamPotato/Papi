@@ -14,15 +14,22 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.networking.accessor;
+package net.fabricmc.fabric.mixin.client.keybinding;
 
-import net.minecraft.client.gui.screen.ConnectScreen;
-import net.minecraft.network.ClientConnection;
+import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.util.InputUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(ConnectScreen.class)
-public interface ConnectScreenAccessor {
-	@Accessor
-	ClientConnection getConnection();
+import java.util.Map;
+
+@Mixin(KeyBinding.class)
+public interface KeyBindingAccessor {
+    @Accessor("categoryOrderMap")
+    static Map<String, Integer> fabric_getCategoryMap() {
+        throw new AssertionError();
+    }
+
+    @Accessor("boundKey")
+    InputUtil.Key fabric_getBoundKey();
 }

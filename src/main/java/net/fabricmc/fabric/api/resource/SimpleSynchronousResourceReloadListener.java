@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.networking.accessor;
+package net.fabricmc.fabric.api.resource;
 
-import net.minecraft.client.gui.screen.ConnectScreen;
-import net.minecraft.network.ClientConnection;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.resource.SynchronousResourceReloadListener;
 
-@Mixin(ConnectScreen.class)
-public interface ConnectScreenAccessor {
-	@Accessor
-	ClientConnection getConnection();
+/**
+ * A simplified version of the "resource reload listener" interface, hiding the
+ * peculiarities of the API and ensuring all data is loaded on the main thread.
+ */
+public interface SimpleSynchronousResourceReloadListener extends IdentifiableResourceReloadListener, SynchronousResourceReloadListener {
 }

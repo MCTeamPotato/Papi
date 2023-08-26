@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package net.fabricmc.fabric.mixin.resource.loader;
 
-package net.fabricmc.fabric.mixin.networking.accessor;
-
-import net.minecraft.client.gui.screen.ConnectScreen;
-import net.minecraft.network.ClientConnection;
+import net.fabricmc.fabric.impl.resource.loader.FabricResource;
+import net.minecraft.resource.Resource;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(ConnectScreen.class)
-public interface ConnectScreenAccessor {
-	@Accessor
-	ClientConnection getConnection();
-}
+/**
+ * Implements {@link FabricResource} (resource source getter/setter)
+ * for vanilla's basic {@link Resource} used for most game resources.
+ * <p>
+ * see NamespaceResourceManagerMixin the usage site for this mixin
+ */
+@Mixin(Resource.class)
+public interface ResourceMixin extends FabricResource {}
