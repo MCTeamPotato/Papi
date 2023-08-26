@@ -30,9 +30,16 @@ interface QueryIdFactory {
 			public int nextId() {
 				return this.currentId.getAndIncrement();
 			}
+
+			@Override
+			public void set(int id) {
+				this.currentId.set(id);
+			}
 		};
 	}
 
 	// called async prob.
 	int nextId();
+
+	void set(int id);
 }

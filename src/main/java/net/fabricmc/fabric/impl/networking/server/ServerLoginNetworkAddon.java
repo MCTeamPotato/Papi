@@ -24,6 +24,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
 import net.fabricmc.fabric.impl.networking.AbstractNetworkAddon;
 import net.fabricmc.fabric.impl.networking.GenericFutureListenerHolder;
 import net.fabricmc.fabric.mixin.networking.accessor.ServerLoginNetworkHandlerAccessor;
+import net.minecraftforge.network.LoginWrapper;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
@@ -49,6 +50,8 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	private final QueryIdFactory queryIdFactory;
 	private final Collection<Future<?>> waits = new ConcurrentLinkedQueue<>();
 	private final Map<Integer, Identifier> channels = new ConcurrentHashMap<>();
+
+	private final Map<Integer, Identifier> ignoredChannels = new ConcurrentHashMap<>();
 	private boolean firstQueryTick = true;
 
 	public ServerLoginNetworkAddon(ServerLoginNetworkHandler handler) {
@@ -57,6 +60,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 		this.handler = handler;
 		this.server = ((ServerLoginNetworkHandlerAccessor) handler).getServer();
 		this.queryIdFactory = QueryIdFactory.create();
+		this.queryIdFactory.set(999);
 
 		ServerLoginConnectionEvents.INIT.invoker().onLoginInit(handler, this.server);
 		this.receiver.startSession(this);
@@ -129,7 +133,9 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 		Identifier channel = this.channels.remove(queryId);
 
 		if (channel == null) {
-			this.logger.warn("Query ID {} was received but no query has been associated in {}!", queryId, this.connection);
+			if (this.ignoredChannels.remove(queryId) == null) {
+				this.logger.warn("Query ID {} was received but no query has been associated in {}!", queryId, this.connection);
+			}
 			return false;
 		}
 
@@ -179,6 +185,10 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	}
 
 	public void registerOutgoingPacket(LoginQueryRequestS2CPacket packet) {
+		if (LoginWrapper.WRAPPER.equals(packet.getChannel())) {
+			this.ignoredChannels.put(packet.getQueryId(), packet.getChannel());
+			return;
+		}
 		this.channels.put(packet.getQueryId(), packet.getChannel());
 	}
 
