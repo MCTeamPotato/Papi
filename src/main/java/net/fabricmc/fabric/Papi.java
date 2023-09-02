@@ -1,7 +1,9 @@
 package net.fabricmc.fabric;
 
+import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsHook;
+import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,8 +22,10 @@ public class Papi {
     public Papi() {
         NetworkingImpl.init();
         MinecraftForge.EVENT_BUS.register(LifecycleEventsHook.class);
+        LifecycleEventsImpl.init();
         if (FMLLoader.getDist().isClient()) {
             ClientNetworkingImpl.clientInit();
+            ClientLifecycleEventsImpl.clientInit();
             IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
             bus.addListener(KeyBindingRegistryImpl::registerKeys);
         }

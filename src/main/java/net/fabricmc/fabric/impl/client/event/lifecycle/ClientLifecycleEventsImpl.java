@@ -16,18 +16,13 @@
 
 package net.fabricmc.fabric.impl.client.event.lifecycle;
 
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.impl.event.lifecycle.LoadedChunksCache;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
-public final class ClientLifecycleEventsImpl implements ClientModInitializer {
-	@Override
-	public void onInitializeClient() {
+public final class ClientLifecycleEventsImpl {
+	public static void clientInit() {
 		// Part of impl for block entity events
 		ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
 			((LoadedChunksCache) world).fabric_markLoaded(chunk);

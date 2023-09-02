@@ -16,7 +16,6 @@
 
 package net.fabricmc.fabric.impl.event.lifecycle;
 
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
@@ -25,9 +24,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.chunk.WorldChunk;
 
-public final class LifecycleEventsImpl implements ModInitializer {
-	@Override
-	public void onInitialize() {
+public final class LifecycleEventsImpl {
+	public static void init() {
 		// Part of impl for block entity events
 		ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
 			((LoadedChunksCache) world).fabric_markLoaded(chunk);
