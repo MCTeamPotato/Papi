@@ -36,7 +36,6 @@ public final class KeyBindingRegistryImpl {
 		return KeyBindingAccessor.fabric_getCategoryMap();
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
 	public static boolean addCategory(String categoryTranslationKey) {
 		Map<String, Integer> map = getCategoryMap();
 
@@ -68,8 +67,8 @@ public final class KeyBindingRegistryImpl {
 	/**
 	 * Processes the keybindings array for our modded ones by first removing existing modded keybindings and readding them,
 	 * we can make sure that there are no duplicates this way.
-	 **/
-	@Deprecated(forRemoval = true)
+	 */
+	@Deprecated
 	public static KeyBinding[] process(KeyBinding[] keysAll) {
 		List<KeyBinding> newKeysAll = Lists.newArrayList(keysAll);
 		newKeysAll.removeAll(MODDED_KEY_BINDINGS);
@@ -77,7 +76,7 @@ public final class KeyBindingRegistryImpl {
 		return newKeysAll.toArray(new KeyBinding[0]);
 	}
 
-	public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+	public static void registerKeys(RegisterKeyMappingsEvent event) {
 		for (KeyBinding keyBinding : MODDED_KEY_BINDINGS) event.register(keyBinding);
 	}
 }

@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(targets = "net/minecraft/server/world/ServerWorld$ServerEntityHandler")
-abstract class ServerWorldServerEntityHandlerMixin {
+public abstract class ServerWorldServerEntityHandlerMixin {
 	@Inject(method = "startTracking(Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
 	private void invokeEntityLoadEvent(Entity entity, CallbackInfo ci) {
 		if (entity.world instanceof ServerWorld) {

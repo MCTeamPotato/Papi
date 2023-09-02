@@ -24,7 +24,6 @@ import java.util.*;
  * Contains phase-sorting logic for {@link ArrayBackedEvent}.
  */
 public class PhaseSorting {
-	@SuppressWarnings("CanBeFinal")
 	@VisibleForTesting
 	public static boolean ENABLE_CYCLE_WARNING = true;
 

@@ -25,20 +25,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(targets = "net/minecraft/client/world/ClientWorld$ClientEntityHandler")
-abstract class ClientWorldClientEntityHandlerMixin {
+public abstract class ClientWorldClientEntityHandlerMixin {
 	// Call our load event after vanilla has loaded the entity
 	@Inject(method = "startTracking(Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
 	private void invokeLoadEntity(Entity entity, CallbackInfo ci) {
-		if (entity.world instanceof ClientWorld) {
-			ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ClientWorld) entity.world);
-		}
+		if (entity.world instanceof ClientWorld) ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ClientWorld) entity.world);
 	}
 
 	// Call our unload event before vanilla does.
 	@Inject(method = "stopTracking(Lnet/minecraft/entity/Entity;)V", at = @At("HEAD"))
 	private void invokeUnloadEntity(Entity entity, CallbackInfo ci) {
-		if (entity.world instanceof ClientWorld) {
-			ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ClientWorld) entity.world);
-		}
+		if (entity.world instanceof ClientWorld) ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ClientWorld) entity.world);
 	}
 }

@@ -23,8 +23,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
 import net.fabricmc.fabric.impl.networking.AbstractNetworkAddon;
 import net.fabricmc.fabric.impl.networking.GenericFutureListenerHolder;
+import net.fabricmc.fabric.mixin.networking.accessor.LoginQueryResponseC2SPacketAccessor;
 import net.fabricmc.fabric.mixin.networking.accessor.ServerLoginNetworkHandlerAccessor;
-import net.minecraftforge.network.LoginWrapper;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
@@ -35,6 +35,7 @@ import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.network.LoginWrapper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -49,9 +50,8 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	private final MinecraftServer server;
 	private final QueryIdFactory queryIdFactory;
 	private final Collection<Future<?>> waits = new ConcurrentLinkedQueue<>();
-	private final Map<Integer, Identifier> channels = new ConcurrentHashMap<>();
-
 	private final Map<Integer, Identifier> ignoredChannels = new ConcurrentHashMap<>();
+	private final Map<Integer, Identifier> channels = new ConcurrentHashMap<>();
 	private boolean firstQueryTick = true;
 
 	public ServerLoginNetworkAddon(ServerLoginNetworkHandler handler) {
@@ -125,7 +125,8 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	 * @return true if the packet was handled
 	 */
 	public boolean handle(LoginQueryResponseC2SPacket packet) {
-		return handle(packet.getQueryId(), packet.getResponse());
+		LoginQueryResponseC2SPacketAccessor access = (LoginQueryResponseC2SPacketAccessor) packet;
+		return handle(access.getQueryId(), access.getResponse());
 	}
 
 	private boolean handle(int queryId, @Nullable PacketByteBuf originalBuf) {
@@ -162,7 +163,8 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	public Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
 		int queryId = this.queryIdFactory.nextId();
 
-        return new LoginQueryRequestS2CPacket(queryId, channelName, buf);
+		LoginQueryRequestS2CPacket ret = new LoginQueryRequestS2CPacket(queryId, channelName, buf);
+		return ret;
 	}
 
 	@Override

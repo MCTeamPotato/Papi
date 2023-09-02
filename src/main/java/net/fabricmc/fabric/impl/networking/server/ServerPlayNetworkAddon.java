@@ -22,6 +22,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.impl.networking.AbstractChanneledNetworkAddon;
 import net.fabricmc.fabric.impl.networking.ChannelInfoHolder;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
+import net.fabricmc.fabric.mixin.networking.accessor.CustomPayloadC2SPacketAccessor;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
@@ -73,7 +74,13 @@ public final class ServerPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	 * @return true if the packet has been handled
 	 */
 	public boolean handle(CustomPayloadC2SPacket packet) {
-		return this.handle(packet.getChannel(), packet.getData());
+		// Do not handle the packet on game thread
+		if (this.server.isOnThread()) {
+			return false;
+		}
+
+		CustomPayloadC2SPacketAccessor access = (CustomPayloadC2SPacketAccessor) packet;
+		return this.handle(access.getChannel(), access.getData());
 	}
 
 	@Override

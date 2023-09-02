@@ -48,41 +48,6 @@ public interface PacketSender {
 	 */
 	void sendPacket(Packet<?> packet);
 
-
-	/**
-	 * Sends a packet.
-	 * @param packet the packet
-	 */
-	default <T extends FabricPacket> void sendPacket(T packet) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		packet.write(buf);
-		sendPacket(packet.getType().getId(), buf);
-	}
-
-	/**
-	 * Sends a packet.
-	 *
-	 * @param packet the packet
-	 * @param callback an optional callback to execute after the packet is sent, may be {@code null}. The callback may also accept a {@link ChannelFutureListener}.
-	 */
-	default <T extends FabricPacket> void sendPacket(T packet, @Nullable GenericFutureListener<? extends Future<? super Void>> callback) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		packet.write(buf);
-		sendPacket(packet.getType().getId(), buf, callback);
-	}
-
-	/**
-	 * Sends a packet.
-	 *
-	 * @param packet the packet
-	 * @param callback an optional callback to execute after the packet is sent, may be {@code null}. The callback may also accept a {@link ChannelFutureListener}.
-	 */
-	default <T extends FabricPacket> void sendPacket(T packet, @Nullable PacketCallbacks callback) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		packet.write(buf);
-		sendPacket(packet.getType().getId(), buf, callback);
-	}
-
 	/**
 	 * Sends a packet.
 	 *

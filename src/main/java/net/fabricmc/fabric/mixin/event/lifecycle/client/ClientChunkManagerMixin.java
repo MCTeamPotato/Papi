@@ -47,7 +47,7 @@ public abstract class ClientChunkManagerMixin {
 	}
 
 	@Inject(method = "loadChunkFromPacket", at = @At(value = "NEW", target = "(Lnet/minecraft/world/World;Lnet/minecraft/util/math/ChunkPos;)Lnet/minecraft/world/chunk/WorldChunk;", shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void onChunkUnload(int x, int z, PacketByteBuf buf, NbtCompound tag, Consumer<ChunkData.BlockEntityVisitor> consumer, CallbackInfoReturnable<WorldChunk> info, int index, WorldChunk worldChunk, ChunkPos chunkPos) {
+	private void onChunkUnload(int x, int z, PacketByteBuf buf, NbtCompound nbt, Consumer<ChunkData.BlockEntityVisitor> consumer, CallbackInfoReturnable<WorldChunk> cir, int index, WorldChunk worldChunk, ChunkPos chunkPos) {
 		if (worldChunk != null) {
 			ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(this.world, worldChunk);
 		}

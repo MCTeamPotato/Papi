@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -28,7 +29,6 @@ import net.fabricmc.fabric.mixin.networking.client.accessor.ConnectScreenAccesso
 import net.fabricmc.fabric.mixin.networking.client.accessor.MinecraftClientAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ConnectScreen;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientLoginNetworkHandler;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.ClientConnection;
@@ -41,7 +41,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -69,9 +68,7 @@ public final class ClientNetworkingImpl {
 	 */
 	@Nullable
 	public static ClientConnection getLoginConnection() {
-		MinecraftClient minecraftClient = MinecraftClient.getInstance();
-
-		final ClientConnection connection = ((MinecraftClientAccessor) minecraftClient).getConnection();
+		final ClientConnection connection = ((MinecraftClientAccessor) MinecraftClient.getInstance()).getConnection();
 
 		// Check if we are connecting to an integrated server. This will set the field on MinecraftClient
 		if (connection != null) {
@@ -79,9 +76,8 @@ public final class ClientNetworkingImpl {
 		} else {
 			// We are probably connecting to a remote server.
 			// Check if the ConnectScreen is the currentScreen to determine that:
-			Screen currentScreen = minecraftClient.currentScreen;
-			if (currentScreen instanceof ConnectScreen) {
-				return ((ConnectScreenAccessor) currentScreen).getConnection();
+			if (MinecraftClient.getInstance().currentScreen instanceof ConnectScreen) {
+				return ((ConnectScreenAccessor) MinecraftClient.getInstance().currentScreen).getConnection();
 			}
 		}
 
@@ -91,12 +87,11 @@ public final class ClientNetworkingImpl {
 
 	@Nullable
 	public static ClientPlayNetworkAddon getClientPlayAddon() {
-		ClientPlayNetworkHandler networkHandler = MinecraftClient.getInstance().getNetworkHandler();
 		// Since Minecraft can be a bit weird, we need to check for the play addon in a few ways:
 		// If the client's player is set this will work
-		if (networkHandler != null) {
+		if (MinecraftClient.getInstance().getNetworkHandler() != null) {
 			currentPlayAddon = null; // Shouldn't need this anymore
-			return getAddon(networkHandler);
+			return getAddon(MinecraftClient.getInstance().getNetworkHandler());
 		}
 
 		// We haven't hit the end of onGameJoin yet, use our backing field here to access the network handler
@@ -114,12 +109,14 @@ public final class ClientNetworkingImpl {
 
 	public static void clientInit() {
 		// Reference cleanup for the locally stored addon if we are disconnected
-		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> currentPlayAddon = null);
+		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+			currentPlayAddon = null;
+		});
 
 		// Register a login query handler for early channel registration.
 		ClientLoginNetworking.registerGlobalReceiver(NetworkingImpl.EARLY_REGISTRATION_CHANNEL, (client, handler, buf, listenerAdder) -> {
 			int n = buf.readVarInt();
-			List<Identifier> ids = new ArrayList<>(n);
+			List<Identifier> ids = new ObjectArrayList<>(n);
 
 			for (int i = 0; i < n; i++) {
 				ids.add(buf.readIdentifier());
