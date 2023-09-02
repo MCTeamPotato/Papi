@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.*;
 
 import java.util.Map;
 
-@Mixin(value = EntityRenderers.class, priority = 0)
+@Mixin(value = EntityRenderers.class, priority = 1)
 public abstract class EntityRenderersMixin {
 	@Shadow()
 	@Final

@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraftforge.common.extensions.IForgeItem;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
@@ -44,6 +45,7 @@ import java.util.function.Consumer;
  * <p>Note to maintainers: Functions should only be added to this interface if they are general-purpose enough,
  * to be evaluated on a case-by-case basis. Otherwise, they are better suited for more specialized APIs.
  */
+@SuppressWarnings("deprecation")
 public interface FabricItem extends IForgeItem {
 	/**
 	 * When the NBT of an item stack in the main hand or off hand changes, vanilla runs an "update animation".
@@ -182,9 +184,8 @@ public interface FabricItem extends IForgeItem {
 		return IForgeItem.super.shouldCauseBlockBreakReset(oldStack, newStack) && FabricItemInternals.nonRecursiveApiCall(() -> !allowContinuingBlockBreaking(ItemApiClientEventHooks.getClientPlayerSafely(), oldStack, newStack));
 	}
 
-	@Override
 	@Nullable
-	default EquipmentSlot getEquipmentSlot(ItemStack stack) {
+	default EquipmentSlot papi$getEquipmentSlot(@NotNull ItemStack stack) {
 		EquipmentSlotProvider equipmentSlotProvider = ((ItemExtensions) stack.getItem()).fabric_getEquipmentSlotProvider();
 		return equipmentSlotProvider != null ? equipmentSlotProvider.getPreferredEquipmentSlot(stack) : IForgeItem.super.getEquipmentSlot(stack);
 	}

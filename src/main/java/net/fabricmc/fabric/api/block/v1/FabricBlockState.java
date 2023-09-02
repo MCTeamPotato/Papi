@@ -38,9 +38,9 @@ public interface FabricBlockState extends IForgeBlockState {
 	 * @param sourceState (optional) state of the block that is querying the appearance, or null if unknown
 	 * @param sourcePos   (optional) position of the block that is querying the appearance, or null if unknown
 	 * @return the appearance of the block on the given side; the original {@code state} can be returned if there is no better option
-	 * @see FabricBlock#getAppearance
+	 * @see FabricBlock#papi$getAppearance
 	 */
-	default BlockState getAppearance(BlockRenderView renderView, BlockPos pos, Direction side, @Nullable BlockState sourceState, @Nullable BlockPos sourcePos) {
+	default BlockState papi$getAppearance(BlockRenderView renderView, BlockPos pos, Direction side, @Nullable BlockState sourceState, @Nullable BlockPos sourcePos) {
 		return IForgeBlockState.super.getAppearance(renderView, pos, side, sourceState, sourcePos);
 	}
 }

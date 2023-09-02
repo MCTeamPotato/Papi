@@ -40,7 +40,7 @@ public interface FabricBlock extends IForgeBlock {
 	 * These will want to override this method. In that case, make sure to carefully read the implementation guidelines below.
 	 *
 	 * <p>Common consumers are models with connected textures that wish to seamlessly connect to mimic blocks.
-	 * These will want to check the apparent block state using {@link FabricBlockState#getAppearance}.
+	 * These will want to check the apparent block state using {@link FabricBlockState#papi$getAppearance}.
 	 *
 	 * <p>Generally, the appearance will be queried from a nearby block,
 	 * identified by the optional {@code sourcePos} and {@code sourceState} parameters.
@@ -98,7 +98,7 @@ public interface FabricBlock extends IForgeBlock {
 	 * @param sourcePos   (optional) position of the block that is querying the appearance, or null if unknown
 	 * @return the appearance of the block on the given side; the original {@code state} can be returned if there is no better option
 	 */
-	default BlockState getAppearance(BlockState state, BlockRenderView renderView, BlockPos pos, Direction side, @Nullable BlockState sourceState, @Nullable BlockPos sourcePos) {
+	default BlockState papi$getAppearance(BlockState state, BlockRenderView renderView, BlockPos pos, Direction side, @Nullable BlockState sourceState, @Nullable BlockPos sourcePos) {
 		return IForgeBlock.super.getAppearance(state, renderView, pos, side, sourceState, sourcePos);
 	}
 }

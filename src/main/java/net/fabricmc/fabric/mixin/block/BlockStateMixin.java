@@ -21,4 +21,4 @@ import net.minecraft.block.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BlockState.class)
-public abstract class BlockStateMixin implements FabricBlockState { }
+public abstract class BlockStateMixin implements FabricBlockState {}

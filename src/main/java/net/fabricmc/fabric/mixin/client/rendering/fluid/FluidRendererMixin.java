@@ -114,6 +114,7 @@ public class FluidRendererMixin {
 					ctr.hasOverlay ? ctr.overlay : null
 			};
 		}
+		//noinspection UnstableApiUsage
 		return ForgeHooksClient.getFluidSprites(level, pos, fluidStateIn);
 	}
 }
