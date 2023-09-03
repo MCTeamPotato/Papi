@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.resource.loader;
+package net.fabricmc.fabric.mixin.registry.sync;
 
-import net.minecraft.resource.ResourcePackSource;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.registry.MutableRegistry;
+import net.minecraft.util.registry.Registry;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-public class BuiltinModResourcePackSource implements ResourcePackSource {
-    private final String modId;
-
-    public BuiltinModResourcePackSource(String modId) {
-        this.modId = modId;
-    }
-
-    @Override
-    public Text decorate(Text packName) {
-        return Text.translatable("pack.nameAndSource", packName, Text.translatable("pack.source.builtinMod", modId)).formatted(Formatting.GRAY);
+@Mixin(Registry.class)
+public interface AccessorRegistry {
+    @Accessor("ROOT")
+    static MutableRegistry<MutableRegistry<?>> getRoot() {
+        throw new UnsupportedOperationException();
     }
 }

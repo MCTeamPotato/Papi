@@ -11,30 +11,13 @@
     "defaultRequire": 1,
     "maxShiftBy": 3
   },
-  "server": [
-    "event.lifecycle.server.WorldChunkMixin"
-  ],
   "client": [
-    "client.keybinding.KeyBindingAccessor",
-    "event.lifecycle.client.ClientChunkManagerMixin",
-    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
-    "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
-    "event.lifecycle.client.ClientWorldMixin",
-    "event.lifecycle.client.MinecraftClientMixin",
-    "event.lifecycle.client.WorldChunkMixin",
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin",
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor"
   ],
   "mixins": [
-    "event.lifecycle.DataPackContentsMixin",
-    "event.lifecycle.LivingEntityMixin",
-    "event.lifecycle.MinecraftServerMixin",
-    "event.lifecycle.PlayerManagerMixin",
-    "event.lifecycle.ServerWorldMixin",
-    "event.lifecycle.ServerWorldServerEntityHandlerMixin",
-    "event.lifecycle.WorldMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -45,10 +28,10 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "registry.sync.BootstrapMixin",
-    "registry.sync.RegistryAccessor",
-    "registry.sync.RegistryMixin",
-    "registry.sync.SimpleRegistryMixin",
-    "resource.loader.ResourceMixin"
+    "registry.sync.AccessorRegistry",
+    "registry.sync.MixinBootstrap",
+    "registry.sync.MixinRegistry",
+    "registry.sync.MixinSimpleRegistry",
+    "registry.sync.RegistryManagerMixin"
   ]
 }

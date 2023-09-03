@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.client.keybinding;
+package net.fabricmc.fabric.mixin.registry.sync;
 
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit;
+import net.minecraftforge.registries.RegistryManager;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Map;
+@Mixin(RegistryManager.class)
+public abstract class RegistryManagerMixin {
 
-@Mixin(KeyBinding.class)
-public interface KeyBindingAccessor {
-	@Accessor("CATEGORY_ORDER_MAP")
-	static Map<String, Integer> fabric_getCategoryMap() {
-		throw new AssertionError();
-	}
-
-	@Accessor("boundKey")
-	InputUtil.Key fabric_getBoundKey();
+    @Inject(method = "postNewRegistryEvent", at = @At("HEAD"), remap = false)
+    private static void beforePostNewRegistryEvent(CallbackInfo ci) {
+        FabricRegistryInit.submitRegistries();
+    }
 }

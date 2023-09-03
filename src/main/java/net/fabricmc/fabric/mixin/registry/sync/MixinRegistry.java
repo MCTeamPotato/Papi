@@ -27,7 +27,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 @Mixin(Registry.class)
-public abstract class RegistryMixin<T> implements RegistryAttributeHolder, FabricRegistry {
+public abstract class MixinRegistry<T> implements RegistryAttributeHolder, FabricRegistry {
     @Unique
     private final EnumSet<RegistryAttribute> papi$attributes = EnumSet.noneOf(RegistryAttribute.class);
 
