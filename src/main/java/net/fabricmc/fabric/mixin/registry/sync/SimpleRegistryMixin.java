@@ -17,29 +17,23 @@
 package net.fabricmc.fabric.mixin.registry.sync;
 
 import com.mojang.serialization.Lifecycle;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
+import net.fabricmc.fabric.Papi;
+import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
+import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
+import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.util.registry.SimpleRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.SimpleRegistry;
-import net.minecraft.util.registry.RegistryKey;
-
-import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
-import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
-import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
-
 @Mixin(SimpleRegistry.class)
-public abstract class MixinSimpleRegistry<T> extends Registry<T> {
-    @Unique
-    private static final Logger FARBIC_LOGGER = LoggerFactory.getLogger("FabricRegistrySync");
-
-    protected MixinSimpleRegistry(RegistryKey<Registry<T>> arg, Lifecycle lifecycle) {
+public abstract class SimpleRegistryMixin<T> extends Registry<T> {
+    protected SimpleRegistryMixin(RegistryKey<Registry<T>> arg, Lifecycle lifecycle) {
         super(arg, lifecycle);
     }
 
@@ -56,11 +50,11 @@ public abstract class MixinSimpleRegistry<T> extends Registry<T> {
     @Unique
     private void papi$onChange(RegistryKey<Registry<T>> registryKey) {
         if (RegistrySyncManager.postBootstrap || !registryKey.getValue().getNamespace().equals("minecraft")) {
-            RegistryAttributeHolder holder = RegistryAttributeHolder.get(this);
+            RegistryAttributeHolder holder = RegistryAttributeHolder.get((SimpleRegistry<?>)(Object)this);
 
             if (!holder.hasAttribute(RegistryAttribute.MODDED)) {
                 Identifier id = getKey().getValue();
-                FARBIC_LOGGER.debug("Registry {} has been marked as modded, registry entry {} was changed", id, registryKey.getValue());
+                Papi.LOGGER.debug("Registry {} has been marked as modded, registry entry {} was changed", id, registryKey.getValue());
                 RegistryAttributeHolder.get(this).addAttribute(RegistryAttribute.MODDED);
             }
         }

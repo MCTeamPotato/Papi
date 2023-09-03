@@ -16,18 +16,20 @@
 
 package net.fabricmc.fabric.mixin.registry.sync;
 
-import net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit;
-import net.minecraftforge.registries.RegistryManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+
+import net.minecraft.Bootstrap;
+
+import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
+
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(RegistryManager.class)
-public abstract class RegistryManagerMixin {
-
-    @Inject(method = "postNewRegistryEvent", at = @At("HEAD"), remap = false)
-    private static void beforePostNewRegistryEvent(CallbackInfo ci) {
-        FabricRegistryInit.submitRegistries();
+@Mixin(value = Bootstrap.class, priority = 2000)
+public class BootstrapMixin {
+    @Inject(method = "initialize", at = @At(value = "INVOKE", remap = false, target = "Lnet/minecraftforge/registries/GameData;vanillaSnapshot()V", shift = At.Shift.AFTER))
+    private static void afterVanillaSnapshot(CallbackInfo ci) {
+        RegistrySyncManager.bootstrapRegistries();
     }
 }

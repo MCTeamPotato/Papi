@@ -16,10 +16,10 @@
 
 package net.fabricmc.fabric.impl.registry.sync;
 
-import java.util.Set;
-
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
 import net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder;
+
+import java.util.Set;
 
 public interface FabricRegistry extends RegistryAttributeHolder {
     void build(Set<RegistryAttribute> attributes);

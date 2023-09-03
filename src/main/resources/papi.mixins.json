@@ -28,10 +28,9 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "registry.sync.AccessorRegistry",
-    "registry.sync.MixinBootstrap",
-    "registry.sync.MixinRegistry",
-    "registry.sync.MixinSimpleRegistry",
-    "registry.sync.RegistryManagerMixin"
+    "registry.sync.BootstrapMixin",
+    "registry.sync.RegistryAccessor",
+    "registry.sync.RegistryMixin",
+    "registry.sync.SimpleRegistryMixin"
   ]
 }
