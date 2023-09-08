@@ -16,16 +16,21 @@
 
 package net.fabricmc.fabric.impl.networking;
 
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.jetbrains.annotations.Nullable;
+
+import net.minecraft.util.Identifier;
 
 /**
  * A network addon is a simple abstraction to hold information about a player's registered channels.

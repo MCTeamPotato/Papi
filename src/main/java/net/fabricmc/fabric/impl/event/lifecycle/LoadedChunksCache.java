@@ -14,21 +14,25 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.event.registry;
+package net.fabricmc.fabric.impl.event.lifecycle;
 
-public enum RegistryAttribute {
-    /**
-     * Registry will be saved to disk when modded.
-     */
-    PERSISTED,
+import java.util.Set;
 
-    /**
-     * Registry will be synced to the client when modded.
-     */
-    SYNCED,
+import net.minecraft.world.chunk.WorldChunk;
 
-    /**
-     * Registry has been modded.
-     */
-    MODDED
+/**
+ * A simple marker interface which holds references to chunks which block entities may be loaded or unloaded from.
+ */
+public interface LoadedChunksCache {
+	Set<WorldChunk> fabric_getLoadedChunks();
+
+	/**
+	 * Marks a chunk as loaded in a world.
+	 */
+	void fabric_markLoaded(WorldChunk chunk);
+
+	/**
+	 * Marks a chunk as unloaded in a world.
+	 */
+	void fabric_markUnloaded(WorldChunk chunk);
 }

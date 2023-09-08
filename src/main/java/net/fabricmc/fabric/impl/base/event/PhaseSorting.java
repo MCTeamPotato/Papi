@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.impl.base.event;
 
 import com.google.common.annotations.VisibleForTesting;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -33,7 +34,7 @@ public class PhaseSorting {
 	 * 2) Sort phases by id within SCCs.
 	 * 3) Sort SCCs with respect to each other by respecting constraints, and by id in case of a tie.
 	 */
-	static <T> void sortPhases(List<EventPhaseData<T>> sortedPhases) {
+	static <T> void sortPhases(@NotNull List<EventPhaseData<T>> sortedPhases) {
 		// FIRST KOSARAJU SCC VISIT
 		List<EventPhaseData<T>> toposort = new ArrayList<>(sortedPhases.size());
 
@@ -106,7 +107,7 @@ public class PhaseSorting {
 		}
 	}
 
-	private static <T> void forwardVisit(EventPhaseData<T> phase, EventPhaseData<T> parent, List<EventPhaseData<T>> toposort) {
+	private static <T> void forwardVisit(@NotNull EventPhaseData<T> phase, EventPhaseData<T> parent, List<EventPhaseData<T>> toposort) {
 		if (phase.visitStatus == 0) {
 			// Not yet visited.
 			phase.visitStatus = 1;
@@ -127,13 +128,13 @@ public class PhaseSorting {
 		}
 	}
 
-	private static <T> void clearStatus(List<EventPhaseData<T>> phases) {
+	private static <T> void clearStatus(@NotNull List<EventPhaseData<T>> phases) {
 		for (EventPhaseData<T> phase : phases) {
 			phase.visitStatus = 0;
 		}
 	}
 
-	private static <T> void backwardVisit(EventPhaseData<T> phase, List<EventPhaseData<T>> sccPhases) {
+	private static <T> void backwardVisit(@NotNull EventPhaseData<T> phase, List<EventPhaseData<T>> sccPhases) {
 		if (phase.visitStatus == 0) {
 			phase.visitStatus = 1;
 			sccPhases.add(phase);

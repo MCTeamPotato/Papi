@@ -14,19 +14,13 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.networking.accessor;
+package net.fabricmc.fabric.api.resource;
 
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
-import net.minecraft.util.Identifier;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.resource.SynchronousResourceReloader;
 
-@Mixin(CustomPayloadC2SPacket.class)
-public interface CustomPayloadC2SPacketAccessor {
-	@Accessor
-	Identifier getChannel();
-
-	@Accessor
-	PacketByteBuf getData();
+/**
+ * A simplified version of the "resource reload listener" interface, hiding the
+ * peculiarities of the API and ensuring all data is loaded on the main thread.
+ */
+public interface SimpleSynchronousResourceReloadListener extends IdentifiableResourceReloadListener, SynchronousResourceReloader {
 }

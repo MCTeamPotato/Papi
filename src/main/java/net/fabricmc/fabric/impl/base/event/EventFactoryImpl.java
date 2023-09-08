@@ -19,6 +19,7 @@ package net.fabricmc.fabric.impl.base.event;
 import com.google.common.collect.MapMaker;
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -41,13 +42,13 @@ public final class EventFactoryImpl {
 		ARRAY_BACKED_EVENTS.forEach(ArrayBackedEvent::update);
 	}
 
-	public static <T> Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
+	public static <T> @NotNull Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
 		ArrayBackedEvent<T> event = new ArrayBackedEvent<>(type, invokerFactory);
 		ARRAY_BACKED_EVENTS.add(event);
 		return event;
 	}
 
-	public static void ensureContainsDefault(Identifier[] defaultPhases) {
+	public static void ensureContainsDefault(Identifier @NotNull [] defaultPhases) {
 		for (Identifier id : defaultPhases) {
 			if (id.equals(Event.DEFAULT_PHASE)) {
 				return;
@@ -57,7 +58,7 @@ public final class EventFactoryImpl {
 		throw new IllegalArgumentException("The event phases must contain Event.DEFAULT_PHASE.");
 	}
 
-	public static void ensureNoDuplicates(Identifier[] defaultPhases) {
+	public static void ensureNoDuplicates(Identifier @NotNull [] defaultPhases) {
 		for (int i = 0; i < defaultPhases.length; ++i) {
 			for (int j = i+1; j < defaultPhases.length; ++j) {
 				if (defaultPhases[i].equals(defaultPhases[j])) {
@@ -69,7 +70,7 @@ public final class EventFactoryImpl {
 
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
-	private static <T> T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
+	private static <T> @NotNull T buildEmptyInvoker(@NotNull Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
 		Method funcIfMethod = null;
 

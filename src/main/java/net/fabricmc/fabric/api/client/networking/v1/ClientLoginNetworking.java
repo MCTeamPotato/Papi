@@ -57,7 +57,6 @@ public final class ClientLoginNetworking {
 	 * @see ClientLoginNetworking#unregisterGlobalReceiver(Identifier)
 	 * @see ClientLoginNetworking#registerReceiver(Identifier, LoginQueryRequestHandler)
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public static boolean registerGlobalReceiver(Identifier channelName, LoginQueryRequestHandler queryHandler) {
 		return ClientNetworkingImpl.LOGIN.registerGlobalReceiver(channelName, queryHandler);
 	}
@@ -99,7 +98,6 @@ public final class ClientLoginNetworking {
 	 * @return false if a handler is already registered to the channel name
 	 * @throws IllegalStateException if the client is not logging in
 	 */
-	@SuppressWarnings("UnusedReturnValue")
 	public static boolean registerReceiver(Identifier channelName, LoginQueryRequestHandler queryHandler) throws IllegalStateException {
 		final ClientConnection connection = ClientNetworkingImpl.getLoginConnection();
 

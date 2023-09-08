@@ -12,25 +12,36 @@
     "maxShiftBy": 3
   },
   "client": [
-    "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin",
+    "client.keybinding.KeyBindingAccessor",
+    "event.lifecycle.client.ClientChunkManagerMixin",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin",
+    "event.lifecycle.client.WorldChunkMixin",
     "networking.client.accessor.ConnectScreenAccessor",
-    "networking.client.accessor.MinecraftClientAccessor"
+    "networking.client.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.ClientPlayNetworkHandlerMixin"
+  ],
+  "server": [
+    "event.lifecycle.server.WorldChunkMixin"
   ],
   "mixins": [
+    "event.lifecycle.DataPackContentsMixin",
+    "event.lifecycle.LivingEntityMixin",
+    "event.lifecycle.MinecraftServerMixin",
+    "event.lifecycle.PlayerManagerMixin",
+    "event.lifecycle.ServerWorldMixin",
+    "event.lifecycle.ServerWorldServerEntityHandlerMixin",
+    "event.lifecycle.WorldMixin",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
     "networking.ServerLoginNetworkHandlerMixin",
-    "networking.ServerPlayNetworkHandlerMixin",
-    "networking.accessor.CustomPayloadC2SPacketAccessor",
-    "networking.accessor.EntityTrackerAccessor",
-    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
-    "registry.sync.BootstrapMixin",
-    "registry.sync.RegistryAccessor",
-    "registry.sync.RegistryMixin",
-    "registry.sync.SimpleRegistryMixin"
+    "networking.ServerPlayNetworkHandlerMixin"
   ]
 }

@@ -23,7 +23,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
 import net.fabricmc.fabric.impl.networking.AbstractNetworkAddon;
 import net.fabricmc.fabric.impl.networking.GenericFutureListenerHolder;
-import net.fabricmc.fabric.mixin.networking.accessor.LoginQueryResponseC2SPacketAccessor;
 import net.fabricmc.fabric.mixin.networking.accessor.ServerLoginNetworkHandlerAccessor;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
@@ -35,7 +34,6 @@ import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.network.LoginWrapper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -50,7 +48,6 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	private final MinecraftServer server;
 	private final QueryIdFactory queryIdFactory;
 	private final Collection<Future<?>> waits = new ConcurrentLinkedQueue<>();
-	private final Map<Integer, Identifier> ignoredChannels = new ConcurrentHashMap<>();
 	private final Map<Integer, Identifier> channels = new ConcurrentHashMap<>();
 	private boolean firstQueryTick = true;
 
@@ -125,8 +122,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	 * @return true if the packet was handled
 	 */
 	public boolean handle(LoginQueryResponseC2SPacket packet) {
-		LoginQueryResponseC2SPacketAccessor access = (LoginQueryResponseC2SPacketAccessor) packet;
-		return handle(access.getQueryId(), access.getResponse());
+		return handle(packet.getQueryId(), packet.getResponse());
 	}
 
 	private boolean handle(int queryId, @Nullable PacketByteBuf originalBuf) {
@@ -134,9 +130,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 		Identifier channel = this.channels.remove(queryId);
 
 		if (channel == null) {
-			if (this.ignoredChannels.remove(queryId) == null) {
-				this.logger.warn("Query ID {} was received but no query has been associated in {}!", queryId, this.connection);
-			}
+			this.logger.warn("Query ID {} was received but no query has been associated in {}!", queryId, this.connection);
 			return false;
 		}
 
@@ -163,8 +157,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	public Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
 		int queryId = this.queryIdFactory.nextId();
 
-		LoginQueryRequestS2CPacket ret = new LoginQueryRequestS2CPacket(queryId, channelName, buf);
-		return ret;
+        return new LoginQueryRequestS2CPacket(queryId, channelName, buf);
 	}
 
 	@Override
@@ -187,10 +180,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	}
 
 	public void registerOutgoingPacket(LoginQueryRequestS2CPacket packet) {
-		if (LoginWrapper.WRAPPER.equals(packet.getChannel())) {
-			this.ignoredChannels.put(packet.getQueryId(), packet.getChannel());
-			return;
-		}
+		if (ServerNetworkingImpl.LOGIN.getHandler(packet.getChannel()) == null) return;
 		this.channels.put(packet.getQueryId(), packet.getChannel());
 	}
 

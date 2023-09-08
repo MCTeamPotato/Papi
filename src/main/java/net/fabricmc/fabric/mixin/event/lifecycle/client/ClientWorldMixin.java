@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.registry.sync;
+package net.fabricmc.fabric.mixin.event.lifecycle.client;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.world.ClientWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-
-import net.minecraft.Bootstrap;
-
-import net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager;
-
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = Bootstrap.class, priority = 2000)
-public class BootstrapMixin {
-    @Inject(method = "initialize", at = @At(value = "INVOKE", remap = false, target = "Lnet/minecraftforge/registries/GameData;vanillaSnapshot()V", shift = At.Shift.AFTER))
-    private static void afterVanillaSnapshot(CallbackInfo ci) {
-        RegistrySyncManager.bootstrapRegistries();
-    }
+@Mixin(ClientWorld.class)
+public abstract class ClientWorldMixin {
+	@Inject(method = "tickEntities", at = @At("TAIL"))
+	public void tickWorldAfterBlockEntities(CallbackInfo ci) {
+		ClientTickEvents.END_WORLD_TICK.invoker().onEndTick((ClientWorld) (Object) this);
+	}
+
+	@Inject(method = "tickEntities", at = @At("HEAD"))
+	private void startWorldTick(CallbackInfo ci) {
+		ClientTickEvents.START_WORLD_TICK.invoker().onStartTick((ClientWorld) (Object) this);
+	}
 }

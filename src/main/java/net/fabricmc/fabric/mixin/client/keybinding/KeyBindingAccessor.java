@@ -13,12 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.fabricmc.fabric.impl.registry.sync;
 
-public class RegistrySyncManager {
-    //Set to true after vanilla's bootstrap has completed
-    public static boolean postBootstrap = false;
-    public static void bootstrapRegistries() {
-        postBootstrap = true;
-    }
+package net.fabricmc.fabric.mixin.client.keybinding;
+
+import java.util.Map;
+
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+
+@Mixin(KeyBinding.class)
+public interface KeyBindingAccessor {
+	@Accessor("CATEGORY_ORDER_MAP")
+	static Map<String, Integer> fabric_getCategoryMap() {
+		throw new AssertionError();
+	}
+
+	@Accessor("boundKey")
+	InputUtil.Key fabric_getBoundKey();
 }

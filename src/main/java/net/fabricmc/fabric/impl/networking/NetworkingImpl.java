@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.networking;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
@@ -25,12 +26,11 @@ import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public final class NetworkingImpl {
-	public static final String MOD_ID = "fabric-networking-api-v1";
+	public static final String MOD_ID = "fabric_networking_api_v1";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	/**
 	 * Id of packet used to register supported channels.
@@ -69,7 +69,7 @@ public final class NetworkingImpl {
 			}
 
 			int n = buf.readVarInt();
-			List<Identifier> ids = new ArrayList<>(n);
+			List<Identifier> ids = new ObjectArrayList<>(n);
 
 			for (int i = 0; i < n; i++) {
 				ids.add(buf.readIdentifier());
