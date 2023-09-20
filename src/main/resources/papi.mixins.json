@@ -15,16 +15,18 @@
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
-    "networking.accessor.CustomPayloadC2SPacketAccessor",
-    "networking.accessor.EntityTrackerAccessor",
-    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "lookup.BlockEntityTypeAccessor",
+    "lookup.ServerWorldMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
     "networking.ServerLoginNetworkHandlerMixin",
-    "networking.ServerPlayNetworkHandlerMixin"
+    "networking.ServerPlayNetworkHandlerMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"
@@ -35,9 +37,9 @@
     "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
     "event.lifecycle.client.MinecraftClientMixin",
     "event.lifecycle.client.WorldChunkMixin",
-    "networking.client.accessor.ConnectScreenAccessor",
-    "networking.client.accessor.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin"
+    "networking.client.ClientPlayNetworkHandlerMixin",
+    "networking.client.accessor.ConnectScreenAccessor",
+    "networking.client.accessor.MinecraftClientAccessor"
   ]
 }
