@@ -31,9 +31,6 @@ interface QueryIdFactory {
 				return this.currentId.getAndIncrement();
 			}
 
-			/**
-			 * @author Su5eD
-			 **/
 			@Override
 			public void set(int id) {
 				this.currentId.set(id);
@@ -44,8 +41,5 @@ interface QueryIdFactory {
 	// called async prob.
 	int nextId();
 
-	/**
-	 * @author Su5ed
-     **/
 	void set(int id);
 }

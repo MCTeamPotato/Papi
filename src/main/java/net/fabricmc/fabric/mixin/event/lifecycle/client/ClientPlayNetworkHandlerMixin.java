@@ -18,7 +18,6 @@ package net.fabricmc.fabric.mixin.event.lifecycle.client;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.fabric.impl.event.lifecycle.LoadedChunksCache;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -26,8 +25,6 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.network.packet.s2c.play.PlayerRespawnS2CPacket;
-import net.minecraft.network.packet.s2c.play.SynchronizeTagsS2CPacket;
-import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,8 +36,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ClientPlayNetworkHandlerMixin {
 	@Shadow
 	private ClientWorld world;
-	@Shadow
-	private DynamicRegistryManager.Immutable registryManager;
 
 	@Inject(method = "onPlayerRespawn", at = @At(value = "NEW", target = "(Lnet/minecraft/client/network/ClientPlayNetworkHandler;Lnet/minecraft/client/world/ClientWorld$Properties;Lnet/minecraft/util/registry/RegistryKey;Lnet/minecraft/util/registry/RegistryEntry;IILjava/util/function/Supplier;Lnet/minecraft/client/render/WorldRenderer;ZJ)Lnet/minecraft/client/world/ClientWorld;"))
 	private void onPlayerRespawn(PlayerRespawnS2CPacket packet, CallbackInfo ci) {
@@ -95,17 +90,5 @@ public abstract class ClientPlayNetworkHandlerMixin {
 				}
 			}
 		}
-	}
-
-	@Inject(
-			method = "onSynchronizeTags",
-			at = @At(
-					value = "INVOKE",
-					target = "java/util/Map.forEach(Ljava/util/function/BiConsumer;)V",
-					shift = At.Shift.AFTER, by = 1
-			)
-	)
-	private void hookOnSynchronizeTags(SynchronizeTagsS2CPacket packet, CallbackInfo ci) {
-		CommonLifecycleEvents.TAGS_LOADED.invoker().onTagsLoaded(registryManager, true);
 	}
 }

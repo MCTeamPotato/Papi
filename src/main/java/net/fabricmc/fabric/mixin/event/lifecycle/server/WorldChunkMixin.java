@@ -42,7 +42,7 @@ import java.util.Map;
  * In order to prevent client logic from being loaded due to the mixin, we have a mixin for the client and this one for the server.
  */
 @Mixin(WorldChunk.class)
-abstract class WorldChunkMixin {
+public abstract class WorldChunkMixin {
 	@Shadow
 	public abstract World getWorld();
 
@@ -80,17 +80,14 @@ abstract class WorldChunkMixin {
 		}
 	}
 
-
 	// Use the slice to not redirect codepath where block entity is loaded
 	@Redirect(method = "getBlockEntity(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/chunk/WorldChunk$CreationType;)Lnet/minecraft/block/entity/BlockEntity;", at = @At(value = "INVOKE", target = "Ljava/util/Map;remove(Ljava/lang/Object;)Ljava/lang/Object;"),
 			slice = @Slice(to = @At(value = "FIELD", target = "Lnet/minecraft/world/chunk/WorldChunk;blockEntityNbts:Ljava/util/Map;", opcode = Opcodes.GETFIELD)))
 	private <K, V> Object onRemoveBlockEntity(@NotNull Map<K, V> map, K key) {
 		@Nullable final V removed = map.remove(key);
-
 		if (removed != null && this.getWorld() instanceof ServerWorld) {
 			ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload((BlockEntity) removed, (ServerWorld) this.getWorld());
 		}
-
 		return removed;
 	}
 

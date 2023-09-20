@@ -16,29 +16,23 @@
 
 package net.fabricmc.fabric.impl.networking;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import io.netty.util.AsciiString;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import org.jetbrains.annotations.Nullable;
-
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.PacketCallbacks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.InvalidIdentifierException;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 /**
  * A network addon which is aware of the channels the other side may receive.
@@ -65,7 +59,7 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 
 	public abstract void lateInit();
 
-	protected void registerPendingChannels(ChannelInfoHolder holder) {
+	protected void registerPendingChannels(@NotNull ChannelInfoHolder holder) {
 		final Collection<Identifier> pending = holder.getPendingChannelsNames();
 
 		if (!pending.isEmpty()) {
@@ -118,7 +112,7 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 	}
 
 	@Nullable
-	protected PacketByteBuf createRegistrationPacket(Collection<Identifier> channels) {
+	protected PacketByteBuf createRegistrationPacket(@NotNull Collection<Identifier> channels) {
 		if (channels.isEmpty()) {
 			return null;
 		}
@@ -140,8 +134,8 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 	}
 
 	// wrap in try with res (buf)
-	protected void receiveRegistration(boolean register, PacketByteBuf buf) {
-		List<Identifier> ids = new ArrayList<>();
+	protected void receiveRegistration(boolean register, @NotNull PacketByteBuf buf) {
+		List<Identifier> ids = new ObjectArrayList<>();
 		StringBuilder active = new StringBuilder();
 
 		while (buf.isReadable()) {
@@ -164,8 +158,8 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 		this.invokeRegisterEvent(ids);
 	}
 
-	void unregister(List<Identifier> ids) {
-		this.sendableChannels.removeAll(ids);
+	void unregister(@NotNull List<Identifier> ids) {
+		for (Identifier identifier : ids) this.sendableChannels.remove(identifier);
 		this.invokeUnregisterEvent(ids);
 	}
 

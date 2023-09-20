@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.networking;
+package net.fabricmc.fabric.mixin.networking.accessor;
 
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-import java.util.Collection;
+@Mixin(LoginQueryResponseC2SPacket.class)
+public interface LoginQueryResponseC2SPacketAccessor {
+	@Accessor
+	int getQueryId();
 
-public interface ChannelInfoHolder {
-	/**
-	 * @return Channels which are declared as receivable by the other side but have not been declared yet.
-	 */
-	Collection<Identifier> getPendingChannelsNames();
+	@Nullable
+	@Accessor
+	PacketByteBuf getResponse();
 }

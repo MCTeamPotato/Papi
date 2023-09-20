@@ -5,10 +5,13 @@ import net.minecraft.resource.ResourceType;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class ResourceManagerHelper {
 
-    public static Register get(ResourceType resourceType) {
+    @Contract(value = "_ -> new", pure = true)
+    public static @NotNull Register get(ResourceType resourceType) {
         return new Register(resourceType);
     }
 

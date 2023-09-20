@@ -25,9 +25,13 @@ public final class ClientLifecycleEventsImpl {
 	public static void clientInit() {
 		// Part of impl for block entity events
 		ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> ((LoadedChunksCache) world).fabric_markLoaded(chunk));
+
 		ClientChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> ((LoadedChunksCache) world).fabric_markUnloaded(chunk));
+
 		ClientChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> {
-			for (BlockEntity blockEntity : chunk.getBlockEntities().values()) ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload(blockEntity, world);
+			for (BlockEntity blockEntity : chunk.getBlockEntities().values()) {
+				ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload(blockEntity, world);
+			}
 		});
 	}
 }

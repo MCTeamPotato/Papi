@@ -16,23 +16,19 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle;
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.fabricmc.fabric.impl.event.lifecycle.LoadedChunksCache;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Mixin(World.class)
 public abstract class WorldMixin implements LoadedChunksCache {
-	@Shadow
-	public abstract boolean isClient();
-
 	@Unique
-	private final Set<WorldChunk> papi$loadedChunks = new HashSet<>();
+	private final Set<WorldChunk> papi$loadedChunks = new ObjectOpenHashSet<>();
 
 	@Override
 	public Set<WorldChunk> fabric_getLoadedChunks() {

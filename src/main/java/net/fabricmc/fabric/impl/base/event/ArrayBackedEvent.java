@@ -18,7 +18,6 @@ package net.fabricmc.fabric.impl.base.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +67,7 @@ class ArrayBackedEvent<T> extends Event<T> {
 		}
 	}
 
-	private @NotNull EventPhaseData<T> getOrCreatePhase(Identifier id, boolean sortIfCreate) {
+	private EventPhaseData<T> getOrCreatePhase(Identifier id, boolean sortIfCreate) {
 		EventPhaseData<T> phase = phases.get(id);
 
 		if (phase == null) {

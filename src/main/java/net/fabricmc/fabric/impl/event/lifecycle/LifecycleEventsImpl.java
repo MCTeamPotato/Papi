@@ -28,6 +28,7 @@ public final class LifecycleEventsImpl {
 	public static void init() {
 		// Part of impl for block entity events
 		ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> ((LoadedChunksCache) world).fabric_markLoaded(chunk));
+
 		ServerChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> ((LoadedChunksCache) world).fabric_markUnloaded(chunk));
 
 		// Fire block entity unload events.

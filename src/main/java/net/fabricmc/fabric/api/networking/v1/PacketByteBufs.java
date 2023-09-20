@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.networking.v1;
 
-import java.util.Objects;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-
 import net.minecraft.network.PacketByteBuf;
+
+import java.util.Objects;
 
 /**
  * Helper methods for working with and creating {@link PacketByteBuf}s.

@@ -39,7 +39,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.Map;
 
 @Mixin(WorldChunk.class)
-abstract class WorldChunkMixin {
+public abstract class WorldChunkMixin {
 	@Shadow
 	public abstract World getWorld();
 
