@@ -35,7 +35,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientLoginNetworkHandler.class)
-abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtensions {
+public abstract class ClientLoginNetworkHandlerMixin implements NetworkHandlerExtensions {
 	@Shadow
 	@Final
 	private MinecraftClient client;

@@ -12,9 +12,32 @@
     "maxShiftBy": 3
   },
   "mixins": [
+    "event.lifecycle.MinecraftServerMixin",
+    "event.lifecycle.ServerWorldServerEntityHandlerMixin",
+    "event.lifecycle.WorldMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "networking.ClientConnectionMixin",
+    "networking.EntityTrackerEntryMixin",
+    "networking.PlayerManagerMixin",
+    "networking.ServerLoginNetworkHandlerMixin",
+    "networking.ServerPlayNetworkHandlerMixin"
   ],
   "server": [
+    "event.lifecycle.server.WorldChunkMixin"
   ],
   "client": [
+    "client.keybinding.KeyBindingAccessor",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
+    "event.lifecycle.client.MinecraftClientMixin",
+    "event.lifecycle.client.WorldChunkMixin",
+    "networking.client.accessor.ConnectScreenAccessor",
+    "networking.client.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.ClientPlayNetworkHandlerMixin"
   ]
 }

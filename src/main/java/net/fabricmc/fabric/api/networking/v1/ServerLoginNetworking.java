@@ -49,6 +49,7 @@ public final class ServerLoginNetworking {
 	 * @see ServerLoginNetworking#unregisterGlobalReceiver(Identifier)
 	 * @see ServerLoginNetworking#registerReceiver(ServerLoginNetworkHandler, Identifier, LoginQueryResponseHandler)
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public static boolean registerGlobalReceiver(Identifier channelName, LoginQueryResponseHandler channelHandler) {
 		return ServerNetworkingImpl.LOGIN.registerGlobalReceiver(channelName, channelHandler);
 	}
@@ -90,6 +91,7 @@ public final class ServerLoginNetworking {
 	 * @param responseHandler the handler
 	 * @return false if a handler is already registered to the channel name
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public static boolean registerReceiver(ServerLoginNetworkHandler networkHandler, Identifier channelName, LoginQueryResponseHandler responseHandler) {
 		Objects.requireNonNull(networkHandler, "Network handler cannot be null");
 

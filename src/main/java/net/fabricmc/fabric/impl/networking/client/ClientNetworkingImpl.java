@@ -109,9 +109,7 @@ public final class ClientNetworkingImpl {
 
 	public static void clientInit() {
 		// Reference cleanup for the locally stored addon if we are disconnected
-		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
-			currentPlayAddon = null;
-		});
+		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> currentPlayAddon = null);
 
 		// Register a login query handler for early channel registration.
 		ClientLoginNetworking.registerGlobalReceiver(NetworkingImpl.EARLY_REGISTRATION_CHANNEL, (client, handler, buf, listenerAdder) -> {

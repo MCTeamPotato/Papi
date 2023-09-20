@@ -39,7 +39,7 @@ import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Mixin(ClientConnection.class)
-abstract class ClientConnectionMixin implements ChannelInfoHolder {
+public abstract class ClientConnectionMixin implements ChannelInfoHolder {
 	@Shadow
 	private PacketListener packetListener;
 

@@ -116,8 +116,8 @@ public final class PlayerLookup {
 
 			// return an immutable collection to guard against accidental removals.
 			if (tracker != null) {
-				return Collections.unmodifiableCollection(tracker.getPlayersTracking()
-						.stream().map(EntityTrackingListener::getPlayer).collect(Collectors.toSet()));
+				return tracker.getPlayersTracking()
+                        .stream().map(EntityTrackingListener::getPlayer).collect(Collectors.toUnmodifiableSet());
 			}
 
 			return Collections.emptySet();

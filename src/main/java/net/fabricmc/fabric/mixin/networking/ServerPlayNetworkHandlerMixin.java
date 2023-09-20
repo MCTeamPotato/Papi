@@ -36,7 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
 @Mixin(value = ServerPlayNetworkHandler.class, priority = 999)
-abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions, DisconnectPacketSource {
+public abstract class ServerPlayNetworkHandlerMixin implements NetworkHandlerExtensions, DisconnectPacketSource {
 	@Shadow
 	@Final
 	private MinecraftServer server;

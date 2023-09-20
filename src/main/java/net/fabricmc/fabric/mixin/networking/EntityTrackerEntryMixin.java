@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityTrackerEntry.class)
-abstract class EntityTrackerEntryMixin {
+public abstract class EntityTrackerEntryMixin {
 	@Shadow
 	@Final
 	private Entity entity;
