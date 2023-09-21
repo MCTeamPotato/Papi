@@ -12,6 +12,10 @@
     "maxShiftBy": 3
   },
   "mixins": [
+    "command.ArgumentTypesAccessor",
+    "command.EntitySelectorOptionsAccessor",
+    "command.EntitySelectorReaderMixin",
+    "command.HelpCommandAccessor",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
@@ -32,7 +36,10 @@
     "event.lifecycle.server.WorldChunkMixin"
   ],
   "client": [
+    "blockrenderlayer.RenderLayersAccessor",
     "client.keybinding.KeyBindingAccessor",
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientCommandSourceStackMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
     "event.lifecycle.client.MinecraftClientMixin",
