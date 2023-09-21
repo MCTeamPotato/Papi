@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.fabricmc.papi.mixin",
+  "package": "net.fabricmc.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "overwrites": {
@@ -14,6 +14,8 @@
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
+    "lookup.BlockEntityTypeAccessor",
+    "lookup.ServerWorldMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -24,20 +26,16 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryRequestS2CPacketAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "registry.sync.AccessorRegistry",
-    "registry.sync.BootstrapMixin",
-    "registry.sync.RegistryMixin",
-    "registry.sync.SimpleRegistryMixin",
-    "resource.loader.ResourceMixin"
+    "networking.accessor.ServerLoginNetworkHandlerAccessor"
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
+    "client.keybinding.KeyCodeAccessor",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
-    "networking.accessor.ConnectScreenAccessor",
-    "networking.accessor.MinecraftClientAccessor",
+    "networking.accessor.client.ConnectScreenAccessor",
+    "networking.accessor.client.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
     "networking.client.ClientPlayNetworkHandlerMixin"
   ]
