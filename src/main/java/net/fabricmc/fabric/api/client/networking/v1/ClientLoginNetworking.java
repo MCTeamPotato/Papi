@@ -28,6 +28,8 @@ import net.minecraft.network.listener.PacketListener;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
@@ -84,7 +86,8 @@ public final class ClientLoginNetworking {
 	 *
 	 * @return all channel names which global receivers are registered for.
 	 */
-	public static Set<Identifier> getGlobalReceivers() {
+	@Contract(" -> new")
+	public static @NotNull Set<Identifier> getGlobalReceivers() {
 		return ClientNetworkingImpl.LOGIN.getChannels();
 	}
 

@@ -28,6 +28,8 @@ import net.minecraft.network.listener.ServerPlayPacketListener;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -85,7 +87,8 @@ public final class ClientPlayNetworking {
 	 *
 	 * @return all channel names which global receivers are registered for.
 	 */
-	public static Set<Identifier> getGlobalReceivers() {
+	@Contract(" -> new")
+	public static @NotNull Set<Identifier> getGlobalReceivers() {
 		return ClientNetworkingImpl.PLAY.getChannels();
 	}
 
