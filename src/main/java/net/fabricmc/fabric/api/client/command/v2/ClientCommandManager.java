@@ -48,7 +48,7 @@ import org.jetbrains.annotations.Nullable;
  * are an implementation detail that is not guaranteed to remain the same in future versions.
  * The aim is to make commands from the server take precedence over client-sided commands
  * in a future version of this API.
- *
+ * <p>
  * <h2>Example command</h2>
  * <pre>
  * {@code

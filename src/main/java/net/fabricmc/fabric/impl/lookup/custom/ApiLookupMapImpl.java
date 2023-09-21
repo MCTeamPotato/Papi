@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.impl.lookup.custom;
 
+import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
-
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 
 public final class ApiLookupMapImpl<L> implements ApiLookupMap<L> {
 	private final Map<Identifier, StoredLookup<L>> lookups = new HashMap<>();
@@ -59,19 +58,10 @@ public final class ApiLookupMapImpl<L> implements ApiLookupMap<L> {
 	}
 
 	@Override
-	public synchronized Iterator<L> iterator() {
-		return lookups.values().stream().map(storedLookup -> storedLookup.lookup).collect(Collectors.toList()).iterator();
+	public synchronized @NotNull Iterator<L> iterator() {
+		return lookups.values().stream().map(storedLookup -> storedLookup.lookup).toList().iterator();
 	}
 
-	private static final class StoredLookup<L> {
-		final L lookup;
-		final Class<?> apiClass;
-		final Class<?> contextClass;
-
-		StoredLookup(L lookup, Class<?> apiClass, Class<?> contextClass) {
-			this.lookup = lookup;
-			this.apiClass = apiClass;
-			this.contextClass = contextClass;
-		}
+	private record StoredLookup<L>(L lookup, Class<?> apiClass, Class<?> contextClass) {
 	}
 }

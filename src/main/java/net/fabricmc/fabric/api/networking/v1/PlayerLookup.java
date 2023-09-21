@@ -30,11 +30,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkManager;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.UnmodifiableView;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -72,7 +77,7 @@ public final class PlayerLookup {
 	 * @param world the server world
 	 * @return the players in the server world
 	 */
-	public static Collection<ServerPlayerEntity> world(ServerWorld world) {
+	public static @NotNull @UnmodifiableView Collection<ServerPlayerEntity> world(ServerWorld world) {
 		Objects.requireNonNull(world, "The world cannot be null");
 
 		// return an immutable collection to guard against accidental removals.
@@ -135,9 +140,8 @@ public final class PlayerLookup {
 	 */
 	public static Collection<ServerPlayerEntity> tracking(BlockEntity blockEntity) {
 		Objects.requireNonNull(blockEntity, "BlockEntity cannot be null");
-
-		//noinspection ConstantConditions - IJ intrinsics don't know hasWorld == true will result in no null
-		if (!blockEntity.hasWorld() || blockEntity.getWorld().isClient()) {
+		World world = blockEntity.getWorld();
+		if (world == null || world.isClient()) {
 			throw new IllegalArgumentException("Only supported on server worlds!");
 		}
 
@@ -168,12 +172,15 @@ public final class PlayerLookup {
 	 * @return the players around the position
 	 */
 	public static Collection<ServerPlayerEntity> around(ServerWorld world, Vec3d pos, double radius) {
-		double radiusSq = radius * radius;
-
 		return world(world)
 				.stream()
-				.filter((p) -> p.squaredDistanceTo(pos) <= radiusSq)
+				.filter((p) -> p.squaredDistanceTo(pos) <= radius * radius)
 				.collect(Collectors.toList());
+	}
+
+	@Contract(pure = true)
+	public static @NotNull Predicate<ServerPlayerEntity> checkDist(Vec3i pos, double radius) {
+		return p -> p.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= radius * radius;
 	}
 
 	/**
@@ -187,11 +194,9 @@ public final class PlayerLookup {
 	 * @return the players around the position
 	 */
 	public static Collection<ServerPlayerEntity> around(ServerWorld world, Vec3i pos, double radius) {
-		double radiusSq = radius * radius;
-
 		return world(world)
 				.stream()
-				.filter((p) -> p.squaredDistanceTo(pos.getX(), pos.getY(), pos.getZ()) <= radiusSq)
+				.filter(checkDist(pos, radius))
 				.collect(Collectors.toList());
 	}
 

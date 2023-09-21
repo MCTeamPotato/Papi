@@ -129,12 +129,8 @@ public final class BlockApiCacheImpl<A, C> implements BlockApiCache<A, C> {
 	}
 
 	static {
-		ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> {
-			((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos());
-		});
+		ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> ((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos()));
 
-		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
-			((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos());
-		});
+		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> ((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos()));
 	}
 }
