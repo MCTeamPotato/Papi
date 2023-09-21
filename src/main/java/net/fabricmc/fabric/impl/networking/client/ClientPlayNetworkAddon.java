@@ -31,6 +31,7 @@ import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.util.Collections;
@@ -45,8 +46,8 @@ public final class ClientPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 
 	private static final Logger LOGGER = LogUtils.getLogger();
 
-	public ClientPlayNetworkAddon(ClientPlayNetworkHandler handler, MinecraftClient client) {
-		super(ClientNetworkingImpl.PLAY, handler.getConnection(), "ClientPlayNetworkAddon for " + handler.getProfile().getName());
+	public ClientPlayNetworkAddon(@NotNull ClientPlayNetworkHandler handler, MinecraftClient client) {
+		super(ClientNetworkingImpl.PLAY, handler.getConnection(), "ClientPlayNetworkAddon for " + (handler.getProfile() != null ? handler.getProfile().getName() : "(unknown)"));
 		this.handler = handler;
 		this.client = client;
 
