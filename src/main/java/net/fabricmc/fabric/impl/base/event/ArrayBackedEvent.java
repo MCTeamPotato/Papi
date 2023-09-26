@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ import java.util.*;
 import java.util.function.Function;
 
 class ArrayBackedEvent<T> extends Event<T> {
-	static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-base");
+	static final Logger LOGGER = LoggerFactory.getLogger("fabric_api_base");
 
 	private final Function<T[], T> invokerFactory;
 	private final Object lock = new Object();
@@ -38,7 +39,7 @@ class ArrayBackedEvent<T> extends Event<T> {
 	/**
 	 * Phases sorted in the correct dependency order.
 	 */
-	private final List<EventPhaseData<T>> sortedPhases = new ArrayList<>();
+	private final List<EventPhaseData<T>> sortedPhases = new ObjectArrayList<>();
 
 	@SuppressWarnings("unchecked")
 	ArrayBackedEvent(Class<? super T> type, Function<T[], T> invokerFactory) {

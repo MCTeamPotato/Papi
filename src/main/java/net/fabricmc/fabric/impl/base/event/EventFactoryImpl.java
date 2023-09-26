@@ -58,7 +58,7 @@ public final class EventFactoryImpl {
 		throw new IllegalArgumentException("The event phases must contain Event.DEFAULT_PHASE.");
 	}
 
-	public static void ensureNoDuplicates(Identifier[] defaultPhases) {
+	public static void ensureNoDuplicates(Identifier @NotNull [] defaultPhases) {
 		for (int i = 0; i < defaultPhases.length; ++i) {
 			for (int j = i+1; j < defaultPhases.length; ++j) {
 				if (defaultPhases[i].equals(defaultPhases[j])) {
@@ -71,7 +71,7 @@ public final class EventFactoryImpl {
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
 	@SuppressWarnings("SuspiciousInvocationHandlerImplementation")
-	private static <T> T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
+	private static <T> @NotNull T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
 		Method funcIfMethod = getMethod(handlerClass);
 

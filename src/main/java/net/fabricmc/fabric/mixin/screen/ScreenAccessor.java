@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.blockrenderlayer;
+package net.fabricmc.fabric.mixin.screen;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraftforge.client.ChunkRenderTypeSet;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import java.util.Map;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.render.item.ItemRenderer;
 
-@Mixin(RenderLayers.class)
-public interface RenderLayersAccessor {
+@Mixin(Screen.class)
+public interface ScreenAccessor {
+	@Accessor
+	ItemRenderer getItemRenderer();
 
-	@Accessor("BLOCK_RENDER_TYPES")
-	static Map<RegistryEntry.Reference<Block>, ChunkRenderTypeSet> getBlockRenderTypes() {
-		throw new UnsupportedOperationException();
-	}
+	@Accessor
+	TextRenderer getTextRenderer();
+
+	@Accessor
+	MinecraftClient getClient();
 }

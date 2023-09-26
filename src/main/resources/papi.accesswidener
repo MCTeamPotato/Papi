@@ -1,3 +1,4 @@
 accessWidener   v2  named
-
+accessible field net/minecraft/client/render/RenderLayers BLOCK_RENDER_TYPES Ljava/util/Map;
+accessible field net/minecraft/client/render/RenderLayers FLUID_RENDER_TYPES Ljava/util/Map;
 accessible    class    net/minecraft/server/MinecraftServer$ResourceManagerHolder

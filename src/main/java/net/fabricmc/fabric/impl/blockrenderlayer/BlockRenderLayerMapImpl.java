@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.impl.blockrenderlayer;
 
+import com.google.common.base.Preconditions;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.mixin.blockrenderlayer.RenderLayersAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraftforge.client.ChunkRenderTypeSet;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -106,11 +105,17 @@ public class BlockRenderLayerMapImpl implements BlockRenderLayerMap {
 	}
 
 	public static void initRenderLayers(@NotNull FMLClientSetupEvent event) {
-		event.enqueueWork(() -> initialize((block, renderLayer) -> {
-			Map<RegistryEntry.Reference<Block>, ChunkRenderTypeSet> blockRenderTypes = RenderLayersAccessor.getBlockRenderTypes();
-			synchronized (blockRenderTypes) {
-				blockRenderTypes.put(ForgeRegistries.BLOCKS.getDelegateOrThrow(block), ChunkRenderTypeSet.of(renderLayer));
-			}
-		}, RenderLayers::setRenderLayer));
+		event.enqueueWork(() -> initialize(
+				(block, renderLayer) -> {
+					synchronized (RenderLayers.BLOCK_RENDER_TYPES) {
+						RenderLayers.BLOCK_RENDER_TYPES.put(ForgeRegistries.BLOCKS.getDelegateOrThrow(block), ChunkRenderTypeSet.of(renderLayer));
+					}},
+				(fluid, renderLayer) -> {
+					synchronized (RenderLayers.FLUID_RENDER_TYPES) {
+						Preconditions.checkArgument(renderLayer.getChunkLayerId() >= 0, "The argument must be a valid chunk render type returned by RenderType#chunkBufferLayers().");
+						RenderLayers.FLUID_RENDER_TYPES.put(ForgeRegistries.FLUIDS.getDelegateOrThrow(fluid), renderLayer);
+					}
+				}
+		));
 	}
 }
