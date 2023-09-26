@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.api.blockrenderlayer.v1;
 
+import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
-
-import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 
 /**
  * Use to associate blocks or fluids with block render layer other than default.

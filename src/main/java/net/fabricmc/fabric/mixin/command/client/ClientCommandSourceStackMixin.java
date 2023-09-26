@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.command.client;
 
-import net.minecraftforge.client.ClientCommandSourceStack;
-import org.spongepowered.asm.mixin.Mixin;
-
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraftforge.client.ClientCommandSourceStack;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ClientCommandSourceStack.class)
 public abstract class ClientCommandSourceStackMixin implements FabricClientCommandSource {

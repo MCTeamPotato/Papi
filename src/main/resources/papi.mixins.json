@@ -21,6 +21,10 @@
     "event.lifecycle.WorldMixin",
     "lookup.BlockEntityTypeAccessor",
     "lookup.ServerWorldMixin",
+    "loot.LootPoolAccessor",
+    "loot.LootPoolBuilderMixin",
+    "loot.LootTableAccessor",
+    "loot.LootTableBuilderMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -30,13 +34,16 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor"
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "screenhandler.NamedScreenHandlerFactoryMixin",
+    "screenhandler.ServerPlayerEntityMixin"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
+    "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientCommandSourceStackMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",

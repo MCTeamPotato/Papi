@@ -9,7 +9,6 @@ import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
-import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -34,7 +33,6 @@ public class Papi {
             bus.addListener(KeyBindingRegistryImpl::registerKeys);
             bus.addListener(BlockRenderLayerMapImpl::initRenderLayers);
 
-            ClientNetworkingImpl.clientInit();
             ClientLifecycleEventsImpl.clientInit();
         }
     }

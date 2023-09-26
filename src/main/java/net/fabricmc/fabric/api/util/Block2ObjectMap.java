@@ -14,19 +14,23 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.command;
+package net.fabricmc.fabric.api.util;
 
-import net.minecraft.command.EntitySelectorOptions;
-import net.minecraft.command.EntitySelectorReader;
-import net.minecraft.text.Text;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import net.minecraft.block.Block;
+import net.minecraft.tag.TagKey;
 
-import java.util.function.Predicate;
+public interface Block2ObjectMap<V> {
+	V get(Block block);
 
-@Mixin(EntitySelectorOptions.class)
-public interface EntitySelectorOptionsAccessor {
-	@Invoker
-	static void callPutOption(String id, EntitySelectorOptions.SelectorHandler handler, Predicate<EntitySelectorReader> condition, Text description) {
-	}
+	void add(Block block, V value);
+
+	void add(TagKey<Block> tag, V value);
+
+	void remove(Block block);
+
+	void remove(TagKey<Block> tag);
+
+	void clear(Block block);
+
+	void clear(TagKey<Block> tag);
 }

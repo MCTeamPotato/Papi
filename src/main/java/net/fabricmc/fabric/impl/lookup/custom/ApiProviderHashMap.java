@@ -16,13 +16,12 @@
 
 package net.fabricmc.fabric.impl.lookup.custom;
 
-import java.util.Map;
-import java.util.Objects;
-
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
+import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
 import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
+import java.util.Map;
+import java.util.Objects;
 
 public final class ApiProviderHashMap<K, V> implements ApiProviderMap<K, V> {
 	private volatile Map<K, V> lookups = new Reference2ReferenceOpenHashMap<>();
