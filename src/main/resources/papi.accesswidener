@@ -1,5 +1,6 @@
 accessWidener   v2  named
 
+accessible  method    net/minecraft/client/particle/ParticleManager$SimpleSpriteProvider  <init>  ()V
 accessible	field	net/minecraft/screen/SimpleNamedScreenHandlerFactory baseFactory Lnet/minecraft/screen/ScreenHandlerFactory;
 accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens getProvider (Lnet/minecraft/screen/ScreenHandlerType;)Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;
 accessible field net/minecraft/client/render/RenderLayers BLOCK_RENDER_TYPES Ljava/util/Map;

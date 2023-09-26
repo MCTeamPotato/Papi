@@ -43,6 +43,8 @@
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
+    "client.particle.ParticleManagerAccessor",
+    "client.particle.ParticleManagerAccessor$SimpleSpriteProviderAccessor",
     "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientCommandSourceStackMixin",
