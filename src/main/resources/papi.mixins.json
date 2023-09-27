@@ -25,6 +25,8 @@
     "loot.LootPoolBuilderMixin",
     "loot.LootTableAccessor",
     "loot.LootTableBuilderMixin",
+    "message.MinecraftServerMixin",
+    "message.PlayerManagerMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
