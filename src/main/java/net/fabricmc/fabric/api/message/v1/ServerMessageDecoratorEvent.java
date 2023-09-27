@@ -16,18 +16,17 @@
 
 package net.fabricmc.fabric.api.message.v1;
 
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
-
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.network.message.MessageDecorator;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * A class for registering a {@link MessageDecorator}. Check the message decorator documentation
@@ -99,7 +98,7 @@ public final class ServerMessageDecoratorEvent {
 		return future == null ? CompletableFuture.completedFuture(message) : future;
 	}, CONTENT_PHASE, Event.DEFAULT_PHASE, STYLING_PHASE);
 
-	private static <T extends Text> T handle(T decorated, @Nullable Throwable throwable, MessageDecorator decorator) {
+	private static <T extends Text> T handle(T decorated, @Nullable Throwable throwable, @NotNull MessageDecorator decorator) {
 		String decoratorName = decorator.getClass().getName();
 
 		if (throwable != null) {
