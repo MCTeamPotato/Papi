@@ -16,6 +16,8 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle.client;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,21 +28,22 @@ import net.minecraft.entity.Entity;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 
+@OnlyIn(Dist.CLIENT)
 @Mixin(targets = "net/minecraft/client/world/ClientWorld$ClientEntityHandler")
 abstract class ClientWorldEntityLoaderMixin {
 	// Call our load event after vanilla has loaded the entity
 	@Inject(method = "startTracking(Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
 	private void invokeLoadEntity(Entity entity, CallbackInfo ci) {
-		if (entity.world instanceof ClientWorld) {
-			ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ClientWorld) entity.world);
+		if (entity.world instanceof ClientWorld clientWorld) {
+			ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, clientWorld);
 		}
 	}
 
 	// Call our unload event before vanilla does.
 	@Inject(method = "stopTracking(Lnet/minecraft/entity/Entity;)V", at = @At("HEAD"))
 	private void invokeUnloadEntity(Entity entity, CallbackInfo ci) {
-		if (entity.world instanceof ClientWorld) {
-			ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ClientWorld) entity.world);
+		if (entity.world instanceof ClientWorld clientWorld) {
+			ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, clientWorld);
 		}
 	}
 }

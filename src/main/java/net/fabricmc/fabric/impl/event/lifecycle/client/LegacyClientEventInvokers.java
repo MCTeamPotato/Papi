@@ -28,6 +28,6 @@ public class LegacyClientEventInvokers {
 		// Tick old events on ClientWorld
 		ClientTickEvents.END_WORLD_TICK.register(world -> WorldTickCallback.EVENT.invoker().tick(world));
 		// This is part of item api now.
-		net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback.EVENT.register((stack, context, lines) -> ItemTooltipCallback.EVENT.invoker().getTooltip(stack, context, lines));
+		//net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback.EVENT.register((stack, context, lines) -> ItemTooltipCallback.EVENT.invoker().getTooltip(stack, context, lines));
 	}
 }

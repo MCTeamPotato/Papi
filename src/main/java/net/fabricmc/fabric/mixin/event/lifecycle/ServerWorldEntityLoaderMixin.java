@@ -16,13 +16,13 @@
 
 package net.fabricmc.fabric.mixin.event.lifecycle;
 
-import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 
@@ -30,15 +30,15 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 abstract class ServerWorldEntityLoaderMixin {
 	@Inject(method = "startTracking(Lnet/minecraft/entity/Entity;)V", at = @At("TAIL"))
 	private void invokeEntityLoadEvent(Entity entity, CallbackInfo ci) {
-		if (entity.world instanceof ServerWorld) {
-			ServerEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, (ServerWorld) entity.world);
+		if (entity.world instanceof ServerWorld serverWorld) {
+			ServerEntityEvents.ENTITY_LOAD.invoker().onLoad(entity, serverWorld);
 		}
 	}
 
 	@Inject(method = "stopTracking(Lnet/minecraft/entity/Entity;)V", at = @At("HEAD"))
 	private void invokeEntityUnloadEvent(Entity entity, CallbackInfo info) {
-		if (entity.world instanceof ServerWorld) {
-			ServerEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, (ServerWorld) entity.world);
+		if (entity.world instanceof ServerWorld serverWorld) {
+			ServerEntityEvents.ENTITY_UNLOAD.invoker().onUnload(entity, serverWorld);
 		}
 	}
 }
