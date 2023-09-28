@@ -25,6 +25,8 @@
     "gamerule.GameRulesBooleanRuleAccessor",
     "gamerule.GameRulesIntRuleAccessor",
     "gamerule.GameRulesKeyMixin",
+    "item.ItemMixin",
+    "item.ItemStackMixin",
     "lookup.BlockEntityTypeAccessor",
     "lookup.ServerWorldMixin",
     "message.MinecraftServerMixin",
@@ -39,6 +41,7 @@
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "screen.ForgeHooksClientMixin",
     "screenhandler.NamedScreenHandlerFactoryMixin",
     "screenhandler.NetworkHooksMixin",
     "screenhandler.ServerPlayerEntityMixin"
