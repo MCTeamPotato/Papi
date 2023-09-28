@@ -1,18 +1,19 @@
 package net.fabricmc.fabric;
 
-import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
 import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.impl.client.rendering.RenderingForgeImpl;
 import net.fabricmc.fabric.impl.command.CommandApiForgeImpl;
 import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
+import net.fabricmc.fabric.impl.entity.event.EntityEventForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
 import net.fabricmc.fabric.impl.item.FabricItemInternals;
 import net.fabricmc.fabric.impl.item.ItemForgeImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
+import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
 import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -32,6 +33,7 @@ public class Papi {
         LifecycleEventsImpl.init();
         NetworkingImpl.init();
         ApiLookupImpl.init();
+        MinecraftForge.EVENT_BUS.register(EntityEventForgeImpl.class);
         MinecraftForge.EVENT_BUS.register(LifecycleForgeImpl.class);
         MinecraftForge.EVENT_BUS.addListener(CommandApiForgeImpl::registerCommands);
         MinecraftForge.EVENT_BUS.register(TradeOfferInternals.class);

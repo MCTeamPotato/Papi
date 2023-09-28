@@ -17,7 +17,6 @@
 package net.fabricmc.fabric.api.particle.v1;
 
 import com.mojang.serialization.Codec;
-
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;

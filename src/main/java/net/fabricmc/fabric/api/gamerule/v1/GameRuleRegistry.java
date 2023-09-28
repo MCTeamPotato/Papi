@@ -16,10 +16,9 @@
 
 package net.fabricmc.fabric.api.gamerule.v1;
 
-import net.minecraft.world.GameRules;
-
 import net.fabricmc.fabric.impl.gamerule.RuleKeyExtensions;
 import net.fabricmc.fabric.mixin.gamerule.GameRulesAccessor;
+import net.minecraft.world.GameRules;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 

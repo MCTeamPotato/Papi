@@ -16,10 +16,10 @@
 
 package net.fabricmc.fabric.api.item.v1;
 
-import java.util.function.Consumer;
-
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+
+import java.util.function.Consumer;
 
 /**
  * Allows an item to run custom logic when {@link ItemStack#damage(int, LivingEntity, Consumer)} is called.

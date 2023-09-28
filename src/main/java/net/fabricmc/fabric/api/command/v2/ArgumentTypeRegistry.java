@@ -35,6 +35,7 @@ public final class ArgumentTypeRegistry {
 			Identifier id, Class<? extends A> clazz, ArgumentSerializer<A, T> serializer) {
 		CommandApiForgeImpl.registerArgumentType(id, clazz, serializer);
 	}
+
 	private ArgumentTypeRegistry() {
 	}
 }
