@@ -19,6 +19,8 @@ package net.fabricmc.fabric.api.client.keybinding.v1;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Helper for registering key bindings.
@@ -40,7 +42,8 @@ public final class KeyBindingHelper {
 	 * @param keyBinding the keybinding
 	 * @return the keybinding itself
 	 */
-	public static KeyBinding registerKeyBinding(KeyBinding keyBinding) {
+	@Contract("_ -> param1")
+	public static @NotNull KeyBinding registerKeyBinding(KeyBinding keyBinding) {
 		return KeyBindingRegistryImpl.registerKeyBinding(keyBinding);
 	}
 
@@ -50,7 +53,7 @@ public final class KeyBindingHelper {
 	 * @param keyBinding the keybinding
 	 * @return configured KeyCode
 	 */
-	public static InputUtil.Key getBoundKeyOf(KeyBinding keyBinding) {
+	public static InputUtil.@NotNull Key getBoundKeyOf(@NotNull KeyBinding keyBinding) {
 		return keyBinding.getKey();
 	}
 }
