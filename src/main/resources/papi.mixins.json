@@ -5,21 +5,17 @@
   "minVersion": "0.8",
   "refmap": "papi-refmap.json",
   "mixins": [
-    "event.lifecycle.DataPackContentsMixin",
     "event.lifecycle.MinecraftServerMixin",
-    "event.lifecycle.PlayerManagerMixin",
     "event.lifecycle.ServerWorldEntityLoaderMixin",
-    "event.lifecycle.ServerWorldMixin",
-    "event.lifecycle.ThreadedAnvilChunkStorageMixin",
     "event.lifecycle.WorldMixin"
   ],
   "client": [
-    "event.lifecycle.client.ClientChunkManagerMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldEntityLoaderMixin",
-    "event.lifecycle.client.ClientWorldMixin",
     "event.lifecycle.client.MinecraftClientMixin",
-    "event.lifecycle.client.WorldChunkMixin"
+    "event.lifecycle.client.WorldChunkMixin",
+    "client.keybinding.KeyBindingAccessor",
+    "client.keybinding.KeyCodeAccessor"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"
