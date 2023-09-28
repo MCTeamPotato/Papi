@@ -1,5 +1,7 @@
 accessWidener   v2  named
 
+extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Ljava/util/function/Function;)V
+extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;)V
 accessible  class   net/minecraft/client/gui/screen/world/EditGameRulesScreen$RuleWidgetFactory
 accessible  field   net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;
 mutable  field   net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;

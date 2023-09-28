@@ -38,7 +38,7 @@ public abstract class MinecraftServerMixin {
 		ServerLifecycleEvents.START_DATA_PACK_RELOAD.invoker().startDataPackReload((MinecraftServer) (Object) this, this.resourceManagerHolder.resourceManager());
 	}
 
-	@Inject(method = "reloadResources", at = @At("TAIL"))
+	@Inject(method = "reloadResources", at = @At("RETURN"))
 	private void endResourceReload(Collection<String> collection, @NotNull CallbackInfoReturnable<CompletableFuture<Void>> cir) {
 		cir.getReturnValue().handleAsync((value, throwable) -> {
 			// Hook into fail
