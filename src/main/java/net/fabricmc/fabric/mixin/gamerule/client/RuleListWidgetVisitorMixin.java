@@ -50,6 +50,7 @@ public abstract class RuleListWidgetVisitorMixin implements GameRules.Visitor, F
 	/**
 	 * @reason We need to display an enum rule's default value as translated.
 	 */
+	@SuppressWarnings("UnresolvedMixinReference")
 	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/GameRules$Rule;serialize()Ljava/lang/String;"), method = "createRuleWidget(Lnet/minecraft/world/GameRules$Key;Lnet/minecraft/client/gui/screen/world/EditGameRulesScreen$RuleWidgetFactory;)V")
 	private <T extends GameRules.Rule<T>> String displayProperEnumName(GameRules.Rule<T> rule, GameRules.Key<T> key, EditGameRulesScreen.RuleWidgetFactory<T> widgetFactory) {
 		if (rule instanceof EnumRule) {

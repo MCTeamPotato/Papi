@@ -40,6 +40,7 @@
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "screenhandler.NamedScreenHandlerFactoryMixin",
+    "screenhandler.NetworkHooksMixin",
     "screenhandler.ServerPlayerEntityMixin"
   ],
   "server": [
@@ -49,6 +50,7 @@
     "client.keybinding.KeyBindingAccessor",
     "client.particle.ParticleManagerAccessor",
     "client.particle.ParticleManagerAccessor$SimpleSpriteProviderAccessor",
+    "client.particle.ParticleManagerMixin",
     "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientCommandSourceStackMixin",
