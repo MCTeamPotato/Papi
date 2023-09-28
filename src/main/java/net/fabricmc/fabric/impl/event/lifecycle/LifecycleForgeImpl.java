@@ -65,15 +65,15 @@ public final class LifecycleForgeImpl {
         TickEvent.Phase phase = event.phase;
         if (phase == TickEvent.Phase.START) {
             if (world instanceof ClientWorld clientWorld) {
-                ClientTickEvents.END_WORLD_TICK.invoker().onEndTick(clientWorld);
-            } else if (world instanceof ServerWorld serverWorld) {
-                ServerTickEvents.END_WORLD_TICK.invoker().onEndTick(serverWorld);
-            }
-        } else if (phase == TickEvent.Phase.END) {
-            if (world instanceof ClientWorld clientWorld) {
                 ClientTickEvents.START_WORLD_TICK.invoker().onStartTick(clientWorld);
             } else if (world instanceof ServerWorld serverWorld) {
                 ServerTickEvents.START_WORLD_TICK.invoker().onStartTick(serverWorld);
+            }
+        } else if (phase == TickEvent.Phase.END) {
+            if (world instanceof ClientWorld clientWorld) {
+                ClientTickEvents.END_WORLD_TICK.invoker().onEndTick(clientWorld);
+            } else if (world instanceof ServerWorld serverWorld) {
+                ServerTickEvents.END_WORLD_TICK.invoker().onEndTick(serverWorld);
             }
         }
     }
