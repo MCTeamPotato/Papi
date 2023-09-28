@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -81,10 +80,8 @@ public final class LifecycleForgeImpl {
     @SubscribeEvent
     public static void onEquipmentChange(@NotNull LivingEquipmentChangeEvent event) {
         LivingEntity entity = event.getEntity();
-        ItemStack from = event.getFrom();
-        ItemStack to = event.getTo();
         if (entity.world.isClient) return;
-        ServerEntityEvents.EQUIPMENT_CHANGE.invoker().onChange(entity, event.getSlot(), from, to);
+        ServerEntityEvents.EQUIPMENT_CHANGE.invoker().onChange(entity, event.getSlot(), event.getFrom(), event.getTo());
     }
 
     @SubscribeEvent
@@ -120,18 +117,12 @@ public final class LifecycleForgeImpl {
 
     @SubscribeEvent
     public static void onLevelLoad(LevelEvent.@NotNull Load event) {
-        WorldAccess world = event.getLevel();
-        if (world instanceof ServerWorld serverWorld) {
-            ServerWorldEvents.LOAD.invoker().onWorldLoad(serverWorld.getServer(), serverWorld);
-        }
+        if (event.getLevel() instanceof ServerWorld serverWorld) ServerWorldEvents.LOAD.invoker().onWorldLoad(serverWorld.getServer(), serverWorld);
     }
 
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.@NotNull Unload event) {
-        WorldAccess world = event.getLevel();
-        if (world instanceof ServerWorld serverWorld) {
-            ServerWorldEvents.UNLOAD.invoker().onWorldUnload(serverWorld.getServer(), serverWorld);
-        }
+        if (event.getLevel() instanceof ServerWorld serverWorld) ServerWorldEvents.UNLOAD.invoker().onWorldUnload(serverWorld.getServer(), serverWorld);
     }
 
     @SubscribeEvent
