@@ -1,16 +1,18 @@
 # gradle
-
 .gradle/
 build/
 out/
 classes/
 
 # idea
-
 .idea/
 *.iml
 *.ipr
 *.iws
+
+# fabric-api sources
 .source-1.19.2
 .source-1.16.5
-/.source-1.18.2/
+.source-1.18.2
+
+/run/
