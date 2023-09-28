@@ -26,7 +26,8 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryRequestS2CPacketAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor"
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "registry.sync.RegistryAccessor"
   ],
   "client": [
     "client.keybinding.KeyBindingAccessor",
