@@ -35,6 +35,7 @@
     "gamerule.GameRulesKeyMixin",
     "item.ItemMixin",
     "item.ItemStackMixin",
+    "item.group.ItemGroupMixin",
     "lookup.BlockEntityTypeAccessor",
     "lookup.ServerWorldMixin",
     "message.MinecraftServerMixin",
