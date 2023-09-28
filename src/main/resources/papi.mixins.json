@@ -7,7 +7,9 @@
   "mixins": [
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldEntityLoaderMixin",
-    "event.lifecycle.WorldMixin"
+    "event.lifecycle.WorldMixin",
+    "lookup.BlockEntityTypeAccessor",
+    "lookup.ServerWorldMixin"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
