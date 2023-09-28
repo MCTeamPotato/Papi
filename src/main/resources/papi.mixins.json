@@ -19,7 +19,9 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "networking.accessor.ThreadedAnvilChunkStorageAccessor"
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor",
+    "command.HelpCommandAccessor",
+    "command.client.ClientCommandSourceStackMixin"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
@@ -31,7 +33,11 @@
     "networking.accessor.ConnectScreenAccessor",
     "networking.accessor.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin"
+    "networking.client.ClientPlayNetworkHandlerMixin",
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
+    "command.client.MinecraftClientMixin"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"

@@ -1,6 +1,7 @@
 package net.fabricmc.fabric;
 
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
+import net.fabricmc.fabric.impl.command.CommandApiForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LegacyEventInvokers;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
@@ -31,6 +32,7 @@ public class Papi {
         NetworkingImpl.init();
 
         forgeEventBus.register(LifecycleEventsImpl.class);
+        forgeEventBus.addListener(CommandApiForgeImpl::registerCommands);
 
         if (FMLLoader.getDist().isClient()) {
             LegacyClientEventInvokers.onInitializeClient();
