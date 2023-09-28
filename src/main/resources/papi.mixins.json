@@ -68,7 +68,6 @@
     "networking.client.ClientPlayNetworkHandlerMixin",
     "networking.client.accessor.ConnectScreenAccessor",
     "networking.client.accessor.MinecraftClientAccessor",
-    "screen.GameRendererMixin",
     "screen.MinecraftClientMixin",
     "screen.MouseMixin",
     "screen.ScreenAccessor",
