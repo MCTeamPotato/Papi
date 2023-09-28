@@ -16,23 +16,22 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.entity;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-import org.jetbrains.annotations.Nullable;
-
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 /**
  * A registry for {@linkplain MinecartComparatorLogic custom minecart comparator logic}.
  */
 public final class MinecartComparatorLogicRegistry {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MinecartComparatorLogicRegistry.class);
-	private static final Map<EntityType<?>, MinecartComparatorLogic<?>> logics = new HashMap<>();
+	private static final Map<EntityType<?>, MinecartComparatorLogic<?>> logics = new Object2ObjectOpenHashMap<>();
 
 	private MinecartComparatorLogicRegistry() {
 	}

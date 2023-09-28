@@ -1,5 +1,9 @@
 accessWidener   v2  named
 
+accessible    field     net/minecraft/world/poi/PointOfInterestTypes    POI_STATES  Ljava/util/Set;
+accessible    method    net/minecraft/world/poi/PointOfInterestTypes    register    (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/registry/RegistryKey;Ljava/util/Set;II)Lnet/minecraft/world/poi/PointOfInterestType;
+accessible field net/minecraft/village/VillagerType BIOME_TO_TYPE Ljava/util/Map;
+accessible method net/minecraft/util/SignType <init> (Ljava/lang/String;)V
 extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Ljava/util/function/Function;)V
 extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;)V
 accessible  class   net/minecraft/client/gui/screen/world/EditGameRulesScreen$RuleWidgetFactory
