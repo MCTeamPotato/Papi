@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.lookup;
+package net.fabricmc.fabric.impl.networking;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import net.fabricmc.fabric.api.event.network.S2CPacketTypeCallback;
+import net.fabricmc.fabric.api.client.networking.v1.C2SPlayChannelEvents;
 
-public class ApiLookupImpl {
-	public static void onInitialize() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
+public final class OldClientNetworkingHooks {
+	public static void onInitializeClient() {
+		// Must be lambdas below
+		C2SPlayChannelEvents.REGISTER.register((handler, client, sender, channels) -> S2CPacketTypeCallback.REGISTERED.invoker().accept(channels));
+		C2SPlayChannelEvents.UNREGISTER.register((handler, client, sender, channels) -> S2CPacketTypeCallback.UNREGISTERED.invoker().accept(channels));
 	}
 }

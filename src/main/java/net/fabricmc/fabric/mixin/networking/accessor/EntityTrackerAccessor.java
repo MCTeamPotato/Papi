@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.lookup;
+package net.fabricmc.fabric.mixin.networking.accessor;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import java.util.Set;
 
-public class ApiLookupImpl {
-	public static void onInitialize() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
-	}
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+import net.minecraft.server.world.EntityTrackingListener;
+
+@Mixin(targets = "net/minecraft/server/world/ThreadedAnvilChunkStorage$EntityTracker")
+public interface EntityTrackerAccessor {
+	@Accessor("listeners")
+	Set<EntityTrackingListener> getPlayersTracking();
 }

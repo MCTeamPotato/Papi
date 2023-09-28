@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.lookup;
+package net.fabricmc.fabric.impl.networking;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import net.minecraft.network.Packet;
 
-public class ApiLookupImpl {
-	public static void onInitialize() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
-	}
+public interface PacketCallbackListener {
+	/**
+	 * Called after a packet has been sent.
+	 *
+	 * @param packet the packet
+	 */
+	void sent(Packet<?> packet);
 }

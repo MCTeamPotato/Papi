@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.lookup;
+package net.fabricmc.fabric.mixin.networking.accessor;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-public class ApiLookupImpl {
-	public static void onInitialize() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
-	}
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
+
+@Mixin(LoginQueryResponseC2SPacket.class)
+public interface LoginQueryResponseC2SPacketAccessor {
+	@Accessor
+	int getQueryId();
+
+	@Nullable
+	@Accessor
+	PacketByteBuf getResponse();
 }

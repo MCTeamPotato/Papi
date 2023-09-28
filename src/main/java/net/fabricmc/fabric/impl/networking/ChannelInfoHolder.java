@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.lookup;
+package net.fabricmc.fabric.impl.networking;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import java.util.Collection;
 
-public class ApiLookupImpl {
-	public static void onInitialize() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
-	}
+import net.minecraft.util.Identifier;
+
+public interface ChannelInfoHolder {
+	/**
+	 * @return Channels which are declared as receivable by the other side but have not been declared yet.
+	 */
+	Collection<Identifier> getPendingChannelsNames();
 }

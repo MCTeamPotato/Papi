@@ -9,7 +9,17 @@
     "event.lifecycle.ServerWorldEntityLoaderMixin",
     "event.lifecycle.WorldMixin",
     "lookup.BlockEntityTypeAccessor",
-    "lookup.ServerWorldMixin"
+    "lookup.ServerWorldMixin",
+    "networking.ClientConnectionMixin",
+    "networking.EntityTrackerEntryMixin",
+    "networking.PlayerManagerMixin",
+    "networking.ServerLoginNetworkHandlerMixin",
+    "networking.ServerPlayNetworkHandlerMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.accessor.ThreadedAnvilChunkStorageAccessor"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
@@ -17,7 +27,11 @@
     "event.lifecycle.client.MinecraftClientMixin",
     "event.lifecycle.client.WorldChunkMixin",
     "client.keybinding.KeyBindingAccessor",
-    "client.keybinding.KeyCodeAccessor"
+    "client.keybinding.KeyCodeAccessor",
+    "networking.accessor.ConnectScreenAccessor",
+    "networking.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.ClientPlayNetworkHandlerMixin"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"

@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.impl.lookup;
+package net.fabricmc.fabric.mixin.networking.accessor;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-public class ApiLookupImpl {
-	public static void onInitialize() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
-	}
+import net.minecraft.client.gui.screen.ConnectScreen;
+import net.minecraft.network.ClientConnection;
+
+@OnlyIn(Dist.CLIENT)
+@Mixin(ConnectScreen.class)
+public interface ConnectScreenAccessor {
+	@Accessor
+	ClientConnection getConnection();
 }
