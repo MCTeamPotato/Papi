@@ -29,28 +29,29 @@ public class Papi {
     public static final Logger LOGGER = LoggerFactory.getLogger(Papi.class);
 
     public Papi() {
-        final IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus eventBus = MinecraftForge.EVENT_BUS;
         LifecycleEventsImpl.init();
         NetworkingImpl.init();
         ApiLookupImpl.init();
-        MinecraftForge.EVENT_BUS.register(EntityEventForgeImpl.class);
-        MinecraftForge.EVENT_BUS.register(LifecycleForgeImpl.class);
-        MinecraftForge.EVENT_BUS.addListener(CommandApiForgeImpl::registerCommands);
-        MinecraftForge.EVENT_BUS.register(TradeOfferInternals.class);
-        bus.addListener(CommandApiForgeImpl::registerArgumentTypes);
-        bus.register(ObjectBuilderForgeImpl.class);
+        eventBus.register(EntityEventForgeImpl.class);
+        eventBus.register(LifecycleForgeImpl.class);
+        eventBus.addListener(CommandApiForgeImpl::registerCommands);
+        eventBus.register(TradeOfferInternals.class);
+        modBus.addListener(CommandApiForgeImpl::registerArgumentTypes);
+        modBus.register(ObjectBuilderForgeImpl.class);
         if (FMLLoader.getDist().isClient()) {
-            MinecraftForge.EVENT_BUS.register(ItemForgeImpl.class);
-            MinecraftForge.EVENT_BUS.register(LifecycleForgeImpl.Client.class);
-            MinecraftForge.EVENT_BUS.addListener(ClientCommandInternals::registerClientCommands);
-            MinecraftForge.EVENT_BUS.addListener(FabricItemInternals::modifyItemAttributeModifiers);
-            MinecraftForge.EVENT_BUS.addListener(RenderingForgeImpl::onPostRenderHud);
-            bus.addListener(KeyBindingRegistryImpl::registerKeys);
-            bus.addListener(BlockRenderLayerMapImpl::initRenderLayers);
-            bus.addListener(RenderingForgeImpl::onRegisterBlockColors);
-            bus.addListener(RenderingForgeImpl::onRegisterItemColors);
-            bus.addListener(RenderingForgeImpl::registerEntityRenderers);
-            bus.addListener(RenderingForgeImpl::registerLayerDefinitions);
+            eventBus.register(ItemForgeImpl.class);
+            eventBus.register(LifecycleForgeImpl.Client.class);
+            eventBus.addListener(ClientCommandInternals::registerClientCommands);
+            eventBus.addListener(FabricItemInternals::modifyItemAttributeModifiers);
+            eventBus.addListener(RenderingForgeImpl::onPostRenderHud);
+            modBus.addListener(KeyBindingRegistryImpl::registerKeys);
+            modBus.addListener(BlockRenderLayerMapImpl::initRenderLayers);
+            modBus.addListener(RenderingForgeImpl::onRegisterBlockColors);
+            modBus.addListener(RenderingForgeImpl::onRegisterItemColors);
+            modBus.addListener(RenderingForgeImpl::registerEntityRenderers);
+            modBus.addListener(RenderingForgeImpl::registerLayerDefinitions);
 
             ClientLifecycleEventsImpl.clientInit();
         }

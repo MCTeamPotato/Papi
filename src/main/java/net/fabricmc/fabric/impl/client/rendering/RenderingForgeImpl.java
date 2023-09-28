@@ -6,13 +6,14 @@ import net.minecraft.entity.EntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RenderGuiEvent;
+import org.jetbrains.annotations.NotNull;
 
 public final class RenderingForgeImpl {
-    public static void onRegisterBlockColors(RegisterColorHandlersEvent.Block event) {
+    public static void onRegisterBlockColors(RegisterColorHandlersEvent.@NotNull Block event) {
         ColorProviderRegistryImpl.BLOCK.initialize(event.getBlockColors());
     }
 
-    public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
+    public static void onRegisterItemColors(RegisterColorHandlersEvent.@NotNull Item event) {
         ColorProviderRegistryImpl.ITEM.initialize(event.getItemColors());
     }
 
@@ -28,7 +29,7 @@ public final class RenderingForgeImpl {
         EntityModelLayerImpl.PROVIDERS.forEach((name, provider) -> event.registerLayerDefinition(name, provider::createModelData));
     }
 
-    public static void onPostRenderHud(RenderGuiEvent.Post event) {
+    public static void onPostRenderHud(RenderGuiEvent.@NotNull Post event) {
         HudRenderCallback.EVENT.invoker().onHudRender(event.getPoseStack(), event.getPartialTick());
     }
 }

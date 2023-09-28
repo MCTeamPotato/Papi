@@ -16,15 +16,13 @@
 
 package net.fabricmc.fabric.mixin.client.sound;
 
+import net.fabricmc.fabric.api.client.sound.v1.FabricSoundInstance;
 import net.minecraft.client.sound.AudioStream;
 import net.minecraft.client.sound.Sound;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.SoundLoader;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
-
-import net.minecraft.client.sound.SoundInstance;
-
-import net.fabricmc.fabric.api.client.sound.v1.FabricSoundInstance;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.concurrent.CompletableFuture;

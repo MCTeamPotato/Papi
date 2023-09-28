@@ -17,9 +17,7 @@
 package net.fabricmc.fabric.mixin.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemStack;
-
 import net.minecraft.item.ItemStack;
-
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ItemStack.class)

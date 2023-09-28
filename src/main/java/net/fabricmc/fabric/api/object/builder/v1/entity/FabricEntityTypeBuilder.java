@@ -16,25 +16,18 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.entity;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
 import com.google.common.collect.ImmutableSet;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
+import net.fabricmc.fabric.impl.object.builder.FabricEntityType;
 import net.minecraft.block.Block;
-import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.impl.object.builder.FabricEntityType;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 /**
  * Extended version of {@link EntityType.Builder} with added registration for

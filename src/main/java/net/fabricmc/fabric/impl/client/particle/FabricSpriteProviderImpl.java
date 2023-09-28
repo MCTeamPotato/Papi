@@ -16,16 +16,15 @@
 
 package net.fabricmc.fabric.impl.client.particle;
 
-import java.util.List;
-
+import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
+import net.fabricmc.fabric.mixin.client.particle.ParticleManagerAccessor;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.util.math.random.Random;
 
-import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
-import net.fabricmc.fabric.mixin.client.particle.ParticleManagerAccessor;
+import java.util.List;
 
 public class FabricSpriteProviderImpl implements FabricSpriteProvider {
 	private final ParticleManager particleManager;

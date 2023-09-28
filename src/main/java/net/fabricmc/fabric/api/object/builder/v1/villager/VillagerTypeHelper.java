@@ -16,17 +16,16 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.villager;
 
-import java.util.Objects;
-
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.village.VillagerType;
 import net.minecraft.world.biome.Biome;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 /**
  * Utilities related to the creation of {@link VillagerType}s.

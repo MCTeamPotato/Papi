@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.mixin.message;
 
+import net.fabricmc.fabric.api.message.v1.ServerMessageDecoratorEvent;
+import net.minecraft.network.message.MessageDecorator;
+import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.network.message.MessageDecorator;
-import net.minecraft.server.MinecraftServer;
-
-import net.fabricmc.fabric.api.message.v1.ServerMessageDecoratorEvent;
 
 @Mixin(MinecraftServer.class)
 public class MinecraftServerMixin {
