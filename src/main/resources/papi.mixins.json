@@ -12,6 +12,8 @@
     "maxShiftBy": 3
   },
   "mixins": [
+    "block.BlockMixin",
+    "block.BlockStateMixin",
     "command.ArgumentTypesAccessor",
     "command.EntitySelectorOptionsAccessor",
     "command.EntitySelectorReaderMixin",
