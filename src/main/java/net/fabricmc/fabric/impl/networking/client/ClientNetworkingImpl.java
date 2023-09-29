@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -40,7 +41,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -114,7 +114,7 @@ public final class ClientNetworkingImpl {
 		// Register a login query handler for early channel registration.
 		ClientLoginNetworking.registerGlobalReceiver(NetworkingImpl.EARLY_REGISTRATION_CHANNEL, (client, handler, buf, listenerAdder) -> {
 			int n = buf.readVarInt();
-			List<Identifier> ids = new ArrayList<>(n);
+			List<Identifier> ids = new ObjectArrayList<>(n);
 
 			for (int i = 0; i < n; i++) {
 				ids.add(buf.readIdentifier());

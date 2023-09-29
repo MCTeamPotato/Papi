@@ -16,6 +16,8 @@
 
 package net.fabricmc.fabric.api.networking.v1;
 
+import com.google.common.collect.ImmutableSet;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.fabricmc.fabric.mixin.networking.accessor.EntityTrackerAccessor;
 import net.fabricmc.fabric.mixin.networking.accessor.ThreadedAnvilChunkStorageAccessor;
 import net.minecraft.block.entity.BlockEntity;
@@ -36,11 +38,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * For example, a block entity may use the methods in this class to send a packet to all clients which can see the block entity in order notify clients about a change.
@@ -85,6 +84,19 @@ public final class PlayerLookup {
 	}
 
 	/**
+	 * Gets all the players in a server world.
+	 *
+	 * <p>The returned collection is immutable.
+	 *
+	 * @param world the server world
+	 * @return the players in the server world
+	 */
+	public static @NotNull List<ServerPlayerEntity> worldNoAllocation(ServerWorld world) {
+		Objects.requireNonNull(world, "The world cannot be null");
+		return world.getPlayers();
+	}
+
+	/**
 	 * Gets all players tracking a chunk in a server world.
 	 *
 	 * @param world the server world
@@ -121,8 +133,11 @@ public final class PlayerLookup {
 
 			// return an immutable collection to guard against accidental removals.
 			if (tracker != null) {
-				return tracker.getPlayersTracking()
-                        .stream().map(EntityTrackingListener::getPlayer).collect(Collectors.toUnmodifiableSet());
+				ImmutableSet.Builder<ServerPlayerEntity> builder = ImmutableSet.builder();
+				for (EntityTrackingListener entityTrackingListener : tracker.getPlayersTracking()) {
+					builder.add(entityTrackingListener.getPlayer());
+				}
+				return builder.build();
 			}
 
 			return Collections.emptySet();
@@ -171,11 +186,13 @@ public final class PlayerLookup {
 	 * @param radius the maximum distance from the position in blocks
 	 * @return the players around the position
 	 */
-	public static Collection<ServerPlayerEntity> around(ServerWorld world, Vec3d pos, double radius) {
-		return world(world)
-				.stream()
-				.filter((p) -> p.squaredDistanceTo(pos) <= radius * radius)
-				.collect(Collectors.toList());
+	public static @NotNull Collection<ServerPlayerEntity> around(ServerWorld world, Vec3d pos, double radius) {
+		Set<ServerPlayerEntity> serverPlayerEntities = new ObjectOpenHashSet<>();
+		double radius2 = radius * radius;
+		for (ServerPlayerEntity p : worldNoAllocation(world)) {
+			if (p.squaredDistanceTo(pos) <= radius2) serverPlayerEntities.add(p);
+		}
+		return serverPlayerEntities;
 	}
 
 	@Contract(pure = true)
@@ -192,12 +209,15 @@ public final class PlayerLookup {
 	 * @param pos    the position (can be a block pos)
 	 * @param radius the maximum distance from the position in blocks
 	 * @return the players around the position
+	 * @deprecated Not recommended.
 	 */
-	public static Collection<ServerPlayerEntity> around(ServerWorld world, Vec3i pos, double radius) {
-		return world(world)
-				.stream()
-				.filter(checkDist(pos, radius))
-				.collect(Collectors.toList());
+	@Deprecated
+	public static @NotNull Collection<ServerPlayerEntity> around(ServerWorld world, Vec3i pos, double radius) {
+		Set<ServerPlayerEntity> serverPlayerEntities = new ObjectOpenHashSet<>();
+		for (ServerPlayerEntity p : worldNoAllocation(world)) {
+			if (checkDist(pos, radius).test(p)) serverPlayerEntities.add(p);
+		}
+		return serverPlayerEntities;
 	}
 
 	private PlayerLookup() {

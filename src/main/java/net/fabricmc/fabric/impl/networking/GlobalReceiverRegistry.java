@@ -16,6 +16,8 @@
 
 package net.fabricmc.fabric.impl.networking;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,10 +29,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public final class GlobalReceiverRegistry<H> {
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 	private final Map<Identifier, H> handlers;
-	private final Set<AbstractNetworkAddon<H>> trackedAddons = new HashSet<>();
+	private final Set<AbstractNetworkAddon<H>> trackedAddons = new ObjectOpenHashSet<>();
 
 	public GlobalReceiverRegistry() {
-		this(new HashMap<>()); // sync map should be fine as there is little read write competitions
+		this(new Object2ObjectOpenHashMap<>()); // sync map should be fine as there is little read write competitions
 	}
 
 	public GlobalReceiverRegistry(Map<Identifier, H> map) {
@@ -101,7 +103,7 @@ public final class GlobalReceiverRegistry<H> {
 		lock.lock();
 
 		try {
-			return new HashMap<>(this.handlers);
+			return new Object2ObjectOpenHashMap<>(this.handlers);
 		} finally {
 			lock.unlock();
 		}
@@ -112,7 +114,7 @@ public final class GlobalReceiverRegistry<H> {
 		lock.lock();
 
 		try {
-			return new HashSet<>(this.handlers.keySet());
+			return new ObjectOpenHashSet<>(this.handlers.keySet());
 		} finally {
 			lock.unlock();
 		}

@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.lookup.entity;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
 import net.fabricmc.fabric.api.lookup.v1.entity.EntityApiLookup;
@@ -35,7 +36,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class EntityApiLookupImpl<A, C> implements EntityApiLookup<A, C> {
 	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-lookup-api-v1/entity");
 	private static final ApiLookupMap<EntityApiLookup<?, ?>> LOOKUPS = ApiLookupMap.create(EntityApiLookupImpl::new);
-	private static final Map<Class<?>, Set<EntityType<?>>> REGISTERED_SELVES = new HashMap<>();
+	private static final Map<Class<?>, Set<EntityType<?>>> REGISTERED_SELVES = new Object2ObjectOpenHashMap<>();
 	private static boolean checkEntityLookup = true;
 
 	private final Identifier identifier;

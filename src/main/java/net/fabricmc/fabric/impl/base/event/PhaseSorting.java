@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.impl.base.event;
 
 import com.google.common.annotations.VisibleForTesting;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 
 import java.util.*;
 
@@ -36,7 +37,7 @@ public class PhaseSorting {
 	 */
 	static <T> void sortPhases(List<EventPhaseData<T>> sortedPhases) {
 		// FIRST KOSARAJU SCC VISIT
-		List<EventPhaseData<T>> toposort = new ArrayList<>(sortedPhases.size());
+		List<EventPhaseData<T>> toposort = new ObjectArrayList<>(sortedPhases.size());
 
 		for (EventPhaseData<T> phase : sortedPhases) {
 			forwardVisit(phase, null, toposort);
@@ -50,7 +51,7 @@ public class PhaseSorting {
 
 		for (EventPhaseData<T> phase : toposort) {
 			if (phase.visitStatus == 0) {
-				List<EventPhaseData<T>> sccPhases = new ArrayList<>();
+				List<EventPhaseData<T>> sccPhases = new ObjectArrayList<>();
 				// Collect phases in SCC.
 				backwardVisit(phase, sccPhases);
 				// Sort phases by id.
@@ -147,7 +148,7 @@ public class PhaseSorting {
 
 	private static class PhaseScc<T> {
 		final List<EventPhaseData<T>> phases;
-		final List<PhaseScc<T>> subsequentSccs = new ArrayList<>();
+		final List<PhaseScc<T>> subsequentSccs = new ObjectArrayList<>();
 		int inDegree = 0;
 
 		private PhaseScc(List<EventPhaseData<T>> phases) {

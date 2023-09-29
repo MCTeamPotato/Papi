@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.api.gamerule.v1.rule;
 
 import com.mojang.brigadier.context.CommandContext;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
@@ -25,8 +26,6 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public final class EnumRule<E extends Enum<E>> extends GameRules.Rule<EnumRule<E
 	 */
 	@Deprecated
 	public EnumRule(GameRules.Type<EnumRule<E>> type, E value, E[] supportedValues) {
-		this(type, value, Arrays.asList(supportedValues));
+		this(type, value, new ObjectArrayList<>(supportedValues));
 	}
 
 	/**
@@ -55,7 +54,7 @@ public final class EnumRule<E extends Enum<E>> extends GameRules.Rule<EnumRule<E
 		super(type);
 		this.classType = value.getDeclaringClass();
 		this.value = value;
-		this.supportedValues = new ArrayList<>(supportedValues);
+		this.supportedValues = new ObjectArrayList<>(supportedValues);
 
 		if (!this.supports(value)) {
 			throw new IllegalArgumentException("Cannot set default value");

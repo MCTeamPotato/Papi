@@ -17,13 +17,13 @@
 package net.fabricmc.fabric.api.object.builder.v1.block.entity;
 
 import com.mojang.datafixers.types.Type;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +43,7 @@ public final class FabricBlockEntityTypeBuilder<T extends BlockEntity> {
 	}
 
 	public static <T extends BlockEntity> FabricBlockEntityTypeBuilder<T> create(Factory<? extends T> factory, Block... blocks) {
-		List<Block> blocksList = new ArrayList<>(blocks.length);
+		List<Block> blocksList = new ObjectArrayList<>(blocks.length);
 		Collections.addAll(blocksList, blocks);
 
 		return new FabricBlockEntityTypeBuilder<>(factory, blocksList);

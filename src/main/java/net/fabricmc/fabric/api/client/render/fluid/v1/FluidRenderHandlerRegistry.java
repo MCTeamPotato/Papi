@@ -25,6 +25,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Registry for {@link FluidRenderHandler} instances.
@@ -98,7 +99,7 @@ public interface FluidRenderHandlerRegistry {
 	 */
 	boolean isBlockTransparent(Block block);
 
-	default boolean isBlockTransparent(BlockState state, BlockRenderView level, BlockPos pos, FluidState fluidState) {
+	default boolean isBlockTransparent(@NotNull BlockState state, BlockRenderView level, BlockPos pos, FluidState fluidState) {
 		return isBlockTransparent(state.getBlock());
 	}
 }

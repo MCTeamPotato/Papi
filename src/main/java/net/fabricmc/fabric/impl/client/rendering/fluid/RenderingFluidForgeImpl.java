@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.client.rendering.fluid;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.minecraft.client.texture.Sprite;
@@ -33,7 +34,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 public class RenderingFluidForgeImpl {
@@ -41,7 +41,7 @@ public class RenderingFluidForgeImpl {
         // Register forge handlers only to the "handlers" map and not "modHandlers"
         // This allows fabric mods to access render handlers for forge mods' fluids without them being
         // used for rendering fluids, as that should remain handled by forge
-        Map<FluidType, FluidRenderHandler> forgeHandlers = new HashMap<>();
+        Map<FluidType, FluidRenderHandler> forgeHandlers = new Object2ObjectOpenHashMap<>();
         for (Map.Entry<RegistryKey<Fluid>, Fluid> entry : ForgeRegistries.FLUIDS.getEntries()) {
             Fluid fluid = entry.getValue();
             if (fluid != Fluids.EMPTY && FluidRenderHandlerRegistry.INSTANCE.get(fluid) == null) {

@@ -21,6 +21,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
 import net.minecraft.tag.TagKey;
@@ -36,7 +37,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -148,7 +148,7 @@ public final class ResourceConditionsImpl {
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public static void setTags(@NotNull List<TagManagerLoader.RegistryTags<?>> tags) {
-		Map<RegistryKey<?>, Map<Identifier, Collection<RegistryEntry<?>>>> tagMap = new HashMap<>();
+		Map<RegistryKey<?>, Map<Identifier, Collection<RegistryEntry<?>>>> tagMap = new Object2ObjectOpenHashMap<>();
 
 		for (TagManagerLoader.RegistryTags<?> registryTags : tags) {
 			tagMap.put(registryTags.key(), (Map) registryTags.tags());

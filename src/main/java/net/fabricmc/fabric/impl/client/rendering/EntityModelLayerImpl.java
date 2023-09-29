@@ -16,17 +16,17 @@
 
 package net.fabricmc.fabric.impl.client.rendering;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public final class EntityModelLayerImpl {
-	public static final Map<EntityModelLayer, EntityModelLayerRegistry.TexturedModelDataProvider> PROVIDERS = new HashMap<>();
+	public static final Map<EntityModelLayer, EntityModelLayerRegistry.TexturedModelDataProvider> PROVIDERS = new Object2ObjectOpenHashMap<>();
 
 	private EntityModelLayerImpl() {
 	}

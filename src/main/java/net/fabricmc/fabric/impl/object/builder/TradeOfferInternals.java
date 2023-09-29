@@ -28,7 +28,6 @@ import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -74,7 +73,7 @@ public final class TradeOfferInternals {
 
 	// Shared code to register offers for both villagers and wandering traders.
 	private static void registerOffers(@NotNull Int2ObjectMap<List<TradeOffers.Factory>> leveledTradeMap, int level, @NotNull Consumer<List<TradeOffers.Factory>> factory) {
-		final List<TradeOffers.Factory> list = new ArrayList<>();
+		final List<TradeOffers.Factory> list = new ObjectArrayList<>();
 		factory.accept(list);
 
 		final List<TradeOffers.Factory> originalEntries = leveledTradeMap.computeIfAbsent(level, key -> new ObjectArrayList<>());

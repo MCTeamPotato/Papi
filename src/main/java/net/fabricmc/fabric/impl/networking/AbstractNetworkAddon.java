@@ -16,6 +16,8 @@
 
 package net.fabricmc.fabric.impl.networking;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -39,7 +41,7 @@ public abstract class AbstractNetworkAddon<H> {
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 	// Sync map should be fine as there is little read write competition
 	// All access to this map is guarded by the lock
-	private final Map<Identifier, H> handlers = new HashMap<>();
+	private final Map<Identifier, H> handlers = new Object2ObjectOpenHashMap<>();
 	private final AtomicBoolean disconnected = new AtomicBoolean(); // blocks redundant disconnect notifications
 
 	protected AbstractNetworkAddon(GlobalReceiverRegistry<H> receiver, String description) {
@@ -111,7 +113,7 @@ public abstract class AbstractNetworkAddon<H> {
 		lock.lock();
 
 		try {
-			return new HashSet<>(this.handlers.keySet());
+			return new ObjectOpenHashSet<>(this.handlers.keySet());
 		} finally {
 			lock.unlock();
 		}

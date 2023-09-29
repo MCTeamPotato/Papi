@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.mixin.lookup;
 
 import it.unimi.dsi.fastutil.objects.Object2ReferenceOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.impl.lookup.block.BlockApiCacheImpl;
 import net.fabricmc.fabric.impl.lookup.block.ServerWorldCache;
 import net.minecraft.server.world.ServerWorld;
@@ -26,7 +27,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public abstract class ServerWorldMixin implements ServerWorldCache {
 
 	@Override
 	public void fabric_registerCache(@NotNull BlockPos pos, BlockApiCacheImpl<?, ?> cache) {
-		List<WeakReference<BlockApiCacheImpl<?, ?>>> caches = apiLookupCaches.computeIfAbsent(pos.toImmutable(), ignored -> new ArrayList<>());
+		List<WeakReference<BlockApiCacheImpl<?, ?>>> caches = apiLookupCaches.computeIfAbsent(pos.toImmutable(), ignored -> new ObjectArrayList<>());
 		caches.removeIf(weakReference -> weakReference.get() == null);
 		caches.add(new WeakReference<>(cache));
 		apiLookupAccessesWithoutCleanup++;

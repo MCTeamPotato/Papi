@@ -18,6 +18,7 @@ package net.fabricmc.fabric.impl.networking.client;
 
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.networking.v1.FutureListeners;
@@ -34,7 +35,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -78,7 +78,7 @@ public final class ClientLoginNetworkAddon extends AbstractNetworkAddon<ClientLo
 		}
 
 		PacketByteBuf buf = PacketByteBufs.slice(originalBuf);
-		List<GenericFutureListener<? extends Future<? super Void>>> futureListeners = new ArrayList<>();
+		List<GenericFutureListener<? extends Future<? super Void>>> futureListeners = new ObjectArrayList<>();
 
 		try {
 			CompletableFuture<@Nullable PacketByteBuf> future = handler.receive(this.client, this.handler, buf, futureListeners::add);

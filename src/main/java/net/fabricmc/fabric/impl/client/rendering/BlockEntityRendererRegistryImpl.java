@@ -16,19 +16,20 @@
 
 package net.fabricmc.fabric.impl.client.rendering;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 @OnlyIn(Dist.CLIENT)
 public final class BlockEntityRendererRegistryImpl {
-	private static final HashMap<BlockEntityType<?>, BlockEntityRendererFactory<?>> MAP = new HashMap<>();
-	private static BiConsumer<BlockEntityType<?>, BlockEntityRendererFactory<?>> handler = (type, function) -> MAP.put(type, function);
+	private static final Map<BlockEntityType<?>, BlockEntityRendererFactory<?>> MAP = new Object2ObjectOpenHashMap<>();
+	private static BiConsumer<BlockEntityType<?>, BlockEntityRendererFactory<?>> handler = MAP::put;
 
 	public static <E extends BlockEntity> void register(BlockEntityType<E> blockEntityType, BlockEntityRendererFactory<? super E> blockEntityRendererFactory) {
 		handler.accept(blockEntityType, blockEntityRendererFactory);

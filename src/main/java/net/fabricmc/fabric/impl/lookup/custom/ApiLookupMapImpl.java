@@ -16,17 +16,17 @@
 
 package net.fabricmc.fabric.impl.lookup.custom;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
 public final class ApiLookupMapImpl<L> implements ApiLookupMap<L> {
-	private final Map<Identifier, StoredLookup<L>> lookups = new HashMap<>();
+	private final Map<Identifier, StoredLookup<L>> lookups = new Object2ObjectOpenHashMap<>();
 	private final LookupConstructor<L> lookupConstructor;
 
 	public ApiLookupMapImpl(LookupConstructor<L> lookupConstructor) {

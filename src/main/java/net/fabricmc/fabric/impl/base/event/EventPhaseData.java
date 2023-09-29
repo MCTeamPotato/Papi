@@ -16,10 +16,10 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.util.Identifier;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,8 +29,8 @@ import java.util.List;
 class EventPhaseData<T> {
 	final Identifier id;
 	T[] listeners;
-	final List<EventPhaseData<T>> subsequentPhases = new ArrayList<>();
-	final List<EventPhaseData<T>> previousPhases = new ArrayList<>();
+	final List<EventPhaseData<T>> subsequentPhases = new ObjectArrayList<>();
+	final List<EventPhaseData<T>> previousPhases = new ObjectArrayList<>();
 	int visitStatus = 0; // 0: not visited, 1: visiting, 2: visited
 
 	@SuppressWarnings("unchecked")

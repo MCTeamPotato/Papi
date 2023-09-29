@@ -20,6 +20,7 @@ import io.netty.util.AsciiString;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.network.ClientConnection;
@@ -46,7 +47,7 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 	protected final Set<Identifier> sendableChannelsView;
 
 	protected AbstractChanneledNetworkAddon(GlobalReceiverRegistry<H> receiver, ClientConnection connection, String description) {
-		this(receiver, connection, new HashSet<>(), description);
+		this(receiver, connection, new ObjectOpenHashSet<>(), description);
 	}
 
 	protected AbstractChanneledNetworkAddon(GlobalReceiverRegistry<H> receiver, ClientConnection connection, Set<Identifier> sendableChannels, String description) {
@@ -63,7 +64,7 @@ public abstract class AbstractChanneledNetworkAddon<H> extends AbstractNetworkAd
 		final Collection<Identifier> pending = holder.getPendingChannelsNames();
 
 		if (!pending.isEmpty()) {
-			register(new ArrayList<>(pending));
+			register(new ObjectArrayList<>(pending));
 			pending.clear();
 		}
 	}

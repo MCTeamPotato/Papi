@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.client.rendering;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
@@ -25,12 +26,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class ArmorRendererRegistryImpl {
-	private static final HashMap<Item, ArmorRenderer> RENDERERS = new HashMap<>();
+	private static final Map<Item, ArmorRenderer> RENDERERS = new Object2ObjectOpenHashMap<>();
 
 	public static void register(ArmorRenderer renderer, ItemConvertible @NotNull ... items) {
 		Objects.requireNonNull(renderer, "renderer is null");
