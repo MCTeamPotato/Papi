@@ -58,10 +58,14 @@ public final class TradeOfferInternals {
 	@SubscribeEvent
 	public static void registerWandererTrades(WandererTradesEvent event) {
 		List<TradeOffers.Factory> generic = WANDERING_TRADER_TRADES.get(LEVEL_GENERIC);
-		if (generic != null) event.getGenericTrades().addAll(generic);
+		if (generic != null) {
+			event.getGenericTrades().addAll(generic);
+		}
 
 		List<TradeOffers.Factory> rare = WANDERING_TRADER_TRADES.get(LEVEL_RARE);
-		if (rare != null) event.getGenericTrades().addAll(rare);
+		if (rare != null) {
+			event.getGenericTrades().addAll(rare);
+		}
 	}
 
 	// synchronized guards against concurrent modifications - Vanilla does not mutate the underlying arrays (as of 1.16),
