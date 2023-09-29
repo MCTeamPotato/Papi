@@ -48,8 +48,13 @@ public abstract class WorldRendererMixin {
 	@Final
 	@Shadow
 	private MinecraftClient client;
-	@Unique private final WorldRenderContextImpl context = new WorldRenderContextImpl();
+	@Unique private WorldRenderContextImpl context;
 	@Unique private boolean didRenderParticles;
+
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void onInit(CallbackInfo callbackInfo) {
+		context = new WorldRenderContextImpl();
+	}
 
 	@Inject(method = "render", at = @At("HEAD"))
 	private void beforeRender(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
@@ -163,7 +168,7 @@ public abstract class WorldRendererMixin {
 		WorldRenderEvents.END.invoker().onEnd(context);
 	}
 
-	@Inject(method = "Lnet/minecraft/client/render/WorldRenderer;reload()V", at = @At("HEAD"))
+	@Inject(method = "reload()V", at = @At("HEAD"))
 	private void onReload(CallbackInfo ci) {
 		InvalidateRenderStateCallback.EVENT.invoker().onInvalidate();
 	}

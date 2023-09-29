@@ -66,7 +66,7 @@ public final class ResourceConditionsImpl {
 		};
 	}
 
-	public static ConditionJsonProvider mods(Identifier id, String... modIds) {
+	public static @NotNull ConditionJsonProvider mods(Identifier id, String @NotNull ... modIds) {
 		Preconditions.checkArgument(modIds.length > 0, "Must register at least one mod id.");
 
 		return new ConditionJsonProvider() {
@@ -89,7 +89,7 @@ public final class ResourceConditionsImpl {
 	}
 
 	@SafeVarargs
-	public static <T> ConditionJsonProvider tagsPopulated(Identifier id, boolean includeRegistry, TagKey<T>... tags) {
+	public static <T> @NotNull ConditionJsonProvider tagsPopulated(Identifier id, boolean includeRegistry, TagKey<T> @NotNull ... tags) {
 		Preconditions.checkArgument(tags.length > 0, "Must register at least one tag.");
 		final RegistryKey<? extends Registry<?>> registryRef = tags[0].registry();
 
@@ -147,7 +147,7 @@ public final class ResourceConditionsImpl {
 	public static final ThreadLocal<Map<RegistryKey<?>, Map<Identifier, Collection<RegistryEntry<?>>>>> LOADED_TAGS = new ThreadLocal<>();
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public static void setTags(List<TagManagerLoader.RegistryTags<?>> tags) {
+	public static void setTags(@NotNull List<TagManagerLoader.RegistryTags<?>> tags) {
 		Map<RegistryKey<?>, Map<Identifier, Collection<RegistryEntry<?>>>> tagMap = new HashMap<>();
 
 		for (TagManagerLoader.RegistryTags<?> registryTags : tags) {

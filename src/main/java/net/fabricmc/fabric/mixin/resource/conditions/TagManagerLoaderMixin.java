@@ -40,6 +40,6 @@ public class TagManagerLoaderMixin {
 	@Dynamic
 	@Inject(method = {"method_40098", "lambda$reload$2", "m_203915_"}, at = @At("RETURN"))
 	private void hookApply(CallbackInfo ci) {
-		ResourceConditionsImpl.setTags(registryTags);
+		ResourceConditionsImpl.setTags(this.registryTags);
 	}
 }

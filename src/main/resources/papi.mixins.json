@@ -87,6 +87,8 @@
     "client.rendering.ItemColorsMixin",
     "client.rendering.LivingEntityRendererAccessor",
     "client.rendering.WorldRendererMixin",
+    "client.rendering.fluid.BlockStateMixin",
+    "client.rendering.fluid.FluidRendererMixin",
     "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientCommandSourceStackMixin",
