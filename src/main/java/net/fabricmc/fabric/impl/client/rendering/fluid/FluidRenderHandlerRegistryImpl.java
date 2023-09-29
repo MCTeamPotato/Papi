@@ -16,9 +16,8 @@
 
 package net.fabricmc.fabric.impl.client.rendering.fluid;
 
-import java.util.IdentityHashMap;
-import java.util.Map;
-
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
@@ -37,9 +36,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.biome.BiomeKeys;
+import org.jetbrains.annotations.NotNull;
 
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import java.util.IdentityHashMap;
+import java.util.Map;
 
 public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistry {
 	private static final int DEFAULT_WATER_COLOR = BuiltinRegistries.BIOME.get(BiomeKeys.OCEAN).getWaterColor();
@@ -50,6 +50,10 @@ public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistr
 	private FluidRenderer fluidRenderer;
 
 	public FluidRenderHandlerRegistryImpl() {
+	}
+
+	public void registerHandlerOnly(Fluid fluid, FluidRenderHandler renderer) {
+		handlers.put(fluid, renderer);
 	}
 
 	@Override
@@ -74,28 +78,21 @@ public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistr
 
 	@Override
 	public boolean isBlockTransparent(Block block) {
-		return overlayBlocks.computeIfAbsent(block, k -> k instanceof TransparentBlock || k instanceof LeavesBlock);
+		if (overlayBlocks.containsKey(block)) {
+			return overlayBlocks.get(block);
+		}
+		return block instanceof TransparentBlock || block instanceof LeavesBlock;
+	}
+
+	@Override
+	public boolean isBlockTransparent(@NotNull BlockState state, BlockRenderView level, BlockPos pos, FluidState fluidState) {
+		return overlayBlocks.computeIfAbsent(state.getBlock(), block -> block.shouldDisplayFluidOverlay(state, level, pos, fluidState));
 	}
 
 	public void onFluidRendererReload(FluidRenderer renderer, Sprite[] waterSprites, Sprite[] lavaSprites, Sprite waterOverlay) {
 		fluidRenderer = renderer;
 
-		Sprite[] waterSpritesFull = {waterSprites[0], waterSprites[1], waterOverlay};
-		FluidRenderHandler waterHandler = new FluidRenderHandler() {
-			@Override
-			public Sprite[] getFluidSprites(BlockRenderView view, BlockPos pos, FluidState state) {
-				return waterSpritesFull;
-			}
-
-			@Override
-			public int getFluidColor(BlockRenderView view, BlockPos pos, FluidState state) {
-				if (view != null && pos != null) {
-					return BiomeColors.getWaterColor(view, pos);
-				} else {
-					return DEFAULT_WATER_COLOR;
-				}
-			}
-		};
+		FluidRenderHandler waterHandler = getFluidRenderHandler(waterSprites, waterOverlay);
 
 		//noinspection Convert2Lambda
 		FluidRenderHandler lavaHandler = new FluidRenderHandler() {
@@ -118,6 +115,26 @@ public class FluidRenderHandlerRegistryImpl implements FluidRenderHandlerRegistr
 		for (FluidRenderHandler handler : handlers.values()) {
 			handler.reloadTextures(texture);
 		}
+	}
+
+	@NotNull
+	private static FluidRenderHandler getFluidRenderHandler(Sprite[] waterSprites, Sprite waterOverlay) {
+		final Sprite[] waterSpritesFull = {waterSprites[0], waterSprites[1], waterOverlay};
+        return new FluidRenderHandler() {
+			@Override
+			public Sprite[] getFluidSprites(BlockRenderView view, BlockPos pos, FluidState state) {
+				return waterSpritesFull;
+			}
+
+			@Override
+			public int getFluidColor(BlockRenderView view, BlockPos pos, FluidState state) {
+				if (view != null && pos != null) {
+					return BiomeColors.getWaterColor(view, pos);
+				} else {
+					return DEFAULT_WATER_COLOR;
+				}
+			}
+		};
 	}
 
 	public void renderFluid(BlockPos pos, BlockRenderView world, VertexConsumer vertexConsumer, BlockState blockState, FluidState fluidState) {

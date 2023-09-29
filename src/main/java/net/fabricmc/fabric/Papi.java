@@ -4,6 +4,7 @@ import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
 import net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
 import net.fabricmc.fabric.impl.client.rendering.RenderingForgeImpl;
+import net.fabricmc.fabric.impl.client.rendering.fluid.RenderingFluidForgeImpl;
 import net.fabricmc.fabric.impl.command.CommandApiForgeImpl;
 import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
 import net.fabricmc.fabric.impl.entity.event.EntityEventForgeImpl;
@@ -52,6 +53,7 @@ public class Papi {
             modBus.addListener(RenderingForgeImpl::onRegisterItemColors);
             modBus.addListener(RenderingForgeImpl::registerEntityRenderers);
             modBus.addListener(RenderingForgeImpl::registerLayerDefinitions);
+            modBus.addListener(RenderingFluidForgeImpl::onClientSetup);
 
             ClientLifecycleEventsImpl.clientInit();
         }

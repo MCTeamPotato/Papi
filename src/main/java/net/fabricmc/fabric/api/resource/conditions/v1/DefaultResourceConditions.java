@@ -18,7 +18,7 @@ package net.fabricmc.fabric.api.resource.conditions.v1;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
+import net.fabricmc.fabric.impl.resource.conditions.ResourceConditionsImpl;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
@@ -26,8 +26,6 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
-
-import net.fabricmc.fabric.impl.resource.conditions.ResourceConditionsImpl;
 
 /**
  * Contains {@link ConditionJsonProvider}s for resource conditions provided by fabric itself.

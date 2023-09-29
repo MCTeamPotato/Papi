@@ -16,15 +16,14 @@
 
 package net.fabricmc.fabric.api.block.v1;
 
-import net.minecraftforge.common.extensions.IForgeBlock;
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
+import net.minecraftforge.common.extensions.IForgeBlock;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * General-purpose Fabric-provided extensions for {@link Block} subclasses.

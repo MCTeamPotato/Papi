@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.resource.conditions.v1;
 
-import java.util.Objects;
-
 import com.google.common.base.Preconditions;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.util.Identifier;
+import java.util.Objects;
 
 /**
  * A resource condition and its parameters that can be serialized to JSON, meant for use in data generators.
