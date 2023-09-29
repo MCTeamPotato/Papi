@@ -33,7 +33,21 @@
     "object.builder.SpawnRestrictionAccessor",
     "object.builder.TypeAwareTradeMixin",
     "object.builder.VillagerProfessionAccessor",
-    "object.builder.VillagerTypeAccessor"
+    "object.builder.VillagerTypeAccessor",
+    "screen.MinecraftClientMixin",
+    "screen.ScreenMixin",
+    "registry.sync.AccessorDebugChunkGenerator",
+    "registry.sync.AccessorLevelStorageSession",
+    "registry.sync.AccessorRegistry",
+    "registry.sync.MixinBootstrap",
+    "registry.sync.MixinChunkSerializer",
+    "registry.sync.MixinDynamicRegistryManager",
+    "registry.sync.MixinIdList",
+    "registry.sync.MixinIdRegistry",
+    "registry.sync.MixinLevelStorageSession",
+    "registry.sync.MixinRegistry",
+    "registry.sync.MixinSimpleRegistry",
+    "registry.sync.RegistryManagerMixin"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
@@ -51,7 +65,11 @@
     "command.client.ClientPlayNetworkHandlerMixin",
     "command.client.MinecraftClientMixin",
     "object.builder.ModelPredicateProviderRegistryAccessor",
-    "object.builder.ModelPredicateProviderRegistrySpecificAccessor"
+    "object.builder.ModelPredicateProviderRegistrySpecificAccessor",
+    "screen.ForgeHooksClientMixin",
+    "screen.MouseMixin",
+    "screen.ScreenAccessor",
+    "registry.sync.client.MixinMinecraftClient"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"
