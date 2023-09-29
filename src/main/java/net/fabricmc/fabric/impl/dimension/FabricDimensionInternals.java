@@ -37,8 +37,7 @@ public final class FabricDimensionInternals {
 		if (teleported.getWorld() == dimension) {
 			if (teleported instanceof ServerPlayerEntity serverPlayerEntity) {
 				serverPlayerEntity.networkHandler.requestTeleport(target.position.x, target.position.y, target.position.z, target.yaw, teleported.getPitch());
-			}
-			else {
+			} else {
 				teleported.refreshPositionAndAngles(target.position.x, target.position.y, target.position.z, target.yaw, teleported.getPitch());
 			}
 
