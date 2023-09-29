@@ -28,18 +28,19 @@ import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.fabricmc.fabric.impl.registry.sync.DynamicRegistrySync;
 
 @Mixin(DynamicRegistryManager.class)
-public interface MixinDynamicRegistryManager {
-	@Inject(method = "createAndLoad", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/dynamic/EntryLoader$Impl;<init>()V"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private static void onCreateImpl(CallbackInfoReturnable<DynamicRegistryManager.Mutable> cir, DynamicRegistryManager.Mutable registryManager) {
-		DynamicRegistrySetupCallback.EVENT.invoker().onRegistrySetup(registryManager);
-	}
+public class MixinDynamicRegistryManager {
+	// SO FUNNY
+	//@Inject(method = "createAndLoad", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/dynamic/EntryLoader$Impl;<init>()V"), locals = LocalCapture.CAPTURE_FAILHARD)
+	//private static void onCreateImpl(CallbackInfoReturnable<DynamicRegistryManager.Mutable> cir, DynamicRegistryManager.Mutable registryManager) {
+	//	DynamicRegistrySetupCallback.EVENT.invoker().onRegistrySetup(registryManager);
+	//}
 
 	/**
 	 * Ensures that any registrations made into {@link net.minecraft.util.registry.BuiltinRegistries} after
 	 * {@link DynamicRegistryManager} has been class-loaded are still propagated.
 	 */
-	@Inject(method = "method_40327", at = @At(value = "RETURN"))
-	private static void setupBuiltInSync(CallbackInfoReturnable<DynamicRegistryManager.Immutable> cir) {
-		DynamicRegistrySync.setupSync(cir.getReturnValue());
-	}
+	//@Inject(method = "method_40327", at = @At(value = "RETURN"))
+	//private static void setupBuiltInSync(CallbackInfoReturnable<DynamicRegistryManager.Immutable> cir) {
+	//	DynamicRegistrySync.setupSync(cir.getReturnValue());
+	//}
 }
