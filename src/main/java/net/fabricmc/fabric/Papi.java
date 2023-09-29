@@ -11,6 +11,8 @@ import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.OldClientNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
+import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +35,8 @@ public class Papi {
 
         forgeEventBus.register(LifecycleEventsImpl.class);
         forgeEventBus.addListener(CommandApiForgeImpl::registerCommands);
+        forgeEventBus.register(TradeOfferInternals.class);
+        modEventBus.register(ObjectBuilderForgeImpl.class);
 
         if (FMLLoader.getDist().isClient()) {
             LegacyClientEventInvokers.onInitializeClient();

@@ -21,7 +21,19 @@
     "networking.accessor.ServerLoginNetworkHandlerAccessor",
     "networking.accessor.ThreadedAnvilChunkStorageAccessor",
     "command.HelpCommandAccessor",
-    "command.client.ClientCommandSourceStackMixin"
+    "command.client.ClientCommandSourceStackMixin",
+    "object.builder.AbstractBlockAccessor",
+    "object.builder.AbstractBlockSettingsAccessor",
+    "object.builder.CriteriaAccessor",
+    "object.builder.DefaultAttributeRegistryAccessor",
+    "object.builder.DefaultAttributeRegistryMixin",
+    "object.builder.DetectorRailBlockMixin",
+    "object.builder.MaterialBuilderAccessor",
+    "object.builder.PointOfInterestTypeAccessor",
+    "object.builder.SpawnRestrictionAccessor",
+    "object.builder.TypeAwareTradeMixin",
+    "object.builder.VillagerProfessionAccessor",
+    "object.builder.VillagerTypeAccessor"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
@@ -37,7 +49,9 @@
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientPlayerEntityMixin",
     "command.client.ClientPlayNetworkHandlerMixin",
-    "command.client.MinecraftClientMixin"
+    "command.client.MinecraftClientMixin",
+    "object.builder.ModelPredicateProviderRegistryAccessor",
+    "object.builder.ModelPredicateProviderRegistrySpecificAccessor"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"
