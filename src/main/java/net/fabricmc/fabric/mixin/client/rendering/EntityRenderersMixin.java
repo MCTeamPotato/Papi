@@ -34,7 +34,7 @@ public abstract class EntityRenderersMixin {
 	}
 
 	// private static synthetic method_32175(Lcom/google/common/collect/ImmutableMap$Builder;Lnet/minecraft/class_5617$class_5618;Ljava/lang/String;Lnet/minecraft/class_5617;)V
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Dynamic
 	@Redirect(method = {"method_32175", "m_234604_", "lambda$createPlayerRenderers$26"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRendererFactory;create(Lnet/minecraft/client/render/entity/EntityRendererFactory$Context;)Lnet/minecraft/client/render/entity/EntityRenderer;"))
 	private static EntityRenderer<? extends PlayerEntity> createPlayerEntityRenderer(@NotNull EntityRendererFactory<AbstractClientPlayerEntity> playerEntityRendererFactory, EntityRendererFactory.Context context, ImmutableMap.Builder builder, EntityRendererFactory.Context context2, String str, EntityRendererFactory<AbstractClientPlayerEntity> playerEntityRendererFactory2) {
