@@ -14,7 +14,6 @@ import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
 import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
-import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
