@@ -28,9 +28,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
-import net.minecraft.client.gui.screen.Screen;
-
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 
 @Mixin(Mouse.class)
 public abstract class MouseMixin implements MouseExtensions {
@@ -38,18 +35,16 @@ public abstract class MouseMixin implements MouseExtensions {
 	@Final
 	private MinecraftClient client;
 	@Unique
-	private Screen currentScreen;
-	@Unique
 	private Double horizontalScrollAmount;
 
-	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;mouseScrolled(DDD)Z"), locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
-	private void beforeMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci, double verticalAmount, double mouseX, double mouseY) {
+	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;onScreenMouseScrollPre(Lnet/minecraft/client/Mouse;Lnet/minecraft/client/gui/screen/Screen;D)Z", shift = At.Shift.BEFORE))
+	private void beforeMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci) {
 		// Apply same calculations to horizontal scroll as vertical scroll amount has
 		this.horizontalScrollAmount = this.client.options.discreteMouseScroll ? Math.signum(horizontal) : horizontal * this.client.options.mouseWheelSensitivity;
 	}
 
-	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;mouseScrolled(DDD)Z", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-	private void afterMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci, double verticalAmount, double mouseX, double mouseY) {
+	@Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;onScreenMouseScrollPost(Lnet/minecraft/client/Mouse;Lnet/minecraft/client/gui/screen/Screen;D)Z", shift = At.Shift.AFTER))
+	private void afterMouseScrollEvent(long window, double horizontal, double vertical, CallbackInfo ci) {
 		this.horizontalScrollAmount = null;
 	}
 

@@ -35,19 +35,7 @@
     "object.builder.VillagerProfessionAccessor",
     "object.builder.VillagerTypeAccessor",
     "screen.MinecraftClientMixin",
-    "screen.ScreenMixin",
-    "registry.sync.AccessorDebugChunkGenerator",
-    "registry.sync.AccessorLevelStorageSession",
-    "registry.sync.AccessorRegistry",
-    "registry.sync.MixinBootstrap",
-    "registry.sync.MixinChunkSerializer",
-    "registry.sync.MixinDynamicRegistryManager",
-    "registry.sync.MixinIdList",
-    "registry.sync.MixinIdRegistry",
-    "registry.sync.MixinLevelStorageSession",
-    "registry.sync.MixinRegistry",
-    "registry.sync.MixinSimpleRegistry",
-    "registry.sync.RegistryManagerMixin"
+    "screen.ScreenMixin"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
@@ -69,7 +57,7 @@
     "screen.ForgeHooksClientMixin",
     "screen.MouseMixin",
     "screen.ScreenAccessor",
-    "registry.sync.client.MixinMinecraftClient"
+    "screenhandler.ServerPlayerEntityMixin"
   ],
   "server": [
     "event.lifecycle.server.WorldChunkMixin"

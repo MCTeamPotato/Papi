@@ -14,8 +14,7 @@ import net.fabricmc.fabric.impl.networking.OldNetworkingHooks;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
 import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
 import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
-import net.fabricmc.fabric.impl.registry.sync.FabricRegistryClientInit;
-import net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit;
+import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +34,6 @@ public class Papi {
         LifecycleEventsImpl.onInitialize();
         ApiLookupImpl.onInitialize();
         NetworkingImpl.init();
-        FabricRegistryInit.onInitialize();
 
         forgeEventBus.register(LifecycleEventsImpl.class);
         forgeEventBus.addListener(CommandApiForgeImpl::registerCommands);
@@ -47,7 +45,7 @@ public class Papi {
             OldClientNetworkingHooks.onInitializeClient();
             KeyBindingRegistryImpl.registerKeys();
             ClientNetworkingImpl.clientInit();
-            FabricRegistryClientInit.onInitializeClient();
+            //ClientNetworking.onInitializeClient();
 
             forgeEventBus.register(LifecycleForgeImpl.Client.class);
             forgeEventBus.register(ScreenForgeImpl.class);

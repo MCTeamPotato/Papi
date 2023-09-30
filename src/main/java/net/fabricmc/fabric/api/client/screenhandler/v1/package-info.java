@@ -14,19 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.event.registry;
-
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.impl.registry.sync.ListenableRegistry;
-
-@FunctionalInterface
-public interface RegistryEntryAddedCallback<T> {
-	void onEntryAdded(int rawId, Identifier id, T object);
-
-	static <T> Event<RegistryEntryAddedCallback<T>> event(Registry<T> registry) {
-		return ListenableRegistry.get(registry).fabric_getAddObjectEvent();
-	}
-}
+/**
+ * API for working with screen handlers on the client.
+ */
+package net.fabricmc.fabric.api.client.screenhandler.v1;
