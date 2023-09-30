@@ -35,7 +35,11 @@
     "object.builder.VillagerProfessionAccessor",
     "object.builder.VillagerTypeAccessor",
     "screen.MinecraftClientMixin",
-    "screen.ScreenMixin"
+    "screen.ScreenMixin",
+    "resource.conditions.DataPackContentsMixin",
+    "resource.conditions.JsonDataLoaderMixin",
+    "resource.conditions.SinglePreparationResourceReloaderMixin",
+    "resource.conditions.TagManagerLoaderMixin"
   ],
   "client": [
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
