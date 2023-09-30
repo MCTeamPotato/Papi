@@ -33,7 +33,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(SinglePreparationResourceReloader.class)
 public class SinglePreparationResourceReloaderMixin {
 	@Dynamic
-	// thenAcceptAsync in reload
 	@Inject(at = @At("HEAD"), method = {"method_18790", "m_10789_", "lambda$reload$1"})
 	private void applyResourceConditions(ResourceManager resourceManager, Profiler profiler, Object object, CallbackInfo ci) {
 		fabric_applyResourceConditions(resourceManager, profiler, object);

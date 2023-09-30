@@ -10,8 +10,6 @@ import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
 import net.fabricmc.fabric.impl.entity.event.EntityEventForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
-import net.fabricmc.fabric.impl.item.FabricItemInternals;
-import net.fabricmc.fabric.impl.item.ItemForgeImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
@@ -42,10 +40,8 @@ public class Papi {
         modBus.addListener(CommandApiForgeImpl::registerArgumentTypes);
         modBus.register(ObjectBuilderForgeImpl.class);
         if (FMLLoader.getDist().isClient()) {
-            eventBus.register(ItemForgeImpl.class);
             eventBus.register(LifecycleForgeImpl.Client.class);
             eventBus.addListener(ClientCommandInternals::registerClientCommands);
-            eventBus.addListener(FabricItemInternals::modifyItemAttributeModifiers);
             eventBus.addListener(RenderingForgeImpl::onPostRenderHud);
             modBus.addListener(KeyBindingRegistryImpl::registerKeys);
             modBus.addListener(BlockRenderLayerMapImpl::initRenderLayers);
