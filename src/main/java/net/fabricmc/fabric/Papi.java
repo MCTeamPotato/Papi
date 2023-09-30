@@ -5,7 +5,7 @@ import net.fabricmc.fabric.impl.client.screen.ScreenForgeImpl;
 import net.fabricmc.fabric.impl.command.CommandApiForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LegacyEventInvokers;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
-import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
+import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.client.LegacyClientEventInvokers;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
@@ -45,7 +45,7 @@ public class Papi {
             KeyBindingRegistryImpl.registerKeys();
             ClientNetworkingImpl.clientInit();
 
-            forgeEventBus.register(LifecycleForgeImpl.Client.class);
+            forgeEventBus.register(LifecycleEventForgeImpl.Client.class);
             forgeEventBus.register(ScreenForgeImpl.class);
         }
     }
