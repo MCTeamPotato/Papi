@@ -44,7 +44,6 @@ public class Papi {
             OldClientNetworkingHooks.onInitializeClient();
             KeyBindingRegistryImpl.registerKeys();
             ClientNetworkingImpl.clientInit();
-            //ClientNetworking.onInitializeClient();
 
             forgeEventBus.register(LifecycleForgeImpl.Client.class);
             forgeEventBus.register(ScreenForgeImpl.class);
