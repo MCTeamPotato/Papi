@@ -58,7 +58,7 @@ public final class FabricParticleTypes {
 	 */
 	@Contract("_ -> new")
 	public static @NotNull DefaultParticleType simple(boolean alwaysSpawn) {
-		return new DefaultParticleType(alwaysSpawn) { };
+		return new DefaultParticleType(alwaysSpawn) {};
 	}
 
 	/**
