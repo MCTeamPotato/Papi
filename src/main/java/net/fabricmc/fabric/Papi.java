@@ -17,6 +17,8 @@ import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
 import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
+import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit;
+import net.fabricmc.fabric.impl.recipe.ingredient.RecipeForgeImpl;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -38,6 +40,7 @@ public class Papi {
         NetworkingImpl.init();
         ApiLookupImpl.init();
         InteractionEventsRouter.init();
+        CustomIngredientInit.init();
 
         eventBus.register(InteractionForgeImpl.class);
         eventBus.register(EntityEventForgeImpl.class);
@@ -47,6 +50,7 @@ public class Papi {
 
         modBus.register(ObjectBuilderForgeImpl.class);
         modBus.addListener(CommandApiForgeImpl::registerArgumentTypes);
+        modBus.addListener(RecipeForgeImpl::registerRecipeSerializers);
         if (FMLLoader.getDist().isClient()) {
             eventBus.register(LifecycleForgeImpl.Client.class);
             eventBus.addListener(ClientCommandInternals::registerClientCommands);
