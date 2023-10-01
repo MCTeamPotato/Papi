@@ -29,27 +29,15 @@ import org.jetbrains.annotations.NotNull;
 public final class LifecycleForgeImpl {
     @SubscribeEvent
     public static void onChunkLoad(ChunkEvent.@NotNull Load event) {
-        WorldAccess world = event.getLevel();
-        Chunk chunk = event.getChunk();
-        if (chunk instanceof WorldChunk worldChunk) {
-            if (world instanceof ClientWorld clientWorld) {
-                ClientChunkEvents.CHUNK_LOAD.invoker().onChunkLoad(clientWorld, worldChunk);
-            } else if (world instanceof ServerWorld serverWorld) {
-                ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad(serverWorld, worldChunk);
-            }
+        if (event.getChunk() instanceof WorldChunk worldChunk && event.getLevel() instanceof ServerWorld serverWorld) {
+            ServerChunkEvents.CHUNK_LOAD.invoker().onChunkLoad(serverWorld, worldChunk);
         }
     }
 
     @SubscribeEvent
     public static void onChunkUnload(ChunkEvent.@NotNull Unload event) {
-        WorldAccess world = event.getLevel();
-        Chunk chunk = event.getChunk();
-        if (chunk instanceof WorldChunk worldChunk) {
-            if (world instanceof ClientWorld clientWorld) {
-                ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(clientWorld, worldChunk);
-            } else if (world instanceof ServerWorld serverWorld) {
-                ServerChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(serverWorld, worldChunk);
-            }
+        if (event.getChunk() instanceof WorldChunk worldChunk && event.getLevel() instanceof ServerWorld serverWorld) {
+            ServerChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(serverWorld, worldChunk);
         }
     }
 
@@ -60,18 +48,11 @@ public final class LifecycleForgeImpl {
 
     @SubscribeEvent
     public static void onWorldTick(TickEvent.@NotNull LevelTickEvent event) {
-        World world = event.level;
         TickEvent.Phase phase = event.phase;
-        if (phase == TickEvent.Phase.START) {
-            if (world instanceof ClientWorld clientWorld) {
-                ClientTickEvents.START_WORLD_TICK.invoker().onStartTick(clientWorld);
-            } else if (world instanceof ServerWorld serverWorld) {
+        if (event.level instanceof ServerWorld serverWorld) {
+            if (phase == TickEvent.Phase.START) {
                 ServerTickEvents.START_WORLD_TICK.invoker().onStartTick(serverWorld);
-            }
-        } else if (phase == TickEvent.Phase.END) {
-            if (world instanceof ClientWorld clientWorld) {
-                ClientTickEvents.END_WORLD_TICK.invoker().onEndTick(clientWorld);
-            } else if (world instanceof ServerWorld serverWorld) {
+            } else if (phase == TickEvent.Phase.END) {
                 ServerTickEvents.END_WORLD_TICK.invoker().onEndTick(serverWorld);
             }
         }
@@ -138,6 +119,32 @@ public final class LifecycleForgeImpl {
     }
 
     public static final class Client {
+        @SubscribeEvent
+        public static void onChunkLoad(ChunkEvent.@NotNull Load event) {
+            if (event.getChunk() instanceof WorldChunk worldChunk && event.getLevel() instanceof ClientWorld clientWorld) {
+                ClientChunkEvents.CHUNK_LOAD.invoker().onChunkLoad(clientWorld, worldChunk);
+            }
+        }
+
+        @SubscribeEvent
+        public static void onChunkUnload(ChunkEvent.@NotNull Unload event) {
+            if (event.getChunk() instanceof WorldChunk worldChunk && event.getLevel() instanceof ClientWorld clientWorld) {
+                ClientChunkEvents.CHUNK_UNLOAD.invoker().onChunkUnload(clientWorld, worldChunk);
+            }
+        }
+
+        @SubscribeEvent
+        public static void onWorldTick(TickEvent.@NotNull LevelTickEvent event) {
+            TickEvent.Phase phase = event.phase;
+            if (event.level instanceof ClientWorld clientWorld) {
+                if (phase == TickEvent.Phase.START) {
+                    ClientTickEvents.START_WORLD_TICK.invoker().onStartTick(clientWorld);
+                } else if (phase == TickEvent.Phase.END) {
+                    ClientTickEvents.END_WORLD_TICK.invoker().onEndTick(clientWorld);
+                }
+            }
+        }
+
         @SubscribeEvent
         public static void onClientTick(TickEvent.@NotNull ClientTickEvent event) {
             TickEvent.Phase phase = event.phase;
