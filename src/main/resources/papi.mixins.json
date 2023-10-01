@@ -62,7 +62,6 @@
     "resource.conditions.JsonDataLoaderMixin",
     "resource.conditions.SinglePreparationResourceReloaderMixin",
     "resource.conditions.TagManagerLoaderMixin",
-    "screen.ForgeHooksClientMixin",
     "screenhandler.NamedScreenHandlerFactoryMixin",
     "screenhandler.NetworkHooksMixin",
     "screenhandler.ServerPlayerEntityMixin"
@@ -103,6 +102,7 @@
     "networking.client.accessor.MinecraftClientAccessor",
     "object.builder.client.ModelPredicateProviderRegistryAccessor",
     "object.builder.client.ModelPredicateProviderRegistrySpecificAccessor",
+    "screen.ForgeHooksClientMixin",
     "screen.MinecraftClientMixin",
     "screen.MouseMixin",
     "screen.ScreenAccessor",
