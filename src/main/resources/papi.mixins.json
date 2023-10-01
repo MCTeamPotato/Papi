@@ -41,6 +41,9 @@
     "lookup.ServerWorldMixin",
     "message.MinecraftServerMixin",
     "message.PlayerManagerMixin",
+    "mininglevel.MiningToolItemMixin",
+    "mininglevel.ShearsItemMixin",
+    "mininglevel.SwordItemMixin",
     "networking.ClientConnectionMixin",
     "networking.EntityTrackerEntryMixin",
     "networking.PlayerManagerMixin",
@@ -90,6 +93,7 @@
     "client.sound.SoundInstanceMixin",
     "command.client.ClientCommandSourceMixin",
     "command.client.ClientCommandSourceStackMixin",
+    "event.interaction.client.MinecraftClientMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldClientEntityHandlerMixin",
     "event.lifecycle.client.MinecraftClientMixin",
@@ -107,7 +111,6 @@
     "screen.MinecraftClientMixin",
     "screen.MouseMixin",
     "screen.ScreenAccessor",
-    "screen.ScreenMixin",
-    "event.interaction.client.MinecraftClientMixin"
+    "screen.ScreenMixin"
   ]
 }
