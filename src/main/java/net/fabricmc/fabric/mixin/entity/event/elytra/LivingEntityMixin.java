@@ -28,9 +28,8 @@ import net.minecraft.world.World;
 
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 
-@SuppressWarnings("unused")
 @Mixin(LivingEntity.class)
-abstract class LivingEntityMixin extends Entity {
+public abstract class LivingEntityMixin extends Entity {
 	LivingEntityMixin(EntityType<?> type, World world) {
 		super(type, world);
 		throw new AssertionError();

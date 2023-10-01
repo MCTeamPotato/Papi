@@ -18,6 +18,7 @@ package net.fabricmc.fabric.mixin.networking.client;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -39,6 +40,7 @@ import net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon;
 @OnlyIn(Dist.CLIENT)
 @Mixin(value = ClientPlayNetworkHandler.class, priority = 999)
 public abstract class ClientPlayNetworkHandlerMixin implements NetworkHandlerExtensions {
+	@Final
 	@Shadow
 	private MinecraftClient client;
 

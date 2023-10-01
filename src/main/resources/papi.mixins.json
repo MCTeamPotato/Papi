@@ -8,7 +8,6 @@
     "command.HelpCommandAccessor",
     "command.client.ClientCommandSourceStackMixin",
     "entity.event.EntityMixin",
-    "entity.event.ForgeEventFactoryMixin",
     "entity.event.LivingEntityMixin",
     "entity.event.PlayerEntityMixin",
     "entity.event.PlayerManagerMixin",

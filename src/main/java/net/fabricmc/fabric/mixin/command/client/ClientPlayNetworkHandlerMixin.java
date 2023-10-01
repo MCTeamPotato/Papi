@@ -35,7 +35,7 @@ import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
 @Mixin(ClientPlayNetworkHandler.class)
 abstract class ClientPlayNetworkHandlerMixin {
 	@Shadow
-	private CommandDispatcher<CommandSource> commandDispatcher;
+	public CommandDispatcher<CommandSource> commandDispatcher;
 
 	@Shadow
 	@Final

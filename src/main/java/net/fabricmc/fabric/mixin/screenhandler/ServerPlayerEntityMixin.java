@@ -39,7 +39,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
 	@Shadow
-	private int screenHandlerSyncId;
+	public int screenHandlerSyncId;
 
 	@Unique
 	private final ThreadLocal<ScreenHandler> fabric_openedScreenHandler = new ThreadLocal<>();
