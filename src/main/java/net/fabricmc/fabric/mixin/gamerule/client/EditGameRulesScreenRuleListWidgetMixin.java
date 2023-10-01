@@ -37,7 +37,7 @@ import java.util.Map;
 @Mixin(EditGameRulesScreen.RuleListWidget.class)
 public abstract class EditGameRulesScreenRuleListWidgetMixin extends net.minecraft.client.gui.widget.EntryListWidget<EditGameRulesScreen.AbstractRuleWidget> {
 	@Unique
-	private final Map<CustomGameRuleCategory, List<EditGameRulesScreen.AbstractRuleWidget>> fabricCategories = new Object2ObjectOpenHashMap<>();
+	private final Map<CustomGameRuleCategory, List<EditGameRulesScreen.AbstractRuleWidget>> fabric_categories = new Object2ObjectOpenHashMap<>();
 
 	public EditGameRulesScreenRuleListWidgetMixin(MinecraftClient client, int width, int height, int top, int bottom, int itemHeight) {
 		super(client, width, height, top, bottom, itemHeight);
@@ -46,7 +46,7 @@ public abstract class EditGameRulesScreenRuleListWidgetMixin extends net.minecra
 	// EditGameRulesScreen is effectively a synthetic parameter
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void initializeFabricGameruleCategories(EditGameRulesScreen screen, GameRules gameRules, CallbackInfo ci) {
-		this.fabricCategories.forEach((category, widgetList) -> {
+		this.fabric_categories.forEach((category, widgetList) -> {
 			this.addEntry(screen.new RuleCategoryWidget(category.getName()));
 
 			for (EditGameRulesScreen.AbstractRuleWidget widget : widgetList) {
@@ -58,9 +58,8 @@ public abstract class EditGameRulesScreenRuleListWidgetMixin extends net.minecra
 	@Dynamic
 	@Inject(method = {"method_27638", "lambda$new$0", "m_170228_"}, at = @At("HEAD"), cancellable = true)
 	private void ignoreKeysWithCustomCategories(Map.@NotNull Entry<GameRules.Key<?>, EditGameRulesScreen.AbstractRuleWidget> entry, CallbackInfo ci) {
-		final GameRules.Key<?> ruleKey = entry.getKey();
-		CustomGameRuleCategory.getCategory(ruleKey).ifPresent(key -> {
-			this.fabricCategories.computeIfAbsent(key, c -> new ObjectArrayList<>()).add(entry.getValue());
+		CustomGameRuleCategory.getCategory(entry.getKey()).ifPresent(key -> {
+			this.fabric_categories.computeIfAbsent(key, c -> new ObjectArrayList<>()).add(entry.getValue());
 			ci.cancel();
 		});
 	}

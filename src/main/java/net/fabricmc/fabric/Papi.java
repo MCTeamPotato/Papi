@@ -8,6 +8,9 @@ import net.fabricmc.fabric.impl.client.rendering.fluid.RenderingFluidForgeImpl;
 import net.fabricmc.fabric.impl.command.CommandApiForgeImpl;
 import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
 import net.fabricmc.fabric.impl.entity.event.EntityEventForgeImpl;
+import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouter;
+import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouterClient;
+import net.fabricmc.fabric.impl.event.interaction.InteractionForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
@@ -30,19 +33,25 @@ public class Papi {
     public Papi() {
         final IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         final IEventBus eventBus = MinecraftForge.EVENT_BUS;
+
         LifecycleEventsImpl.init();
         NetworkingImpl.init();
         ApiLookupImpl.init();
+        InteractionEventsRouter.init();
+
+        eventBus.register(InteractionForgeImpl.class);
         eventBus.register(EntityEventForgeImpl.class);
         eventBus.register(LifecycleForgeImpl.class);
-        eventBus.addListener(CommandApiForgeImpl::registerCommands);
         eventBus.register(TradeOfferInternals.class);
-        modBus.addListener(CommandApiForgeImpl::registerArgumentTypes);
+        eventBus.addListener(CommandApiForgeImpl::registerCommands);
+
         modBus.register(ObjectBuilderForgeImpl.class);
+        modBus.addListener(CommandApiForgeImpl::registerArgumentTypes);
         if (FMLLoader.getDist().isClient()) {
             eventBus.register(LifecycleForgeImpl.Client.class);
             eventBus.addListener(ClientCommandInternals::registerClientCommands);
             eventBus.addListener(RenderingForgeImpl::onPostRenderHud);
+
             modBus.addListener(KeyBindingRegistryImpl::registerKeys);
             modBus.addListener(BlockRenderLayerMapImpl::initRenderLayers);
             modBus.addListener(RenderingForgeImpl::onRegisterBlockColors);
@@ -52,6 +61,7 @@ public class Papi {
             modBus.addListener(RenderingFluidForgeImpl::onClientSetup);
 
             ClientLifecycleEventsImpl.clientInit();
+            InteractionEventsRouterClient.clientInit();
         }
     }
 }

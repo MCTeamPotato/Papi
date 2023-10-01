@@ -21,6 +21,8 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.world.GameRules;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +36,7 @@ public final class DoubleRule extends GameRules.Rule<DoubleRule> implements Vali
 	/**
 	 * @deprecated You should not be calling this constructor!
 	 */
+	@SuppressWarnings("DeprecatedIsStillUsed")
 	@Deprecated
 	public DoubleRule(GameRules.Type<DoubleRule> type, double value, double minimumValue, double maximumValue) {
 		super(type);
@@ -55,12 +58,12 @@ public final class DoubleRule extends GameRules.Rule<DoubleRule> implements Vali
 	}
 
 	@Override
-	protected void setFromArgument(CommandContext<ServerCommandSource> context, String name) {
+	protected void setFromArgument(@NotNull CommandContext<ServerCommandSource> context, String name) {
 		this.value = context.getArgument(name, Double.class);
 	}
 
 	@Override
-	protected void deserialize(String value) {
+	protected void deserialize(@NotNull String value) {
 		if (!value.isEmpty()) {
 			try {
 				final double d = Double.parseDouble(value);
@@ -91,13 +94,14 @@ public final class DoubleRule extends GameRules.Rule<DoubleRule> implements Vali
 		return this;
 	}
 
+	@Contract(" -> new")
 	@Override
-	protected DoubleRule copy() {
+	protected @NotNull DoubleRule copy() {
 		return new DoubleRule(this.type, this.value, this.minimumValue, this.maximumValue);
 	}
 
 	@Override
-	public void setValue(DoubleRule rule, MinecraftServer minecraftServer) {
+	public void setValue(@NotNull DoubleRule rule, MinecraftServer minecraftServer) {
 		if (!this.inBounds(rule.value)) {
 			throw new IllegalArgumentException(String.format("Could not set value to %s. Was out of bounds %s - %s", rule.value, this.minimumValue, this.maximumValue));
 		}

@@ -26,6 +26,7 @@
     "entity.event.TeleportCommandMixin",
     "entity.event.elytra.LivingEntityMixin",
     "entity.event.elytra.PlayerEntityMixin",
+    "event.interaction.ServerPlayerInteractionManagerMixin",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldServerEntityHandlerMixin",
     "event.lifecycle.WorldMixin",
@@ -106,6 +107,7 @@
     "screen.MinecraftClientMixin",
     "screen.MouseMixin",
     "screen.ScreenAccessor",
-    "screen.ScreenMixin"
+    "screen.ScreenMixin",
+    "event.interaction.client.MinecraftClientMixin"
   ]
 }
