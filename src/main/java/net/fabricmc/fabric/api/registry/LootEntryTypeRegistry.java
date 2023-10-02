@@ -14,24 +14,20 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.api.registry;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.loot.entry.LootPoolEntry;
 
-public interface Item2ObjectMap<V> {
-	V get(ItemConvertible item);
+import net.fabricmc.fabric.impl.content.registry.LootEntryTypeRegistryImpl;
 
-	void add(ItemConvertible item, V value);
+/**
+ * @deprecated Use {@link net.fabricmc.fabric.api.loot.v1.LootEntryTypeRegistry}
+ */
+@Deprecated
+public interface LootEntryTypeRegistry {
+	@Deprecated
+	LootEntryTypeRegistry INSTANCE = new LootEntryTypeRegistryImpl();
 
-	void add(TagKey<Item> tag, V value);
-
-	void remove(ItemConvertible item);
-
-	void remove(TagKey<Item> tag);
-
-	void clear(ItemConvertible item);
-
-	void clear(TagKey<Item> tag);
+	@Deprecated
+	void register(LootPoolEntry.Serializer<?> serializer);
 }

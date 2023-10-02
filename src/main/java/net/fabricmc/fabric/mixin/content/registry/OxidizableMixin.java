@@ -14,24 +14,18 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.mixin.content.registry;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.block.Oxidizable;
+import org.spongepowered.asm.mixin.Mixin;
 
-public interface Item2ObjectMap<V> {
-	V get(ItemConvertible item);
-
-	void add(ItemConvertible item, V value);
-
-	void add(TagKey<Item> tag, V value);
-
-	void remove(ItemConvertible item);
-
-	void remove(TagKey<Item> tag);
-
-	void clear(ItemConvertible item);
-
-	void clear(TagKey<Item> tag);
+@Mixin(Oxidizable.class)
+public interface OxidizableMixin {//TODO
+	/*
+	@Dynamic("method_34740: Synthetic lambda body for Suppliers.memoize in initialization of OXIDATION_LEVEL_INCREASES")
+	@Inject(method = {"method_34740", "lambda$static$0", "m_154909_"}, at = @At("RETURN"), cancellable = true)
+	private static void createOxidationLevelIncreasesMap(@NotNull CallbackInfoReturnable<BiMap<Block, Block>> cir) {
+		cir.setReturnValue(HashBiMap.create(cir.getReturnValue()));
+	}
+	*/
 }

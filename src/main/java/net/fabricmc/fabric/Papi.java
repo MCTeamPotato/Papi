@@ -7,6 +7,7 @@ import net.fabricmc.fabric.impl.client.rendering.RenderingForgeImpl;
 import net.fabricmc.fabric.impl.client.rendering.fluid.RenderingFluidForgeImpl;
 import net.fabricmc.fabric.impl.command.CommandApiForgeImpl;
 import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
+import net.fabricmc.fabric.impl.content.registry.ContentRegistryForgeImpl;
 import net.fabricmc.fabric.impl.entity.event.EntityEventForgeImpl;
 import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouter;
 import net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouterClient;
@@ -47,6 +48,7 @@ public class Papi {
         eventBus.register(LifecycleForgeImpl.class);
         eventBus.register(TradeOfferInternals.class);
         eventBus.addListener(CommandApiForgeImpl::registerCommands);
+        eventBus.addListener(ContentRegistryForgeImpl::onBlockToolModification);
 
         modBus.register(ObjectBuilderForgeImpl.class);
         modBus.addListener(CommandApiForgeImpl::registerArgumentTypes);

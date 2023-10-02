@@ -1,22 +1,19 @@
 accessWidener   v2  named
 
-accessible    field    net/minecraft/network/ClientConnection    channel    Lio/netty/channel/Channel;
-accessible    field    net/minecraft/recipe/Ingredient    matchingStacks    [Lnet/minecraft/item/ItemStack;
-accessible    field     net/minecraft/world/poi/PointOfInterestTypes    POI_STATES  Ljava/util/Set;
-accessible    method    net/minecraft/world/poi/PointOfInterestTypes    register    (Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/registry/RegistryKey;Ljava/util/Set;II)Lnet/minecraft/world/poi/PointOfInterestType;
-accessible field net/minecraft/village/VillagerType BIOME_TO_TYPE Ljava/util/Map;
+accessible field net/minecraft/item/ItemUsageContext hit Lnet/minecraft/util/hit/BlockHitResult;
+accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/tag/TagKey;I)V
+accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/item/ItemConvertible;I)V
+accessible field net/minecraft/recipe/BrewingRecipeRegistry POTION_RECIPES Ljava/util/List;
+accessible field net/minecraft/recipe/BrewingRecipeRegistry ITEM_RECIPES Ljava/util/List;
 accessible method net/minecraft/util/SignType <init> (Ljava/lang/String;)V
 extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Ljava/util/function/Function;)V
 extendable  method    net/minecraft/block/AbstractBlock$Settings    <init>  (Lnet/minecraft/block/Material;Lnet/minecraft/block/MapColor;)V
 accessible  class   net/minecraft/client/gui/screen/world/EditGameRulesScreen$RuleWidgetFactory
-accessible  field   net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;
-mutable  field   net/minecraft/client/gui/screen/world/EditGameRulesScreen$NamedRuleWidget name  Ljava/util/List;
 accessible  method  net/minecraft/world/GameRules$Type <init>  (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/GameRules$Acceptor;)V
 extendable  method  net/minecraft/world/GameRules$Type <init>  (Ljava/util/function/Supplier;Ljava/util/function/Function;Ljava/util/function/BiConsumer;Lnet/minecraft/world/GameRules$Acceptor;)V
 accessible  class   net/minecraft/world/GameRules$Acceptor
 accessible  method    net/minecraft/client/particle/ParticleManager$SimpleSpriteProvider  <init>  ()V
 accessible	field	net/minecraft/screen/SimpleNamedScreenHandlerFactory baseFactory Lnet/minecraft/screen/ScreenHandlerFactory;
-accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens getProvider (Lnet/minecraft/screen/ScreenHandlerType;)Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;
 accessible field net/minecraft/client/render/RenderLayers BLOCK_RENDER_TYPES Ljava/util/Map;
 accessible field net/minecraft/client/render/RenderLayers FLUID_RENDER_TYPES Ljava/util/Map;
 accessible    class    net/minecraft/server/MinecraftServer$ResourceManagerHolder

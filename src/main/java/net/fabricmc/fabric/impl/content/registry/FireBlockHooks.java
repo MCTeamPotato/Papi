@@ -14,24 +14,12 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.impl.content.registry;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.block.BlockState;
 
-public interface Item2ObjectMap<V> {
-	V get(ItemConvertible item);
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 
-	void add(ItemConvertible item, V value);
-
-	void add(TagKey<Item> tag, V value);
-
-	void remove(ItemConvertible item);
-
-	void remove(TagKey<Item> tag);
-
-	void clear(ItemConvertible item);
-
-	void clear(TagKey<Item> tag);
+public interface FireBlockHooks {
+	FlammableBlockRegistry.Entry fabric_getVanillaEntry(BlockState block);
 }

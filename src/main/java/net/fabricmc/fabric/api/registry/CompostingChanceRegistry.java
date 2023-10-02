@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.api.registry;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import net.fabricmc.fabric.api.util.Item2ObjectMap;
+import net.fabricmc.fabric.impl.content.registry.CompostingChanceRegistryImpl;
 
-public interface Item2ObjectMap<V> {
-	V get(ItemConvertible item);
-
-	void add(ItemConvertible item, V value);
-
-	void add(TagKey<Item> tag, V value);
-
-	void remove(ItemConvertible item);
-
-	void remove(TagKey<Item> tag);
-
-	void clear(ItemConvertible item);
-
-	void clear(TagKey<Item> tag);
+/**
+ * Registry of items to 0.0-1.0 values, defining the chance of a given item
+ * increasing the Composter block's level.
+ */
+public interface CompostingChanceRegistry extends Item2ObjectMap<Float> {
+	CompostingChanceRegistry INSTANCE = new CompostingChanceRegistryImpl();
 }

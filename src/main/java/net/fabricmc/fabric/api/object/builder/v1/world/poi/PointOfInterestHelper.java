@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.api.object.builder.v1.world.poi;
 
 import com.google.common.collect.ImmutableSet;
+import net.fabricmc.fabric.mixin.object.builder.PointOfInterestTypesAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Identifier;
@@ -24,7 +25,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.poi.PointOfInterest;
 import net.minecraft.world.poi.PointOfInterestType;
-import net.minecraft.world.poi.PointOfInterestTypes;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -77,7 +77,7 @@ public final class PointOfInterestHelper {
 
 	@SuppressWarnings("deprecation")
 	private static @NotNull PointOfInterestType register(Identifier id, int ticketCount, int searchDistance, Set<BlockState> states) {
-		PointOfInterestTypes.POI_STATES.addAll(states);
-		return PointOfInterestTypes.register(Registry.POINT_OF_INTEREST_TYPE, RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, id), states, ticketCount, searchDistance);
+		PointOfInterestTypesAccessor.getPoiStates().addAll(states);
+		return PointOfInterestTypesAccessor.papi$register(Registry.POINT_OF_INTEREST_TYPE, RegistryKey.of(Registry.POINT_OF_INTEREST_TYPE_KEY, id), states, ticketCount, searchDistance);
 	}
 }

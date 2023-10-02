@@ -14,24 +14,14 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.api.registry;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import net.fabricmc.fabric.api.util.Item2ObjectMap;
+import net.fabricmc.fabric.impl.content.registry.FuelRegistryImpl;
 
-public interface Item2ObjectMap<V> {
-	V get(ItemConvertible item);
-
-	void add(ItemConvertible item, V value);
-
-	void add(TagKey<Item> tag, V value);
-
-	void remove(ItemConvertible item);
-
-	void remove(TagKey<Item> tag);
-
-	void clear(ItemConvertible item);
-
-	void clear(TagKey<Item> tag);
+/**
+ * Registry of items to 0-32767 fuel burn time values, in in-game ticks.
+ */
+public interface FuelRegistry extends Item2ObjectMap<Integer> {
+	FuelRegistry INSTANCE = new FuelRegistryImpl();
 }

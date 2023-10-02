@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(CraftingHelper.class)
 public interface CraftingHelperAccessor {
 
-    @Accessor
+    @Accessor(remap = false)
     static BiMap<Identifier, IIngredientSerializer<?>> getIngredients() {
         throw new UnsupportedOperationException();
     }

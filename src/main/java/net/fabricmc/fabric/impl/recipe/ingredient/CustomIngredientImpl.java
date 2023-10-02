@@ -22,6 +22,7 @@ import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.FabricIngredient;
 import net.fabricmc.fabric.mixin.recipe.ingredient.CraftingHelperAccessor;
+import net.fabricmc.fabric.mixin.recipe.ingredient.IngredientAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
@@ -70,10 +71,10 @@ public class CustomIngredientImpl extends Ingredient implements FabricIngredient
 	}
 	@Override
 	public ItemStack[] getMatchingStacks() {
-		if (this.matchingStacks == null) {
-			this.matchingStacks = customIngredient.getMatchingStacks().toArray(ItemStack[]::new);
+		if (((IngredientAccessor)this).getMatchingStacks() == null) {
+			((IngredientAccessor)this).setMatchingStacks(customIngredient.getMatchingStacks().toArray(ItemStack[]::new));
 		}
-		return this.matchingStacks;
+		return ((IngredientAccessor)this).getMatchingStacks();
 	}
 	@Override
 	public boolean test(@Nullable ItemStack stack) {
@@ -89,6 +90,7 @@ public class CustomIngredientImpl extends Ingredient implements FabricIngredient
 	}
 	@Override
 	public boolean isEmpty() {
+		ItemStack[] matchingStacks = ((IngredientAccessor)this).getMatchingStacks();
 		// We don't want to resolve the matching stacks,
 		// as this might cause the ingredient to use outdated tags when it's done too early.
 		// So we just return false when the matching stacks haven't been resolved yet (i.e. when the field is null).

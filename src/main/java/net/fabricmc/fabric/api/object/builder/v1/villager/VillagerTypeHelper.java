@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.api.object.builder.v1.villager;
 
+import net.fabricmc.fabric.mixin.object.builder.VillagerTypeAccessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -39,7 +40,7 @@ import java.util.Objects;
  *
  * <p>The texture used for the appearance of the villager is located at {@code assets/IDENTIFIER_NAMESPACE/textures/entity/villager/type/IDENTIFIER_PATH.png}.
  *
- * @deprecated Replaced by access wideners for {@link VillagerType#create} and {@link VillagerType#BIOME_TO_TYPE}
+ * @deprecated Replaced by access wideners for {@link VillagerType#create} and {@link VillagerTypeAccessor#getBiomeToType()}
  * in Fabric Transitive Access Wideners (v1).
  */
 @Deprecated
@@ -67,7 +68,7 @@ public final class VillagerTypeHelper {
 		Objects.requireNonNull(biomeKey, "Biome registry key cannot be null");
 		Objects.requireNonNull(villagerType, "Villager type cannot be null");
 
-		if (VillagerType.BIOME_TO_TYPE.put(biomeKey, villagerType) != null) {
+		if (VillagerTypeAccessor.getBiomeToType().put(biomeKey, villagerType) != null) {
 			LOGGER.debug("Overriding existing Biome -> VillagerType registration for Biome {}", biomeKey.getValue().toString());
 		}
 	}

@@ -14,24 +14,21 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.api.util;
+package net.fabricmc.fabric.mixin.content.registry;
 
-import net.minecraft.tag.TagKey;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+import java.util.Map;
 
-public interface Item2ObjectMap<V> {
-	V get(ItemConvertible item);
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-	void add(ItemConvertible item, V value);
+import net.minecraft.entity.ai.brain.task.GiveGiftsToHeroTask;
+import net.minecraft.util.Identifier;
+import net.minecraft.village.VillagerProfession;
 
-	void add(TagKey<Item> tag, V value);
-
-	void remove(ItemConvertible item);
-
-	void remove(TagKey<Item> tag);
-
-	void clear(ItemConvertible item);
-
-	void clear(TagKey<Item> tag);
+@Mixin(GiveGiftsToHeroTask.class)
+public interface GiveGiftsToHeroTaskAccessor {
+	@Accessor("GIFTS")
+	static Map<VillagerProfession, Identifier> fabric_getGifts() {
+		throw new AssertionError("Untransformed @Accessor");
+	}
 }
