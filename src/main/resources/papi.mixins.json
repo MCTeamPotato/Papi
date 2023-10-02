@@ -24,6 +24,7 @@
   ],
   "mixins": [
     "command.HelpCommandAccessor",
+    "content.registry.MixinFireBlock",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
