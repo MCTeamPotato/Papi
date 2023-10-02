@@ -6,38 +6,20 @@
   "overwrites": {
     "conformVisibility": true
   },
-  "refmap": "papi.refmap.json",
   "injectors": {
     "defaultRequire": 1
   },
+  "client": [
+    "command.client.MinecraftClientMixin",
+    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
+    "event.lifecycle.client.ClientWorldMixin",
+    "event.lifecycle.client.MinecraftClientMixin"
+  ],
   "mixins": [
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
     "lookup.BlockEntityTypeAccessor",
-    "lookup.ServerWorldMixin",
-    "networking.ClientConnectionMixin",
-    "networking.EntityTrackerEntryMixin",
-    "networking.PlayerManagerMixin",
-    "networking.ServerLoginNetworkHandlerMixin",
-    "networking.ServerPlayNetworkHandlerMixin",
-    "networking.ThreadedAnvilChunkStorageMixin",
-    "networking.accessor.CustomPayloadC2SPacketAccessor",
-    "networking.accessor.EntityTrackerAccessor",
-    "networking.accessor.LoginQueryRequestS2CPacketAccessor",
-    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor",
-    "registry.sync.RegistryAccessor"
-  ],
-  "client": [
-    "client.keybinding.KeyBindingAccessor",
-    "client.keybinding.KeyCodeAccessor",
-    "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
-    "event.lifecycle.client.ClientWorldMixin",
-    "event.lifecycle.client.MinecraftClientMixin",
-    "networking.accessor.client.ConnectScreenAccessor",
-    "networking.accessor.client.MinecraftClientAccessor",
-    "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin"
+    "lookup.ServerWorldMixin"
   ]
 }
