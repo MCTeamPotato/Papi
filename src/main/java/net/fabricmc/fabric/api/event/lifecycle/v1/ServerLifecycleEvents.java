@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 
 public final class ServerLifecycleEvents {
 	private ServerLifecycleEvents() {

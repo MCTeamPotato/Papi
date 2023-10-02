@@ -14,30 +14,32 @@
  * limitations under the License.
  */
 
-package net.fabricmc.fabric.mixin.blockrenderlayer;
+package net.fabricmc.fabric.mixin.networking;
 
-import java.util.Map;
-
+import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.network.EntityTrackerEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.fluid.Fluid;
+@Mixin(EntityTrackerEntry.class)
+public abstract class EntityTrackerEntryMixin {
+	@Shadow
+	@Final
+	private Entity entity;
 
-import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
+	@Inject(method = "startTracking", at = @At("HEAD"))
+	private void onStartTracking(ServerPlayerEntity player, CallbackInfo ci) {
+		EntityTrackingEvents.START_TRACKING.invoker().onStartTracking(this.entity, player);
+	}
 
-@Mixin(RenderLayers.class)
-public class MixinBlockRenderLayer {
-	@Shadow private static Map<Block, RenderLayer> BLOCKS;
-	@Shadow private static Map<Fluid, RenderLayer> FLUIDS;
-
-	@Inject(method = "<clinit>*", at = @At("RETURN"))
-	private static void onInitialize(CallbackInfo info) {
-		BlockRenderLayerMapImpl.initialize(BLOCKS::put, FLUIDS::put);
+	@Inject(method = "stopTracking", at = @At("TAIL"))
+	private void onStopTracking(ServerPlayerEntity player, CallbackInfo ci) {
+		EntityTrackingEvents.STOP_TRACKING.invoker().onStopTracking(this.entity, player);
 	}
 }

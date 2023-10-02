@@ -17,6 +17,12 @@
 package net.fabricmc.fabric.mixin.command.client;
 
 import com.mojang.brigadier.CommandDispatcher;
+import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
+import net.minecraft.client.network.ClientCommandSource;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.command.CommandSource;
+import net.minecraft.network.packet.s2c.play.CommandTreeS2CPacket;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,16 +30,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.client.network.ClientCommandSource;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.command.CommandSource;
-import net.minecraft.network.packet.s2c.play.CommandTreeS2CPacket;
-
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.fabricmc.fabric.impl.command.client.ClientCommandInternals;
-
 @Mixin(ClientPlayNetworkHandler.class)
-abstract class ClientPlayNetworkHandlerMixin {
+public abstract class ClientPlayNetworkHandlerMixin {
 	@Shadow
 	private CommandDispatcher<CommandSource> commandDispatcher;
 

@@ -16,23 +16,21 @@
 
 package net.fabricmc.fabric.impl.lookup.item;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
+import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
+import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
-import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
-import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
-import net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ItemApiLookupImpl<A, C> implements ItemApiLookup<A, C> {
 	private static final Logger LOGGER = LogManager.getLogger("fabric-api-lookup-api-v1/item");

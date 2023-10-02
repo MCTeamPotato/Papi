@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.impl.lookup.block;
 
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
+import net.fabricmc.fabric.api.lookup.v1.block.BlockApiCache;
+import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents;
-import net.fabricmc.fabric.api.lookup.v1.block.BlockApiCache;
-import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
+import org.jetbrains.annotations.Nullable;
 
 public final class BlockApiCacheImpl<A, C> implements BlockApiCache<A, C> {
 	private final BlockApiLookupImpl<A, C> lookup;
@@ -106,12 +104,8 @@ public final class BlockApiCacheImpl<A, C> implements BlockApiCache<A, C> {
 	}
 
 	static {
-		ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> {
-			((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos());
-		});
+		ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> ((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos()));
 
-		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> {
-			((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos());
-		});
+		ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> ((ServerWorldCache) world).fabric_invalidateCache(blockEntity.getPos()));
 	}
 }

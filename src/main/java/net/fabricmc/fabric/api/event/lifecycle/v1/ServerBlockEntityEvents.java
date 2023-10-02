@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.profiler.Profiler;
-
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 
 public final class ServerBlockEntityEvents {
 	private ServerBlockEntityEvents() {

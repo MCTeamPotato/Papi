@@ -10,16 +10,35 @@
     "defaultRequire": 1
   },
   "client": [
+    "command.client.ClientCommandSourceMixin",
+    "command.client.ClientPlayerEntityMixin",
+    "command.client.ClientPlayNetworkHandlerMixin",
     "command.client.MinecraftClientMixin",
     "event.lifecycle.client.ClientPlayNetworkHandlerMixin",
     "event.lifecycle.client.ClientWorldMixin",
-    "event.lifecycle.client.MinecraftClientMixin"
+    "event.lifecycle.client.MinecraftClientMixin",
+    "networking.accessor.ConnectScreenAccessor",
+    "networking.accessor.MinecraftClientAccessor",
+    "networking.client.ClientLoginNetworkHandlerMixin",
+    "networking.client.ClientPlayNetworkHandlerMixin"
   ],
   "mixins": [
+    "command.HelpCommandAccessor",
     "event.lifecycle.MinecraftServerMixin",
     "event.lifecycle.ServerWorldMixin",
     "event.lifecycle.WorldMixin",
     "lookup.BlockEntityTypeAccessor",
-    "lookup.ServerWorldMixin"
+    "lookup.ServerWorldMixin",
+    "networking.ClientConnectionMixin",
+    "networking.EntityTrackerEntryMixin",
+    "networking.PlayerManagerMixin",
+    "networking.ServerLoginNetworkHandlerMixin",
+    "networking.ServerPlayNetworkHandlerMixin",
+    "networking.ThreadedAnvilChunkStorageMixin",
+    "networking.accessor.CustomPayloadC2SPacketAccessor",
+    "networking.accessor.EntityTrackerAccessor",
+    "networking.accessor.LoginQueryRequestS2CPacketAccessor",
+    "networking.accessor.LoginQueryResponseC2SPacketAccessor",
+    "networking.accessor.ServerLoginNetworkHandlerAccessor"
   ]
 }
