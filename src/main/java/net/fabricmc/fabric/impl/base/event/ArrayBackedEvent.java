@@ -16,20 +16,14 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
-
+import net.fabricmc.fabric.api.event.Event;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.event.Event;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.function.Function;
 
 class ArrayBackedEvent<T> extends Event<T> {
 	static final Logger LOGGER = LogManager.getLogger("fabric-api-base");
