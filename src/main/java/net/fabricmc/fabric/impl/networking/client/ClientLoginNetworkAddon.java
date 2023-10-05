@@ -32,6 +32,7 @@ import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public final class ClientLoginNetworkAddon extends AbstractNetworkAddon<ClientLo
 		this.receiver.startSession(this);
 	}
 
-	public boolean handlePacket(LoginQueryRequestS2CPacket packet) {
+	public boolean handlePacket(@NotNull LoginQueryRequestS2CPacket packet) {
 		LoginQueryRequestS2CPacketAccessor access = (LoginQueryRequestS2CPacketAccessor) packet;
 		return handlePacket(packet.getQueryId(), access.getChannel(), access.getPayload());
 	}

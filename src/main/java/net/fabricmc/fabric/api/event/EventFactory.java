@@ -18,6 +18,7 @@ package net.fabricmc.fabric.api.event;
 
 import net.fabricmc.fabric.impl.base.event.EventFactoryImpl;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -58,7 +59,7 @@ public final class EventFactory {
 	 * @param <T>            The listener type.
 	 * @return The Event instance.
 	 */
-	public static <T> Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
+	public static <T> @NotNull Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
 		return EventFactoryImpl.createArrayBacked(type, invokerFactory);
 	}
 
@@ -82,7 +83,7 @@ public final class EventFactory {
 	 * @param <T>            The listener type.
 	 * @return The Event instance.
 	 */
-	public static <T> Event<T> createArrayBacked(Class<T> type, T emptyInvoker, Function<T[], T> invokerFactory) {
+	public static <T> @NotNull Event<T> createArrayBacked(Class<T> type, T emptyInvoker, Function<T[], T> invokerFactory) {
 		return createArrayBacked(type, listeners -> {
 			if (listeners.length == 0) {
 				return emptyInvoker;
@@ -114,7 +115,7 @@ public final class EventFactory {
 	 * @param <T>            The listener type.
 	 * @return The Event instance.
 	 */
-	public static <T> Event<T> createWithPhases(Class<? super T> type, Function<T[], T> invokerFactory, Identifier... defaultPhases) {
+	public static <T> @NotNull Event<T> createWithPhases(Class<? super T> type, Function<T[], T> invokerFactory, Identifier... defaultPhases) {
 		EventFactoryImpl.ensureContainsDefault(defaultPhases);
 		EventFactoryImpl.ensureNoDuplicates(defaultPhases);
 
@@ -134,7 +135,7 @@ public final class EventFactory {
 	 * @param handler The listener object.
 	 * @return The listener name.
 	 */
-	public static String getHandlerName(Object handler) {
+	public static @NotNull String getHandlerName(@NotNull Object handler) {
 		return handler.getClass().getName();
 	}
 }

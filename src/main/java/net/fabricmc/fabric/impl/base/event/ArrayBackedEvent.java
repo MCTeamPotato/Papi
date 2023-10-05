@@ -18,16 +18,13 @@ package net.fabricmc.fabric.impl.base.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Function;
 
 class ArrayBackedEvent<T> extends Event<T> {
-	static final Logger LOGGER = LogManager.getLogger("fabric-api-base");
-
 	private final Function<T[], T> invokerFactory;
 	private final Object lock = new Object();
 	private T[] handlers;
@@ -67,7 +64,7 @@ class ArrayBackedEvent<T> extends Event<T> {
 		}
 	}
 
-	private EventPhaseData<T> getOrCreatePhase(Identifier id, boolean sortIfCreate) {
+	private @NotNull EventPhaseData<T> getOrCreatePhase(Identifier id, boolean sortIfCreate) {
 		EventPhaseData<T> phase = phases.get(id);
 
 		if (phase == null) {

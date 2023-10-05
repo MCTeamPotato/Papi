@@ -52,7 +52,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	private final Map<Integer, Identifier> channels = new ConcurrentHashMap<>();
 	private boolean firstQueryTick = true;
 
-	public ServerLoginNetworkAddon(ServerLoginNetworkHandler handler) {
+	public ServerLoginNetworkAddon(@NotNull ServerLoginNetworkHandler handler) {
 		super(ServerNetworkingImpl.LOGIN, "ServerLoginNetworkAddon for " + handler.getConnectionInfo());
 		this.connection = handler.connection;
 		this.handler = handler;
@@ -156,7 +156,7 @@ public final class ServerLoginNetworkAddon extends AbstractNetworkAddon<ServerLo
 	}
 
 	@Override
-	public Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
+	public @NotNull Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
 		int queryId = this.queryIdFactory.nextId();
 		LoginQueryRequestS2CPacket ret = new LoginQueryRequestS2CPacket();
 		// The constructor for creating a non-empty response was removed by proguard

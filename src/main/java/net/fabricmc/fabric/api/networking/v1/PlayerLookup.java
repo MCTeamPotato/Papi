@@ -29,6 +29,8 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.chunk.ChunkManager;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.UnmodifiableView;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -70,7 +72,7 @@ public final class PlayerLookup {
 	 * @param world the server world
 	 * @return the players in the server world
 	 */
-	public static Collection<ServerPlayerEntity> world(ServerWorld world) {
+	public static @NotNull @UnmodifiableView Collection<ServerPlayerEntity> world(ServerWorld world) {
 		Objects.requireNonNull(world, "The world cannot be null");
 
 		// return an immutable collection to guard against accidental removals.
@@ -104,7 +106,7 @@ public final class PlayerLookup {
 	 * @return the players tracking the entity
 	 * @throws IllegalArgumentException if the entity is not in a server world
 	 */
-	public static Collection<ServerPlayerEntity> tracking(Entity entity) {
+	public static @NotNull @UnmodifiableView Collection<ServerPlayerEntity> tracking(Entity entity) {
 		Objects.requireNonNull(entity, "Entity cannot be null");
 		ChunkManager manager = entity.world.getChunkManager();
 

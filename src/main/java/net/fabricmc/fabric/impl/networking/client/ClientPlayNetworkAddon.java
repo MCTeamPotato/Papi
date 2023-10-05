@@ -30,6 +30,7 @@ import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,7 +42,7 @@ public final class ClientPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	private final MinecraftClient client;
 	private boolean sentInitialRegisterPacket;
 
-	public ClientPlayNetworkAddon(ClientPlayNetworkHandler handler, MinecraftClient client) {
+	public ClientPlayNetworkAddon(@NotNull ClientPlayNetworkHandler handler, MinecraftClient client) {
 		super(ClientNetworkingImpl.PLAY, handler.getConnection(), "ClientPlayNetworkAddon for " + handler.getProfile().getName());
 		this.handler = handler;
 		this.client = client;
@@ -92,7 +93,7 @@ public final class ClientPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	}
 
 	@Override
-	protected void receive(ClientPlayNetworking.PlayChannelHandler handler, PacketByteBuf buf) {
+	protected void receive(ClientPlayNetworking.@NotNull PlayChannelHandler handler, PacketByteBuf buf) {
 		handler.receive(this.client, this.handler, buf, this);
 	}
 
@@ -104,7 +105,7 @@ public final class ClientPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	}
 
 	@Override
-	public Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
+	public @NotNull Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
 		return ClientPlayNetworking.createC2SPacket(channelName, buf);
 	}
 

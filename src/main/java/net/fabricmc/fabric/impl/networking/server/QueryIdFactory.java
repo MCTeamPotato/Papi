@@ -16,13 +16,17 @@
 
 package net.fabricmc.fabric.impl.networking.server;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Tracks the current query id used for login query responses.
  */
 interface QueryIdFactory {
-	static QueryIdFactory create() {
+	@Contract(value = " -> new", pure = true)
+	static @NotNull QueryIdFactory create() {
 		return new QueryIdFactory() {
 			private final AtomicInteger currentId = new AtomicInteger();
 

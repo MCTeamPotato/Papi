@@ -22,6 +22,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -65,7 +67,8 @@ public interface BlockApiCache<A, C> {
 	/**
 	 * Create a new instance bound to the passed {@link ServerWorld} and position, and querying the same API as the passed lookup.
 	 */
-	static <A, C> BlockApiCache<A, C> create(BlockApiLookup<A, C> lookup, ServerWorld world, BlockPos pos) {
+	@Contract("_, _, _ -> new")
+	static <A, C> @NotNull BlockApiCache<A, C> create(BlockApiLookup<A, C> lookup, ServerWorld world, BlockPos pos) {
 		Objects.requireNonNull(pos, "BlockPos may not be null.");
 		Objects.requireNonNull(world, "ServerWorld may not be null.");
 

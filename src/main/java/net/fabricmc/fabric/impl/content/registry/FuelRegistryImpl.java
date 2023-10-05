@@ -56,7 +56,7 @@ public final class FuelRegistryImpl implements FuelRegistry {
 	}
 
 	@Override
-	public Integer get(ItemConvertible item) {
+	public @NotNull Integer get(ItemConvertible item) {
 		return ForgeHooks.getBurnTime(new ItemStack(item), null);
 	}
 

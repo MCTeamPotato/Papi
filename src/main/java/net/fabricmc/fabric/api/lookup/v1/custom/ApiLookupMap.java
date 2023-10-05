@@ -19,6 +19,8 @@ package net.fabricmc.fabric.api.lookup.v1.custom;
 import net.fabricmc.fabric.impl.lookup.custom.ApiLookupMapImpl;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -97,7 +99,8 @@ public interface ApiLookupMap<L> extends Iterable<L> {
 	 *
 	 * @param lookupFactory The factory that is used to create API lookup instances.
 	 */
-	static <L> ApiLookupMap<L> create(LookupFactory<L> lookupFactory) {
+	@Contract("_ -> new")
+	static <L> @NotNull ApiLookupMap<L> create(LookupFactory<L> lookupFactory) {
 		Objects.requireNonNull(lookupFactory, "Lookup factory may not be null.");
 
 		return new ApiLookupMapImpl<>(lookupFactory);

@@ -16,6 +16,7 @@
 
 package net.fabricmc.fabric.impl.networking.client;
 
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -37,6 +38,8 @@ import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -58,7 +61,8 @@ public final class ClientNetworkingImpl {
 		return (ClientLoginNetworkAddon) ((NetworkHandlerExtensions) handler).getAddon();
 	}
 
-	public static Packet<?> createPlayC2SPacket(Identifier channelName, PacketByteBuf buf) {
+	@Contract(value = "_, _ -> new", pure = true)
+	public static @NotNull Packet<?> createPlayC2SPacket(Identifier channelName, PacketByteBuf buf) {
 		return new CustomPayloadC2SPacket(channelName, buf);
 	}
 
@@ -122,7 +126,7 @@ public final class ClientNetworkingImpl {
 			}
 
 			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
-			NetworkingImpl.LOGGER.debug("Received accepted channels from the server");
+			Papi.LOGGER.debug("Received accepted channels from the server");
 
 			PacketByteBuf response = PacketByteBufs.create();
 			Collection<Identifier> channels = ClientPlayNetworking.getGlobalReceivers();
@@ -132,7 +136,7 @@ public final class ClientNetworkingImpl {
 				response.writeIdentifier(id);
 			}
 
-			NetworkingImpl.LOGGER.debug("Sent accepted channels to the server");
+			Papi.LOGGER.debug("Sent accepted channels to the server");
 			return CompletableFuture.completedFuture(response);
 		});
 	}

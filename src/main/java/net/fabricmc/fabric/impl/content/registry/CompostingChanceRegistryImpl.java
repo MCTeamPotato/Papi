@@ -16,21 +16,21 @@
 
 package net.fabricmc.fabric.impl.content.registry;
 
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.tag.Tag;
-
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import org.jetbrains.annotations.NotNull;
 
 public class CompostingChanceRegistryImpl implements CompostingChanceRegistry {
 	@Override
-	public Float get(ItemConvertible item) {
+	public Float get(@NotNull ItemConvertible item) {
 		return ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.getOrDefault(item.asItem(), 0.0F);
 	}
 
 	@Override
-	public void add(ItemConvertible item, Float value) {
+	public void add(@NotNull ItemConvertible item, Float value) {
 		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(item.asItem(), (float)value);
 	}
 
@@ -40,7 +40,7 @@ public class CompostingChanceRegistryImpl implements CompostingChanceRegistry {
 	}
 
 	@Override
-	public void remove(ItemConvertible item) {
+	public void remove(@NotNull ItemConvertible item) {
 		ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.removeFloat(item.asItem());
 	}
 

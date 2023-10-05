@@ -24,6 +24,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -79,7 +81,8 @@ public final class ServerPlayNetworking {
 	 *
 	 * @return all channel names which global receivers are registered for.
 	 */
-	public static Set<Identifier> getGlobalReceivers() {
+	@Contract(" -> new")
+	public static @NotNull Set<Identifier> getGlobalReceivers() {
 		return ServerNetworkingImpl.PLAY.getChannels();
 	}
 
@@ -203,7 +206,7 @@ public final class ServerPlayNetworking {
 	 * @param buf the packet byte buf which represents the payload of the packet
 	 * @return a new packet
 	 */
-	public static Packet<?> createS2CPacket(Identifier channelName, PacketByteBuf buf) {
+	public static @NotNull Packet<?> createS2CPacket(Identifier channelName, PacketByteBuf buf) {
 		Objects.requireNonNull(channelName, "Channel cannot be null");
 		Objects.requireNonNull(buf, "Buf cannot be null");
 

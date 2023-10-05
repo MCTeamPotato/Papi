@@ -18,6 +18,8 @@ package net.fabricmc.fabric.api.lookup.v1.custom;
 
 import net.fabricmc.fabric.impl.lookup.custom.ApiProviderHashMap;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -35,7 +37,8 @@ public interface ApiProviderMap<K, V> {
 	/**
 	 * Create a new instance.
 	 */
-	static <K, V> ApiProviderMap<K, V> create() {
+	@Contract(" -> new")
+	static <K, V> @NotNull ApiProviderMap<K, V> create() {
 		return new ApiProviderHashMap<>();
 	}
 

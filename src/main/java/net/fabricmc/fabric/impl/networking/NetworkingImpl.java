@@ -17,14 +17,13 @@
 package net.fabricmc.fabric.impl.networking;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -32,7 +31,6 @@ import java.util.List;
 
 public final class NetworkingImpl {
 	public static final String MOD_ID = "fabric_networking_api_v1";
-	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	/**
 	 * Id of packet used to register supported channels.
 	 */
@@ -60,7 +58,7 @@ public final class NetworkingImpl {
 			}
 
 			sender.sendPacket(EARLY_REGISTRATION_CHANNEL, buf);
-			NetworkingImpl.LOGGER.debug("Sent accepted channels to the client for \"{}\"", handler.getConnectionInfo());
+			Papi.LOGGER.debug("Sent accepted channels to the client for \"{}\"", handler.getConnectionInfo());
 		});
 
 		ServerLoginNetworking.registerGlobalReceiver(EARLY_REGISTRATION_CHANNEL, (server, handler, understood, buf, synchronizer, sender) -> {
@@ -77,7 +75,7 @@ public final class NetworkingImpl {
 			}
 
 			((ChannelInfoHolder) handler.getConnection()).getPendingChannelsNames().addAll(ids);
-			NetworkingImpl.LOGGER.debug("Received accepted channels from the client for \"{}\"", handler.getConnectionInfo());
+			Papi.LOGGER.debug("Received accepted channels from the client for \"{}\"", handler.getConnectionInfo());
 		});
 	}
 

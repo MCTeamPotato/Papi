@@ -23,6 +23,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -77,7 +79,8 @@ public final class ServerLoginNetworking {
 	 *
 	 * @return all channel names which global receivers are registered for.
 	 */
-	public static Set<Identifier> getGlobalReceivers() {
+	@Contract(" -> new")
+	public static @NotNull Set<Identifier> getGlobalReceivers() {
 		return ServerNetworkingImpl.LOGIN.getChannels();
 	}
 

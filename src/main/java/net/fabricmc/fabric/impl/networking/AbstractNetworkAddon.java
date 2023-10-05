@@ -16,12 +16,16 @@
 
 package net.fabricmc.fabric.impl.networking;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -39,7 +43,7 @@ public abstract class AbstractNetworkAddon<H> {
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 	// Sync map should be fine as there is little read write competition
 	// All access to this map is guarded by the lock
-	private final Map<Identifier, H> handlers = new HashMap<>();
+	private final Map<Identifier, H> handlers = new Object2ObjectOpenHashMap<>();
 	private final AtomicBoolean disconnected = new AtomicBoolean(); // blocks redundant disconnect notifications
 
 	protected AbstractNetworkAddon(GlobalReceiverRegistry<H> receiver, String description) {

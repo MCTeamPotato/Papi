@@ -27,6 +27,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -84,7 +86,8 @@ public final class ClientPlayNetworking {
 	 *
 	 * @return all channel names which global receivers are registered for.
 	 */
-	public static Set<Identifier> getGlobalReceivers() {
+	@Contract(" -> new")
+	public static @NotNull Set<Identifier> getGlobalReceivers() {
 		return ClientNetworkingImpl.PLAY.getChannels();
 	}
 
@@ -187,7 +190,7 @@ public final class ClientPlayNetworking {
 	 * @param buf the packet byte buf which represents the payload of the packet
 	 * @return a new packet
 	 */
-	public static Packet<?> createC2SPacket(Identifier channelName, PacketByteBuf buf) {
+	public static @NotNull Packet<?> createC2SPacket(Identifier channelName, PacketByteBuf buf) {
 		Objects.requireNonNull(channelName, "Channel name cannot be null");
 		Objects.requireNonNull(buf, "Buf cannot be null");
 

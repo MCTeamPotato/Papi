@@ -29,6 +29,7 @@ import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,7 +40,7 @@ public final class ServerPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	private final MinecraftServer server;
 	private boolean sentInitialRegisterPacket;
 
-	public ServerPlayNetworkAddon(ServerPlayNetworkHandler handler, MinecraftServer server) {
+	public ServerPlayNetworkAddon(@NotNull ServerPlayNetworkHandler handler, MinecraftServer server) {
 		super(ServerNetworkingImpl.PLAY, handler.getConnection(), "ServerPlayNetworkAddon for " + handler.player.getEntityName());
 		this.handler = handler;
 		this.server = server;
@@ -84,7 +85,7 @@ public final class ServerPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	}
 
 	@Override
-	protected void receive(ServerPlayNetworking.PlayChannelHandler handler, PacketByteBuf buf) {
+	protected void receive(ServerPlayNetworking.@NotNull PlayChannelHandler handler, PacketByteBuf buf) {
 		handler.receive(this.server, this.handler.player, this.handler, buf, this);
 	}
 
@@ -96,7 +97,7 @@ public final class ServerPlayNetworkAddon extends AbstractChanneledNetworkAddon<
 	}
 
 	@Override
-	public Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
+	public @NotNull Packet<?> createPacket(Identifier channelName, PacketByteBuf buf) {
 		return ServerPlayNetworking.createS2CPacket(channelName, buf);
 	}
 

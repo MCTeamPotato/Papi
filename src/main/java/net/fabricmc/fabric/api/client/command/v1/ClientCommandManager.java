@@ -22,6 +22,8 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Manages client-sided commands and provides some related helper methods.
@@ -71,7 +73,8 @@ public final class ClientCommandManager {
 	 * @param name the literal name
 	 * @return the created argument builder
 	 */
-	public static LiteralArgumentBuilder<FabricClientCommandSource> literal(String name) {
+	@Contract(value = "_ -> new", pure = true)
+	public static @NotNull LiteralArgumentBuilder<FabricClientCommandSource> literal(String name) {
 		return LiteralArgumentBuilder.literal(name);
 	}
 
@@ -83,7 +86,8 @@ public final class ClientCommandManager {
 	 * @param <T>  the type of the parsed argument value
 	 * @return the created argument builder
 	 */
-	public static <T> RequiredArgumentBuilder<FabricClientCommandSource, T> argument(String name, ArgumentType<T> type) {
+	@Contract(value = "_, _ -> new", pure = true)
+	public static <T> @NotNull RequiredArgumentBuilder<FabricClientCommandSource, T> argument(String name, ArgumentType<T> type) {
 		return RequiredArgumentBuilder.argument(name, type);
 	}
 }

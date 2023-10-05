@@ -1,4 +1,4 @@
 accessWidener   v2  named
-
+accessible	method	net/minecraft/client/gui/screen/ingame/HandledScreens getProvider (Lnet/minecraft/screen/ScreenHandlerType;)Lnet/minecraft/client/gui/screen/ingame/HandledScreens$Provider;
 accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/tag/Tag;I)V
 accessible method net/minecraft/block/entity/AbstractFurnaceBlockEntity addFuel (Ljava/util/Map;Lnet/minecraft/item/ItemConvertible;I)V

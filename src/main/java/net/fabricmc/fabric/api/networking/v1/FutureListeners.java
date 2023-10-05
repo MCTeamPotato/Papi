@@ -24,6 +24,8 @@ import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.FutureListener;
 import io.netty.util.concurrent.GenericFutureListener;
 import net.minecraft.network.PacketByteBuf;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -39,7 +41,8 @@ public final class FutureListeners {
 	 * @param buf the buffer
 	 * @return the future listener
 	 */
-	public static ChannelFutureListener free(PacketByteBuf buf) {
+	@Contract(pure = true)
+	public static @NotNull ChannelFutureListener free(PacketByteBuf buf) {
 		Objects.requireNonNull(buf, "PacketByteBuf cannot be null");
 
 		return (future) -> {

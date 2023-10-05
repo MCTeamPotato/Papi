@@ -20,9 +20,12 @@
     "networking.accessor.ConnectScreenAccessor",
     "networking.accessor.MinecraftClientAccessor",
     "networking.client.ClientLoginNetworkHandlerMixin",
-    "networking.client.ClientPlayNetworkHandlerMixin"
+    "networking.client.ClientPlayNetworkHandlerMixin",
+    "screen.MouseMixin",
+    "screen.ScreenMixin"
   ],
   "mixins": [
+    "screenhandler.ServerPlayerEntityMixin",
     "command.HelpCommandAccessor",
     "content.registry.MixinFireBlock",
     "event.lifecycle.MinecraftServerMixin",
@@ -40,6 +43,12 @@
     "networking.accessor.EntityTrackerAccessor",
     "networking.accessor.LoginQueryRequestS2CPacketAccessor",
     "networking.accessor.LoginQueryResponseC2SPacketAccessor",
-    "networking.accessor.ServerLoginNetworkHandlerAccessor"
+    "networking.accessor.ServerLoginNetworkHandlerAccessor",
+    "networking.blockentity.MixinBlockEntity",
+    "networking.blockentity.MixinIForgeTileEntity",
+    "tag.extension.AccessorFluidTags",
+    "tag.extension.MixinObjectBuilder",
+    "tag.extension.MixinTagBuilder",
+    "tag.extension.MixinTagImpl"
   ]
 }

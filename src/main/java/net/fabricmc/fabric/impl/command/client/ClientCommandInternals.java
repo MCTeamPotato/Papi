@@ -29,6 +29,7 @@ import com.mojang.brigadier.exceptions.BuiltInExceptionProvider;
 import com.mojang.brigadier.exceptions.CommandExceptionType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.CommandNode;
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 import net.fabricmc.fabric.mixin.command.HelpCommandAccessor;
 import net.minecraft.client.MinecraftClient;
@@ -40,8 +41,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -52,7 +51,6 @@ import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.*;
 
 @OnlyIn(Dist.CLIENT)
 public final class ClientCommandInternals {
-	private static final Logger LOGGER = LogManager.getLogger();
 	private static final char PREFIX = '/';
 	private static final String API_COMMAND_NAME = "fabric-command-api-v1:client";
 	private static final String SHORT_API_COMMAND_NAME = "fcc";
@@ -88,7 +86,7 @@ public final class ClientCommandInternals {
 			return true;
 		} catch (CommandSyntaxException e) {
 			boolean ignored = isIgnoredException(e.getType());
-			LOGGER.log(ignored ? Level.DEBUG : Level.WARN, "Syntax exception for client-sided command '{}'", message, e);
+			Papi.LOGGER.log(ignored ? Level.DEBUG : Level.WARN, "Syntax exception for client-sided command '{}'", message, e);
 
 			if (ignored) {
 				return false;
@@ -97,11 +95,11 @@ public final class ClientCommandInternals {
 			commandSource.sendError(getErrorMessage(e));
 			return true;
 		} catch (CommandException e) {
-			LOGGER.warn("Error while executing client-sided command '{}'", message, e);
+			Papi.LOGGER.warn("Error while executing client-sided command '{}'", message, e);
 			commandSource.sendError(e.getTextMessage());
 			return true;
 		} catch (RuntimeException e) {
-			LOGGER.warn("Error while executing client-sided command '{}'", message, e);
+			Papi.LOGGER.warn("Error while executing client-sided command '{}'", message, e);
 			commandSource.sendError(Text.of(e.getMessage()));
 			return true;
 		} finally {
@@ -151,7 +149,7 @@ public final class ClientCommandInternals {
 
 		// noinspection CodeBlock2Expr
 		DISPATCHER.findAmbiguities((parent, child, sibling, inputs) -> {
-			LOGGER.warn("Ambiguity between arguments {} and {} with inputs: {}", DISPATCHER.getPath(child), DISPATCHER.getPath(sibling), inputs);
+			Papi.LOGGER.warn("Ambiguity between arguments {} and {} with inputs: {}", DISPATCHER.getPath(child), DISPATCHER.getPath(sibling), inputs);
 		});
 	}
 

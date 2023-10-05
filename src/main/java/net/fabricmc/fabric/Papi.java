@@ -5,6 +5,7 @@ import net.fabricmc.fabric.impl.command.CommandForgeImpl;
 import net.fabricmc.fabric.impl.lifecycle.LifecycleForgeImpl;
 import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl;
+import net.fabricmc.fabric.impl.screenhandler.client.ClientNetworking;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -31,6 +32,7 @@ public class Papi {
             eventBus.register(LifecycleForgeImpl.Client.class);
 
             ClientNetworkingImpl.clientInit();
+            ClientNetworking.clientInit();
         }
     }
 }

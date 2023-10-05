@@ -22,6 +22,7 @@ import net.fabricmc.fabric.mixin.networking.accessor.EntityTrackerAccessor;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,7 +39,7 @@ public abstract class ThreadedAnvilChunkStorageMixin implements ThreadedAnvilChu
 	private Int2ObjectMap<EntityTrackerAccessor> entityTrackers;
 
 	@Override
-	public Collection<ServerPlayerEntity> fabric_getTrackingPlayers(Entity entity) {
+	public Collection<ServerPlayerEntity> fabric_getTrackingPlayers(@NotNull Entity entity) {
 		EntityTrackerAccessor accessor = this.entityTrackers.get(entity.getEntityId());
 
 		if (accessor != null) {

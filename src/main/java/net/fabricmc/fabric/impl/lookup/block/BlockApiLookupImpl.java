@@ -30,6 +30,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -104,7 +105,7 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void registerSelf(BlockEntityType<?>... blockEntityTypes) {
+	public void registerSelf(BlockEntityType<?> @NotNull ... blockEntityTypes) {
 		for (BlockEntityType<?> blockEntityType : blockEntityTypes) {
 			BlockEntity blockEntity = blockEntityType.instantiate();
 			Objects.requireNonNull(blockEntity, "Instantiated block entity may not be null.");
@@ -123,7 +124,7 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 	}
 
 	@Override
-	public void registerForBlocks(BlockApiProvider<A, C> provider, Block... blocks) {
+	public void registerForBlocks(BlockApiProvider<A, C> provider, Block @NotNull ... blocks) {
 		Objects.requireNonNull(provider, "BlockApiProvider may not be null.");
 
 		if (blocks.length == 0) {
@@ -140,7 +141,7 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 	}
 
 	@Override
-	public void registerForBlockEntities(BlockEntityApiProvider<A, C> provider, BlockEntityType<?>... blockEntityTypes) {
+	public void registerForBlockEntities(BlockEntityApiProvider<A, C> provider, BlockEntityType<?> @NotNull ... blockEntityTypes) {
 		Objects.requireNonNull(provider, "BlockEntityApiProvider may not be null.");
 
 		if (blockEntityTypes.length == 0) {
