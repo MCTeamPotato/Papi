@@ -15,7 +15,6 @@ import net.fabricmc.fabric.impl.event.interaction.InteractionForgeImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl;
 import net.fabricmc.fabric.impl.event.lifecycle.LifecycleForgeImpl;
 import net.fabricmc.fabric.impl.lookup.ApiLookupImpl;
-import net.fabricmc.fabric.impl.networking.NetworkingImpl;
 import net.fabricmc.fabric.impl.object.builder.ObjectBuilderForgeImpl;
 import net.fabricmc.fabric.impl.object.builder.TradeOfferInternals;
 import net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit;
@@ -38,7 +37,6 @@ public class Papi {
         final IEventBus eventBus = MinecraftForge.EVENT_BUS;
 
         LifecycleEventsImpl.init();
-        NetworkingImpl.init();
         ApiLookupImpl.init();
         InteractionEventsRouter.init();
         CustomIngredientInit.init();
