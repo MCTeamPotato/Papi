@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.mixin.content.registry;
 
-import java.util.Map;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
-
 import net.minecraft.entity.ai.brain.task.GiveGiftsToHeroTask;
 import net.minecraft.util.Identifier;
 import net.minecraft.village.VillagerProfession;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Accessor;
+
+import java.util.Map;
 
 @Mixin(GiveGiftsToHeroTask.class)
 public interface GiveGiftsToHeroTaskAccessor {

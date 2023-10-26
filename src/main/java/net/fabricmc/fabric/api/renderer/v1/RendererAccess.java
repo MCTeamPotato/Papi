@@ -16,9 +16,8 @@
 
 package net.fabricmc.fabric.api.renderer.v1;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.fabricmc.fabric.impl.renderer.RendererAccessImpl;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Registration and access for rendering extensions.

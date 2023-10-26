@@ -17,12 +17,10 @@
 package net.fabricmc.fabric.impl.recipe.ingredient;
 
 import com.google.gson.JsonObject;
-import net.minecraftforge.common.crafting.IIngredientSerializer;
-
-import net.minecraft.network.PacketByteBuf;
-
 import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraftforge.common.crafting.IIngredientSerializer;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"rawtypes", "unchecked"})

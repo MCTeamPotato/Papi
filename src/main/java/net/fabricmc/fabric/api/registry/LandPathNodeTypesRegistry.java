@@ -16,19 +16,18 @@
 
 package net.fabricmc.fabric.api.registry;
 
-import java.util.IdentityHashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * A registry to associate block states with specific path node types.

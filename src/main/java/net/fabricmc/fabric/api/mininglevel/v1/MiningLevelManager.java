@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.mininglevel.v1;
 
+import net.fabricmc.fabric.impl.mininglevel.MiningLevelManagerImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
-import net.fabricmc.fabric.impl.mininglevel.MiningLevelManagerImpl;
 
 /**
  * Provides access to block mining levels.

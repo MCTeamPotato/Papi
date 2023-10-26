@@ -16,8 +16,8 @@
 
 package net.fabricmc.fabric.api.renderer.v1.model;
 
-import java.util.function.Supplier;
-
+import net.fabricmc.fabric.api.renderer.v1.Renderer;
+import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.block.BlockModelRenderer;
@@ -25,11 +25,10 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockRenderView;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockRenderView;
 
-import net.fabricmc.fabric.api.renderer.v1.Renderer;
-import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
+import java.util.function.Supplier;
 
 /**
  * Interface for baked models that output meshes with enhanced rendering features.

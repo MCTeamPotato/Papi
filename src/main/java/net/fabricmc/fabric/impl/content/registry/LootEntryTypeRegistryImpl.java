@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.impl.content.registry;
 
-import java.lang.reflect.Method;
-
-import net.minecraft.loot.entry.LootPoolEntryTypes;
-import net.minecraft.loot.entry.LootPoolEntry;
-
 import net.fabricmc.fabric.api.registry.LootEntryTypeRegistry;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.entry.LootPoolEntryTypes;
+
+import java.lang.reflect.Method;
 
 @Deprecated
 public final class LootEntryTypeRegistryImpl implements LootEntryTypeRegistry {

@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.impl.content.registry;
 
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.block.ComposterBlock;
-import net.minecraft.tag.TagKey;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.minecraft.tag.TagKey;
 import org.jetbrains.annotations.NotNull;
 
 public class CompostingChanceRegistryImpl implements CompostingChanceRegistry {
