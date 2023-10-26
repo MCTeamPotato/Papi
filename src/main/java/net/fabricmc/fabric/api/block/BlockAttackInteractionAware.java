@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.api.block;
 
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 
 /**
  * Convenience interface for blocks which listen to "break interactions" (left-click).

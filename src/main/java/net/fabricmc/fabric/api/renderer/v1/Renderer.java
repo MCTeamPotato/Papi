@@ -16,13 +16,11 @@
 
 package net.fabricmc.fabric.api.renderer.v1;
 
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.util.Identifier;
-
 import net.fabricmc.fabric.api.renderer.v1.material.MaterialFinder;
 import net.fabricmc.fabric.api.renderer.v1.material.RenderMaterial;
 import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Interface for rendering plug-ins that provide enhanced capabilities

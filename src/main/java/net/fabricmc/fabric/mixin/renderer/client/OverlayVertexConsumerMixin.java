@@ -16,14 +16,13 @@
 
 package net.fabricmc.fabric.mixin.renderer.client;
 
+import net.minecraft.client.render.OverlayVertexConsumer;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathConstants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import net.minecraft.client.render.OverlayVertexConsumer;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathConstants;
 
 @Mixin(OverlayVertexConsumer.class)
 public abstract class OverlayVertexConsumerMixin {

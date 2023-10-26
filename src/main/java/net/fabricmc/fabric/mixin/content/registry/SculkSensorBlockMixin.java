@@ -18,11 +18,10 @@ package net.fabricmc.fabric.mixin.content.registry;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMaps;
+import net.minecraft.block.SculkSensorBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-
-import net.minecraft.block.SculkSensorBlock;
 
 @Mixin(SculkSensorBlock.class)
 public class SculkSensorBlockMixin {

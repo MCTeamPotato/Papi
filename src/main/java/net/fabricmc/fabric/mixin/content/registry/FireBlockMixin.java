@@ -16,21 +16,19 @@
 
 package net.fabricmc.fabric.mixin.content.registry;
 
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.impl.content.registry.FireBlockHooks;
+import net.fabricmc.fabric.impl.content.registry.FlammableBlockRegistryImpl;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FireBlock;
+import net.minecraft.state.property.Properties;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FireBlock;
-import net.minecraft.state.property.Properties;
-
-import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.impl.content.registry.FireBlockHooks;
-import net.fabricmc.fabric.impl.content.registry.FlammableBlockRegistryImpl;
 
 @Mixin(FireBlock.class)
 public class FireBlockMixin implements FireBlockHooks {

@@ -16,9 +16,8 @@
 
 package net.fabricmc.fabric.api.renderer.v1.model;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.client.render.model.BakedModel;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * An interface to be implemented by models that wrap and replace another model, such as {@link ForwardingBakedModel}.

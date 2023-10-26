@@ -16,9 +16,9 @@
 
 package net.fabricmc.fabric.api.renderer.v1.mesh;
 
-import java.util.function.Consumer;
-
 import net.fabricmc.fabric.api.renderer.v1.Renderer;
+
+import java.util.function.Consumer;
 
 /**
  * A bundle of one or more {@link QuadView} instances encoded by the renderer,

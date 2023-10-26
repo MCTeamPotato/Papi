@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.registry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import net.minecraft.block.SculkSensorBlock;
 import net.minecraft.tag.GameEventTags;
 import net.minecraft.world.event.GameEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Provides a method for registering sculk sensor frequencies.

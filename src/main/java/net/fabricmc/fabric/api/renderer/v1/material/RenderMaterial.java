@@ -16,12 +16,11 @@
 
 package net.fabricmc.fabric.api.renderer.v1.material;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Identifier;
-
 import net.fabricmc.fabric.api.renderer.v1.Renderer;
 import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
 import net.fabricmc.fabric.api.renderer.v1.mesh.MutableQuadView;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.Identifier;
 
 /**
  * All model quads have an associated render material governing

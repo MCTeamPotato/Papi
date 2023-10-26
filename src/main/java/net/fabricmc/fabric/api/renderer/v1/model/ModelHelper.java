@@ -16,20 +16,18 @@
 
 package net.fabricmc.fabric.api.renderer.v1.model;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
-
+import net.fabricmc.fabric.api.renderer.v1.mesh.Mesh;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.render.model.json.Transformation;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3f;
 
-import net.fabricmc.fabric.api.renderer.v1.mesh.Mesh;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Collection of utilities for model implementations.

@@ -16,16 +16,14 @@
 
 package net.fabricmc.fabric.api.renderer.v1.mesh;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
+import net.fabricmc.fabric.api.renderer.v1.material.RenderMaterial;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.render.model.BakedQuad;
 import net.minecraft.client.texture.Sprite;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.math.Direction;
-
-import net.fabricmc.fabric.api.renderer.v1.material.RenderMaterial;
+import net.minecraft.util.math.Vec3f;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Interface for reading quad data encoded by {@link MeshBuilder}.

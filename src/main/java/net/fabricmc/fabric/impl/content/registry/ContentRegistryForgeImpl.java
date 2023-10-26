@@ -1,8 +1,8 @@
 package net.fabricmc.fabric.impl.content.registry;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemUsageContext;
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

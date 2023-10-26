@@ -16,17 +16,15 @@
 
 package net.fabricmc.fabric.mixin.content.registry;
 
-import java.util.Set;
-
+import net.fabricmc.fabric.api.registry.VillagerPlantableRegistry;
+import net.minecraft.entity.passive.VillagerEntity;
+import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
-
-import net.fabricmc.fabric.api.registry.VillagerPlantableRegistry;
+import java.util.Set;
 
 @Mixin(VillagerEntity.class)
 public class VillagerEntityMixin {

@@ -16,11 +16,10 @@
 
 package net.fabricmc.fabric.api.renderer.v1.material;
 
-import net.minecraft.client.render.RenderLayer;
-
 import net.fabricmc.fabric.api.renderer.v1.Renderer;
 import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
 import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
+import net.minecraft.client.render.RenderLayer;
 
 /**
  * Finds standard {@link RenderMaterial} instances used to communicate
