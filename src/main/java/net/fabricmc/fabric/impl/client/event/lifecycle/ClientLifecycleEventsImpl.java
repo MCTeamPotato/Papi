@@ -16,22 +16,33 @@
 
 package net.fabricmc.fabric.impl.client.event.lifecycle;
 
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents;
 import net.fabricmc.fabric.impl.event.lifecycle.LoadedChunksCache;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.world.chunk.WorldChunk;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.level.ChunkEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = Papi.MOD_ID, value = Dist.CLIENT)
 public final class ClientLifecycleEventsImpl {
-	public static void clientInit() {
-		// Part of impl for block entity events
-		ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> ((LoadedChunksCache) world).fabric_markLoaded(chunk));
+	@SubscribeEvent
+	public static void onChunkLoad(ChunkEvent.Load event) {
+		if (event.getLevel() instanceof ClientWorld world && event.getChunk() instanceof WorldChunk chunk) {
+			((LoadedChunksCache) world).fabric_markLoaded(chunk);
+		}
+	}
 
-		ClientChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> ((LoadedChunksCache) world).fabric_markUnloaded(chunk));
-
-		ClientChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> {
+	@SubscribeEvent
+	public static void onChunkUnload(ChunkEvent.Unload event) {
+		if (event.getLevel() instanceof ClientWorld world && event.getChunk() instanceof WorldChunk chunk) {
+			((LoadedChunksCache) world).fabric_markUnloaded(chunk);
 			for (BlockEntity blockEntity : chunk.getBlockEntities().values()) {
 				ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.invoker().onUnload(blockEntity, world);
 			}
-		});
+		}
 	}
 }

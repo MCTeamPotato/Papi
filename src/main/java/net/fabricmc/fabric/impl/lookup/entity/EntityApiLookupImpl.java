@@ -17,6 +17,7 @@
 package net.fabricmc.fabric.impl.lookup.entity;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
 import net.fabricmc.fabric.api.lookup.v1.entity.EntityApiLookup;
@@ -27,14 +28,11 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EntityApiLookupImpl<A, C> implements EntityApiLookup<A, C> {
-	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-lookup-api-v1/entity");
 	private static final ApiLookupMap<EntityApiLookup<?, ?>> LOOKUPS = ApiLookupMap.create(EntityApiLookupImpl::new);
 	private static final Map<Class<?>, Set<EntityType<?>>> REGISTERED_SELVES = new Object2ObjectOpenHashMap<>();
 	private static boolean checkEntityLookup = true;
@@ -136,7 +134,7 @@ public class EntityApiLookupImpl<A, C> implements EntityApiLookup<A, C> {
 
 		for (EntityType<?> entityType : entityTypes) {
 			if (providerMap.putIfAbsent(entityType, provider) != null) {
-				LOGGER.warn("Encountered duplicate API provider registration for entity type: " + ForgeRegistries.ENTITY_TYPES.getKey(entityType));
+				Papi.LOGGER.warn("Encountered duplicate API provider registration for entity type: " + ForgeRegistries.ENTITY_TYPES.getKey(entityType));
 			}
 		}
 	}

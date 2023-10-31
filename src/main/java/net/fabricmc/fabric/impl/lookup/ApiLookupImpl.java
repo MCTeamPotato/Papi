@@ -16,11 +16,17 @@
 
 package net.fabricmc.fabric.impl.lookup;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = Papi.MOD_ID, value = Dist.DEDICATED_SERVER)
 public class ApiLookupImpl {
-	public static void init() {
-		ServerLifecycleEvents.SERVER_STARTED.register(EntityApiLookupImpl::checkSelfImplementingTypes);
+	@SubscribeEvent
+	public static void onServerStarted(ServerStartedEvent event) {
+		EntityApiLookupImpl.checkSelfImplementingTypes(event.getServer());
 	}
 }

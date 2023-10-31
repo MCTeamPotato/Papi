@@ -16,21 +16,21 @@
 
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.chunk.WorldChunk;
+
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 
 public final class ServerChunkEvents {
 	private ServerChunkEvents() {
 	}
 
 	/**
-	 * Called when a chunk is loaded into a ServerWorld.
-	 *
-	 * <p>When this event is called, the chunk is already in the world.
+	 * @deprecated Use {@link net.minecraftforge.event.level.ChunkEvent.Load}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ServerChunkEvents.Load> CHUNK_LOAD = EventFactory.createArrayBacked(ServerChunkEvents.Load.class, callbacks -> (serverWorld, chunk) -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = serverWorld.getProfiler();
@@ -51,10 +51,9 @@ public final class ServerChunkEvents {
 	});
 
 	/**
-	 * Called when a chunk is unloaded from a ServerWorld.
-	 *
-	 * <p>When this event is called, the chunk is still present in the world.
+	 * @deprecated Use {@link net.minecraftforge.event.level.ChunkEvent.Unload}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ServerChunkEvents.Unload> CHUNK_UNLOAD = EventFactory.createArrayBacked(ServerChunkEvents.Unload.class, callbacks -> (serverWorld, chunk) -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = serverWorld.getProfiler();

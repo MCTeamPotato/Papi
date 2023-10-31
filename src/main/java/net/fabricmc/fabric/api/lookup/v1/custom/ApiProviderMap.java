@@ -16,9 +16,10 @@
 
 package net.fabricmc.fabric.api.lookup.v1.custom;
 
-import net.fabricmc.fabric.impl.lookup.custom.ApiProviderHashMap;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
+
+import net.fabricmc.fabric.impl.lookup.custom.ApiProviderHashMap;
 
 /**
  * A fast thread-safe copy-on-write map meant to be used as the backing storage for registered providers.

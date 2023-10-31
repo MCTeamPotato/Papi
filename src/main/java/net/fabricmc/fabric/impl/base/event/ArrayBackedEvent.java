@@ -16,29 +16,26 @@
 
 package net.fabricmc.fabric.impl.base.event;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Array;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
 class ArrayBackedEvent<T> extends Event<T> {
-	static final Logger LOGGER = LoggerFactory.getLogger("fabric_api_base");
-
 	private final Function<T[], T> invokerFactory;
 	private final Object lock = new Object();
 	private T[] handlers;
 	/**
 	 * Registered event phases.
 	 */
-	private final Map<Identifier, EventPhaseData<T>> phases = new LinkedHashMap<>();
+	private final Map<Identifier, EventPhaseData<T>> phases = new Object2ObjectLinkedOpenHashMap<>();
 	/**
 	 * Phases sorted in the correct dependency order.
 	 */
@@ -71,7 +68,7 @@ class ArrayBackedEvent<T> extends Event<T> {
 		}
 	}
 
-	private EventPhaseData<T> getOrCreatePhase(Identifier id, boolean sortIfCreate) {
+	private @NotNull EventPhaseData<T> getOrCreatePhase(Identifier id, boolean sortIfCreate) {
 		EventPhaseData<T> phase = phases.get(id);
 
 		if (phase == null) {

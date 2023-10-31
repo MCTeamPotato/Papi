@@ -18,7 +18,6 @@ package net.fabricmc.fabric.mixin.event.lifecycle;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,8 +37,8 @@ public abstract class MinecraftServerMixin {
 		ServerLifecycleEvents.START_DATA_PACK_RELOAD.invoker().startDataPackReload((MinecraftServer) (Object) this, this.resourceManagerHolder.resourceManager());
 	}
 
-	@Inject(method = "reloadResources", at = @At("RETURN"))
-	private void endResourceReload(Collection<String> collection, @NotNull CallbackInfoReturnable<CompletableFuture<Void>> cir) {
+	@Inject(method = "reloadResources", at = @At("TAIL"))
+	private void endResourceReload(Collection<String> collection, CallbackInfoReturnable<CompletableFuture<Void>> cir) {
 		cir.getReturnValue().handleAsync((value, throwable) -> {
 			// Hook into fail
 			ServerLifecycleEvents.END_DATA_PACK_RELOAD.invoker().endDataPackReload((MinecraftServer) (Object) this, this.resourceManagerHolder.resourceManager(), throwable == null);

@@ -16,14 +16,16 @@
 
 package net.fabricmc.fabric.api.lookup.v1.entity;
 
-import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.util.Identifier;
+import java.util.function.BiFunction;
+
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.BiFunction;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.util.Identifier;
+
+import net.fabricmc.fabric.impl.lookup.entity.EntityApiLookupImpl;
 
 /**
  * An object that allows retrieving APIs from entities.

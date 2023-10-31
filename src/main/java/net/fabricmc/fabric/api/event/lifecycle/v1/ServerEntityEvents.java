@@ -16,14 +16,15 @@
 
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.profiler.Profiler;
+
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 
 public final class ServerEntityEvents {
 	private ServerEntityEvents() {
@@ -78,11 +79,9 @@ public final class ServerEntityEvents {
 	});
 
 	/**
-	 * Called during {@link LivingEntity#tick()} if the Entity's equipment has been changed or mutated.
-	 *
-	 * <p>This event is also called when the entity joins the world.
-	 * A change in equipment is determined by {@link ItemStack#areEqual(ItemStack, ItemStack)}.
+	 * @deprecated Use {@link net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<EquipmentChange> EQUIPMENT_CHANGE = EventFactory.createArrayBacked(ServerEntityEvents.EquipmentChange.class, callbacks -> (livingEntity, equipmentSlot, previous, next) -> {
 		for (EquipmentChange callback : callbacks) {
 			callback.onChange(livingEntity, equipmentSlot, previous, next);

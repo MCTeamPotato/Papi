@@ -16,12 +16,12 @@
 
 package net.fabricmc.fabric.api.util;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a boolean value which can be true, false or refer to a default value.
@@ -111,7 +111,7 @@ public enum TriState {
 	 * @param <T> the type of object being supplier by the mapper
 	 * @return an optional containing the mapped value; {@link Optional#empty()} if the tri-state is {@link TriState#DEFAULT} or the value provided by the mapper is {@code null}.
 	 */
-	public <T> Optional<T> map(BooleanFunction<? extends T> mapper) {
+	public <T> Optional<T> map(BooleanFunction<@Nullable ? extends T> mapper) {
 		Objects.requireNonNull(mapper, "Mapper function cannot be null");
 
 		if (this == DEFAULT) {

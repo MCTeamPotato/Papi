@@ -27,8 +27,7 @@ import java.util.Set;
 
 @Mixin(World.class)
 public abstract class WorldMixin implements LoadedChunksCache {
-	@Unique
-	private final Set<WorldChunk> papi$loadedChunks = new ObjectOpenHashSet<>();
+	@Unique private final Set<WorldChunk> papi$loadedChunks = new ObjectOpenHashSet<>();
 
 	@Override
 	public Set<WorldChunk> fabric_getLoadedChunks() {

@@ -17,14 +17,13 @@
 package net.fabricmc.fabric.impl.base.event;
 
 import com.google.common.annotations.VisibleForTesting;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.fabricmc.fabric.Papi;
 
 import java.util.*;
 
 /**
  * Contains phase-sorting logic for {@link ArrayBackedEvent}.
  */
-@SuppressWarnings("CanBeFinal")
 public class PhaseSorting {
 	@VisibleForTesting
 	public static boolean ENABLE_CYCLE_WARNING = true;
@@ -37,7 +36,7 @@ public class PhaseSorting {
 	 */
 	static <T> void sortPhases(List<EventPhaseData<T>> sortedPhases) {
 		// FIRST KOSARAJU SCC VISIT
-		List<EventPhaseData<T>> toposort = new ObjectArrayList<>(sortedPhases.size());
+		List<EventPhaseData<T>> toposort = new ArrayList<>(sortedPhases.size());
 
 		for (EventPhaseData<T> phase : sortedPhases) {
 			forwardVisit(phase, null, toposort);
@@ -51,7 +50,7 @@ public class PhaseSorting {
 
 		for (EventPhaseData<T> phase : toposort) {
 			if (phase.visitStatus == 0) {
-				List<EventPhaseData<T>> sccPhases = new ObjectArrayList<>();
+				List<EventPhaseData<T>> sccPhases = new ArrayList<>();
 				// Collect phases in SCC.
 				backwardVisit(phase, sccPhases);
 				// Sort phases by id.
@@ -121,7 +120,7 @@ public class PhaseSorting {
 			phase.visitStatus = 2;
 		} else if (phase.visitStatus == 1 && ENABLE_CYCLE_WARNING) {
 			// Already visiting, so we have found a cycle.
-			ArrayBackedEvent.LOGGER.warn(String.format(
+			Papi.LOGGER.warn(String.format(
 					"Event phase ordering conflict detected.%nEvent phase %s is ordered both before and after event phase %s.",
 					phase.id,
 					parent.id
@@ -148,7 +147,7 @@ public class PhaseSorting {
 
 	private static class PhaseScc<T> {
 		final List<EventPhaseData<T>> phases;
-		final List<PhaseScc<T>> subsequentSccs = new ObjectArrayList<>();
+		final List<PhaseScc<T>> subsequentSccs = new ArrayList<>();
 		int inDegree = 0;
 
 		private PhaseScc(List<EventPhaseData<T>> phases) {

@@ -33,8 +33,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 public final class EventFactoryImpl {
-	private static final Set<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS
-			= Collections.newSetFromMap(new MapMaker().weakKeys().makeMap());
+	private static final Set<ArrayBackedEvent<?>> ARRAY_BACKED_EVENTS = Collections.newSetFromMap(new MapMaker().weakKeys().makeMap());
 
 	private EventFactoryImpl() { }
 
@@ -42,13 +41,13 @@ public final class EventFactoryImpl {
 		ARRAY_BACKED_EVENTS.forEach(ArrayBackedEvent::update);
 	}
 
-	public static <T> Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
+	public static <T> @NotNull Event<T> createArrayBacked(Class<? super T> type, Function<T[], T> invokerFactory) {
 		ArrayBackedEvent<T> event = new ArrayBackedEvent<>(type, invokerFactory);
 		ARRAY_BACKED_EVENTS.add(event);
 		return event;
 	}
 
-	public static void ensureContainsDefault(Identifier[] defaultPhases) {
+	public static void ensureContainsDefault(Identifier @NotNull [] defaultPhases) {
 		for (Identifier id : defaultPhases) {
 			if (id.equals(Event.DEFAULT_PHASE)) {
 				return;
@@ -60,7 +59,7 @@ public final class EventFactoryImpl {
 
 	public static void ensureNoDuplicates(Identifier @NotNull [] defaultPhases) {
 		for (int i = 0; i < defaultPhases.length; ++i) {
-			for (int j = i+1; j < defaultPhases.length; ++j) {
+			for (int j = i + 1; j < defaultPhases.length; ++j) {
 				if (defaultPhases[i].equals(defaultPhases[j])) {
 					throw new IllegalArgumentException("Duplicate event phase: " + defaultPhases[i]);
 				}
@@ -70,10 +69,9 @@ public final class EventFactoryImpl {
 
 	// Code originally by sfPlayer1.
 	// Unfortunately, it's slightly slower than just passing an empty array in the first place.
-	@SuppressWarnings("SuspiciousInvocationHandlerImplementation")
 	private static <T> @NotNull T buildEmptyInvoker(Class<T> handlerClass, Function<T[], T> invokerSetup) {
 		// find the functional interface method
-		Method funcIfMethod = getMethod(handlerClass);
+		Method funcIfMethod = getFuncIfMethod(handlerClass);
 
 		Object defValue = null;
 
@@ -104,13 +102,13 @@ public final class EventFactoryImpl {
 		}
 
 		final Object returnValue = defValue;
-		//noinspection unchecked
+		//noinspection unchecked,SuspiciousInvocationHandlerImplementation
 		return (T) Proxy.newProxyInstance(EventFactoryImpl.class.getClassLoader(), new Class[]{handlerClass},
 			(proxy, method, args) -> returnValue);
 	}
 
 	@NotNull
-	private static <T> Method getMethod(@NotNull Class<T> handlerClass) {
+	private static <T> Method getFuncIfMethod(@NotNull Class<T> handlerClass) {
 		Method funcIfMethod = null;
 
 		for (Method m : handlerClass.getMethods()) {

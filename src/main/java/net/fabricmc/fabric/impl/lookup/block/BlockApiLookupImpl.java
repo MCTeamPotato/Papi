@@ -16,6 +16,8 @@
 
 package net.fabricmc.fabric.impl.lookup.block;
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import net.fabricmc.fabric.Papi;
 import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiLookupMap;
 import net.fabricmc.fabric.api.lookup.v1.custom.ApiProviderMap;
@@ -28,16 +30,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
-	private static final Logger LOGGER = LoggerFactory.getLogger("fabric-api-lookup-api-v1/block");
 	private static final ApiLookupMap<BlockApiLookup<?, ?>> LOOKUPS = ApiLookupMap.create(BlockApiLookupImpl::new);
 
 	@SuppressWarnings("unchecked")
@@ -126,11 +127,10 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 		registerForBlockEntities((blockEntity, context) -> (A) blockEntity, blockEntityTypes);
 	}
 
-	@Override
-	public void registerForBlocks(BlockApiProvider<A, C> provider, Block... blocks) {
+	public void registerForBlocks(BlockApiProvider<A, C> provider, @NotNull Set<Block> blocks) {
 		Objects.requireNonNull(provider, "BlockApiProvider may not be null.");
 
-		if (blocks.length == 0) {
+		if (blocks.isEmpty()) {
 			throw new IllegalArgumentException("Must register at least one Block instance with a BlockApiProvider.");
 		}
 
@@ -138,13 +138,18 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 			Objects.requireNonNull(block, "Encountered null block while registering a block API provider mapping.");
 
 			if (providerMap.putIfAbsent(block, provider) != null) {
-				LOGGER.warn("Encountered duplicate API provider registration for block: " + ForgeRegistries.BLOCKS.getKey(block));
+				Papi.LOGGER.warn("Encountered duplicate API provider registration for block: " + ForgeRegistries.BLOCKS.getKey(block));
 			}
 		}
 	}
 
 	@Override
-	public void registerForBlockEntities(BlockEntityApiProvider<A, C> provider, BlockEntityType<?>... blockEntityTypes) {
+	public void registerForBlocks(BlockApiProvider<A, C> provider, Block... blocks) {
+		registerForBlocks(provider, new ObjectOpenHashSet<>(blocks));
+	}
+
+	@Override
+	public void registerForBlockEntities(BlockEntityApiProvider<A, C> provider, BlockEntityType<?> @NotNull ... blockEntityTypes) {
 		Objects.requireNonNull(provider, "BlockEntityApiProvider may not be null.");
 
 		if (blockEntityTypes.length == 0) {
@@ -161,9 +166,7 @@ public final class BlockApiLookupImpl<A, C> implements BlockApiLookup<A, C> {
 
 		for (BlockEntityType<?> blockEntityType : blockEntityTypes) {
 			Objects.requireNonNull(blockEntityType, "Encountered null block entity type while registering a block entity API provider mapping.");
-
-			Block[] blocks = ((BlockEntityTypeAccessor) blockEntityType).getBlocks().toArray(new Block[0]);
-			registerForBlocks(nullCheckedProvider, blocks);
+			registerForBlocks(nullCheckedProvider, ((BlockEntityTypeAccessor) blockEntityType).getBlocks());
 		}
 	}
 

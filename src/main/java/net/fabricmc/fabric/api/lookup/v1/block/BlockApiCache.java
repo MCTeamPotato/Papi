@@ -16,16 +16,18 @@
 
 package net.fabricmc.fabric.api.lookup.v1.block;
 
-import net.fabricmc.fabric.impl.lookup.block.BlockApiCacheImpl;
-import net.fabricmc.fabric.impl.lookup.block.BlockApiLookupImpl;
+import java.util.Objects;
+
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
+import net.fabricmc.fabric.impl.lookup.block.BlockApiCacheImpl;
+import net.fabricmc.fabric.impl.lookup.block.BlockApiLookupImpl;
 
 /**
  * A {@link BlockApiLookup} bound to a {@link ServerWorld} and a position, providing much faster API access.

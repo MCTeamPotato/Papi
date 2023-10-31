@@ -16,19 +16,21 @@
 
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.profiler.Profiler;
+
+import net.fabricmc.fabric.api.event.Event;
+import net.fabricmc.fabric.api.event.EventFactory;
 
 public final class ServerTickEvents {
 	private ServerTickEvents() {
 	}
 
 	/**
-	 * Called at the start of the server tick.
+	 * @deprecated Use {@link net.minecraftforge.event.TickEvent.ServerTickEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<StartTick> START_SERVER_TICK = EventFactory.createArrayBacked(StartTick.class, callbacks -> server -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = server.getProfiler();
@@ -49,8 +51,9 @@ public final class ServerTickEvents {
 	});
 
 	/**
-	 * Called at the end of the server tick.
+	 * @deprecated Use {@link net.minecraftforge.event.TickEvent.ServerTickEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<EndTick> END_SERVER_TICK = EventFactory.createArrayBacked(EndTick.class, callbacks -> server -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = server.getProfiler();
@@ -71,8 +74,9 @@ public final class ServerTickEvents {
 	});
 
 	/**
-	 * Called at the start of a ServerWorld's tick.
+	 * @deprecated Use {@link net.minecraftforge.event.TickEvent.LevelTickEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<StartWorldTick> START_WORLD_TICK = EventFactory.createArrayBacked(StartWorldTick.class, callbacks -> world -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = world.getProfiler();
@@ -93,10 +97,9 @@ public final class ServerTickEvents {
 	});
 
 	/**
-	 * Called at the end of a ServerWorld's tick.
-	 *
-	 * <p>End of world tick may be used to start async computations for the next tick.
+	 * @deprecated Use {@link net.minecraftforge.event.TickEvent.LevelTickEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<EndWorldTick> END_WORLD_TICK = EventFactory.createArrayBacked(EndWorldTick.class, callbacks -> world -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = world.getProfiler();

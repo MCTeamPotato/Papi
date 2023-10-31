@@ -20,7 +20,6 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.resource.LifecycledResourceManager;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public final class ServerLifecycleEvents {
@@ -28,10 +27,9 @@ public final class ServerLifecycleEvents {
 	}
 
 	/**
-	 * Called when a Minecraft server is starting.
-	 *
-	 * <p>This occurs before the {@link PlayerManager player manager} and any worlds are loaded.
+	 * @deprecated Use {@link net.minecraftforge.event.server.ServerStartingEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ServerStarting> SERVER_STARTING = EventFactory.createArrayBacked(ServerStarting.class, callbacks -> server -> {
 		for (ServerStarting callback : callbacks) {
 			callback.onServerStarting(server);
@@ -39,10 +37,9 @@ public final class ServerLifecycleEvents {
 	});
 
 	/**
-	 * Called when a Minecraft server has started and is about to tick for the first time.
-	 *
-	 * <p>At this stage, all worlds are live.
+	 * @deprecated Use {@link net.minecraftforge.event.server.ServerStartedEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ServerStarted> SERVER_STARTED = EventFactory.createArrayBacked(ServerStarted.class, (callbacks) -> (server) -> {
 		for (ServerStarted callback : callbacks) {
 			callback.onServerStarted(server);
@@ -50,13 +47,9 @@ public final class ServerLifecycleEvents {
 	});
 
 	/**
-	 * Called when a Minecraft server has started shutting down.
-	 * This occurs before the server's network channel is closed and before any players are disconnected.
-	 *
-	 * <p>For example, an integrated server will begin stopping, but its client may continue to run.
-	 *
-	 * <p>All worlds are still present and can be modified.
+	 * @deprecated Use {@link net.minecraftforge.event.server.ServerStoppingEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ServerStopping> SERVER_STOPPING = EventFactory.createArrayBacked(ServerStopping.class, (callbacks) -> (server) -> {
 		for (ServerStopping callback : callbacks) {
 			callback.onServerStopping(server);
@@ -64,12 +57,9 @@ public final class ServerLifecycleEvents {
 	});
 
 	/**
-	 * Called when a Minecraft server has stopped.
-	 * All worlds have been closed and all (block)entities and players have been unloaded.
-	 *
-	 * <p>For example, an integrated server will begin stopping, but its client may continue to run.
-	 * Meanwhile, for a  dedicated server, this will be the last event called.
+	 * @deprecated Use {@link net.minecraftforge.event.server.ServerStoppedEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ServerStopped> SERVER_STOPPED = EventFactory.createArrayBacked(ServerStopped.class, callbacks -> server -> {
 		for (ServerStopped callback : callbacks) {
 			callback.onServerStopped(server);
@@ -77,9 +67,9 @@ public final class ServerLifecycleEvents {
 	});
 
 	/**
-	 * Called when a Minecraft server is about to send tag and recipe data to a player.
-	 * @see SyncDataPackContents
+	 * @deprecated Use {@link net.minecraftforge.event.OnDatapackSyncEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<SyncDataPackContents> SYNC_DATA_PACK_CONTENTS = EventFactory.createArrayBacked(SyncDataPackContents.class, callbacks -> (player, joined) -> {
 		for (SyncDataPackContents callback : callbacks) {
 			callback.onSyncDataPackContents(player, joined);

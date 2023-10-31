@@ -30,10 +30,9 @@ public final class ClientChunkEvents {
 	}
 
 	/**
-	 * Called when a chunk is loaded into a ClientWorld.
-	 *
-	 * <p>When this event is called, the chunk is already in the world.
+	 * @deprecated Use {@link net.minecraftforge.event.level.ChunkEvent.Load}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ClientChunkEvents.Load> CHUNK_LOAD = EventFactory.createArrayBacked(ClientChunkEvents.Load.class, callbacks -> (clientWorld, chunk) -> {
 		if (EventFactory.isProfilingEnabled()) {
 			Profiler profiler = clientWorld.getProfiler();
@@ -54,10 +53,9 @@ public final class ClientChunkEvents {
 	});
 
 	/**
-	 * Called when a chunk is about to be unloaded from a ClientWorld.
-	 *
-	 * <p>When this event is called, the chunk is still present in the world.
+	 * @deprecated Use {@link net.minecraftforge.event.level.ChunkEvent.Unload}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<ClientChunkEvents.Unload> CHUNK_UNLOAD = EventFactory.createArrayBacked(ClientChunkEvents.Unload.class, callbacks -> (clientWorld, chunk) -> {
 		if (EventFactory.isProfilingEnabled()) {
 			final Profiler profiler = clientWorld.getProfiler();

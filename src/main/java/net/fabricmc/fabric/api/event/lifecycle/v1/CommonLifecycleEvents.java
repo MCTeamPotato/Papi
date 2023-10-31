@@ -16,9 +16,10 @@
 
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
+import net.minecraft.util.registry.DynamicRegistryManager;
+
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.util.registry.DynamicRegistryManager;
 
 public class CommonLifecycleEvents {
 	private CommonLifecycleEvents() {
@@ -26,7 +27,9 @@ public class CommonLifecycleEvents {
 
 	/**
 	 * Called when tags are loaded or updated.
+	 * @deprecated Use {@link net.minecraftforge.event.TagsUpdatedEvent}
 	 */
+	@Deprecated(forRemoval = true)
 	public static final Event<TagsLoaded> TAGS_LOADED = EventFactory.createArrayBacked(TagsLoaded.class, callbacks -> (registries, client) -> {
 		for (TagsLoaded callback : callbacks) {
 			callback.onTagsLoaded(registries, client);
